@@ -1,12 +1,8 @@
 package com.qa.models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.apache.tomcat.jni.Address;
 
 @Entity
 public class Customer {
@@ -23,9 +19,6 @@ public class Customer {
 	
 	private String password;
 	
-
-	
-
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -65,8 +58,5 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
 	
 }

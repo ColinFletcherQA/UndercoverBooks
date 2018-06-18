@@ -6,7 +6,6 @@ import javax.persistence.Id;
 @Entity
 public class Address {
 
-	
 	@Id
 	private int addressId;
 	
@@ -36,7 +35,6 @@ public class Address {
 
 	private int customerId;
 	
-
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -108,7 +106,5 @@ public class Address {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
 	
 }

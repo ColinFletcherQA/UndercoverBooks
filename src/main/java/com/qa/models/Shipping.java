@@ -112,10 +112,4 @@ public class Shipping {
 		this.email = email;
 	}
 	
-	
-	
-	
-	
-	
-	
 }
