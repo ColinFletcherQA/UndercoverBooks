@@ -8,37 +8,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Shopping</title>
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/shop-homepage.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/shop-homepage.css"/>
   </head>
   <body>
 
     <!-- Start Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text" style="color:red">Online Shopping</li>
-          <li><a href="#">Home</a></li>
-          
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        
-             <ul class="dropdown menu" data-dropdown-menu>
-            
-            <li class="has-submenu">
-              <a href="/viewCart"><img src="images/cart.jpg" width="50" height="50"/></a>
-              <ul class="submenu menu vertical" data-submenu>
-                <li><a href="/viewCart"><img src="images/cart.jpg" width="50" height="50"/></a></li>
-                <li><a href="/login">Register | Login</a></li>
-              </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Online Shopping</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.jsp">Home
+                  <span class="sr-only">(current)</span>
+              </a>
             </li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
           </ul>
-          
+        </div>
       </div>
-    </div>
+    </nav>
     <!-- End Top Bar -->
 
 
