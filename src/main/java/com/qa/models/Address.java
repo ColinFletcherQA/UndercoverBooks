@@ -10,7 +10,6 @@ public class Address {
 	@Id
 	private int addressId;
 	
-	
 	private String addressLine1;
 	
 	private String addressLine2;

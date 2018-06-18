@@ -56,7 +56,7 @@
       
       <div class="medium-6">
            
-           <p> New Customer?  </p> <a href="/register" class="button large expanded">Register</a>
+           <p> Are You a New Customer?  </p> <a href="/register" class="button large expanded">Register</a>
          
             </div>
       
