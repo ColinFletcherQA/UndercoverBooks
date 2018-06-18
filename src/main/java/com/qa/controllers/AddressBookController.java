@@ -17,7 +17,8 @@ public class AddressBookController {
 	
 	@RequestMapping("/updateAddress")
 	public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
-		ModelAndView modelAndView = null;
+		ModelAndView modelAndView;
+		
 		Address billingAddress = null;
 		Address shippingAddress = null;
 
@@ -30,15 +31,7 @@ public class AddressBookController {
 		Address sAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "shipping");
 		
 		if (bAddress != null || sAddress != null) {
-			int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(),
-					address.getAddressLine2(),
-					address.getCity(),
-					address.getPostcode(),
-					address.getState(),
-					address.getCountry(),
-					address.getPhoneNumber(),
-					loggedInCustomer.getCustomerId(),
-					address.getAddressType());
+			int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(), address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(), loggedInCustomer.getCustomerId(), address.getAddressType());
 
 			if (recordsUpdated > 0) {
 				billingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "billing");

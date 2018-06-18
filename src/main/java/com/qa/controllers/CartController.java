@@ -17,8 +17,7 @@ public class CartController {
 	public ModelAndView bookDetails(@RequestParam("price") double price, @RequestParam("quantity") int quantity) {
 		double totalPrice = price * quantity;
 		System.out.println("Total price is " + price);
-		ModelAndView modelAndView = new ModelAndView("return_price", "total_price", totalPrice);
-		return modelAndView;
+		return new ModelAndView("return_price", "total_price", totalPrice);
 	}
 	
 	@RequestMapping("/checkout")

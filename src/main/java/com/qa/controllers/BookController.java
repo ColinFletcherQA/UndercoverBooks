@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes(names = {"books", "cart_items", "book_counts", "filtered_books"})
@@ -22,29 +21,28 @@ public class BookController {
 	BookRepository bookService;
 	
 	@RequestMapping("/bookDetails")
-	public ModelAndView bookDetails(@ModelAttribute("books") Iterable<Book> books, @RequestParam("bookId") int bookId) {
-		Book book = findBookById(books, bookId);
+	public ModelAndView bookDetails(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId) {
+		// TODO - Jacob: We don't want null.
+		Book book = findBookById(books, bookId).orElse(null);
 		ModelAndView modelAndView = new ModelAndView("book_details", "book", book);
 		modelAndView.addObject("books", books);
 		return modelAndView;
 	}
 	
-	
 	@RequestMapping("/addToCart")
-	public ModelAndView addToCart(@ModelAttribute("books") Iterable<Book> books, @RequestParam("bookId") int bookId, @ModelAttribute("cart_items") ArrayList<Book> cartItems) {
-		Book book = findBookById(books, bookId);
+	public ModelAndView addToCart(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId, @ModelAttribute("cart_items") List<Book> cartItems) {
 		ModelAndView modelAndView = new ModelAndView("cart_updated", "cart_items", cartItems);
-		cartItems.add(book);
+		findBookById(books, bookId).ifPresent(cartItems::add);
 		modelAndView.addObject("books", books);
 		return modelAndView;
 	}
 	
 	@RequestMapping("/viewCart")
-	public ModelAndView viewCart(@ModelAttribute("books") Iterable<Book> books, @ModelAttribute("cart_items") ArrayList<Book> cartItems) {
-		ModelAndView modelAndView = null;
-		ArrayList<Integer> bookIds = loadBookIds(cartItems);
+	public ModelAndView viewCart(@ModelAttribute("books") Collection<Book> books, @ModelAttribute("cart_items") List<Book> cartItems) {
+		ModelAndView modelAndView;
+		List<Integer> bookIds = loadBookIds(cartItems);
 		Map<Integer, Integer> bookCounts = bookCounts(bookIds);
-		ArrayList<Book> filteredBooks = filteredBookList(books, bookCounts);
+		List<Book> filteredBooks = filteredBookList(books, bookCounts);
 
 		if (cartItems.size() != 0) {
 			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
@@ -60,79 +58,51 @@ public class BookController {
 	}
 
 	@RequestMapping("/removeFromCart")
-	public ModelAndView removeFromCart(@ModelAttribute("filtered_books") ArrayList<Book> cartItems, @RequestParam("bookId") int bookId) {
+	public ModelAndView removeFromCart(@ModelAttribute("filtered_books") List<Book> cartItems, @RequestParam("bookId") int bookId) {
 		cartItems = removeBookById(cartItems, bookId);
-		ModelAndView modelAndView = null;
-		
+
 		if (cartItems.size() != 0) {
-			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
-		} else {
-			modelAndView = new ModelAndView("cart_empty", "cart_items", cartItems);
+			 return new ModelAndView("cart_details", "cart_items", cartItems);
 		}
 		
-		return modelAndView;
+		return new ModelAndView("cart_empty", "cart_items", cartItems);
 	}
 	
-	public ArrayList<Integer> loadBookIds(ArrayList<Book> cartItems) {
-		ArrayList<Integer> bookIds = new ArrayList<>();
-		
-		for (Book book : cartItems) {
-			bookIds.add(book.getBookId());
-		}
-		
-		return bookIds;
+	public List<Integer> loadBookIds(Collection<Book> cartItems) {
+		return cartItems.stream()
+						.map(Book::getBookId)
+						.collect(Collectors.toList());
 	}
 	
 	// Some business methods
 	
-	public Book findBookById(Iterable<Book> books, int bookId) {
-		Book book = null;
-		
-		for (Book b : books) {
-			if (b.getBookId() == bookId) {
-				book = b;
-			}
-		}
-
-		return book;
+	public Optional<Book> findBookById(Collection<Book> books, int bookId) {
+		return books.stream()
+				    .filter(b -> b.getBookId() == bookId)
+				    .findFirst();
 	}
 
-	public boolean findBookInCart(ArrayList<Integer> cartItems, int bookId) {
+	public boolean findBookInCart(Collection<Integer> cartItems, int bookId) {
 		return cartItems.contains(bookId);
 	}
 
-	public ArrayList<Book> removeBookById(ArrayList<Book> books, int bookId) {
+	public List<Book> removeBookById(List<Book> books, int bookId) {
 		books.removeIf(b -> b.getBookId() == bookId);
 		return books;
 	}
 	
-	public Map<Integer, Integer> bookCounts(ArrayList<Integer> bookIds) {
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-
-		for (int bookId : bookIds) {
-			Integer count = map.get(bookId);
-			map.put(bookId, (count == null) ? 1 : count + 1);
-		}
-		
-		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-			System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
-		}
-
+	// TODO - Jacob: Stream it and collect it to a Map if we want to remove the prints.
+	public Map<Integer, Integer> bookCounts(List<Integer> bookIds) {
+		Map<Integer, Integer> map = new HashMap<>();
+		bookIds.forEach(bookId -> map.merge(bookId, 1, Integer::sum));
+		map.forEach((k, v) -> System.out.println("Key : " + k + " Value : " + v));
 		return map;
 	}
 	
-	public ArrayList<Book> filteredBookList(Iterable<Book> books, Map<Integer, Integer> map) {
-		ArrayList<Book> filteredBooks = new ArrayList<>();
-		
-		for (Book book : books) {
-			for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-				Integer bookId = entry.getKey(); // Get book ID
-				if (bookId == book.getBookId()) {
-					filteredBooks.add(book);
-				}
-			}
-		}
-
+	public List<Book> filteredBookList(Collection<Book> books, Map<Integer, Integer> map) {
+		List<Book> filteredBooks = books.stream()
+										.filter(b -> map.containsKey(b.getBookId()))
+										.collect(Collectors.toList());
 		System.out.println("Number of filtered items " + filteredBooks.size());
 		return filteredBooks;
 	}
