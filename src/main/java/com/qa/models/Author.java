@@ -6,7 +6,6 @@ import javax.persistence.Id;
 @Entity
 public class Author {
 
-	
 	@Id
 	private int authorId;
 	
@@ -57,6 +56,5 @@ public class Author {
 	public void setExpertise(String expertise) {
 		this.expertise = expertise;
 	}
-	
 	
 }

@@ -1,14 +1,12 @@
 package com.qa.models;
 
 
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
 @Entity
 public class Book {
@@ -48,11 +46,8 @@ public class Book {
 	
 	private String tableOfContents;
 	
-	
 	private String bookImage;
 	
-
-
 	public int getBookId() {
 		return bookId;
 	}
@@ -109,8 +104,6 @@ public class Book {
 		this.pageCount = pageCount;
 	}
 
-
-
 	public double getPrice() {
 		return price;
 	}
@@ -150,7 +143,5 @@ public class Book {
 	public void setBookImage(String bookImage) {
 		this.bookImage = bookImage;
 	}
-	
-	
 	
 }
