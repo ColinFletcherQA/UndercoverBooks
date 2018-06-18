@@ -1,60 +1,27 @@
 package com.qa.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Author {
 
-	@Id
+	@Id @Getter @Setter
 	private int authorId;
 	
+	@Getter @Setter
 	private String authorName;
 	
+	@Getter @Setter
 	private String aboutAuthor;
 	
+	@Getter @Setter
 	private String affiliations;
 	
+	@Getter @Setter
 	private String expertise;
-
-	public int getAuthorId() {
-		return authorId;
-	}
-
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
-	}
-
-	public String getAuthorName() {
-		return authorName;
-	}
-
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
-
-	public String getAboutAuthor() {
-		return aboutAuthor;
-	}
-
-	public void setAboutAuthor(String aboutAuthor) {
-		this.aboutAuthor = aboutAuthor;
-	}
-
-	public String getAffiliations() {
-		return affiliations;
-	}
-
-	public void setAffiliations(String affiliations) {
-		this.affiliations = affiliations;
-	}
-
-	public String getExpertise() {
-		return expertise;
-	}
-
-	public void setExpertise(String expertise) {
-		this.expertise = expertise;
-	}
 	
 }

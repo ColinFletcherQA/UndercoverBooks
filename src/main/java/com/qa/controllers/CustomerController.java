@@ -22,10 +22,10 @@ import java.util.List;
 public class CustomerController {
 
 	@Autowired
-	BookService bookService;
+	private BookService bookService;
 	
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 	
 	@RequestMapping("/")
 	public ModelAndView indexPage(HttpServletRequest request) {

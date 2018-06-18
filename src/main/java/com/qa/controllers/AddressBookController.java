@@ -19,9 +19,6 @@ public class AddressBookController {
 	public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
 		ModelAndView modelAndView;
 		
-		Address billingAddress = null;
-		Address shippingAddress = null;
-
 		System.out.println("Before update ");
 		System.out.println("ID " + loggedInCustomer.getCustomerId());
 		System.out.println("Name" + loggedInCustomer.getFirstName());
@@ -34,14 +31,14 @@ public class AddressBookController {
 			int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(), address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(), loggedInCustomer.getCustomerId(), address.getAddressType());
 
 			if (recordsUpdated > 0) {
-				billingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "billing");
-				shippingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "shipping");
+				Address billingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "billing");
+				Address shippingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "shipping");
 				System.out.println("After update ");
 				modelAndView = new ModelAndView("address_book", "billing_address", billingAddress);
 				modelAndView.addObject("shipping_address", shippingAddress);
 			} else {
-				modelAndView = new ModelAndView("address_book", "billing_address", billingAddress);
-				modelAndView.addObject("shipping_address", shippingAddress);
+				modelAndView = new ModelAndView("address_book", "billing_address", null);
+				modelAndView.addObject("shipping_address", null);
 			}
 		} else {
 			Address savedAddress = addressService.saveAddress(address);

@@ -1,110 +1,42 @@
 package com.qa.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Address {
 
-	@Id
+	@Id @Getter @Setter
 	private int addressId;
 	
+	@Getter @Setter
 	private String addressLine1;
 	
+	@Getter @Setter
 	private String addressLine2;
 	
+	@Getter @Setter
 	private String city;
 
+	@Getter @Setter
 	private String postcode;
 	
+	@Getter @Setter
 	private String state;
 	
+	@Getter @Setter
 	private String country;
 	
+	@Getter @Setter
 	private String phoneNumber;
 	
+	@Getter @Setter
 	private String addressType;
 
-	public String getAddressType() {
-		return addressType;
-	}
-
-	public void setAddressType(String addressType) {
-		this.addressType = addressType;
-	}
-
+	@Getter @Setter
 	private int customerId;
-	
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	public int getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
-	}
-
-	public String getAddressLine1() {
-		return addressLine1;
-	}
-
-	public void setAddressLine1(String addressLine1) {
-		this.addressLine1 = addressLine1;
-	}
-
-	public String getAddressLine2() {
-		return addressLine2;
-	}
-
-	public void setAddressLine2(String addressLine2) {
-		this.addressLine2 = addressLine2;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 	
 }
