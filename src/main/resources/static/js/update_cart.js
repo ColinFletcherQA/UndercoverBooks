@@ -1,6 +1,4 @@
 function calculateTotalPrice(price, quantity, old, price_label) {
-    console.log(old + " " + quantity);
-
 	var cartTotal = document.getElementById("cart_total").value;
 	var orderTotal = document.getElementById("order_total").value;
 	var totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2);
