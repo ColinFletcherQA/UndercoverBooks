@@ -8,27 +8,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping Cart | Week 3</title>
-    <link rel="stylesheet" href="css/style.css">
-    
-    
+    <title>Undercover Books</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
   <body>
     
     <%!
-    
       ArrayList<Book> books;
-    
-      Map<Integer,Integer> bookCounts;
-    
-      
-    %>
-    
-    
-    <%
-    
 
-    
+      Map<Integer,Integer> bookCounts;
+    %>
+
+    <%
     books  = (ArrayList<Book>) session.getAttribute("filtered_books");
     
     bookCounts = (Map<Integer,Integer>)  session.getAttribute("book_counts");
@@ -39,169 +31,138 @@
     
     double totalPrice =  0.0;
     %>
-    
-   
 
 <!-- Start Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text" style="color:red">Online Shopping</li>
-          <li><a href="#">Home</a></li>
-          
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        
-             <ul class="dropdown menu" data-dropdown-menu>
-            <li id="cart_items"></li>
-            <li class="has-submenu">
-              <a href="/viewCart"> <img src="images/cart.jpg" width="50" height="50"/></a>
-              <ul class="submenu menu vertical" data-submenu>
-                <li><a href="/viewCart"><img src="images/cart.jpg" width="50" height="50"/> View Cart </a></li>
-                <li><a href="/login">Register | Login</a></li>
-              </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="">Undercover Books</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home
+                <span class="sr-only">(current)</span>
+              </a>
             </li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/viewCart">View Cart</a>
+            </li>
           </ul>
-          
+        </div>
       </div>
-    </div>
+    </nav>
     <!-- End Top Bar -->
     <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="row columns">
-      <nav aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
-         
-          <li><a href="/">Home</a></li>
-          <li>
-            <span class="show-for-sr">Current: </span> Cart Details
-          </li>
-        </ul>
-      </nav>
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Cart Details</li>
+      </ol>
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="card-deck">
+
+          <%
+            int i = 0;
+            for(Book book : books)
+            {
+
+              int quantity = bookCounts.get(book.getBookId());
+              double price = book.getPrice();
+              totalPrice = book.getPrice() * quantity;
+              cartTotal = cartTotal + book.getPrice()*quantity;
+              System.out.println("Cart Total "+cartTotal);
+          %>
+              <div class="card col-lg-3 col-md-4 col-sm-6">
+                <img class="card-img-top" src="<%=book.getBookImage()%>"/>
+                <div class="card-body">
+                  <form name="f1">
+                    <input type="hidden" name="price" value="<%=price%>"/>
+                    <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
+                    Price <label id="price_label<%=i%>">$<%=totalPrice%></label><br>
+                    <input type="hidden" name="cart_total" value="<%=price%>"/>
+                    Quantity <input type="number"  min="1" name="quantity" value="<%=quantity%>" oninput="calculateTotalPrice(price.value,this.value,price_label<%=i%>)"/>
+                  </form>
+                  <br>
+                  <a class="btn btn-primary" href="/removeFromCart?bookId=<%=book.getBookId() %>"> Remove </a>
+                </div>
+              </div>
+              <%
+              i++;
+              }
+              %>
+
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-header">
+              <h3>Order Summary </h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <label>Cart Total</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="hidden" name="order_total" id="cart_total" value="<%=cartTotal %>"/>
+                  <label class="middle" id="cart_total_label">$<%=cartTotal %></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label>VAT</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="middle">Applicable Tax </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label>Order Total</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="hidden" name="order_total" id="order_total" value="<%=cartTotal %>"/>
+                  <label class="middle" id="order_total_label">$<%=cartTotal%></label>
+                </div>
+              </div>
+              <div class="card-footer">
+                <form action="/checkout" method="post" id="checkout_form">
+                  <input type="hidden" name="order_total" value="<%=cartTotal %>"/>
+                  <input type="submit" class="btn btn-primary" value="Proceed to Checkout"/>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="medium-6 columns">
-      <% 
-     
-      
-      /* for(Book book : books)
-      {
-    	  
-    	  int quantity = bookCounts.get(book.getBookId());
-    	  double price = book.getPrice();
-    	  totalPrice = book.getPrice() * quantity;
-    	  cartTotal = cartTotal + book.getPrice()*quantity;
-    	  System.out.println("Cart Total "+cartTotal);
-    	  
-      } */
-      
-      
-      int i = 0;
-      for(Book book : books)
-      {
-    	  
-    	  int quantity = bookCounts.get(book.getBookId());
-    	  double price = book.getPrice();
-    	  totalPrice = book.getPrice() * quantity;
-    	  cartTotal = cartTotal + book.getPrice()*quantity;
-    	  System.out.println("Cart Total "+cartTotal);
-    	  
-      %>
-       
-        <img class="thumbnail" src="<%=book.getBookImage()%>"/>
-        <div class="row small-up-4">
-        
-          <div class="column">
-            eBook ISBN : <%=book.geteBookISBN()%>
-          </div>
-          <div class="column">
-            Print book ISBN <%=book.getPaperISBN()%>
-          </div>
-          
-          <div class="column">
-           
-          </div>
-          <div class="column">
-            Published On <%=book.getPublishedDate()%>
-          </div>
-          <div class="column">
-            <form name="f1">
-            	<input type="hidden" name="price" value="<%=price%>"/>
-            	<input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
-            	Price <label id="price_label<%=i%>">$<%=totalPrice%></label>
-            	<input type="hidden" name="cart_total" value="<%=price%>"/>
-            	Quantity <input type="number"  min="1" name="quantity" value="<%=quantity%>" oninput="calculateTotalPrice(price.value,this.value,price_label<%=i%>)"/>
-            </form>
-          </div>
-          
-         
-        </div>
-        
-        <div class="row small-up-4">
-          
-          <div class="column">
-            <a href="/removeFromCart?bookId=<%=book.getBookId() %>"> Remove </a>
-          </div>
-        
-        </div>
-        
-        <hr>
-      <%
-      i++;
-      }
-      %>
-     
-      </div>
-      <div class="medium-6 large-5 columns">
-        <h3>Order Summary </h3>
-        <p> </p>
 
-        <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Cart Total</label>
-          </div>
-          <div class="small-3 columns">
-             <input type="hidden" name="order_total" id="cart_total" value="<%=cartTotal %>"/> 
-            <label for="middle-label" class="middle" id="cart_total_label">$<%=cartTotal %></label>
-           </div>
-           
-       </div>
-
-
-          <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">VAT </label>
-          </div>
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Applicable Tax </label>
-           </div>
-           
-        </div>
-    
-        <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Order Total  </label>
-          </div>
-          <div class="small-3 columns">
-            <input type="hidden" name="order_total" id="order_total" value="<%=cartTotal %>"/> 
-            <label for="middle-label" class="middle" id="order_total_label">$<%=cartTotal%></label>
-           </div>
-      
-        </div>
-
-		<form action="/checkout" method="post" id="checkout_form">   
-		<input type="hidden" name="order_total" value="<%=cartTotal %>"/>   
-        <input type="submit" class="button large expanded" value="Proceed to Checkout"/>
-        </form> 
-      </div>  
- </div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/elsevier.js"></script>
     <script src="js/update_cart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
       $(document).foundation();
     </script> 
