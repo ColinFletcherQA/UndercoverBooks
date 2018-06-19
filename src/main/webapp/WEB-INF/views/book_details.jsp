@@ -1,5 +1,6 @@
 <!doctype html>
 <%@page import="com.qa.models.Book"%>
+<%@page import="com.qa.models.Author"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -104,7 +105,24 @@
           <div class="card mt-4">
             <div class="card-body">
               <h3 class="card-title"><%=book.getTitle() %></h3>
-              <h6 class="card-subtitle mb-2 text-muted">Replace with getAuthors()</h6>
+
+
+                <%
+                    for(Author author : book.getAuthors())
+                    {
+
+                        %>
+
+                            <h6 class="card-subtitle mb-2 text-muted"><%= author.getAuthorName() %></h6>
+
+                        <%
+                    }
+                %>
+
+
+
+
+
               <p class="card-text"><%=book.getDescription() %></p>
               <form>
                 <div class="form-group">

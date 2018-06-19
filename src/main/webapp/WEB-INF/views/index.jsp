@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.qa.models.Book"%>
+<%@page import="com.qa.models.Author"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -113,6 +114,19 @@
                     <a href="/bookDetails?bookId=<%=book.getBookId()%>"><%= book.getTitle()%></a>
                   </h4>
                   <h5>$<%= book.getPrice()%></h5>
+
+                   <%
+                        for(Author author : book.getAuthors())
+                        {
+
+                       %>
+
+                           <p class="card-subtitle mb-2 text-muted"> <%= author.getAuthorName() %> </p>
+
+                       <%
+                       }
+                   %>
+
                   <p class="card-text"><%=book.getDescription()%></p>
                 </div>
                 <div class="card-footer">
