@@ -86,7 +86,7 @@ public class CustomerController {
 		System.out.println("Failure");
 		return new ModelAndView("login_failed");
 	}
-	
+
 	@RequestMapping("/profile")
 	public ModelAndView profile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
@@ -118,6 +118,32 @@ public class CustomerController {
 	@RequestMapping("/addressBook")
 	public ModelAndView addressBook(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("address_book", "logged_in_customer", loggedInCustomer);
+	}
+
+	@RequestMapping("/change_password")
+	public ModelAndView changePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer){
+		return new ModelAndView("change_password", "logged_in_customer", loggedInCustomer);
+	}
+
+	@RequestMapping("/updatePassword")
+	public ModelAndView updatePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @RequestParam("current_password") String currentPassword, @RequestParam("new_password") String newPassword){
+		System.out.println(currentPassword);
+		System.out.println(newPassword);
+		System.out.println(loggedInCustomer.getCustomerId());
+		ModelAndView modelAndView = new ModelAndView("change_password");
+
+		if(loggedInCustomer.getPassword().equals(currentPassword)) {
+			if (currentPassword.equalsIgnoreCase(newPassword)) {
+				modelAndView.addObject("flag", "ERROR: Passwords cannot match");
+			} else {
+				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
+				modelAndView.addObject("flag", "SUCCESS: Password updated");
+			}
+		} else {
+			modelAndView.addObject("flag", "ERROR: Incorrect current password");
+		}
+
+		return modelAndView;
 	}
 
 }
