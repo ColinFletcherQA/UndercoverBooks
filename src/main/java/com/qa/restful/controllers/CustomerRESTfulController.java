@@ -4,7 +4,6 @@ import com.qa.models.Book;
 import com.qa.models.Customer;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address"})
@@ -27,7 +27,6 @@ public class CustomerRESTfulController {
 	@RequestMapping("/loadAllBooks")
 	public Iterable<Book> indexPage(HttpServletRequest request) {
 		List<Book> cartItems;
-
 		HttpSession session = request.getSession();
 		Object items = session.getAttribute("cart_items");
 		
@@ -49,7 +48,7 @@ public class CustomerRESTfulController {
 		System.out.println("Customer Password is " + customer.getPassword());
 		return customerService.saveCustomer(customer);
 	}
-	
+
 	@RequestMapping("/loginCustomer")
 	public Customer loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) {
 		System.out.println("Email is " + email);

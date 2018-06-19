@@ -53,6 +53,11 @@ public class CustomerController {
 	public ModelAndView register() {
 		return new ModelAndView("register");
 	}
+
+	@RequestMapping("/registered_user_agreement")
+	public ModelAndView registeredUserAgreement(){
+		return new ModelAndView("registered_user_agreement");
+	}
 	
 	@RequestMapping("/registerProcess")
 	public ModelAndView registerProcess(@ModelAttribute("Customer") Customer customer) {
