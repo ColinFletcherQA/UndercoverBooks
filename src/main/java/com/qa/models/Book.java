@@ -1,6 +1,5 @@
 package com.qa.models;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -35,7 +35,7 @@ public class Book {
 	private String paperISBN;
 	
 	@Getter @Setter
-	private double price;
+	private BigDecimal price;
 	
 	@Getter @Setter
 	private String publishedDate;
