@@ -3,269 +3,276 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.qa.models.Book"%>
+<%@page import="com.qa.models.*"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping Cart | Week 3</title>
-    <link rel="stylesheet" href="css/style.css">
-    
-    
+    <title>Undercover Books</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
   <body>
-    
-    <form action="/checkoutProcess" method="post">
-    
+
      <%
-    
     double orderTotal = (Double) request.getAttribute("order_total");
-    
-   
+
+    ArrayList<Book> books;
+    books  = (ArrayList<Book>) session.getAttribute("cart_items");
     %>
-    
-   
 
 <!-- Start Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text" style="color:red">Online Shopping</li>
-          <li><a href="#">Home</a></li>
-          
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        
-             <ul class="dropdown menu" data-dropdown-menu>
-            <li id="cart_items"></li>
-            <li class="has-submenu">
-              <a href="/viewCart"> <img src="images/cart.jpg" width="50" height="50"/></a>
-              <ul class="submenu menu vertical" data-submenu>
-                <li><a href="/viewCart"><img src="images/cart.jpg" width="50" height="50"/> View Cart </a></li>
-                <li><a href="/login">Register | Login</a></li>
-              </ul>
-            </li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          
-      </div>
-    </div>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+       <div class="container">
+         <a class="navbar-brand" href="">Undercover Books</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarResponsive">
+           <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+               <a class="nav-link" href="/">Home
+                 <span class="sr-only">(current)</span>
+               </a>
+             </li>
+             <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Account
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                 <a class="dropdown-item" href="/login">Login</a>
+                 <a class="dropdown-item" href="/register">Register</a>
+               </div>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">About Us</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">Contact</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="/viewCart">View Cart</a>
+             </li>
+           </ul>
+         </div>
+       </div>
+     </nav>
     <!-- End Top Bar -->
-    <br>
+     <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="row columns">
-      <nav aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
-         
-          <li><a href="/">Home</a></li>
-          <li>
-            <span class="show-for-sr">Current: </span> Cart Details
-          </li>
-        </ul>
-      </nav>
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/viewCart">Cart Details</a> </li>
+        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+      </ol>
+      <div class="row">
+        <div class="col-lg-4 order-lg-2">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill"><%=books.size()%></span>
+          </h4>
+          <ul class="list-group mb-3">
+            <%
+              for(Book book: books)
+              {
+            %>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6><%=book.getTitle()%></h6>
+                <small class="text-muted">Authors</small>
+              </div>
+              <span class="text-muted"><%=book.getPrice()%></span>
+            </li>
+            <%
+              }
+            %>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong><%=orderTotal%></strong>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-lg-8 order-lg-1">
+          <form action="/checkoutProcess" method="post">
+            <h2>Shipping Information</h2>
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First Name">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-12">
+                <label for="addressline1">Address</label>
+                <input type="text" class="form-control" id="addressline1" placeholder="123 Main St">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-12">
+                <label for="addressline2">Address 2</label>
+                <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-4">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city">
+              </div>
+              <div class="form-group col-lg-2">
+                <label for="postcode">Zip</label>
+                <input type="text" class="form-control" id="postcode">
+              </div>
+              <div class="form-group col-lg-2">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" placeholder="PA">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+            </div>
+            <div class="form-group col-lg-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" onclick="myFunction()">
+                <label class="form-check-label" for="gridCheck">
+                  Billing Address is the same as Shipping
+                </label>
+              </div>
+            </div>
+            <div id="billing">
+              <br>
+              <h2>Billing Address</h2>
+              <div class="form-row">
+                <div class="form-group col-lg-6">
+                  <label for="firstName1">First Name</label>
+                  <input type="text" class="form-control" id="firstName1" placeholder="First Name">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="lastName1">Last Name</label>
+                  <input type="text" class="form-control" id="lastName1" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-lg-12">
+                  <label for="inputAddress1">Address</label>
+                  <input type="text" class="form-control" id="inputAddress1" placeholder="123 Main St">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-lg-12">
+                  <label for="inputAddress21">Address 2</label>
+                  <input type="text" class="form-control" id="inputAddress21" placeholder="Apartment, studio, or floor">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-lg-4">
+                  <label for="city1">City</label>
+                  <input type="text" class="form-control" id="city1">
+                </div>
+                <div class="form-group col-lg-2">
+                  <label for="postcode1">Zip</label>
+                  <input type="text" class="form-control" id="postcode1">
+                </div>
+                <div class="form-group col-lg-2">
+                  <label for="state1">State</label>
+                  <input type="text" class="form-control" id="state1" placeholder="PA">
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="country1">Country</label>
+                  <input type="text" class="form-control" id="country1">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-lg-6">
+                  <label for="phone1">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone1">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="email1">Email</label>
+                  <input type="email" class="form-control" id="email1">
+                </div>
+              </div>
+            </div>
+          <br>
+            <h2>Payment</h2>
+            <div class="form-row">
+              <div class="form-group col-lg-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="creditCard">
+                  <label class="form-check-label" for="creditCard">Credit Card</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="debitCard">
+                  <label class="form-check-label" for="creditCard">Debit Card</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <label for="cardName">Name on Card</label>
+                <input type="text" class="form-control" id="cardName">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="cardNumber">Card Number</label>
+                <input type="number" class="form-control" id="cardNumber">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-3">
+                <label for="cardExpiration">Expiration</label>
+                <input type="number" class="form-control" id="cardExpiration" placeholder="dd/mm">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="cardCVV">CVV</label>
+                <input type="number" class="form-control" id="cardCVV">
+              </div>
+            </div>
+            <input type="hidden" name="order_total" value="<%=orderTotal %>"/>
+            <button class="btn btn-primary">Checkout</button>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
- 
-      <div class="medium-6 columns">
-      
-       <h2> Shipping Address </h2>
-        
-        <div class="row small-up-shiping">
-        
-          <div class="columns">
-            <label> Firstname * </label>
-            <input type="text" name="firstName" id="firstName" size="30"/> 
-          </div>
-          <div class="columns">
-             <label> Lastname * </label>
-            <input type="text" name="lastName" id="lastName" size="30"/>
-          </div>
-          
-          <div class="column">
-           <label> Address 1 * </label>
-            <input type="text" name="addressLine1" id="addressLine1" size="30"/>
-          </div>
-          <div class="column">
-            <label> Address 2 * </label>
-            <input type="text" name="addressLine2" id="addressLine2" size="30"/>
-          </div>
-          <div class="column">
-            <label> City * </label>
-            <input type="text" name="city" id="city" size="30"/>
-          </div>
-          
-          <div class="column">
-            <label> Postcode / Zip code * </label>
-            <input type="text" name="postcode" id="postcode" size="30"/>
-          </div>
-          
-          <div class="column">
-            <label> State/Province * </label>
-            <input type="text" name="state" id="state" size="30"/>
-          </div>
-          
-          <div class="column">
-            <label> Country</label>
-            <input type="text" name="country" id="country" size="30"/>
-          </div>
-          
-           <div class="column">
-            <label> Phone Number</label>
-            <input type="text" name="phone" id="phone" size="30"/>
-          </div>
-          
-          
-           <div class="column">
-            <label> Email * </label>
-            <input type="text" name="email" id="email" size="30"/>
-          </div>
-          
-          
-          <div class="column">
-            <input type="checkbox" name="same" id="same"/> My billing and shipping address are the same
-          </div>
-          
-        </div>
-        
-        <div class="row small-up-4">
-          
-          <div class="column">
-           
-          </div>
-        
-        </div>
-        
-        <hr>
-      
-      </div>
-      <div class="medium-6 large-5 columns">
-      
-      
-        <!--  <div class="login_in_shipping">
-    
+   <script>
+     function myFunction() {
+         var x = document.getElementById("billing");
+         if (x.style.display === "none") {
+             x.style.display = "block";
+         } else {
+             x.style.display = "none";
+         }
+     }
+   </script>
 
-        <div class="row">
-          <div class="small-3 columns">
-            <h4>Already have an account </h4>
-            <p> Login to check out using your saved details </p>
-            <label> Email * </label>
-            <input type="text" name="email" placeholder="Enter your email ID" size="40"/>   
-             <label> Password * </label>
-            <input type="password" name="password" placeholder="Enter your password" size="40"/>   
-           
-           <input type="submit" id="login_submit" value="Login"/>
-             
-          </div>
-          
-           
-       </div>
-      
-      </div> -->
-      
-           <h3>Already have an account </h3>
-        <p> Please login using saved details</p>
-
-        <div class="row">
-        
-          <div class="small-3 columnsee">
-          
-          <!--     Email *
-             <input type="text" id="email" name="email" size="30"/> 
-             
-             Password *
-             <input type="password" id="password" name="password" size="30"/>  -->
-             <a href="/loginThroughCheckout?order_total=<%=orderTotal%>" class="button large expanded">Login</a>
-          </div>
-           
-       </div>
-
-          <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">VAT </label>
-          </div>
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Applicable Tax </label>
-           </div>
-           
-        </div>
-    
-        <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Order Total  </label>
-          </div>
-          <div class="small-3 columns">
-          
-            <label for="middle-label" class="middle" id="order_total_label">$<%=orderTotal%></label>
-           </div>
-      
-        </div>
-
-		<form action="checkoutProcess" id="checkout_form">
-		<input type="hidden" name="order_total" value="<%=orderTotal %>"/>   
-        <input type="submit" class="button large expanded" value="Checkout"/>
-       </form>
-      </div> 
-      
-      
-      <br>
-      
-        <%-- <h3>Order Summary </h3>
-        <p> </p>
-
-        <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Cart Total</label>
-          </div>
-          <div class="small-3 columns">
-             
-            <label for="middle-label" class="middle" id="cart_total_label">$<%=orderTotal %></label>
-           </div>
-           
-       </div>
-
-
-
-          <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">VAT </label>
-          </div>
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Applicable Tax </label>
-           </div>
-           
-        </div>
-    
-        <div class="row">
-          <div class="small-3 columns">
-            <label for="middle-label" class="middle">Order Total  </label>
-          </div>
-          <div class="small-3 columns">
-          
-            <label for="middle-label" class="middle" id="order_total_label">$<%=orderTotal%></label>
-           </div>
-      
-        </div> --%>
-
-		  
-		<%-- <input type="hidden" name="order_total" value="<%=orderTotal %>"/>   
-        <input type="submit" class="button large expanded" value="Checkout"/> --%>
-       
-      </div>  
-   
- </div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/elsevier.js"></script>
     <script src="js/update_cart.js"></script>
     
     <script src="js/validations.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <script>
       $(document).foundation();
-    </script> 
-    
-   </form>
+    </script>
   </body>
 </html>
 
