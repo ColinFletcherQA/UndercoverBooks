@@ -18,6 +18,7 @@
   
   <%
  		c = (Customer) session.getAttribute("logged_in_customer");
+
   %>
     
     <!-- Start Top Bar -->
@@ -35,8 +36,8 @@
             <li id="cart_items"></li>
             
             <li><a href="/profile">Personal Details</a></li>
-            <li><a href="#">Address Book</a></li>
-            <li><a href="#">Change Password </a></li>
+            <li><a href="/address_book">Address Book</a></li>
+            <li><a href="/change_password">Change Password </a></li>
             <li><a href="#">Order History </a></li>
              <li><a href="/logout">Logout</a></li>
             <li class="has-submenu">

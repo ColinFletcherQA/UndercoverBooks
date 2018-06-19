@@ -65,9 +65,6 @@
       		<input type="submit" class="button create account" value="Create Account">
               
               </form>
-    
-      
-      
       </div>
     </div>
     
