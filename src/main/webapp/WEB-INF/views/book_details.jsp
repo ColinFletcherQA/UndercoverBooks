@@ -4,216 +4,130 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
-    <link rel="stylesheet" href="css/style.css">
-    
-    
-    
-    
-    
+    <title>Undercover Books</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/shop-homepage.css"/>
+    <%--<link rel="stylesheet" href="css/style.css">--%>
   </head>
   <body>
     
     <%!
-    
       Book book;
-    
-    
-    
-    
     %>
-    
-    
+
+
     <%
-    
      book = (Book) request.getAttribute("book");
-    
-    
-    
-    
     %>
-    
-   
 
 <!-- Start Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text" style="color:red">Online Shopping</li>
-          <li><a href="#">Home</a></li>
-          
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        
-             <ul class="dropdown menu" data-dropdown-menu>
-            <li id="cart_items"></li>
-            <li class="has-submenu">
-              <a href="/viewCart"> <img src="images/cart.jpg" width="50" height="50"/></a>
-              <ul class="submenu menu vertical" data-submenu>
-                <li><a href="/viewCart"><img src="images/cart.jpg" width="50" height="50"/> View Cart </a></li>
-                <li><a href="/login">Register | Login</a></li>
-              </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="">Undercover Books</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home
+                <span class="sr-only">(current)</span>
+              </a>
             </li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/viewCart">View Cart</a>
+            </li>
           </ul>
-          
+        </div>
       </div>
-    </div>
+    </nav>
     <!-- End Top Bar -->
     <br>
-    <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="row columns">
-      <nav aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
-         
-          <li><a href="/">Home</a></li>
-          <li>
-            <span class="show-for-sr">Current: </span> Book Details
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <!-- Breadcrumb -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%=book.getTitle()%></li>
+      </ol>
 
-    <div class="row">
-      <div class="medium-6 columns">
-        <img class="thumbnail" src="<%=book.getBookImage()%>"/>
-        <div class="row small-up-4">
-          <div class="column">
-            eBook ISBN : <%=book.geteBookISBN()%>
+     <!-- Book Information -->
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mt-4">
+            <img class="card-img-top img-fluid" style="width: 100%; height: auto;" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
+            <div class="card-body">
+              <h3 class="card-title"><%=book.getTitle()%></h3>
+              <h4>$<%=book.getPrice()%></h4>
+              <p class="card-text"><%=book.getDescription()%></p>
+              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+              4.0 stars
+            </div>
           </div>
-          <div class="column">
-            Print book ISBN <%=book.getPaperISBN()%>
-          </div>
-          <div class="column">
-           Price :       $<%=book.getPrice()%>
-          </div>
-          <div class="column">
-            Published On <%=book.getPublishedDate()%>
-          </div>
-        
+      <!-- Reviews -->
         </div>
-      </div>
-      <div class="medium-6 large-5 columns">
-        <h3><%=book.getTitle() %></h3>
-        <p><%=book.getDescription() %></p>
-
-        <label>Select the format
-        <select>
-          <option value="">-- Select -- </option>
-          <option value="print">Paperback</option>
-          <option value="eBook">eBook</option>
-          <option value="printAndeBook">PrintBook & eBook</option>
-        </select>
-        </label>
-
-        
-
-        <a href="/addToCart?bookId=<%=book.getBookId()%>" class="button large expanded">Add to Cart</a>
-
-        <!-- <div class="small secondary expanded button-group">
-            <a class="button">Facebook</a>
-            <a class="button">Twitter</a>
-            <a class="button">Yo</a>
-          </div> -->
+        <div class="col-lg-4">
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Product Reviews
+            </div>
+            <div class="card-body">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+              <hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+              <hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+              <hr>
+              <a href="#" class="btn btn-success">Leave a Review</a>
+            </div>
+          </div>
         </div>
-    </div>
-<!--  
-    <div class="column row">
-      <hr>
-      <ul class="tabs" data-tabs id="example-tabs">
-        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Reviews</a></li>
-        <li class="tabs-title"><a href="#panel2">Similar Products</a></li>
-      </ul>
-      <div class="tabs-content" data-tabs-content="example-tabs">
-        <div class="tabs-panel is-active" id="panel1">
-          <h4>Reviews</h4>
-          <div class="media-object stack-for-small">
-            <div class="media-object-section">
-              <img class="thumbnail" src="http://placehold.it/200x200">
-            </div>
-            <div class="media-object-section">
-              <h5>Mike Stevenson</h5>
-              <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.</p>
-            </div>
-          </div>
-          <div class="media-object stack-for-small">
-            <div class="media-object-section">
-              <img class="thumbnail" src="http://placehold.it/200x200">
-            </div>
-            <div class="media-object-section">
-              <h5>Mike Stevenson</h5>
-              <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
-            </div>
-          </div>
-          <div class="media-object stack-for-small">
-            <div class="media-object-section">
-              <img class="thumbnail" src="http://placehold.it/200x200">
-            </div>
-            <div class="media-object-section">
-              <h5>Mike Stevenson</h5>
-              <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
-            </div>
-          </div>
-          <label>
-            My Review
-            <textarea placeholder="None"></textarea>
-          </label>
-          <button class="button">Submit Review</button>
-        </div>
-        <div class="tabs-panel" id="panel2">
-          <div class="row medium-up-3 large-up-5">
-            <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
-              <h5>Other Product <small>$22</small></h5>
-              <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
-              <a href="#" class="button hollow tiny expanded">Buy Now</a>
-            </div>
-            <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
-              <h5>Other Product <small>$22</small></h5>
-              <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
-              <a href="#" class="button hollow tiny expanded">Buy Now</a>
-            </div>
-            <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
-              <h5>Other Product <small>$22</small></h5>
-              <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
-              <a href="#" class="button hollow tiny expanded">Buy Now</a>
-            </div>
-            <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
-              <h5>Other Product <small>$22</small></h5>
-              <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
-              <a href="#" class="button hollow tiny expanded">Buy Now</a>
-            </div>
-            <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
-              <h5>Other Product <small>$22</small></h5>
-              <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
-              <a href="#" class="button hollow tiny expanded">Buy Now</a>
+        <!-- Add to card -->
+        <div class="col-lg-4">
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title"><%=book.getTitle() %></h3>
+              <h6 class="card-subtitle mb-2 text-muted">Replace with getAuthors()</h6>
+              <p class="card-text"><%=book.getDescription() %></p>
+              <form>
+                <div class="form-group">
+                  <label for="bookType">Select Book Type</label>
+                  <select class="form-control" id="bookType">
+                    <option value="print">Paperback</option>
+                    <option value="eBook">eBook</option>
+                    <option value="printAndeBook">PrintBook & eBook</option>
+                  </select>
+                </div>
+                <a href="/addToCart?bookId=<%=book.getBookId()%>" class="btn btn-primary">Add to Cart</a>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
--->
-    <div class="row column">
-      <hr>
-      <ul class="menu">
-        <li>Online Shopping</li>
-        <li><a href="/">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li class="float-right">Copyright 2017</li>
-      </ul>
-    </div>
 
-
- 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="js/elsevier.js"></script>
+    <%--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>--%>
+    <%--<script src="js/elsevier.js"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
       $(document).foundation();
     </script> 
