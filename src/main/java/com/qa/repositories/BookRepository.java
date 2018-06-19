@@ -1,6 +1,5 @@
 package com.qa.repositories;
 
-
 import com.qa.models.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
