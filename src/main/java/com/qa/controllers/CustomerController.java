@@ -53,6 +53,11 @@ public class CustomerController {
 	public ModelAndView register() {
 		return new ModelAndView("register");
 	}
+
+	@RequestMapping("/registered_user_agreement")
+	public ModelAndView registeredUserAgreement(){
+		return new ModelAndView("registered_user_agreement");
+	}
 	
 	@RequestMapping("/registerProcess")
 	public ModelAndView registerProcess(@ModelAttribute("Customer") Customer customer) {
@@ -84,7 +89,8 @@ public class CustomerController {
 			modelAndView = new ModelAndView("customer_home", "logged_in_customer", c);
 		} else {
 			System.out.println("Failure");
-			modelAndView = new ModelAndView("login_failed");
+			modelAndView = new ModelAndView("login");
+			modelAndView.addObject("login_failed_tag", "Login Failed");
 		}
 
 		return modelAndView;
