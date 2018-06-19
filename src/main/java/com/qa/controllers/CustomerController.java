@@ -56,24 +56,18 @@ public class CustomerController {
 	
 	@RequestMapping("/registerProcess")
 	public ModelAndView registerProcess(@ModelAttribute("Customer") Customer customer) {
-		ModelAndView modelAndView;
-		
 		System.out.println("Customer Firstname is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
 
 		if (customerService.saveCustomer(customer) != null) {
-			modelAndView = new ModelAndView("registration_success");
-		} else {
-			modelAndView = new ModelAndView("registration_failed");
+			return new ModelAndView("registration_success");
 		}
 
-		return modelAndView;
+		return new ModelAndView("registration_failed");
 	}
 	
 	@RequestMapping("/loginProcess")
 	public ModelAndView loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) {
-		ModelAndView modelAndView;
-		
 		System.out.println("Email is " + email);
 		System.out.println("Password is " + password);
 		
@@ -81,13 +75,11 @@ public class CustomerController {
 
 		if (c != null) {
 			System.out.println("Success");
-			modelAndView = new ModelAndView("customer_home", "logged_in_customer", c);
-		} else {
-			System.out.println("Failure");
-			modelAndView = new ModelAndView("login_failed");
+			return new ModelAndView("customer_home", "logged_in_customer", c);
 		}
-
-		return modelAndView;
+		
+		System.out.println("Failure");
+		return new ModelAndView("login_failed");
 	}
 	
 	@RequestMapping("/profile")
@@ -97,8 +89,6 @@ public class CustomerController {
 	
 	@RequestMapping("/updateProfile")
 	public ModelAndView updateProfile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Customer") Customer customer) {
-		ModelAndView modelAndView;
-		
 		System.out.println("Before update ");
 		System.out.println("ID " + loggedInCustomer.getCustomerId());
 		System.out.println("Name" + loggedInCustomer.getFirstName());
@@ -114,12 +104,10 @@ public class CustomerController {
 			System.out.println("Name" + c.getFirstName());
 			System.out.println("Email" + c.getEmail());
 			
-			modelAndView = new ModelAndView("profile", "logged_in_customer", c);
-		} else {
-			modelAndView = new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
+			return new ModelAndView("profile", "logged_in_customer", c);
 		}
 		
-		return modelAndView;
+		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
 	}
 	
 	@RequestMapping("/addressBook")
