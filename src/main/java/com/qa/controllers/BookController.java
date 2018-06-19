@@ -31,8 +31,8 @@ public class BookController {
 	
 	@RequestMapping("/addToCart")
 	public ModelAndView addToCart(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId, @ModelAttribute("cart_items") List<Book> cartItems) {
-		ModelAndView modelAndView = new ModelAndView("cart_updated", "cart_items", cartItems);
 		findBookById(books, bookId).ifPresent(cartItems::add);
+		ModelAndView modelAndView = new ModelAndView("cart_updated", "cart_items", cartItems);
 		modelAndView.addObject("books", books);
 		return modelAndView;
 	}
@@ -44,16 +44,14 @@ public class BookController {
 		Map<Integer, Integer> bookCounts = bookCounts(bookIds);
 		List<Book> filteredBooks = filteredBookList(books, bookCounts);
 
-		if (cartItems.size() != 0) {
+		if (!cartItems.isEmpty()) {
 			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
-			modelAndView.addObject("book_counts", bookCounts);
-			modelAndView.addObject("filtered_books", filteredBooks);
 		} else {
 			modelAndView = new ModelAndView("cart_empty", "cart_items", cartItems);
-			modelAndView.addObject("book_counts", bookCounts);
-			modelAndView.addObject("filtered_books", filteredBooks);
 		}
 		
+		modelAndView.addObject("book_counts", bookCounts);
+		modelAndView.addObject("filtered_books", filteredBooks);
 		return modelAndView;
 	}
 

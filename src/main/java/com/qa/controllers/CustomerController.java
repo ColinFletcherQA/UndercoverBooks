@@ -53,27 +53,26 @@ public class CustomerController {
 	public ModelAndView register() {
 		return new ModelAndView("register");
 	}
+
+	@RequestMapping("/registered_user_agreement")
+	public ModelAndView registeredUserAgreement(){
+		return new ModelAndView("registered_user_agreement");
+	}
 	
 	@RequestMapping("/registerProcess")
 	public ModelAndView registerProcess(@ModelAttribute("Customer") Customer customer) {
-		ModelAndView modelAndView;
-		
 		System.out.println("Customer Firstname is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
 
 		if (customerService.saveCustomer(customer) != null) {
-			modelAndView = new ModelAndView("registration_success");
-		} else {
-			modelAndView = new ModelAndView("registration_failed");
+			return new ModelAndView("registration_success");
 		}
 
-		return modelAndView;
+		return new ModelAndView("registration_failed");
 	}
 	
 	@RequestMapping("/loginProcess")
 	public ModelAndView loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) {
-		ModelAndView modelAndView;
-		
 		System.out.println("Email is " + email);
 		System.out.println("Password is " + password);
 		
@@ -81,15 +80,13 @@ public class CustomerController {
 
 		if (c != null) {
 			System.out.println("Success");
-			modelAndView = new ModelAndView("customer_home", "logged_in_customer", c);
-		} else {
-			System.out.println("Failure");
-			modelAndView = new ModelAndView("login_failed");
+			return new ModelAndView("customer_home", "logged_in_customer", c);
 		}
-
-		return modelAndView;
+		
+		System.out.println("Failure");
+		return new ModelAndView("login_failed");
 	}
-	
+
 	@RequestMapping("/profile")
 	public ModelAndView profile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
@@ -97,8 +94,6 @@ public class CustomerController {
 	
 	@RequestMapping("/updateProfile")
 	public ModelAndView updateProfile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Customer") Customer customer) {
-		ModelAndView modelAndView;
-		
 		System.out.println("Before update ");
 		System.out.println("ID " + loggedInCustomer.getCustomerId());
 		System.out.println("Name" + loggedInCustomer.getFirstName());
@@ -114,17 +109,41 @@ public class CustomerController {
 			System.out.println("Name" + c.getFirstName());
 			System.out.println("Email" + c.getEmail());
 			
-			modelAndView = new ModelAndView("profile", "logged_in_customer", c);
-		} else {
-			modelAndView = new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
+			return new ModelAndView("profile", "logged_in_customer", c);
 		}
 		
-		return modelAndView;
+		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
 	}
 	
 	@RequestMapping("/addressBook")
 	public ModelAndView addressBook(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("address_book", "logged_in_customer", loggedInCustomer);
+	}
+
+	@RequestMapping("/change_password")
+	public ModelAndView changePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer){
+		return new ModelAndView("change_password", "logged_in_customer", loggedInCustomer);
+	}
+
+	@RequestMapping("/updatePassword")
+	public ModelAndView updatePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @RequestParam("current_password") String currentPassword, @RequestParam("new_password") String newPassword){
+		System.out.println(currentPassword);
+		System.out.println(newPassword);
+		System.out.println(loggedInCustomer.getCustomerId());
+		ModelAndView modelAndView = new ModelAndView("change_password");
+
+		if(loggedInCustomer.getPassword().equals(currentPassword)) {
+			if (currentPassword.equalsIgnoreCase(newPassword)) {
+				modelAndView.addObject("flag", "ERROR: Passwords cannot match");
+			} else {
+				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
+				modelAndView.addObject("flag", "SUCCESS: Password updated");
+			}
+		} else {
+			modelAndView.addObject("flag", "ERROR: Incorrect current password");
+		}
+
+		return modelAndView;
 	}
 
 }

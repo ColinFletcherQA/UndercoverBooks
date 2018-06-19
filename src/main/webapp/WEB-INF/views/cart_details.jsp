@@ -1,8 +1,6 @@
 <!doctype html>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.Set"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.math.*"%>
+<%@page import="java.util.*"%>
 <%@page import="com.qa.models.Book"%>
 <html class="no-js" lang="en">
   <head>
@@ -15,21 +13,17 @@
   <body>
     
     <%!
-      ArrayList<Book> books;
-
-      Map<Integer,Integer> bookCounts;
+      List<Book> books;
+      Map<Integer, Integer> bookCounts;
     %>
 
     <%
-    books  = (ArrayList<Book>) session.getAttribute("filtered_books");
-    
-    bookCounts = (Map<Integer,Integer>)  session.getAttribute("book_counts");
-    
-    double cartTotal = 0.0;
-    
-    double orderTotal = 0.0;
-    
-    double totalPrice =  0.0;
+    books = (List<Book>) session.getAttribute("filtered_books");
+    bookCounts = (Map<Integer, Integer>) session.getAttribute("book_counts");
+
+    BigDecimal totalPrice = BigDecimal.ZERO;
+    BigDecimal cartTotal = BigDecimal.ZERO;
+    BigDecimal orderTotal = BigDecimal.ZERO;
     %>
 
 <!-- Start Top Bar -->
@@ -79,18 +73,14 @@
         <div class="row">
           <div class="col-lg-9">
             <div class="card-deck">
-
-          <%
-            int i = 0;
-            for(Book book : books)
-            {
-
-              int quantity = bookCounts.get(book.getBookId());
-              double price = book.getPrice();
-              totalPrice = book.getPrice() * quantity;
-              cartTotal = cartTotal + book.getPrice()*quantity;
-              System.out.println("Cart Total "+cartTotal);
-          %>
+              <%
+              for (int i = 0; i < books.size(); i++) {
+                  Book book = books.get(i);
+                  int quantity = bookCounts.get(book.getBookId());
+                  BigDecimal price = book.getPrice();
+                  totalPrice = price.multiply(BigDecimal.valueOf(quantity));
+                  cartTotal = cartTotal.add(totalPrice);
+              %>
               <div class="card col-lg-3 col-md-4 col-sm-6">
                 <img class="card-img-top" src="<%=book.getBookImage()%>"/>
                 <div class="card-body">
@@ -98,16 +88,16 @@
                     <input type="hidden" name="price" value="<%=price%>"/>
                     <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
                     Price <label id="price_label<%=i%>">$<%=totalPrice%></label><br>
-                    <input type="hidden" name="cart_total" value="<%=price%>"/>
-                    Quantity <input type="number"  min="1" name="quantity" value="<%=quantity%>" oninput="calculateTotalPrice(price.value,this.value,price_label<%=i%>)"/>
+                    Quantity <input type="number" min="1" name="quantity" value="<%=quantity%>" onchange="calculateTotalPrice(price.value, this.value, this.defaultValue, price_label<%=i%>); this.defaultValue = this.value"/>
                   </form>
                   <br>
                   <a class="btn btn-primary" href="/removeFromCart?bookId=<%=book.getBookId() %>"> Remove </a>
                 </div>
               </div>
               <%
-              i++;
               }
+
+              System.out.println("Cart Total " + cartTotal);
               %>
 
           </div>
@@ -123,7 +113,7 @@
                   <label>Cart Total</label>
                 </div>
                 <div class="col-lg-6">
-                  <input type="hidden" name="order_total" id="cart_total" value="<%=cartTotal %>"/>
+                  <input type="hidden" name="order_total" id="cart_total" value="<%=cartTotal%>"/>
                   <label class="middle" id="cart_total_label">$<%=cartTotal %></label>
                 </div>
               </div>
@@ -146,7 +136,7 @@
               </div>
               <div class="card-footer">
                 <form action="/checkout" method="post" id="checkout_form">
-                  <input type="hidden" name="order_total" value="<%=cartTotal %>"/>
+                  <input type="hidden" name="order_total" value="<%=cartTotal%>"/>
                   <input type="submit" class="btn btn-primary" value="Proceed to Checkout"/>
                 </form>
               </div>
