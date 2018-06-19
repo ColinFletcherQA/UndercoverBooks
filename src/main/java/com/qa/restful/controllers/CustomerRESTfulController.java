@@ -4,6 +4,7 @@ import com.qa.models.Book;
 import com.qa.models.Customer;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,21 +18,23 @@ import java.util.ArrayList;
 public class CustomerRESTfulController {
 
 	@Autowired
-	BookService bookService;
+	private BookService bookService;
 	
 	@Autowired
-	CustomerService customerService;
-	
+	private CustomerService customerService;
+
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/loadAllBooks")
 	public Iterable<Book> indexPage(HttpServletRequest request) {
-		ArrayList<Book> cartItems = null;
+		List<Book> cartItems;
+
 		HttpSession session = request.getSession();
 		Object items = session.getAttribute("cart_items");
 		
 		if (items != null) {
 			cartItems = (ArrayList<Book>) items;
 		} else {
-			cartItems = new ArrayList<Book>();
+			cartItems = new ArrayList<>();
 		}
 		
 		Iterable<Book> books = bookService.findAllBooks();
@@ -44,16 +47,14 @@ public class CustomerRESTfulController {
 	public Customer registerProcess(@ModelAttribute("Customer") Customer customer) {
 		System.out.println("Customer Firstname is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
-		Customer c = customerService.saveCustomer(customer);
-		return c;
+		return customerService.saveCustomer(customer);
 	}
 	
 	@RequestMapping("/loginCustomer")
 	public Customer loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) {
 		System.out.println("Email is " + email);
 		System.out.println("Password is " + password);
-		Customer c = customerService.loginProcess(email, password);
-		return c;
+		return customerService.loginProcess(email, password);
 	}
 
 }

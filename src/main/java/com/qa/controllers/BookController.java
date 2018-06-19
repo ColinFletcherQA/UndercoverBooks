@@ -22,7 +22,7 @@ public class BookController {
 	
 	@RequestMapping("/bookDetails")
 	public ModelAndView bookDetails(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId) {
-		// TODO - Jacob: We don't want null.
+		// TODO - Jacob: We don't want a null book.
 		Book book = findBookById(books, bookId).orElse(null);
 		ModelAndView modelAndView = new ModelAndView("book_details", "book", book);
 		modelAndView.addObject("books", books);
@@ -61,8 +61,8 @@ public class BookController {
 	public ModelAndView removeFromCart(@ModelAttribute("filtered_books") List<Book> cartItems, @RequestParam("bookId") int bookId) {
 		cartItems = removeBookById(cartItems, bookId);
 
-		if (cartItems.size() != 0) {
-			 return new ModelAndView("cart_details", "cart_items", cartItems);
+		if (!cartItems.isEmpty()) {
+		    return new ModelAndView("cart_details", "cart_items", cartItems);
 		}
 		
 		return new ModelAndView("cart_empty", "cart_items", cartItems);
