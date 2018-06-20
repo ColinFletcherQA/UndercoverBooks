@@ -1,10 +1,6 @@
 <!doctype html>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.qa.models.Book"%>
-<%@page import="com.qa.models.Author"%>
-<%@page import="com.qa.models.Customer"%>
+<%@page import="java.util.*"%>
+<%@page import="com.qa.models.*"%>
 
 <html class="no-js" lang="en">
   <head>
@@ -38,7 +34,7 @@
               </a>
             </li>
             <%
-                if (c != null) {
+            if (c != null) {
             %>
             <li class="nav-item">
               <a class="nav-link" href="/customerHome">Customer Home</a>
@@ -91,7 +87,6 @@
         <!-- /.col-lg-3 -->
 
         <div class="col-lg-9">
-
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -122,10 +117,10 @@
           <div class="row">
 
             <%
-              Iterable<Book> books = (Iterable<Book>) session.getAttribute("books"); %>
-            <%
-              for(Book book: books)
-              {
+              List<Book> books = (List<Book>) session.getAttribute("books");
+              Collections.shuffle(books);
+              for (int i = 0; i < 6 && i < books.size(); i++) {
+                Book book = books.get(i);
             %>
 
             <div class="col-lg-4 col-md-6 mb-4">
@@ -136,19 +131,13 @@
                     <a href="/bookDetails?bookId=<%=book.getBookId()%>"><%= book.getTitle()%></a>
                   </h4>
                   <h5>$<%= book.getPrice()%></h5>
-
                    <%
-                        for(Author author : book.getAuthors())
-                        {
-
-                       %>
-
-                           <p class="card-subtitle mb-2 text-muted"> <%= author.getAuthorName() %> </p>
-
-                       <%
-                       }
+                     for (Author author : book.getAuthors()) {
                    %>
-
+                       <p class="card-subtitle mb-2 text-muted"> <%= author.getAuthorName() %> </p>
+                   <%
+                     }
+                   %>
                   <p class="card-text"><%=book.getDescription()%></p>
                 </div>
                 <div class="card-footer">
