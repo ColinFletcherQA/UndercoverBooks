@@ -1,6 +1,7 @@
 <!doctype html>
 <%@page import="com.qa.models.Book"%>
 <%@page import="com.qa.models.Author"%>
+<%@page import="com.qa.models.Customer"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -21,7 +22,14 @@
      book = (Book) request.getAttribute("book");
     %>
 
-<!-- Start Top Bar -->
+    <%!
+      Customer c;
+    %>
+    <%
+      c = (Customer) session.getAttribute("logged_in_customer");
+    %>
+
+    <!-- Start Top Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="">Undercover Books</a>
@@ -35,6 +43,15 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            <% if(c != null) {
+
+            %>
+            <li class="nav-item">
+              <a class="nav-link" href="/customerHome">Customer Home</a>
+            </li>
+            <%
+            } else {
+            %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Account
@@ -44,11 +61,15 @@
                 <a class="dropdown-item" href="/register">Register</a>
               </div>
             </li>
+            <%
+              }
+            %>
+
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/viewCart">View Cart</a>

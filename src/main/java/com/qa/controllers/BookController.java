@@ -47,7 +47,7 @@ public class BookController {
 		if (!cartItems.isEmpty()) {
 			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
 		} else {
-			modelAndView = new ModelAndView("cart_empty", "cart_items", cartItems);
+			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
 		}
 		
 		modelAndView.addObject("book_counts", bookCounts);
@@ -63,7 +63,7 @@ public class BookController {
 		    return new ModelAndView("cart_details", "cart_items", cartItems);
 		}
 		
-		return new ModelAndView("cart_empty", "cart_items", cartItems);
+		return new ModelAndView("cart_details", "cart_items", cartItems);
 	}
 	
 	public List<Integer> loadBookIds(Collection<Book> cartItems) {

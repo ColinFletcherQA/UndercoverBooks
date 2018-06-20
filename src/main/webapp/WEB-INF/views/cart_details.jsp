@@ -2,6 +2,7 @@
 <%@page import="java.math.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.Book"%>
+<%@page import="com.qa.models.Customer"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -25,6 +26,12 @@
     BigDecimal cartTotal = BigDecimal.ZERO;
     BigDecimal orderTotal = BigDecimal.ZERO;
     %>
+    <%!
+      Customer c;
+    %>
+    <%
+      c = (Customer) session.getAttribute("logged_in_customer");
+    %>
 
 <!-- Start Top Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -40,6 +47,15 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            <% if(c != null) {
+
+            %>
+            <li class="nav-item">
+              <a class="nav-link" href="/customerHome">Customer Home</a>
+            </li>
+            <%
+            } else {
+            %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Account
@@ -49,11 +65,15 @@
                 <a class="dropdown-item" href="/register">Register</a>
               </div>
             </li>
+            <%
+              }
+            %>
+
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/viewCart">View Cart</a>
@@ -66,6 +86,8 @@
     <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container">
+      <h1 class="mb-3">Cart Details
+      </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Cart Details</li>
@@ -119,14 +141,6 @@
               </div>
               <div class="row">
                 <div class="col-lg-6">
-                  <label>VAT</label>
-                </div>
-                <div class="col-lg-6">
-                  <label class="middle">Applicable Tax </label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
                   <label>Order Total</label>
                 </div>
                 <div class="col-lg-6">
@@ -137,7 +151,19 @@
               <div class="card-footer">
                 <form action="/checkout" method="post" id="checkout_form">
                   <input type="hidden" name="order_total" value="<%=cartTotal%>"/>
-                  <input type="submit" class="btn btn-primary" value="Proceed to Checkout"/>
+                  <%
+                    if (books.isEmpty()) {
+                        %>
+                  <button type="button" class="btn btn-primary" disabled>Proceed to Checkout</button>
+                  <%
+                    } else {
+
+                  %>
+                  <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+                  <%
+                    }
+                  %>
+
                 </form>
               </div>
             </div>
