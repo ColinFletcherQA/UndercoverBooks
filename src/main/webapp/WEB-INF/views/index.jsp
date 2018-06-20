@@ -23,6 +23,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="">Undercover Books</a>
+        <form class="form-inline" action="/search">
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,8 +81,8 @@
 
           <h1 class="my-4">Undercover Books</h1>
           <div class="list-group">
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Best Sellers</a>
+            <a href="#" class="list-group-item">New Releases</a>
             <a href="#" class="list-group-item">Category 3</a>
           </div>
 
