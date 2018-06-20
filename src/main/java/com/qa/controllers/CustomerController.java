@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address"})
+@SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address", "flag"})
 public class CustomerController {
 
 	@Autowired
@@ -144,13 +144,16 @@ public class CustomerController {
 
 		if(loggedInCustomer.getPassword().equals(currentPassword)) {
 			if (currentPassword.equalsIgnoreCase(newPassword)) {
-				modelAndView.addObject("flag", "ERROR: Passwords cannot match");
+				modelAndView.addObject("message", "Passwords cannot match");
+				modelAndView.addObject("flag", "ERROR");
 			} else {
 				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
-				modelAndView.addObject("flag", "SUCCESS: Password updated");
+				modelAndView.addObject("message", "Password updated");
+				modelAndView.addObject("flag", "SUCCESS");
 			}
 		} else {
-			modelAndView.addObject("flag", "ERROR: Incorrect current password");
+			modelAndView.addObject("message", "Incorrect current password");
+			modelAndView.addObject("flag", "ERROR");
 		}
 
 		return modelAndView;
