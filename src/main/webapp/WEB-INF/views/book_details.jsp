@@ -106,7 +106,6 @@
             <div class="card-body">
               <h3 class="card-title"><%=book.getTitle() %></h3>
 
-
                 <%
                     for(Author author : book.getAuthors())
                     {
@@ -118,10 +117,6 @@
                         <%
                     }
                 %>
-
-
-
-
 
               <p class="card-text"><%=book.getDescription() %></p>
               <form>
@@ -148,7 +143,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
       $(document).foundation();
-    </script> 
+    </script>
+    <script>
+      function alertSuccess() {
+          alert(<div class="alert alert-success" role="alert">
+              This is a success alert—check it out!
+          </div>);
+      }
+    </script>
   </body>
 </html>
 

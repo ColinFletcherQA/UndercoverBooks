@@ -48,6 +48,12 @@ public class CustomerController {
 	public ModelAndView login() {
 		return new ModelAndView("login");
 	}
+
+	@RequestMapping("/logout")
+	public ModelAndView logout() {
+
+		return new ModelAndView("index");
+	}
 	
 	@RequestMapping("/register")
 	public ModelAndView register() {
@@ -66,9 +72,9 @@ public class CustomerController {
 
 		if (customerService.saveCustomer(customer) != null) {
 			return new ModelAndView("registration_success");
+		} else {
+			return new ModelAndView("registration_failed");
 		}
-
-		return new ModelAndView("registration_failed");
 	}
 	
 	@RequestMapping("/loginProcess")
@@ -81,12 +87,16 @@ public class CustomerController {
 		if (c != null) {
 			System.out.println("Success");
 			return new ModelAndView("customer_home", "logged_in_customer", c);
+		} else {
+			System.out.println("Failure");
+			return new ModelAndView("login_failed");
 		}
-		
-		System.out.println("Failure");
-		return new ModelAndView("login_failed");
 	}
-
+	@RequestMapping("/customerHome")
+	public ModelAndView customerHome(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
+		return new ModelAndView("customer_home","logged_in_customer",loggedInCustomer);
+	}
+	@Deprecated
 	@RequestMapping("/profile")
 	public ModelAndView profile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
@@ -96,7 +106,7 @@ public class CustomerController {
 	public ModelAndView updateProfile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Customer") Customer customer) {
 		System.out.println("Before update ");
 		System.out.println("ID " + loggedInCustomer.getCustomerId());
-		System.out.println("Name" + loggedInCustomer.getFirstName());
+		System.out.println("Name" + loggedInCustomer.getFirstName() + loggedInCustomer.getLastName());
 		System.out.println("Email" + loggedInCustomer.getEmail());
 		
 		int recordsUpdated = customerService.updateCustomer(loggedInCustomer.getFirstName(), loggedInCustomer.getLastName(), loggedInCustomer.getEmail(), loggedInCustomer.getCustomerId());
@@ -106,20 +116,20 @@ public class CustomerController {
 			
 			System.out.println("After update ");
 			System.out.println("ID " + c.getCustomerId());
-			System.out.println("Name" + c.getFirstName());
+			System.out.println("Name" + c.getFirstName() + c.getLastName());
 			System.out.println("Email" + c.getEmail());
 			
-			return new ModelAndView("profile", "logged_in_customer", c);
+			return new ModelAndView("customer_home", "logged_in_customer", c);
 		}
 		
-		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
+		return new ModelAndView("customer_home", "logged_in_customer", loggedInCustomer);
 	}
-	
+	@Deprecated
 	@RequestMapping("/addressBook")
 	public ModelAndView addressBook(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("address_book", "logged_in_customer", loggedInCustomer);
 	}
-
+	@Deprecated
 	@RequestMapping("/change_password")
 	public ModelAndView changePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer){
 		return new ModelAndView("change_password", "logged_in_customer", loggedInCustomer);
@@ -130,7 +140,7 @@ public class CustomerController {
 		System.out.println(currentPassword);
 		System.out.println(newPassword);
 		System.out.println(loggedInCustomer.getCustomerId());
-		ModelAndView modelAndView = new ModelAndView("change_password");
+		ModelAndView modelAndView = new ModelAndView("customer_home");
 
 		if(loggedInCustomer.getPassword().equals(currentPassword)) {
 			if (currentPassword.equalsIgnoreCase(newPassword)) {
