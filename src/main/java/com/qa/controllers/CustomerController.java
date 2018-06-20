@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address"})
+@SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address", "flag"})
 public class CustomerController {
 
 	@Autowired
@@ -50,9 +49,10 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/logout")
-	public ModelAndView logout() {
-
-		return new ModelAndView("index");
+	public ModelAndView logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("cart_items");
+		return indexPage(request);
 	}
 	
 	@RequestMapping("/register")
@@ -146,13 +146,16 @@ public class CustomerController {
 
 		if(loggedInCustomer.getPassword().equals(currentPassword)) {
 			if (currentPassword.equalsIgnoreCase(newPassword)) {
-				modelAndView.addObject("flagError", "ERROR: Passwords cannot match");
+				modelAndView.addObject("message", "Passwords cannot match");
+				modelAndView.addObject("flag", "ERROR");
 			} else {
 				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
-				modelAndView.addObject("flagSuccess", "SUCCESS: Password updated");
+				modelAndView.addObject("message", "Password updated");
+				modelAndView.addObject("flag", "SUCCESS");
 			}
 		} else {
-			modelAndView.addObject("flag", "ERROR: Incorrect current password");
+			modelAndView.addObject("message", "Incorrect current password");
+			modelAndView.addObject("flag", "ERROR");
 		}
 
 		return modelAndView;

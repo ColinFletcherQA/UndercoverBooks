@@ -24,7 +24,7 @@ public class CustomerService {
 	}
 	
 	public Customer findCustomerById(int customerId) {
-		return customerRepository.findOne(customerId);
+		return customerRepository.findById(customerId).get();
 	}
 
 	public int updatePassword(int customerId, String password){

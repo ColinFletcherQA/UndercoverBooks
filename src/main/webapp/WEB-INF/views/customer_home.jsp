@@ -82,7 +82,14 @@
             <div class="card-header">
               <div class="card-title"><h4>Update Password</h4></div>
             </div>
-            <form action="/updatePassword" method="post">
+
+            <script>
+                var model = [];
+                model.flag ="${flag}";
+                model.message ="${message}";
+            </script>
+
+            <form action="/updatePassword" method="post" id="password">
               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-lg-12">
@@ -102,14 +109,7 @@
                     <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password" required>
                   </div>
                 </div>
-
-
-                <div class="alert alert-success">
-                  ${flagSuccess}
-                </div>
-                <div class="alert alert-danger">
-                  ${flagError}
-                </div>
+                <div id="password-flag"></div>
                 <button type="submit" class="btn btn-primary">Update Password</button>
               </div>
             </form>
@@ -226,6 +226,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/elsevier.js"></script>
+    <script src="js/password.js"></script>
     <script>
       $(document).foundation();
     </script>
