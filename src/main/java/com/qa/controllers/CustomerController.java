@@ -56,9 +56,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/register")
-	public ModelAndView register() {
-		return new ModelAndView("register");
-	}
+	public ModelAndView register() { return new ModelAndView("register"); }
 
 	@RequestMapping("/registered_user_agreement")
 	public ModelAndView registeredUserAgreement(){
@@ -67,13 +65,17 @@ public class CustomerController {
 	
 	@RequestMapping("/registerProcess")
 	public ModelAndView registerProcess(@ModelAttribute("Customer") Customer customer) {
-		System.out.println("Customer Firstname is " + customer.getFirstName());
+		System.out.println("Customer First name is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
 
 		if (customerService.saveCustomer(customer) != null) {
-			return new ModelAndView("registration_success");
+			ModelAndView modelAndView = new ModelAndView("register");
+			modelAndView.addObject("flag", "Success!");
+			return modelAndView;
 		} else {
-			return new ModelAndView("registration_failed");
+			ModelAndView modelAndView = new ModelAndView("register");
+			modelAndView.addObject("flag", "Registration Failed!");
+			return modelAndView;
 		}
 	}
 	
@@ -144,16 +146,21 @@ public class CustomerController {
 
 		if(loggedInCustomer.getPassword().equals(currentPassword)) {
 			if (currentPassword.equalsIgnoreCase(newPassword)) {
-				modelAndView.addObject("flag", "ERROR: Passwords cannot match");
+				modelAndView.addObject("flagError", "ERROR: Passwords cannot match");
 			} else {
 				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
-				modelAndView.addObject("flag", "SUCCESS: Password updated");
+				modelAndView.addObject("flagSuccess", "SUCCESS: Password updated");
 			}
 		} else {
 			modelAndView.addObject("flag", "ERROR: Incorrect current password");
 		}
 
 		return modelAndView;
+	}
+
+	@RequestMapping("/contact")
+	public ModelAndView contactPage() {
+		return new ModelAndView("contact");
 	}
 
 }

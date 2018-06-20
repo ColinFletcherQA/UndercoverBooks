@@ -57,19 +57,19 @@
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="firstName">First Name</label>
-                    <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>">
+                    <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="lastName">First Name</label>
-                    <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>">
+                    <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>"required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="email">Email</label>
-                    <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>">
+                    <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Information</button>
@@ -87,24 +87,29 @@
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="current_password">Current Password</label>
-                    <input name="current_password" id="current_password" class="form-control" type="password" placeholder="Current Password">
+                    <input name="current_password" id="current_password" class="form-control" type="password" placeholder="Current Password" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="new_password">New Password</label>
-                    <input name="new_password" id="new_password" class="form-control" type="password" placeholder="New Password">
+                    <input name="new_password" id="new_password" class="form-control" type="password" placeholder="New Password" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="new_password1">Confirm New Password</label>
-                    <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password">
+                    <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password" required>
                   </div>
                 </div>
-                <p>
-                  ${flag}
-                </p>
+
+
+                <div class="alert alert-success">
+                  ${flagSuccess}
+                </div>
+                <div class="alert alert-danger">
+                  ${flagError}
+                </div>
                 <button type="submit" class="btn btn-primary">Update Password</button>
               </div>
             </form>
@@ -125,37 +130,37 @@
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressline1">Address</label>
-                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St">
+                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressline2">Address 2</label>
-                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor">
+                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-4">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city">
+                    <input type="text" class="form-control" id="city" required>
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="postcode">Zip</label>
-                    <input type="text" class="form-control" id="postcode">
+                    <input type="text" class="form-control" id="postcode" required>
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="PA">
+                    <input type="text" class="form-control" id="state" placeholder="PA" required>
                   </div>
                   <div class="form-group col-lg-4">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country">
+                    <input type="text" class="form-control" id="country" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-6">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone">
+                    <input type="tel" class="form-control" id="phone"required>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Shipping Address</button>
@@ -173,37 +178,37 @@
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressline1">Address</label>
-                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St">
+                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressline2">Address 2</label>
-                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor">
+                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-4">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city">
+                    <input type="text" class="form-control" id="city" required>
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="postcode">Zip</label>
-                    <input type="text" class="form-control" id="postcode">
+                    <input type="text" class="form-control" id="postcode" required>
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="PA">
+                    <input type="text" class="form-control" id="state" placeholder="PA" required>
                   </div>
                   <div class="form-group col-lg-4">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country">
+                    <input type="text" class="form-control" id="country" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-6">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone">
+                    <input type="tel" class="form-control" id="phone" required>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Billing Address</button>

@@ -1,3 +1,4 @@
+<%@ page import="com.qa.models.Customer" %>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -8,47 +9,69 @@
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
   <body>
-    
-    <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="">Undercover Books</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/login">Login</a>
-                <a class="dropdown-item" href="/register">Register</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/viewCart">View Cart</a>
-            </li>
-          </ul>
-        </div>
+
+  <%!
+    Customer c;
+  %>
+  <%
+    c = (Customer) session.getAttribute("logged_in_customer");
+  %>
+
+  <!-- Start Top Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="">Undercover Books</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <% if(c != null) {
+
+          %>
+          <li class="nav-item">
+            <a class="nav-link" href="/customerHome">Customer Home</a>
+          </li>
+          <%
+          } else {
+          %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/login">Login</a>
+              <a class="dropdown-item" href="/register">Register</a>
+            </div>
+          </li>
+          <%
+            }
+          %>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/viewCart">View Cart</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
     <br>
     <!-- End Top Bar -->
     <div class="container">
+      <h1 class="mb-3">Register
+      </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Register</li>
@@ -82,6 +105,9 @@
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
             </div>
+            <p>
+            ${flag}
+            </p>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
       </div>
