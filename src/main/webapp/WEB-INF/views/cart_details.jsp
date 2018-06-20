@@ -88,7 +88,7 @@
                     <input type="hidden" name="price" value="<%=price%>"/>
                     <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
                     Price <label id="price_label<%=i%>">$<%=totalPrice%></label><br>
-                    Quantity <input type="number" min="1" name="quantity" value="<%=quantity%>" onchange="calculateTotalPrice(price.value, this.value, this.defaultValue, price_label<%=i%>); this.defaultValue = this.value"/>
+                    Quantity <input type="number" min="1" name="quantity" value="<%=quantity%>" onchange="calculateTotalPrice(price.value, this.value, this.defaultValue, price_label<%=i%>); this.defaultValue = this.value;"/>
                   </form>
                   <br>
                   <a class="btn btn-primary" href="/removeFromCart?bookId=<%=book.getBookId() %>"> Remove </a>

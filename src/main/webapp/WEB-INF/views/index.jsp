@@ -37,8 +37,8 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <% if(c != null) {
-
+            <%
+                if (c != null) {
             %>
             <li class="nav-item">
               <a class="nav-link" href="/customerHome">Customer Home</a>
@@ -121,8 +121,8 @@
 
           <div class="row">
 
-            <% Iterable<Book> books = (Iterable<Book>) session.getAttribute("books"); %>
-
+            <%
+              Iterable<Book> books = (Iterable<Book>) session.getAttribute("books"); %>
             <%
               for(Book book: books)
               {
