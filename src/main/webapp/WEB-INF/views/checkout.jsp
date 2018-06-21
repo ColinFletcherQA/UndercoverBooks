@@ -90,93 +90,98 @@
       </ol>
       <div class="row">
         <div class="col-lg-4 order-lg-2">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill"><%=books.size()%></span>
-          </h4>
-          <ul class="list-group mb-3">
-            <%
-              for(Book book: books)
-              {
-            %>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6><%=book.getTitle()%></h6>
-                <small class="text-muted">Authors</small>
-              </div>
-              <span class="text-muted"><%=book.getPrice()%></span>
-            </li>
-            <%
-              }
-            %>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong><%=orderTotal%></strong>
-            </li>
-          </ul>
-
+          <div class="card third_color">
+            <div class="card-body">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill"><%=books.size()%></span>
+              </h4>
+              <ul class="list-group mb-3">
+                <%
+                  for(Book book: books)
+                  {
+                %>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6><%=book.getTitle()%></h6>
+                    <small class="text-muted">Authors</small>
+                  </div>
+                  <span class="text-muted"><%=book.getPrice()%></span>
+                </li>
+                <%
+                  }
+                %>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total (USD)</span>
+                  <strong><%=orderTotal%></strong>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="col-lg-8 order-lg-1">
-          <form action="/checkoutProcess" method="post">
-            <h2>Shipping Information</h2>
-            <div class="form-row">
-              <div class="form-group col-lg-6">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstname" placeholder="First Name">
-              </div>
-              <div class="form-group col-lg-6">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-12">
-                <label for="addressline1">Address</label>
-                <input type="text" class="form-control" id="addressline1" placeholder="123 Main St">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-12">
-                <label for="addressline2">Address 2</label>
-                <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-4">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city">
-              </div>
-              <div class="form-group col-lg-2">
-                <label for="postcode">Zip</label>
-                <input type="text" class="form-control" id="postcode">
-              </div>
-              <div class="form-group col-lg-2">
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" placeholder="PA">
-              </div>
-              <div class="form-group col-lg-4">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" id="country">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-6">
-                <label for="phone">Phone Number</label>
-                <input type="tel" class="form-control" id="phone">
-              </div>
-              <div class="form-group col-lg-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-            </div>
-            <div class="form-group col-lg-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck" onclick="myFunction()">
-                <label class="form-check-label" for="gridCheck">
-                  Billing Address is the same as Shipping
-                </label>
-              </div>
-            </div>
+          <div class="card third_color">
+            <div class="card-body">
+              <form action="/checkoutProcess" method="post">
+                <h2>Shipping Information</h2>
+                <div class="form-row">
+                  <div class="form-group col-lg-6">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                    <label for="addressline1">Address</label>
+                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                    <label for="addressline2">Address 2</label>
+                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-4">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city">
+                  </div>
+                  <div class="form-group col-lg-2">
+                    <label for="postcode">Zip</label>
+                    <input type="text" class="form-control" id="postcode">
+                  </div>
+                  <div class="form-group col-lg-2">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="PA">
+                  </div>
+                  <div class="form-group col-lg-4">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" id="country">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-6">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone">
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email">
+                  </div>
+                </div>
+                <div class="form-group col-lg-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" onclick="myFunction()">
+                    <label class="form-check-label" for="gridCheck">
+                      Billing Address is the same as Shipping
+                    </label>
+                  </div>
+                </div>
             <div id="billing">
               <br>
               <h2>Billing Address</h2>
@@ -231,7 +236,7 @@
                 </div>
               </div>
             </div>
-          <br>
+            <br>
             <h2>Payment</h2>
             <div class="form-row">
               <div class="form-group col-lg-12">
@@ -266,11 +271,13 @@
               </div>
             </div>
             <input type="hidden" name="order_total" value="<%=orderTotal %>"/>
-            <button class="btn btn-primary">Checkout</button>
+            <button class="btn secondary_color"><span>Checkout</span></button>
           </form>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
    <script>
      function myFunction() {
