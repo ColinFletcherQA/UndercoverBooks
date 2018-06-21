@@ -49,12 +49,8 @@ public class BookController {
 		Map<Integer, Integer> bookCounts = bookCounts(bookIds);
 		List<Book> filteredBooks = filteredBookList(books, bookCounts);
 
-		if (!cartItems.isEmpty()) {
-			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
-		} else {
-			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
-		}
-		
+		modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
+
 		modelAndView.addObject("book_counts", bookCounts);
 		modelAndView.addObject("filtered_books", filteredBooks);
 		return modelAndView;

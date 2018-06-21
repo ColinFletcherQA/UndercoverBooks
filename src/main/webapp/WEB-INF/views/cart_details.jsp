@@ -158,7 +158,18 @@
                     } else {
 
                   %>
-                  <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
+                  <%
+                    if(c != null){
+                  %>
+                    <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
+                  <%
+                  } else {
+                  %>
+                    <a href="/login" class="btn secondary_color"><span>Login or Register</span></a>
+                  <%
+                  }
+                  %>
+
                   <%
                     }
                   %>
