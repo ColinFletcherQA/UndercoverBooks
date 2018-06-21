@@ -69,7 +69,7 @@ public class CustomerController {
 		System.out.println("Customer Password is " + customer.getPassword());
 
 		if (customerService.saveCustomer(customer) != null) {
-			ModelAndView modelAndView = new ModelAndView("register");
+			ModelAndView modelAndView = new ModelAndView("login");
 			modelAndView.addObject("flag", "Success!");
 			return modelAndView;
 		} else {
