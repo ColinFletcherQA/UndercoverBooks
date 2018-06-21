@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Map;
 
 @SessionAttributes(names = {"book_counts"})
@@ -15,8 +17,9 @@ import java.util.Map;
 public class CheckoutController {
 
 	@RequestMapping("/checkoutProcess")
-	public ModelAndView checkoutProcess(@ModelAttribute("Shipping") Shipping shipping, @ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") double orderTotal) {
+	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Shipping") Shipping shipping, @ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") double orderTotal) {
 		System.out.println("First name " + shipping.getFirstName());
+		request.getSession().setAttribute("cart_items", new ArrayList<>());
 		ModelAndView modelAndView = new ModelAndView("receipt", "order_total", orderTotal);
 		modelAndView.addObject("shipping_address", shipping);
 		modelAndView.addObject("order_total", orderTotal);
