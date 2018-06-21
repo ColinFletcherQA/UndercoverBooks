@@ -117,45 +117,47 @@
 
         </div>
         <div class="col-lg-8 order-lg-1">
-          <form action="/checkoutProcess" method="post">
+
+
+          <form id="checkout_form" action="/checkoutProcess" method="post">
             <h2>Shipping Information</h2>
             <div class="form-row">
               <div class="form-group col-lg-6">
-                <label for="firstName">First Name</label>
+                <label for="firstName">First Name *</label>
                 <input type="text" class="form-control" id="firstname" placeholder="First Name">
               </div>
               <div class="form-group col-lg-6">
-                <label for="lastName">Last Name</label>
+                <label for="lastName">Last Name *</label>
                 <input type="text" class="form-control" id="lastname" placeholder="Last Name">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-lg-12">
-                <label for="addressline1">Address</label>
-                <input type="text" class="form-control" id="addressline1" placeholder="123 Main St">
+                <label for="addressline1">Address *</label>
+                <input type="text" class="form-control" id="addressline1">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-lg-12">
                 <label for="addressline2">Address 2</label>
-                <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor">
+                <input type="text" class="form-control" id="addressline2">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-lg-4">
-                <label for="city">City</label>
+                <label for="city">City *</label>
                 <input type="text" class="form-control" id="city">
               </div>
               <div class="form-group col-lg-2">
-                <label for="postcode">Zip</label>
+                <label for="postcode">Zip *</label>
                 <input type="text" class="form-control" id="postcode">
               </div>
               <div class="form-group col-lg-2">
-                <label for="state">State</label>
+                <label for="state">State *</label>
                 <input type="text" class="form-control" id="state" placeholder="PA">
               </div>
               <div class="form-group col-lg-4">
-                <label for="country">Country</label>
+                <label for="country">Country *</label>
                 <input type="text" class="form-control" id="country">
               </div>
             </div>
@@ -165,7 +167,7 @@
                 <input type="tel" class="form-control" id="phone">
               </div>
               <div class="form-group col-lg-6">
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                 <input type="email" class="form-control" id="email">
               </div>
             </div>
@@ -236,32 +238,32 @@
             <div class="form-row">
               <div class="form-group col-lg-12">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="creditCard">
+                  <input name="card-type-radio" class="form-check-input" type="radio" id="creditCard">
                   <label class="form-check-label" for="creditCard">Credit Card</label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="debitCard">
+                  <input name="card-type-radio" class="form-check-input" type="radio" id="debitCard">
                   <label class="form-check-label" for="creditCard">Debit Card</label>
                 </div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-lg-6">
-                <label for="cardName">Name on Card</label>
+                <label for="cardName">Name on Card *</label>
                 <input type="text" class="form-control" id="cardName">
               </div>
               <div class="form-group col-lg-6">
-                <label for="cardNumber">Card Number</label>
+                <label for="cardNumber">Card Number *</label>
                 <input type="number" class="form-control" id="cardNumber">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-lg-3">
-                <label for="cardExpiration">Expiration</label>
+                <label for="cardExpiration">Expiration *</label>
                 <input type="number" class="form-control" id="cardExpiration" placeholder="dd/mm">
               </div>
               <div class="form-group col-lg-3">
-                <label for="cardCVV">CVV</label>
+                <label for="cardCVV">CVV *</label>
                 <input type="number" class="form-control" id="cardCVV">
               </div>
             </div>

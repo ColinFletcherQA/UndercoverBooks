@@ -26,6 +26,13 @@ public class Purchase {
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
 
+    /*@Getter @Setter
+    @ManyToOne
+    @AttributeOverrides( {
+            @AttributeOverride(name="addressId", column = @Column(name="billingAddress") )
+    })
+    private Address billingAddress;*/
+
     @Autowired @ElementCollection(targetClass = Book.class) @Getter @Setter
     private List<Book> books;
 
@@ -35,4 +42,6 @@ public class Purchase {
     @Getter @Setter
     private int time;
 
+    /*@Getter @Setter
+    private int lastFourDigitsOfPayment;*/
 }
