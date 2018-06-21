@@ -17,8 +17,8 @@
     String searchTerm;
   %>
   <%
-    books = (List<Book>) session.getAttribute("search_result");
-    searchTerm = (String) session.getAttribute("search_term");
+    books = (List<Book>) request.getAttribute("search_result");
+    searchTerm = (String) request.getAttribute("search_term");
     c = (Customer) session.getAttribute("logged_in_customer");
   %>
 
@@ -89,21 +89,22 @@
       int counter = 0;
       for (Book book : books) {
 
-          if (counter==12) {
-              break;
-          }
+        if (counter == 12) {
+          break;
+        }
+        counter++;
     %>
 
     <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100 third_color">
-        <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%book.getBookImageS()%>" alt=""></a>
+        <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImageS()%>" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
-            <div><%book.getTitle()%></div>
+            <div><%=book.getTitle()%></div>
           </h4>
-          <p class="card-text"><%book.getAuthors()%></p>
-          <p class="card-text"><%book.getPublisher()%></p>
-          <p class="card-text"><%book.getDescription()%></p>
+          <p class="card-text"><%=book.getAuthors().get(0).getAuthorName()%></p>
+          <p class="card-text"><%=book.getPublisher()%></p>
+          <p class="card-text"><%=book.getDescription().substring(0, 100)%></p>
         </div>
       </div>
     </div>
