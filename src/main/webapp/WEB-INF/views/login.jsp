@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Undercover Books</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
   <body>
@@ -19,9 +19,9 @@
     %>
 
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
       <div class="container">
-        <a class="navbar-brand" href="">Undercover Books</a>
+        <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form>
@@ -30,16 +30,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
             <%
               if (c != null) {
             %>
             <li class="nav-item">
-              <a class="nav-link" href="/customerHome">Customer Home</a>
+              <a class="nav-link active" href="/customerHome">Customer Home</a>
             </li>
             <%
             } else {
@@ -58,10 +53,10 @@
             %>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="/about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
+              <a class="nav-link" href="/contact">Contact Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/viewCart">View Cart</a>
@@ -77,7 +72,9 @@
       <h1 class="mb-3">Login
       </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item">
+          <a href="/"><span>Home</span></a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Login</li>
       </ol>
 
@@ -97,13 +94,13 @@
                 <input name="password" type="password" class="form-control" id="password" required>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn secondary_color"><span>Login</span></button>
           </form>
         </div>
         <div class="col-lg-6">
           <h3 style="text-align: center">Don't have an account? Register Here</h3>
           <br>
-          <a href="/register" class="btn btn-primary btn-lg btn-block">Register</a>
+          <a href="/register" class="btn secondary_color btn-lg btn-block"><span>Register</span></a>
         </div>
       </div>
     </div>
