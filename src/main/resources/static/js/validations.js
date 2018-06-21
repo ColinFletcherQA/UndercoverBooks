@@ -137,10 +137,62 @@ else {
     //return true;
 }
 
+/*
+
+    Credit Card Validation
+
+*/
+
+
+//Radio Button Validation
+if($('[name="card-type-radio"]:checked').length < 1){
+    $('.form-check-input').css('border', '3px solid red');
+    return false;
+} else {
+    $('.form-check-input').css('border-color', '');
 }
 
+//Card Name Validation
+if($('#cardName').val() == ''){
+    $('#cardName').css('border', '3px solid red');
+    return false;
+}
+else {
+    $('#cardName').css('border-color', '');
 
+}
 
-});
+//Card Number
+//TODO: Further validation
+if($('#cardNumber').val() == ''){
+    $('#cardNumber').css('border', '3px solid red');
+    return false;
+}
+else {
+    $('#cardNumber').css('border-color', '');
+
+}
+
+//Card Expiration
+if($('#cardExpiration').val().length != 4){
+    $('#cardExpiration').css('border', '3px solid red');
+    return false;
+}
+else {
+    $('#cardExpiration').css('border-color', '');
+
+}
+
+//Card CVV
+if($('#cardCVV').val().length < 3){
+    $('#cardCVV').css('border', '3px solid red');
+    return false;
+}
+else {
+    $('#cardCVV').css('border-color', '');
+
+}
+
+}});
 });
 
