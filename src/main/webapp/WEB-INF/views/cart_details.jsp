@@ -112,8 +112,8 @@
                   <form name="f1">
                     <input type="hidden" name="price" value="<%=price%>"/>
                     <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
-                    Price <label id="price_label<%=i%>">$<%=totalPrice%></label><br>
-                    Quantity <input type="number" min="1" name="quantity" value="<%=quantity%>" onchange="calculateTotalPrice(price.value, this.value, this.defaultValue, price_label<%=i%>); this.defaultValue = this.value;"/>
+                    <label id="price_label<%=i%>">Price: $<%=totalPrice%></label><br>
+                    <label>Quantity</label><a class="btn btn-default">+</a><%=quantity%><a class="btn btn-default">-</a>
                   </form>
                   <br>
                   <a class="btn btn-primary" href="/removeFromCart?bookId=<%=book.getBookId() %>"> Remove </a>
@@ -121,7 +121,6 @@
               </div>
               <%
               }
-
               System.out.println("Cart Total " + cartTotal);
               %>
 
