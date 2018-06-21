@@ -4,6 +4,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.qa.models.*"%>
+<%@ page import="java.math.BigDecimal" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -15,7 +16,8 @@
   <body>
 
      <%
-    double orderTotal = (Double) request.getAttribute("order_total");
+    BigDecimal orderTotal = (BigDecimal) request.getAttribute("order_total");
+    BigDecimal taxTotal = (BigDecimal) request.getAttribute("tax_total");
 
     ArrayList<Book> books;
     books  = (ArrayList<Book>) session.getAttribute("cart_items");
@@ -106,14 +108,18 @@
                     <h6><%=book.getTitle()%></h6>
                     <small class="text-muted">Authors</small>
                   </div>
-                  <span class="text-muted"><%=book.getPrice()%></span>
+                  <span class="text-muted">$<%=book.getPrice()%></span>
                 </li>
                 <%
                   }
                 %>
                 <li class="list-group-item d-flex justify-content-between">
+                  <span>Tax </span>
+                  <strong>$<%=taxTotal%></strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
                   <span>Total (USD)</span>
-                  <strong><%=orderTotal%></strong>
+                  <strong>$<%=orderTotal%></strong>
                 </li>
               </ul>
             </div>
