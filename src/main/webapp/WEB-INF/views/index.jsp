@@ -131,6 +131,7 @@
                 Book book = books.get(i);
 
 				if (BLANK_BOOK_IMAGES.contains(book.getBookImage())) {
+					i--;
 					continue;
 				}
             %>
