@@ -4,10 +4,7 @@ import com.qa.models.Book;
 import com.qa.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -49,12 +46,8 @@ public class BookController {
 		Map<Integer, Integer> bookCounts = bookCounts(bookIds);
 		List<Book> filteredBooks = filteredBookList(books, bookCounts);
 
-		if (!cartItems.isEmpty()) {
-			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
-		} else {
-			modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
-		}
-		
+		modelAndView = new ModelAndView("cart_details", "cart_items", cartItems);
+
 		modelAndView.addObject("book_counts", bookCounts);
 		modelAndView.addObject("filtered_books", filteredBooks);
 		return modelAndView;
@@ -69,6 +62,16 @@ public class BookController {
 		}
 		
 		return new ModelAndView("cart_details", "cart_items", cartItems);
+	}
+
+	@RequestMapping(value="/search")
+	public ModelAndView Search(@RequestParam(value = "searchTerm", required = false) String pSearchTerm, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView modelAndView = new ModelAndView("search_result");
+
+		modelAndView.addObject("search_term", pSearchTerm);
+		modelAndView.addObject("search_result", bookService.findBookByPartOfTitle(pSearchTerm));
+
+		return modelAndView;
 	}
 	
 	public List<Integer> loadBookIds(Collection<Book> cartItems) {
