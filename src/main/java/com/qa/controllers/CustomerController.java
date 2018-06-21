@@ -69,9 +69,15 @@ public class CustomerController {
 		System.out.println("Customer Password is " + customer.getPassword());
 
 		if (customerService.saveCustomer(customer) != null) {
-			ModelAndView modelAndView = new ModelAndView("login");
-			modelAndView.addObject("flag", "Success!");
-			return modelAndView;
+			//Auto login
+			Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
+			if(c != null){
+                return new ModelAndView("index", "logged_in_customer", c);
+			} else {
+                ModelAndView modelAndView = new ModelAndView("register");
+                modelAndView.addObject("flag", "Registration Failed!");
+                return modelAndView;
+            }
 		} else {
 			ModelAndView modelAndView = new ModelAndView("register");
 			modelAndView.addObject("flag", "Registration Failed!");
