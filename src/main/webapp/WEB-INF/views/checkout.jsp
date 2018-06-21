@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Undercover Books</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
   <body>
@@ -29,7 +29,7 @@
      %>
 
      <!-- Start Top Bar -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+     <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
        <div class="container">
          <a class="navbar-brand" href="">Undercover Books</a>
          <form class="form-inline" action="/search">
@@ -40,7 +40,7 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarResponsive">
            <ul class="navbar-nav ml-auto">
-             <li class="nav-item">
+             <li class="nav-item active">
                <a class="nav-link" href="/">Home
                  <span class="sr-only">(current)</span>
                </a>
@@ -71,7 +71,7 @@
                <a class="nav-link" href="/about">About Us</a>
              </li>
              <li class="nav-item">
-               <a class="nav-link" href="/contact">Contact</a>
+               <a class="nav-link" href="/contact">Contact Us</a>
              </li>
              <li class="nav-item">
                <a class="nav-link" href="/viewCart">View Cart</a>

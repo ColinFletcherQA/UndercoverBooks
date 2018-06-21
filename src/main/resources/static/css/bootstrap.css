@@ -4403,7 +4403,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
+  /*background-color: rgba(0, 0, 0, 0.03);*/
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -4613,7 +4613,7 @@ input[type="button"].btn-block {
 .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 0.5rem;
-  color: #6c757d;
+  color: white;
   content: "/";
 }
 
@@ -4626,7 +4626,7 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb-item.active {
-  color: #6c757d;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .pagination {

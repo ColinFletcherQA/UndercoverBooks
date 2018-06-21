@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Undercover Books</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
     <%--<link rel="stylesheet" href="css/style.css">--%>
   </head>
@@ -17,11 +17,9 @@
       Book book;
     %>
 
-
     <%
      book = (Book) request.getAttribute("book");
     %>
-
     <%!
       Customer c;
     %>
@@ -30,9 +28,9 @@
     %>
 
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
       <div class="container">
-        <a class="navbar-brand" href="">Undercover Books</a>
+        <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form>
@@ -41,11 +39,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
             <%
               if (c != null) {
             %>
@@ -72,7 +65,7 @@
               <a class="nav-link" href="/about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
+              <a class="nav-link" href="/contact">Contact Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/viewCart">View Cart</a>
@@ -86,7 +79,9 @@
     <!-- Breadcrumb -->
     <div class="container">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item">
+          <a href="/"><span>Home</span></a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page"><%=book.getTitle()%></li>
       </ol>
 
@@ -152,7 +147,7 @@
                     <option value="printAndeBook">PrintBook & eBook</option>
                   </select>
                 </div>
-                <a href="/addToCart?bookId=<%=book.getBookId()%>" class="btn btn-primary">Add to Cart</a>
+                <a href="/addToCart?bookId=<%=book.getBookId()%>" class="btn secondary_color"><span>Add to Cart</span></a>
               </form>
             </div>
           </div>

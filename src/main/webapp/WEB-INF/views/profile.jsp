@@ -26,7 +26,6 @@
         <ul class="menu">
           <li class="menu-text" style="color:red">Online Shopping</li>
           <li><a href="#">Home</a></li>
-          
         </ul>
       </div>
       <div class="top-bar-right">

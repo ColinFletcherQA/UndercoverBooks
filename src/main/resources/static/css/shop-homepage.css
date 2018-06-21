@@ -13,13 +13,14 @@
 :root {
   --main-bg-color: #ECE2D0;
   --main-nav-color: #69626D;
-  --secondary-color: #D44D5C;
-  --third-color: #BCAF9C;
+  --secondary-color: #C14D5B;
+  --third-color: #F2EFEF;
   --forth-color: #948392;
 }
 
 body {
   padding-top: 54px;
+  background-color: var(--main-bg-color);
 }
 
 @media (min-width: 992px) {
@@ -28,6 +29,9 @@ body {
   }
 }
 
+.breadcrumb {
+  background-color: var(--main-nav-color);
+}
 .books_background {
   background-color: var(--main-bg-color);
 }
@@ -43,7 +47,13 @@ body {
 .forth_color {
   background-color: var(--forth-color);
 }
-
 a > span {
   color: white;
 }
+button > span {
+  color: white;
+}
+a > div {
+  color: black;
+}
+
