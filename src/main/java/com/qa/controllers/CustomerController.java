@@ -91,7 +91,7 @@ public class CustomerController {
 			return new ModelAndView("customer_home", "logged_in_customer", c);
 		} else {
 			System.out.println("Failure");
-			return new ModelAndView("login_failed");
+			return new ModelAndView("login");
 		}
 	}
 	@RequestMapping("/customerHome")
