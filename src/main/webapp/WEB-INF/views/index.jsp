@@ -14,9 +14,16 @@
 
   <%!
     Customer c;
+    List<String> BLANK_BOOK_IMAGES;
   %>
   <%
     c = (Customer) session.getAttribute("logged_in_customer");
+
+    // List#contains is more efficient than Set#contains for small collections.
+    BLANK_BOOK_IMAGES = Arrays.asList(
+        "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png",
+        "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+    );
   %>
 
     <!-- Start Top Bar -->
@@ -113,16 +120,20 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
           <div class="row">
-
             <%
               List<Book> books = (List<Book>) session.getAttribute("books");
+
+			  // TODO: It would be more efficient to select 6 random elements.
               Collections.shuffle(books);
+
               for (int i = 0; i < 6 && i < books.size(); i++) {
                 Book book = books.get(i);
-            %>
 
+				if (BLANK_BOOK_IMAGES.contains(book.getBookImage())) {
+					continue;
+				}
+            %>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
@@ -148,20 +159,14 @@
             <%
               }
             %>
-
           <!-- /.row -->
-
         </div>
         <!-- /.col-lg-9 -->
-
       </div>
       <!-- /.row -->
-
     </div>
     <!-- /.container -->
-
     <hr>
-
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/elsevier.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
