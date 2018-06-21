@@ -20,6 +20,12 @@
     <%
      book = (Book) request.getAttribute("book");
     %>
+
+
+    <script>
+        var cartItems = "${cart_items}";
+        var currentBook = "${book}";
+    </script>
     <%!
       Customer c;
     %>
@@ -147,7 +153,8 @@
                     <option value="printAndeBook">PrintBook & eBook</option>
                   </select>
                 </div>
-                <a href="/addToCart?bookId=<%=book.getBookId()%>" class="btn secondary_color"><span>Add to Cart</span></a>
+                <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn btn-primary">Add to Cart</a>
+                <a id="view-cart-anchor" href="/viewCart"></a>
               </form>
             </div>
           </div>
@@ -155,11 +162,12 @@
       </div>
     </div>
 
-    <%--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>--%>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <%--<script src="js/elsevier.js"></script>--%>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/book_details_handler.js"></script>
     <script>
       $(document).foundation();
     </script>

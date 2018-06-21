@@ -32,7 +32,9 @@ public class BookController {
 	@RequestMapping("/addToCart")
 	public ModelAndView addToCart(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId, @ModelAttribute("cart_items") List<Book> cartItems) {
 		findBookById(books, bookId).ifPresent(cartItems::add);
-		ModelAndView modelAndView = new ModelAndView("index", "cart_items", cartItems);
+		Book book = findBookById(books, bookId).orElse(null);
+		ModelAndView modelAndView = new ModelAndView("book_details", "book", book);
+		modelAndView.addObject("cart_items", cartItems);
 		modelAndView.addObject("books", books);
 		return modelAndView;
 	}
