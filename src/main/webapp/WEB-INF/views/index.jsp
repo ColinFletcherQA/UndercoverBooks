@@ -135,6 +135,11 @@
 				if (counter++ == 6) {
 				    break;
 				}
+
+				String description = book.getDescription();
+
+				description = description.substring(0, Math.min(150, description.length())) + "...";
+				description = description.replaceAll("<[^>]*>", "");
             %>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 third_color">
@@ -145,13 +150,15 @@
                   </h4>
                   <h5>$<%= book.getPrice()%></h5>
                    <%
-                     for (Author author : book.getAuthors()) {
+                     List<Author> authors = book.getAuthors();
+
+                   	 if (!authors.isEmpty()) {
                    %>
-                       <p class="card-subtitle mb-2 text-muted"> <%= author.getAuthorName() %> </p>
+                       <p class="card-subtitle mb-2 text-muted"> <%=authors.get(0).getAuthorName()%></p>
                    <%
                      }
                    %>
-                  <p class="card-text"><%=book.getDescription()%></p>
+                  <p class="card-text"><%=description%></p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
