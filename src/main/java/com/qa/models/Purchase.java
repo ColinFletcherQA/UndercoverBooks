@@ -10,13 +10,14 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Entity
+@Table(name = "Purchase")
 public class Purchase {
 
     @Id @GeneratedValue @Getter
     private int orderId;
 
     @Getter @Setter
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
 
