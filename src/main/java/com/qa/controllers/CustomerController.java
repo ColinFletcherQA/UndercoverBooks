@@ -167,4 +167,7 @@ public class CustomerController {
 		return new ModelAndView("contact");
 	}
 
+	@RequestMapping("/about")
+	public ModelAndView aboutPage() { return new ModelAndView("about_us"); }
+
 }

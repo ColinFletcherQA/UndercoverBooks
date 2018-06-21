@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
-  <body>
+  <body class="books_background">
 
   <%!
     Customer c;
@@ -20,7 +20,7 @@
   %>
 
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
       <div class="container">
         <a class="navbar-brand" href="">Undercover Books</a>
         <form class="form-inline" action="/search">
@@ -31,7 +31,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="/">Home
                 <span class="sr-only">(current)</span>
               </a>
@@ -59,7 +59,7 @@
             %>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="/about">About Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>
@@ -80,10 +80,10 @@
         <div class="col-lg-3">
 
           <h1 class="my-4">Undercover Books</h1>
-          <div class="list-group">
-            <a href="#" class="list-group-item">Best Sellers</a>
-            <a href="#" class="list-group-item">New Releases</a>
-            <a href="#" class="list-group-item">Category 3</a>
+          <div class="list-group" ">
+            <a href="#" class="list-group-item secondary_color"><span>Best Sellers</span></a>
+            <a href="#" class="list-group-item secondary_color"><span>New Releases</span></a>
+            <a href="#" class="list-group-item secondary_color"><span>Category 3</span></a>
           </div>
 
         </div>
@@ -131,7 +131,7 @@
                 <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="/bookDetails?bookId=<%=book.getBookId()%>"><%= book.getTitle()%></a>
+                    <a href="/bookDetails?bookId=<%=book.getBookId()%>"><span><%= book.getTitle()%></span></a>
                   </h4>
                   <h5>$<%= book.getPrice()%></h5>
                    <%

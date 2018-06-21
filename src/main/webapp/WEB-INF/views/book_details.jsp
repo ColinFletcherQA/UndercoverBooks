@@ -69,7 +69,7 @@
             %>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="/about">About Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>

@@ -4,6 +4,20 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
 
+/*#69626D Dim Gray*/
+/*#ECE2D0 Almond*/
+/*#BCAF9C Khaki*/
+/*#D44D5C Dark Terra Cotta*/
+/*#948392 Mountbatten Pink*/
+
+:root {
+  --main-bg-color: #ECE2D0;
+  --main-nav-color: #69626D;
+  --secondary-color: #D44D5C;
+  --third-color: #BCAF9C;
+  --forth-color: #948392;
+}
+
 body {
   padding-top: 54px;
 }
@@ -12,4 +26,24 @@ body {
   body {
     padding-top: 56px;
   }
+}
+
+.books_background {
+  background-color: var(--main-bg-color);
+}
+.nav_background {
+  background-color: var(--main-nav-color);
+}
+.secondary_color {
+  background-color: var(--secondary-color);
+}
+.third_color {
+  background-color: var(--third-color);
+}
+.forth_color {
+  background-color: var(--forth-color);
+}
+
+a > span {
+  color: white;
 }
