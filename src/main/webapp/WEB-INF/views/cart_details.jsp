@@ -103,17 +103,21 @@
                   totalPrice = price.multiply(BigDecimal.valueOf(quantity));
                   cartTotal = cartTotal.add(totalPrice);
               %>
-              <div class="card col-lg-3 col-md-4 col-sm-6">
+              <div class="card col-lg-3 col-md-4 col-sm-6 third_color">
                 <img class="card-img-top" src="<%=book.getBookImage()%>"/>
                 <div class="card-body">
                   <form name="f1">
                     <input type="hidden" name="price" value="<%=price%>"/>
                     <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
-                    <label id="price_label<%=i%>">Price: $<%=totalPrice%></label><br>
-                    <label>Quantity</label><a class="btn btn-default">+</a><%=quantity%><a class="btn btn-default">-</a>
+                    <label id="price_label<%=i%>">Price: $<%=totalPrice%></label>
+                    <br>
+                    <label>Quantity</label>
+                    <a class="btn secondary_color minus"><span>-</span></a>
+                      <%=quantity%>
+                    <a class="btn secondary_color plus"><span>+</span></a>
                   </form>
                   <br>
-                  <a class="btn btn-primary" href="/removeFromCart?bookId=<%=book.getBookId() %>"> Remove </a>
+                  <a class="btn secondary_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
                 </div>
               </div>
               <%
@@ -124,7 +128,7 @@
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="card">
+          <div class="card third_color">
             <div class="card-header">
               <h3>Order Summary </h3>
             </div>

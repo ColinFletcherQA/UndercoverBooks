@@ -141,7 +141,7 @@
                 <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
                 <div class="card-body" >
                   <h4 class="card-title ">
-                    <a href="/bookDetails?bookId=<%=book.getBookId()%>"><div><%= book.getTitle()%></div></a>
+                    <div><%= book.getTitle()%></div>
                   </h4>
                   <h5>$<%= book.getPrice()%></h5>
                    <%
