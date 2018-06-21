@@ -27,7 +27,7 @@
     <div class="container">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
       </form>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -93,25 +93,27 @@
           break;
         }
         counter++;
+        String description = book.getDescription().replaceAll("<[^>]*>", "");
+        description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
     %>
 
     <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100 third_color">
-        <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImageS()%>" alt=""></a>
+        <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
             <div><%=book.getTitle()%></div>
           </h4>
           <p class="card-text"><%=book.getAuthors().get(0).getAuthorName()%></p>
           <p class="card-text"><%=book.getPublisher()%></p>
-          <p class="card-text"><%=book.getDescription().substring(0, Math.min(100, book.getDescription().length()))%></p>
+          <p class="card-text"><%=description%></p>
         </div>
       </div>
     </div>
+    <%
+      }
+    %>
   </div>
-  <%
-    }
-  %>
 
   <!-- Pagination -->
   <ul class="pagination justify-content-center">
