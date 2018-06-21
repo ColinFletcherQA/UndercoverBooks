@@ -98,6 +98,7 @@ public class CustomerController {
 	public ModelAndView customerHome(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("customer_home","logged_in_customer",loggedInCustomer);
 	}
+	
 	@Deprecated
 	@RequestMapping("/profile")
 	public ModelAndView profile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
