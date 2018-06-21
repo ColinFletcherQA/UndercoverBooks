@@ -104,7 +104,7 @@
           </h4>
           <p class="card-text"><%=book.getAuthors().get(0).getAuthorName()%></p>
           <p class="card-text"><%=book.getPublisher()%></p>
-          <p class="card-text"><%=book.getDescription().substring(0, 100)%></p>
+          <p class="card-text"><%=book.getDescription().substring(0, Math.max(100, book.getDescription().length()))%></p>
         </div>
       </div>
     </div>
