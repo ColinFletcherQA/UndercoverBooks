@@ -144,6 +144,7 @@
                 %>
 
               <p class="card-text"><%=book.getDescription() %></p>
+
               <form>
                 <div class="form-group">
                   <label for="bookType">Select Book Type</label>
@@ -153,6 +154,7 @@
                     <option value="printAndeBook">PrintBook & eBook</option>
                   </select>
                 </div>
+
                 <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn btn-primary">Add to Cart</a>
                 <a id="view-cart-anchor" href="/viewCart"></a>
               </form>

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,7 +36,7 @@ public class BookController {
 	public ModelAndView addToCart(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId, @ModelAttribute("cart_items") List<Book> cartItems) {
 		findBookById(books, bookId).ifPresent(cartItems::add);
 		Book book = findBookById(books, bookId).orElse(null);
-		ModelAndView modelAndView = new ModelAndView("book_details", "book", book);
+        ModelAndView modelAndView = new ModelAndView("redirect:/bookDetails?bookId=" + Objects.requireNonNull(book).getBookId(), "book", book);
 		modelAndView.addObject("cart_items", cartItems);
 		modelAndView.addObject("books", books);
 		return modelAndView;
