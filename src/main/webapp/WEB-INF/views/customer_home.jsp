@@ -18,17 +18,14 @@
   %>
     
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark nav_background fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="">Undercover Books</a>
+        <a class="navbar-brand" href="/">Undercover Books</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Order History</a>
             </li>
@@ -48,7 +45,7 @@
       <div class="m-4">
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card third_color">
             <div class="card-header">
               <div class="card-title"><h4>Account Details</h4></div>
             </div>
@@ -72,13 +69,13 @@
                     <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Update Information</button>
+                <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
               </div>
             </form>
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card third_color">
             <div class="card-header">
               <div class="card-title"><h4>Update Password</h4></div>
             </div>
@@ -110,7 +107,7 @@
                   </div>
                 </div>
                 <div id="password-flag"></div>
-                <button type="submit" class="btn btn-primary">Update Password</button>
+                <button type="submit" class="btn secondary_color"><span>Update Password</span></button>
               </div>
             </form>
           </div>
@@ -121,7 +118,7 @@
 
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card third_color">
             <div class="card-header">
               <div class="card-title"><h4>Update Shipping Address</h4></div>
             </div>
@@ -163,13 +160,13 @@
                     <input type="tel" class="form-control" id="phone"required>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Update Shipping Address</button>
+                <button type="submit" class="btn secondary_color"><span>Update Shipping Address</span></button>
               </div>
             </form>
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card third_color">
             <div class="card-header">
               <div class="card-title"><h4>Update Billing Address</h4></div>
             </div>
@@ -211,7 +208,7 @@
                     <input type="tel" class="form-control" id="phone" required>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Update Billing Address</button>
+                <button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>
               </div>
             </form>
           </div>

@@ -40,11 +40,6 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarResponsive">
            <ul class="navbar-nav ml-auto">
-             <li class="nav-item active">
-               <a class="nav-link" href="/">Home
-                 <span class="sr-only">(current)</span>
-               </a>
-             </li>
              <%
                if (c != null) {
              %>
@@ -85,8 +80,12 @@
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/viewCart">Cart Details</a> </li>
+        <li class="breadcrumb-item">
+          <a href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="/viewCart"><span>Cart Details</span></a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Checkout</li>
       </ol>
       <div class="row">

@@ -31,7 +31,7 @@
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -146,7 +146,7 @@
                 <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
                 <div class="card-body" >
                   <h4 class="card-title ">
-                    <a href="/bookDetails?bookId=<%=book.getBookId()%>"><div><%= book.getTitle()%></div></a>
+                    <div><%= book.getTitle()%></div>
                   </h4>
                   <h5>$<%= book.getPrice()%></h5>
                    <%
