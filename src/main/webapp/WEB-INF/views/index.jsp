@@ -125,17 +125,20 @@
           </div>
           <div class="row">
             <%
+              int counter = 0;
+
               List<Book> books = (List<Book>) session.getAttribute("books");
 
 			  // TODO: It would be more efficient to select 6 random elements.
               Collections.shuffle(books);
 
-              for (int i = 0; i < 6 && i < books.size(); i++) {
-                Book book = books.get(i);
-
+              for (Book book : books) {
 				if (BLANK_BOOK_IMAGES.contains(book.getBookImage())) {
-					i--;
 					continue;
+				}
+
+				if (counter++ == 6) {
+				    break;
 				}
             %>
             <div class="col-lg-4 col-md-6 mb-4">
