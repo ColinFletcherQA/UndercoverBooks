@@ -25,6 +25,7 @@
     BigDecimal totalPrice = BigDecimal.ZERO;
     BigDecimal cartTotal = BigDecimal.ZERO;
     BigDecimal orderTotal = BigDecimal.ZERO;
+    BigDecimal totalTax = BigDecimal.ZERO;
     %>
     <%!
       Customer c;
@@ -142,18 +143,34 @@
                   <label class="middle" id="cart_total_label">$<%=cartTotal %></label>
                 </div>
               </div>
+              <%
+                totalTax = cartTotal.multiply(BigDecimal.valueOf(0.08));
+                orderTotal = totalTax.add(cartTotal);
+                totalTax = totalTax.setScale(2, RoundingMode.HALF_UP);
+                orderTotal = orderTotal.setScale(2, RoundingMode.HALF_EVEN);
+              %>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label>Total Tax</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="hidden" name="tax_total" id="cart_tax" value="<%=totalTax%>"/>
+                  <label class="middle" id="cart_tax_label">$<%=totalTax %></label>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-lg-6">
                   <label>Order Total</label>
                 </div>
                 <div class="col-lg-6">
-                  <input type="hidden" name="order_total" id="order_total" value="<%=cartTotal %>"/>
-                  <label class="middle" id="order_total_label">$<%=cartTotal%></label>
+                  <input type="hidden" name="order_total" id="order_total" value="<%=orderTotal %>"/>
+                  <label class="middle" id="order_total_label">$<%=orderTotal%></label>
                 </div>
               </div>
               <div class="card-footer">
                 <form action="/checkout" method="post" id="checkout_form">
-                  <input type="hidden" name="order_total" value="<%=cartTotal%>"/>
+                  <input type="hidden" name="tax_total" value="<%=totalTax%>"/>
+                  <input type="hidden" name="order_total" value="<%=orderTotal%>"/>
                   <%
                     if (books.isEmpty()) {
                         %>
