@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
-  <body>
+  <body style="background-color: #F4EDDE">
   
   <%!
   Customer c;
@@ -26,6 +26,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+            <%
+              if (c != null) {
+            %>
+            <li class="nav-item active">
+              <a class="nav-link" href="/customerHome">Customer Home</a>
+            </li>
+            <%
+            } else {
+            %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+              </div>
+            </li>
+            <%
+              }
+            %>
+
             <li class="nav-item">
               <a class="nav-link" href="#">Order History</a>
             </li>
@@ -43,179 +65,173 @@
     <div class="container">
       <%--<h3>You have logged in as <%=c.getFirstName() %></h3>--%>
       <div class="m-4">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="card third_color">
-            <div class="card-header">
-              <div class="card-title"><h4>Account Details</h4></div>
+        <div class="row">
+          <div class="col-lg-8 offset-2">
+            <div class="card third_color">
+              <form action="/updateProfile" method="post">
+                <div class="card-body">
+                  <h4 class="card-title text-center">Account Details</h4>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="firstName">First Name</label>
+                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="lastName">First Name</label>
+                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>"required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="email">Email</label>
+                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
+                </div>
+              </form>
             </div>
-            <form action="/updateProfile" method="post">
-              <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="firstName">First Name</label>
-                    <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="lastName">First Name</label>
-                    <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>"required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="email">Email</label>
-                    <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
-                  </div>
-                </div>
-                <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
-              </div>
-            </form>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="card third_color">
-            <div class="card-header">
-              <div class="card-title"><h4>Update Password</h4></div>
+        <br>
+        <div class="row">
+          <div class="col-lg-8 offset-2">
+            <div class="card third_color">
+              <script>
+                  var model = [];
+                  model.flag ="${flag}";
+                  model.message ="${message}";
+              </script>
+              <form action="/updatePassword" method="post" id="password">
+                <div class="card-body">
+                  <h4 class="card-title text-center">Update Password</h4>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="current_password">Current Password</label>
+                      <input name="current_password" id="current_password" class="form-control" type="password" placeholder="Current Password" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="new_password">New Password</label>
+                      <input name="new_password" id="new_password" class="form-control" type="password" placeholder="New Password" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="new_password1">Confirm New Password</label>
+                      <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password" required>
+                    </div>
+                  </div>
+                  <div id="password-flag"></div>
+                  <button type="submit" class="btn secondary_color"><span>Update Password</span></button>
+                </div>
+              </form>
             </div>
-
-            <script>
-                var model = [];
-                model.flag ="${flag}";
-                model.message ="${message}";
-            </script>
-
-            <form action="/updatePassword" method="post" id="password">
-              <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="current_password">Current Password</label>
-                    <input name="current_password" id="current_password" class="form-control" type="password" placeholder="Current Password" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="new_password">New Password</label>
-                    <input name="new_password" id="new_password" class="form-control" type="password" placeholder="New Password" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="new_password1">Confirm New Password</label>
-                    <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password" required>
-                  </div>
-                </div>
-                <div id="password-flag"></div>
-                <button type="submit" class="btn secondary_color"><span>Update Password</span></button>
-              </div>
-            </form>
           </div>
         </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-8 offset-2">
+            <div class="card third_color">
+              <form action="/updateAddress" method="post">
+                <div class="card-body">
+                  <h4 class="card-title text-center">Update Shipping Address</h4>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="addressline1">Address</label>
+                      <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="addressline2">Address 2</label>
+                      <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-4">
+                      <label for="city">City</label>
+                      <input type="text" class="form-control" id="city" required>
+                    </div>
+                    <div class="form-group col-lg-2">
+                      <label for="postcode">Zip</label>
+                      <input type="text" class="form-control" id="postcode" required>
+                    </div>
+                    <div class="form-group col-lg-2">
+                      <label for="state">State</label>
+                      <input type="text" class="form-control" id="state" placeholder="PA" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                      <label for="country">Country</label>
+                      <input type="text" class="form-control" id="country" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-6">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" class="form-control" id="phone"required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn secondary_color"><span>Update Shipping Address</span></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-8 offset-2">
+            <div class="card third_color">
+              <form action="/updateAddress" method="post">
+                <div class="card-body">
+                  <h4 class="card-title text-center">Update Billing Address</h4>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="addressline1">Address</label>
+                      <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-12">
+                      <label for="addressline2">Address 2</label>
+                      <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-4">
+                      <label for="city">City</label>
+                      <input type="text" class="form-control" id="city" required>
+                    </div>
+                    <div class="form-group col-lg-2">
+                      <label for="postcode">Zip</label>
+                      <input type="text" class="form-control" id="postcode" required>
+                    </div>
+                    <div class="form-group col-lg-2">
+                      <label for="state">State</label>
+                      <input type="text" class="form-control" id="state" placeholder="PA" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                      <label for="country">Country</label>
+                      <input type="text" class="form-control" id="country" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-lg-6">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" class="form-control" id="phone" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+       </div>
       </div>
-
-      <br>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="card third_color">
-            <div class="card-header">
-              <div class="card-title"><h4>Update Shipping Address</h4></div>
-            </div>
-            <form action="/updateAddress" method="post">
-              <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="addressline1">Address</label>
-                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="addressline2">Address 2</label>
-                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-4">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" required>
-                  </div>
-                  <div class="form-group col-lg-2">
-                    <label for="postcode">Zip</label>
-                    <input type="text" class="form-control" id="postcode" required>
-                  </div>
-                  <div class="form-group col-lg-2">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="PA" required>
-                  </div>
-                  <div class="form-group col-lg-4">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-6">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone"required>
-                  </div>
-                </div>
-                <button type="submit" class="btn secondary_color"><span>Update Shipping Address</span></button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card third_color">
-            <div class="card-header">
-              <div class="card-title"><h4>Update Billing Address</h4></div>
-            </div>
-            <form action="/updateAddress" method="post">
-              <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="addressline1">Address</label>
-                    <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-12">
-                    <label for="addressline2">Address 2</label>
-                    <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-4">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" required>
-                  </div>
-                  <div class="form-group col-lg-2">
-                    <label for="postcode">Zip</label>
-                    <input type="text" class="form-control" id="postcode" required>
-                  </div>
-                  <div class="form-group col-lg-2">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="PA" required>
-                  </div>
-                  <div class="form-group col-lg-4">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-6">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" required>
-                  </div>
-                </div>
-                <button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
