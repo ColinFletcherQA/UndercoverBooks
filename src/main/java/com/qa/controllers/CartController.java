@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 @SessionAttributes(names = {"book_counts"})
@@ -21,9 +22,10 @@ public class CartController {
 	}
 	
 	@RequestMapping("/checkout")
-	public ModelAndView checkoutForm(@ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") double orderTotal) {
+	public ModelAndView checkoutForm(@ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") BigDecimal orderTotal, @RequestParam("tax_total") BigDecimal taxTotal) {
 		ModelAndView modelAndView = new ModelAndView("checkout", "order_total", orderTotal);
 		modelAndView.addObject("book_counts", bookCounts);
+		modelAndView.addObject("tax_total",taxTotal);
 		return modelAndView;
 	}
 

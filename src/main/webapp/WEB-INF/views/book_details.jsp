@@ -99,29 +99,18 @@
             <div class="card-body">
               <h3 class="card-title"><%=book.getTitle()%></h3>
               <h4>$<%=book.getPrice()%></h4>
-              <p class="card-text"><%=book.getDescription()%></p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
             </div>
           </div>
-      <!-- Reviews -->
         </div>
         <div class="col-lg-4">
           <div class="card card-outline-secondary my-4">
             <div class="card-header">
-              Product Reviews
+              Book Description
             </div>
             <div class="card-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <a href="#" class="btn btn-success">Leave a Review</a>
+              <p class="card-text"><%=book.getDescription()%></p>
             </div>
           </div>
         </div>
@@ -134,16 +123,13 @@
                 <%
                     for(Author author : book.getAuthors())
                     {
-
-                        %>
-
-                            <h6 class="card-subtitle mb-2 text-muted"><%= author.getAuthorName() %></h6>
-
-                        <%
-                    }
                 %>
 
-              <p class="card-text"><%=book.getDescription() %></p>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= author.getAuthorName() %></h6>
+
+                <%
+                    }
+                %>
 
               <form>
                 <div class="form-group">
@@ -155,12 +141,32 @@
                   </select>
                 </div>
 
-                <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn btn-primary">Add to Cart</a>
-                <a id="view-cart-anchor" href="/viewCart"></a>
+                <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn secondary_color"><span>Add to Cart</span></a>
+                <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
               </form>
             </div>
           </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Book Description
+            </div>
+              <div class="card-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <hr>
+                <a href="#" class="btn btn-success">Leave a Review</a>
+              </div>
+          </div>
       </div>
     </div>
 

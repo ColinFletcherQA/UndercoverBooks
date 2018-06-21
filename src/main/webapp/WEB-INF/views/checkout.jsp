@@ -4,6 +4,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.qa.models.*"%>
+<%@ page import="java.math.BigDecimal" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -15,7 +16,8 @@
   <body>
 
      <%
-    double orderTotal = (Double) request.getAttribute("order_total");
+    BigDecimal orderTotal = (BigDecimal) request.getAttribute("order_total");
+    BigDecimal taxTotal = (BigDecimal) request.getAttribute("tax_total");
 
     ArrayList<Book> books;
     books  = (ArrayList<Book>) session.getAttribute("cart_items");
@@ -90,35 +92,40 @@
       </ol>
       <div class="row">
         <div class="col-lg-4 order-lg-2">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill"><%=books.size()%></span>
-          </h4>
-          <ul class="list-group mb-3">
-            <%
-              for(Book book: books)
-              {
-            %>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6><%=book.getTitle()%></h6>
-                <small class="text-muted">Authors</small>
-              </div>
-              <span class="text-muted"><%=book.getPrice()%></span>
-            </li>
-            <%
-              }
-            %>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong><%=orderTotal%></strong>
-            </li>
-          </ul>
-
+          <div class="card third_color">
+            <div class="card-body">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill"><%=books.size()%></span>
+              </h4>
+              <ul class="list-group mb-3">
+                <%
+                  for(Book book: books)
+                  {
+                %>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6><%=book.getTitle()%></h6>
+                    <small class="text-muted">Authors</small>
+                  </div>
+                  <span class="text-muted">$<%=book.getPrice()%></span>
+                </li>
+                <%
+                  }
+                %>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Tax </span>
+                  <strong>$<%=taxTotal%></strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total (USD)</span>
+                  <strong>$<%=orderTotal%></strong>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="col-lg-8 order-lg-1">
-
-
           <form id="checkout_form" action="/checkoutProcess" method="post">
             <h2>Shipping Information</h2>
             <div class="form-row">
@@ -233,7 +240,7 @@
                 </div>
               </div>
             </div>
-          <br>
+            <br>
             <h2>Payment</h2>
             <div class="form-row">
               <div class="form-group col-lg-12">
@@ -268,11 +275,13 @@
               </div>
             </div>
             <input type="hidden" name="order_total" value="<%=orderTotal %>"/>
-            <button class="btn btn-primary">Checkout</button>
+            <button class="btn secondary_color"><span>Checkout</span></button>
           </form>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
    <script>
      function myFunction() {
