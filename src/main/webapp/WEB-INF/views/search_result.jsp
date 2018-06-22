@@ -89,7 +89,7 @@
       int counter = 0;
       for (Book book : books) {
 
-        if (counter == 12) {
+        if (counter++ == 6) {
           break;
         }
         counter++;
@@ -97,16 +97,18 @@
         description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
     %>
 
-    <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
       <div class="card h-100 third_color">
         <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
-            <div><%=book.getTitle()%></div>
+            <%=book.getTitle()%>
           </h4>
           <p class="card-text"><%=book.getAuthors().get(0).getAuthorName()%></p>
+
           <p class="card-text"><%=book.getPublisher()%></p>
-          <p class="card-text"><%=description%></p>
+
+          <p class="card-text"><%=book.getDescription().substring(0, Math.min(100, book.getDescription().length()))%></p>
         </div>
       </div>
     </div>
@@ -114,7 +116,6 @@
       }
     %>
   </div>
-
   <!-- Pagination -->
   <ul class="pagination justify-content-center">
     <li class="page-item">

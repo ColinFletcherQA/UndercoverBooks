@@ -1,5 +1,7 @@
 package com.qa.controllers;
 
+import com.qa.models.Address;
+import com.qa.models.Purchase;
 import com.qa.models.Shipping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,13 +19,14 @@ import java.util.Map;
 public class CheckoutController {
 
 	@RequestMapping("/checkoutProcess")
-	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Shipping") Shipping shipping, @ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") double orderTotal) {
-		System.out.println("First name " + shipping.getFirstName());
+	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase ,  @ModelAttribute("Address") Address address, @ModelAttribute("book_counts") Map<Integer, Integer> bookCounts) {
+		System.out.println("First name " + address.getFirstName());
 		request.getSession().setAttribute("cart_items", new ArrayList<>());
-		ModelAndView modelAndView = new ModelAndView("receipt", "order_total", orderTotal);
-		modelAndView.addObject("shipping_address", shipping);
-		modelAndView.addObject("order_total", orderTotal);
+		ModelAndView modelAndView = new ModelAndView("receipt");
+		modelAndView.addObject("shipping_address", address);
+//		modelAndView.addObject("order_total", orderTotal);
 		modelAndView.addObject("book_counts", bookCounts);
+		modelAndView.addObject("purchase", purchase);
 		return modelAndView;
 	}
 
