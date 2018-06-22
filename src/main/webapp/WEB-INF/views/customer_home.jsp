@@ -14,7 +14,11 @@
   Customer c;
   %>
   <%
- 		c = (Customer) session.getAttribute("logged_in_customer");
+ 		try {
+                c = (Customer) session.getAttribute("logged_in_customer");
+            } catch(Exception e){
+                c = null;
+            }
   %>
     
     <!-- Start Top Bar -->
@@ -37,6 +41,7 @@
             </li>
             <%
             } else {
+
             %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

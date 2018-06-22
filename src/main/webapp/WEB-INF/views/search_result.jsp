@@ -24,7 +24,11 @@
     searchTerm = (String) request.getAttribute("search_term");
     pageNum = (Integer) request.getAttribute("page");
     maxPages = (Integer) request.getAttribute("maxPages");
-    c = (Customer) session.getAttribute("logged_in_customer");
+    try {
+            c = (Customer) session.getAttribute("logged_in_customer");
+        } catch(Exception e){
+            c = null;
+        };
   %>
 
 <!-- Navigation -->

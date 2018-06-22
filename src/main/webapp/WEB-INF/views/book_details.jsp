@@ -30,7 +30,11 @@
       Customer c;
     %>
     <%
-      c = (Customer) session.getAttribute("logged_in_customer");
+      try {
+              c = (Customer) session.getAttribute("logged_in_customer");
+          } catch(Exception e){
+              c = null;
+          }
     %>
 
     <!-- Start Top Bar -->
