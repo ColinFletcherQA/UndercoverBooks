@@ -110,9 +110,9 @@
             <h4 class="card-title">
               <%=book.getTitle()%>
             </h4>
-            <p class="card-text"><%=book.getAuthors().get(0).getAuthorName()%></p>
+            <p class="card-subtitle mb-2 text-muted"> <%=book.getAuthors().get(0).getAuthorName()%></p>
 
-            <p class="card-text"><%=book.getPublisher()%></p>
+            <p class="card-text"><i><%=book.getPublisher()%></i></p>
 
             <p class="card-text"><%=description%></p>
           </div>
