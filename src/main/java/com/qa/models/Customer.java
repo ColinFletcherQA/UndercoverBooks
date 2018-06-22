@@ -20,10 +20,9 @@ public class Customer {
 	@Getter @Setter
 	private String lastName;
 	
-	@Getter @Setter
+	@Getter @Setter @Column(unique = true)
 	private String email;
 	
 	@Getter @Setter
 	private String password;
-	
 }
