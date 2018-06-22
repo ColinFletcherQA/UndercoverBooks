@@ -81,6 +81,16 @@ public class BookController {
 
 		return modelAndView;
 	}
+
+	@RequestMapping("/bestSellers")
+	public ModelAndView bestSellers() {
+		return new ModelAndView("best_sellers");
+	}
+
+	@RequestMapping("newReleases")
+	public ModelAndView newReleases() {
+		return new ModelAndView("new_releases");
+	}
 	
 	public List<Integer> loadBookIds(Collection<Book> cartItems) {
 		return cartItems.stream()

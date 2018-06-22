@@ -88,102 +88,104 @@
   <br>
 
   <div class="container">
-    <div>
-      <h2>Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
-    </div>
-    <div class="row">
-      <div class="col-lg-3">
-        <address>
-          <strong>Billed To:</strong><br>
-          <%=c.getFirstName()%> <%=c.getLastName()%><br>
-          <%=address.getAddressLine1()%><br>
-          <%=address.getAddressLine2()%><br>
-          <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
-        </address>
+    <div class="card third_color">
+      <div class="card-title ml-2">
+        <h2>Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
       </div>
-      <div class="col-lg-3">
-        <address>
-          <strong>Shipped To:</strong><br>
-          <%=c.getFirstName()%> <%=c.getLastName()%><br>
-          <%=address.getAddressLine1()%><br>
-          <%=address.getAddressLine2()%><br>
-          <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
-        </address>
-      </div>
-      <div class="col-lg-3">
-        <address>
-          <strong>Payment Method:</strong><br>
-          <%=p.getCardType()%> ending in <%=p.getCardNumber().substring(p.getCardNumber().length() - 4)%><br>
-          <%=c.getEmail()%>
-        </address>
-      </div>
-      <div class="col-lg-3">
-        <address>
-          <strong>Order Date:</strong><br>
-          <%=LocalDate.now()%>
-          <br><br>
-        </address>
+      <div class="row">
+        <div class="col-lg-3 ml-2">
+          <address>
+            <strong>Billed To:</strong><br>
+            <%=c.getFirstName()%> <%=c.getLastName()%><br>
+            <%=address.getAddressLine1()%><br>
+            <%=address.getAddressLine2()%><br>
+            <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
+          </address>
+        </div>
+        <div class="col-lg-3">
+          <address>
+            <strong>Shipped To:</strong><br>
+            <%=c.getFirstName()%> <%=c.getLastName()%><br>
+            <%=address.getAddressLine1()%><br>
+            <%=address.getAddressLine2()%><br>
+            <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
+          </address>
+        </div>
+        <div class="col-lg-3">
+          <address>
+            <strong>Payment Method:</strong><br>
+            <%=p.getCardType()%> ending in <%=p.getCardNumber().substring(p.getCardNumber().length() - 4)%><br>
+            <%=c.getEmail()%>
+          </address>
+        </div>
+        <div class="col-lg-2">
+          <address>
+            <strong>Order Date:</strong><br>
+            <%=LocalDate.now()%>
+            <br><br>
+          </address>
 
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Order summary</strong></h3>
-          </div>
-          <div class="panel-body">
-            <div class="table-responsive">
-              <table class="table table-condensed">
-                <thead>
-                <tr>
-                  <td><strong>Item</strong></td>
-                  <td class="text-center"><strong>Price</strong></td>
-                  <td class="text-center"><strong>Quantity</strong></td>
-                  <td class="text-right"><strong>Totals</strong></td>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                  for (Book book : books) {
-                    BigDecimal bookprice = book.getPrice();
-                    Integer bookCount = bookCounts.get(book.getBookId());
-                    BigDecimal totalPrice = bookprice.multiply(BigDecimal.valueOf(bookCount));
-
-                %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title ml-2"><strong>Order summary</strong></h3>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-condensed">
+                  <thead>
                   <tr>
-                    <td><%=book.getTitle()%></td>
-                    <td class="text-center">$<%=book.getPrice()%></td>
-                    <td class="text-center"><%=bookCounts.get(book.getBookId())%></td>
-                    <td class="text-right">$<%=totalPrice%></td>
+                    <td><strong>Item</strong></td>
+                    <td class="text-center"><strong>Price</strong></td>
+                    <td class="text-center"><strong>Quantity</strong></td>
+                    <td class="text-right"><strong>Totals</strong></td>
                   </tr>
-                <%
-                  }
-                %>
+                  </thead>
+                  <tbody>
+                  <%
+                    for (Book book : books) {
+                      BigDecimal bookprice = book.getPrice();
+                      Integer bookCount = bookCounts.get(book.getBookId());
+                      BigDecimal totalPrice = bookprice.multiply(BigDecimal.valueOf(bookCount));
 
-                <tr>
-                  <td class="thick-line"></td>
-                  <td class="thick-line"></td>
-                  <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                  <td class="thick-line text-right">$<%=p.getTotalPrice()%></td>
-                </tr>
-                <tr>
-                  <td class="no-line"></td>
-                  <td class="no-line"></td>
-                  <td class="no-line text-center"><strong>Shipping</strong></td>
-                  <td class="no-line text-right">$15</td>
-                </tr>
-                <%
-                  BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(15));
-                %>
-                <tr>
-                  <td class="no-line"></td>
-                  <td class="no-line"></td>
-                  <td class="no-line text-center"><strong>Total</strong></td>
-                  <td class="no-line text-right">$<%=finalTotal%></td>
-                </tr>
-                </tbody>
-              </table>
+                  %>
+                    <tr>
+                      <td><%=book.getTitle()%></td>
+                      <td class="text-center">$<%=book.getPrice()%></td>
+                      <td class="text-center"><%=bookCounts.get(book.getBookId())%></td>
+                      <td class="text-right">$<%=totalPrice%></td>
+                    </tr>
+                  <%
+                    }
+                  %>
+
+                  <tr>
+                    <td class="thick-line"></td>
+                    <td class="thick-line"></td>
+                    <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                    <td class="thick-line text-right">$<%=p.getTotalPrice()%></td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>Shipping</strong></td>
+                    <td class="no-line text-right">$15</td>
+                  </tr>
+                  <%
+                    BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(15));
+                  %>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>Total</strong></td>
+                    <td class="no-line text-right">$<%=finalTotal%></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

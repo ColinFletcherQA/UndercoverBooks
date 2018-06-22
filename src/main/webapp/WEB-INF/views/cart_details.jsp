@@ -186,7 +186,7 @@
                   <%
                   } else {
                   %>
-                    <a href="/login" class="btn secondary_color"><span>Login or Register</span></a>
+                    <a href="/login" class="btn secondary_color"><span>Proceed to Checkout</span></a>
                   <%
                   }
                   %>

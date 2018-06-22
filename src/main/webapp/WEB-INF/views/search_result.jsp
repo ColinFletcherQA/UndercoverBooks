@@ -79,9 +79,9 @@
 
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a href="/">Home</a>
+      <a href="/"><span>Home</span></a>
     </li>
-    <li class="breadcrumb-item active">Search Result</li>
+    <li class="breadcrumb-item active" aria-current="page">Search Results for "<%=searchTerm%>"</li>
   </ol>
 
   <div class="row">
@@ -108,7 +108,7 @@
 
           <p class="card-text"><%=book.getPublisher()%></p>
 
-          <p class="card-text"><%=book.getDescription().substring(0, Math.min(100, book.getDescription().length()))%></p>
+          <p class="card-text"><%=description%></p>
         </div>
       </div>
     </div>
@@ -142,17 +142,6 @@
   </ul>
 
 </div>
-<!-- /.container -->
-
-<!-- Footer -->
-<%--<footer class="py-5 bg-dark">--%>
-  <%--<div class="container">--%>
-    <%--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>--%>
-  <%--</div>--%>
-  <%--<!-- /.container -->--%>
-<%--</footer>--%>
-
-<!-- Bootstrap core JavaScript -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="js/elsevier.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
