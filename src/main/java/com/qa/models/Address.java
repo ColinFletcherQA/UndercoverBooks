@@ -12,12 +12,6 @@ public class Address {
 	@Id @GeneratedValue
 	@Getter @Setter
 	private int addressId;
-
-	@Getter @Setter
-	private String firstName;
-
-	@Getter @Setter
-	private String lastName;
 	
 	@Getter @Setter
 	private String addressLine1;
@@ -40,9 +34,6 @@ public class Address {
 	@Getter @Setter
 	private String phoneNumber;
 
-	@Getter @Setter
-	private String email;
-	
 	@Getter @Setter
 	private String addressType;
 
