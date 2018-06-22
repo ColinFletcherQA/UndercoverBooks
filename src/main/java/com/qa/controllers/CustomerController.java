@@ -211,4 +211,5 @@ public class CustomerController {
 	@RequestMapping("/about")
 	public ModelAndView aboutPage() { return new ModelAndView("about_us"); }
 
+
 }
