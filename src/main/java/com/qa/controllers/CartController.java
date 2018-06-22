@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.math.BigDecimal;
 import java.util.Map;
 
-@SessionAttributes(names = {"book_counts"})
 @Controller
+@SessionAttributes({"cart_items"})
 public class CartController {
 
 	@RequestMapping("/updatePrice")
