@@ -74,16 +74,14 @@
 <div class="container">
 
   <!-- Page Heading/Breadcrumbs -->
-  <h1 class="mt-4 mb-3">Search Result
+  <h1 class="mt-5">Best Sellers
   </h1>
-
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
       <a href="/"><span>Home</span></a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">Best Sellers</li>
   </ol>
-
   <div class="row">
     <%--<%--%>
       <%--int counter = 0;--%>

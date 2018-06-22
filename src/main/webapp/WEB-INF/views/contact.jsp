@@ -74,7 +74,7 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Contact Us
+    <h1 class="mt-5">Contact Us
     </h1>
 
     <ol class="breadcrumb">
