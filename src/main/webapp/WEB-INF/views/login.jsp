@@ -65,8 +65,6 @@
         </div>
       </div>
     </nav>
-
-    <br>
     <!-- End Top Bar -->
     <div class="container">
       <h1 class="mt-3 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Login
@@ -85,13 +83,13 @@
               <form action="/loginProcess" method="post">
                 <h3 class="card-title">Please Login with your credentials</h3>
                 <div class="form-row">
-                  <div class="form-group col-lg-8">
+                  <div class="form-group col-lg-12">
                     <label for="email">Email</label>
                     <input name="email" type="email" class="form-control" id="email" required>
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-lg-8">
+                  <div class="form-group col-lg-12">
                     <label for="password">Password</label>
                     <input name="password" type="password" class="form-control" id="password" required>
                   </div>

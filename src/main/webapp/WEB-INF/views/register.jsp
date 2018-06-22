@@ -69,7 +69,6 @@
     </div>
   </nav>
 
-    <br>
     <!-- End Top Bar -->
     <div class="container">
       <h1 class="mt-3 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Register

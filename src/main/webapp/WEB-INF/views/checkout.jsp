@@ -82,7 +82,6 @@
        </div>
      </nav>
     <!-- End Top Bar -->
-     <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container" style="padding-bottom: 25px;">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Checkout</h1>

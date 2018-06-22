@@ -85,7 +85,6 @@
       </div>
     </nav>
     <!-- End Top Bar -->
-    <br>
     <!-- Breadcrumb -->
     <div class="container">
       <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
