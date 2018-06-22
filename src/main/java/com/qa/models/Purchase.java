@@ -19,12 +19,12 @@ public class Purchase {
     private int orderId;
 
     @Getter @Setter
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "customerId")
     private Customer customer;
 
     @Getter @Setter
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
 
