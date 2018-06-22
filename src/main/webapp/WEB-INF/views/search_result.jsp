@@ -92,6 +92,9 @@
         if (counter++ == 6) {
           break;
         }
+        counter++;
+        String description = book.getDescription().replaceAll("<[^>]*>", "");
+        description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
     %>
 
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -113,8 +116,6 @@
       }
     %>
   </div>
-
-
   <!-- Pagination -->
   <ul class="pagination justify-content-center">
     <li class="page-item">

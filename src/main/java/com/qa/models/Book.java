@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -53,7 +50,7 @@ public class Book {
 	@Getter @Setter
 	private String title;
 	
-	@Autowired @ElementCollection @Getter @Setter
+	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Author> authors;
 
 	@Autowired @ElementCollection @Getter @Setter

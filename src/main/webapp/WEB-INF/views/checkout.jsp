@@ -270,11 +270,11 @@
             </div>
             <div class="form-row">
               <div class="form-group col-lg-3">
-                <label for="cardExpiration">Expiration</label>
+                <label for="cardExpiration">Expiration *</label>
                 <input type="number" class="form-control" id="cardExpiration" placeholder="dd/mm">
               </div>
               <div class="form-group col-lg-3">
-                <label for="cardCVV">CVV</label>
+                <label for="cardCVV">CVV *</label>
                 <input type="number" class="form-control" id="cardCVV">
               </div>
             </div>

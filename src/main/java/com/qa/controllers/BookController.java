@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
@@ -20,13 +21,20 @@ public class BookController {
 	@Autowired
 	BookRepository bookService;
 	
+	@PersistenceContext
+	EntityManager em;
+	
 	@RequestMapping("/bookDetails")
-	public ModelAndView bookDetails(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId) {
+	public ModelAndView bookDetails(@RequestParam("bookId") int bookId) {
 		// TODO - Jacob: We don't want a null book.
-		Book book = findBookById(books, bookId).orElse(null);
-		ModelAndView modelAndView = new ModelAndView("book_details", "book", book);
-		modelAndView.addObject("books", books);
-		return modelAndView;
+		Book book = em.find(Book.class, bookId);
+
+		if (book == null) {
+			// TODO: Change to valid book-not-found page.oi
+		    return null;
+        }
+        
+		return new ModelAndView("book_details", "book", book);
 	}
 	
 	@RequestMapping("/addToCart")

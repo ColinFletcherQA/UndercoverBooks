@@ -82,7 +82,7 @@
         <div class="col-lg-3">
 
           <h1 class="my-4">Undercover Books</h1>
-          <div class="list-group" ">
+          <div class="list-group">
             <a href="#" class="list-group-item secondary_color"><span>Best Sellers</span></a>
             <a href="#" class="list-group-item secondary_color"><span>New Releases</span></a>
             <a href="#" class="list-group-item secondary_color"><span>Category 3</span></a>

@@ -15,4 +15,5 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     List<Book> findBookByPartOfTitle(@Param("searchTerm") String title);
 
     List<Book> findDistinctBookByTitle(String title);
+
 }

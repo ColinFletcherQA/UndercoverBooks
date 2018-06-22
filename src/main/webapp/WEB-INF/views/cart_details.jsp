@@ -113,9 +113,9 @@
                     <label id="price_label<%=i%>">Price: $<%=totalPrice%></label>
                     <br>
                     <label>Quantity</label>
-                    <a class="btn minus">-</a>
-                      <%=quantity%>
-                    <a class="btn plus">+</a>
+                    <a class="btn minus" onclick="decreaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">-</a>
+                      <label id="quantity<%=i%>"><%=quantity%></label>
+                    <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
                   </form>
                   <br>
                   <a class="btn secondary_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
