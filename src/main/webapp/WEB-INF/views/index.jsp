@@ -16,7 +16,7 @@
     Customer c;
   %>
   <%
-    c = (Customer) session.getAttribute("logged_in_customer");
+	c = (Customer) session.getAttribute("logged_in_customer");
   %>
 
     <!-- Start Top Bar -->
@@ -118,10 +118,10 @@
               List<Book> books = (List<Book>) request.getAttribute("books");
 
               for (Book book : books) {
-				        String description = book.getDescription();
+			      String description = book.getDescription();
 
-				        description = description.substring(0, Math.min(150, description.length())) + "...";
-				        description = description.replaceAll("<[^>]*>", "");
+				  description = description.substring(0, Math.min(150, description.length())) + "...";
+				  description = description.replaceAll("<[^>]*>", "");
             %>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 third_color">

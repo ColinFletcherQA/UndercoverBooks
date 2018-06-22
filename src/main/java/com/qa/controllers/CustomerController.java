@@ -1,6 +1,5 @@
 package com.qa.controllers;
 
-import com.qa.models.Book;
 import com.qa.models.Customer;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
@@ -10,15 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @SessionAttributes(names = {"cart_items", "logged_in_customer", "Address", "flag"})
@@ -30,29 +26,19 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	// List#contains is more efficient than Set#contains for small collections.
-	private List<String> BLANK_BOOK_IMAGES = Arrays.asList(
-		"https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png",
-		"https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
-	);
-	
 	@RequestMapping("/")
 	public ModelAndView indexPage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
 		Object items = session.getAttribute("cart_items");
 		
-		Map<Book, Integer> cartItems;
-		
 		if (items != null) {
-			cartItems = (Map<Book, Integer>) items;
+			session.setAttribute("cart_items", items);
 		} else {
-			cartItems = new LinkedHashMap<>();
+			session.setAttribute("cart_items", new LinkedHashMap<>());
 		}
 		
-		ModelAndView modelAndView = new ModelAndView("index", "books", bookService.getSixRandomBooks());
-		modelAndView.addObject("cart_items", cartItems);
-		return modelAndView;
+		return new ModelAndView("index", "books", bookService.getSixRandomBooks());
 	}
 
 	@RequestMapping("/login")
@@ -61,10 +47,9 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/logout")
-	public ModelAndView logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.removeAttribute("cart_items");
-		return indexPage(request);
+	public ModelAndView logout(SessionStatus status) {
+		status.setComplete();
+		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping("/register")
@@ -83,9 +68,9 @@ public class CustomerController {
             if (customerService.saveCustomer(customer) != null) {
                 Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
                
-                if(c != null) {
+                if (c != null) {
                 	ModelAndView modelAndView = indexPage(request);
-                	modelAndView.addObject("logged_in_customer",c);
+                	request.getSession().setAttribute("logged_in_customer", c);
                     return modelAndView;
                 } else {
                     ModelAndView modelAndView = new ModelAndView("register");
@@ -120,6 +105,7 @@ public class CustomerController {
 			return new ModelAndView("login");
 		}
 	}
+	
 	@RequestMapping("/customerHome")
 	public ModelAndView customerHome(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("customer_home","logged_in_customer",loggedInCustomer);
