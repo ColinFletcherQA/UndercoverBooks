@@ -19,7 +19,11 @@
     %>
 
     <%
-      c = (Customer) session.getAttribute("logged_in_customer");
+      try {
+              c = (Customer) session.getAttribute("logged_in_customer");
+          } catch(Exception e){
+              c = null;
+          }
       bookCounts = (Map<Book, Integer>) session.getAttribute("cart_items");
 
       BigDecimal totalPrice = BigDecimal.ZERO;

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 
 @Controller
-@SessionAttributes(names = {"cart_items", "logged_in_customer", "Address", "flag"})
+@SessionAttributes(names = {"cart_items", "logged_in_customer", "Address"})
 public class CustomerController {
 
 	@Autowired
@@ -55,7 +55,6 @@ public class CustomerController {
 	@RequestMapping("/register")
 	public ModelAndView register() {
 		ModelAndView modelAndView = new ModelAndView("register");
-		modelAndView.addObject("flag", "");
 		return modelAndView;
 	}
 	
@@ -107,8 +106,11 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/customerHome")
-	public ModelAndView customerHome(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
-		return new ModelAndView("customer_home","logged_in_customer",loggedInCustomer);
+	public ModelAndView customerHome(HttpServletRequest request) {
+	    if(request.getSession().getAttribute("logged_in_customer") == null){
+	        return new ModelAndView("login");
+        }
+		return new ModelAndView("customer_home","logged_in_customer",request.getSession().getAttribute("logged_in_customer"));
 	}
 	
 	@RequestMapping("/updateProfile")

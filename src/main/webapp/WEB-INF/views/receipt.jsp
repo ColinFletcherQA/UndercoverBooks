@@ -28,7 +28,11 @@
 
   %>
   <%
-    c = (Customer) session.getAttribute("logged_in_customer");
+    try {
+            c = (Customer) session.getAttribute("logged_in_customer");
+        } catch(Exception e){
+            c = null;
+        }
     address = (Address) request.getAttribute("shipping_address");
     orderTotal = (BigDecimal) session.getAttribute("order_total");
     bookCounts = (Map<Integer, Integer>) request.getAttribute("book_counts");
