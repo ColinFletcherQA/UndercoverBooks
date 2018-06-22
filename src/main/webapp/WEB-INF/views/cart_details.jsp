@@ -14,24 +14,18 @@
   <body>
     
     <%!
-      List<Book> books;
-      Map<Integer, Integer> bookCounts;
-    %>
-
-    <%
-    books = (List<Book>) session.getAttribute("filtered_books");
-    bookCounts = (Map<Integer, Integer>) session.getAttribute("book_counts");
-
-    BigDecimal totalPrice = BigDecimal.ZERO;
-    BigDecimal cartTotal = BigDecimal.ZERO;
-    BigDecimal orderTotal = BigDecimal.ZERO;
-    BigDecimal totalTax = BigDecimal.ZERO;
-    %>
-    <%!
       Customer c;
+      Map<Book, Integer> bookCounts;
     %>
+
     <%
       c = (Customer) session.getAttribute("logged_in_customer");
+      bookCounts = (Map<Book, Integer>) session.getAttribute("cart_items");
+
+      BigDecimal totalPrice = BigDecimal.ZERO;
+      BigDecimal cartTotal = BigDecimal.ZERO;
+      BigDecimal orderTotal = BigDecimal.ZERO;
+      BigDecimal totalTax = BigDecimal.ZERO;
     %>
 
 <!-- Start Top Bar -->
@@ -97,9 +91,12 @@
           <div class="col-lg-9">
             <div class="card-deck">
               <%
-              for (int i = 0; i < books.size(); i++) {
-                  Book book = books.get(i);
-                  int quantity = bookCounts.get(book.getBookId());
+              int i = 0;
+
+              for (Map.Entry<Book, Integer> entry : bookCounts.entrySet()) {
+              	  i++;
+              	  Book book = entry.getKey();
+                  int quantity = entry.getValue();
                   BigDecimal price = book.getPrice();
                   totalPrice = price.multiply(BigDecimal.valueOf(quantity));
                   cartTotal = cartTotal.add(totalPrice);
@@ -172,25 +169,17 @@
                   <input type="hidden" name="tax_total" value="<%=totalTax%>"/>
                   <input type="hidden" name="order_total" value="<%=orderTotal%>"/>
                   <%
-                    if (books.isEmpty()) {
-                        %>
-                  <button type="button" class="btn secondary_color" disabled><span>Proceed to Checkout</span></button>
+                    if (bookCounts.isEmpty()) {
+                  %>
+                      <button type="button" class="btn secondary_color" disabled><span>Proceed to Checkout</span></button>
+                  <%
+                    } else if (c != null) {
+                  %>
+                      <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
                   <%
                     } else {
-
                   %>
-                  <%
-                    if(c != null){
-                  %>
-                    <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
-                  <%
-                  } else {
-                  %>
-                    <a href="/login" class="btn secondary_color"><span>Proceed to Checkout</span></a>
-                  <%
-                  }
-                  %>
-
+                      <a href="/login" class="btn secondary_color"><span>Login or Register</span></a>
                   <%
                     }
                   %>
