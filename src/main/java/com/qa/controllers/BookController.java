@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +23,11 @@ public class BookController {
 	public ModelAndView bookDetails(@ModelAttribute("books") Collection<Book> books, @RequestParam("bookId") int bookId) {
 		// TODO - Jacob: We don't want a null book.
 		Book book = findBookById(books, bookId).orElse(null);
+
+		if (book == null) {
+		    return null;
+        }
+
 		ModelAndView modelAndView = new ModelAndView("book_details", "book", book);
 		modelAndView.addObject("books", books);
 		return modelAndView;
