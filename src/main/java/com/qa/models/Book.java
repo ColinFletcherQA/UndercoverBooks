@@ -49,12 +49,30 @@ public class Book {
 	
 	@Getter @Setter
 	private String title;
+
+	@Getter @Setter
+	private int ratings_1;
+
+	@Getter @Setter
+	private int ratings_2;
+
+	@Getter @Setter
+	private int ratings_3;
+
+	@Getter @Setter
+	private int ratings_4;
+
+	@Getter @Setter
+	private int ratings_5;
 	
 	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Author> authors;
 
 	@Autowired @ElementCollection @Getter @Setter
 	private List<Book> related_books;
+
+	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
+	private List<Tag> tags;
 	
 	@Override
 	public boolean equals(Object o) {

@@ -107,8 +107,28 @@ public class BookController {
 	}
 
 	@RequestMapping("/bestSellers")
-	public ModelAndView bestSellers() {
-		return new ModelAndView("best_sellers");
+	public ModelAndView bestSellers(@RequestParam(value = "page", required = false) Integer page) {
+
+		ModelAndView modelAndView = new ModelAndView("best_sellers");
+		List<Book> booksFound = bookService.getBestSellers();
+
+		PagedListHolder<Book> pagedListHolder = new PagedListHolder<>(booksFound);
+		pagedListHolder.setPageSize(12);
+		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
+
+		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+			page = 1;
+			pagedListHolder.setPage(0);
+			modelAndView.addObject("books_found", pagedListHolder.getPageList());
+		}
+		else if(page <= pagedListHolder.getPageCount()) {
+			pagedListHolder.setPage(page-1);
+			modelAndView.addObject("books_found", pagedListHolder.getPageList());
+		}
+
+		modelAndView.addObject("page", page);
+
+		return modelAndView;
 	}
 
 	@RequestMapping("newReleases")

@@ -14,11 +14,13 @@
   <%!
     Customer c;
     List<Book> books;
-    String searchTerm;
+    int pageNum;
+    int maxPages;
   %>
   <%
-    books = (List<Book>) request.getAttribute("search_result");
-    searchTerm = (String) request.getAttribute("search_term");
+    books = (List<Book>) request.getAttribute("books_found");
+    pageNum = (Integer) request.getAttribute("page");
+    maxPages = (Integer) request.getAttribute("maxPages");
     try {
             c = (Customer) session.getAttribute("logged_in_customer");
         } catch(Exception e){
@@ -87,55 +89,69 @@
       <li class="breadcrumb-item active" aria-current="page">Best Sellers</li>
     </ol>
     <div class="row">
-      <%--<%--%>
-        <%--int counter = 0;--%>
-        <%--for (Book book : books) {--%>
+      <%
+        int counter = 0;
+        for (Book book : books) {
 
-          <%--if (counter++ == 12) {--%>
-            <%--break;--%>
-          <%--}--%>
-          <%--String description = book.getDescription().replaceAll("<[^>]*>", "");--%>
-          <%--description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";--%>
-      <%--%>--%>
+          if (counter++ == 12) {
+            break;
+          }
+          String description = book.getDescription().replaceAll("<[^>]*>", "");
+          description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+      %>
 
-      <%--<div class="col-lg-3 col-md-4 col-sm-6 mb-4">--%>
-        <%--<div class="card h-100 third_color">--%>
-          <%--<a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>--%>
-          <%--<div class="card-body">--%>
-            <%--<h4 class="card-title">--%>
-              <%--<%=book.getTitle()%>--%>
-            <%--</h4>--%>
-            <%--<p class="card-text"><%=book.getAuthors().get(0).getAuthorName()%></p>--%>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card h-100 third_color">
+          <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <%=book.getTitle()%>
+            </h4>
+              <p class="card-subtitle mb-2 text-muted"> <%=book.getAuthors().get(0).getAuthorName()%></p>
 
-            <%--<p class="card-text"><%=book.getPublisher()%></p>--%>
+              <p class="card-text"><i><%=book.getPublisher()%></i></p>
 
-            <%--<p class="card-text"><%=description%></p>--%>
-          <%--</div>--%>
-        <%--</div>--%>
-      <%--</div>--%>
-      <%--<%--%>
-        <%--}--%>
-      <%--%>--%>
+            <p class="card-text"><%=description%></p>
+          </div>
+        </div>
+      </div>
+      <%
+        }
+      %>
     </div>
     <!-- Pagination -->
     <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+      <li class="page-item<% if (pageNum <= 1) {%> disabled<%}%>">
+        <a class="page-link" href="/bestSellers?page=<%=(pageNum - 1)%>" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
           <span class="sr-only">Previous</span>
         </a>
       </li>
+      <% if (pageNum >= 3) { %>
       <li class="page-item">
-        <a class="page-link" href="#">1</a>
+        <a class="page-link" href="/bestSellers?page=<%=pageNum - 2%>"><%=pageNum - 2%></a>
       </li>
+      <%}%>
+      <% if (pageNum >= 2) { %>
       <li class="page-item">
-        <a class="page-link" href="#">2</a>
+        <a class="page-link" href="/bestSellers?page=<%=pageNum - 1%>"><%=pageNum - 1%></a>
       </li>
-      <li class="page-item">
-        <a class="page-link" href="#">3</a>
+      <%}%>
+      <li class="page-item disabled">
+        <a class="page-link" href="/bestSellers?page=<%=pageNum%>"><%=pageNum%></a>
       </li>
+      <% if (maxPages >= pageNum + 1) { %>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a class="page-link" href="/bestSellers?page=<%=pageNum + 1%>"><%=pageNum + 1%></a>
+      </li>
+      <%}%>
+      <% if (maxPages >= pageNum + 2) { %>
+      <li class="page-item">
+        <a class="page-link" href="/bestSellers?page=<%=pageNum + 2%>"><%=pageNum + 2%></a>
+      </li>
+      <%}%>
+      <li class="page-item<% if (pageNum == maxPages) {%> disabled<%}%>">
+        <a class="page-link" href="/bestSellers?page=<%=(pageNum + 1)%>" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
           <span class="sr-only">Next</span>
         </a>
