@@ -3,6 +3,8 @@ package com.qa.controllers;
 import com.qa.models.Book;
 import com.qa.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -77,11 +80,28 @@ public class BookController {
 	}
 
 	@RequestMapping(value="/search")
-	public ModelAndView Search(@RequestParam(value = "searchTerm", required = false) String pSearchTerm) {
-		ModelAndView modelAndView = new ModelAndView("search_result");
+	public ModelAndView Search(@RequestParam(value = "searchTerm", required = false) String searchTerm,
+							   @RequestParam(value = "page", required = false) Integer page) {
 
-		modelAndView.addObject("search_term", pSearchTerm);
-		modelAndView.addObject("search_result", bookService.findBookByPartOfTitle(pSearchTerm));
+		ModelAndView modelAndView = new ModelAndView("search_result");
+		modelAndView.addObject("search_term", searchTerm);
+		List<Book> booksFound = bookService.findBookByPartOfTitle(searchTerm);
+
+		PagedListHolder<Book> pagedListHolder = new PagedListHolder<>(booksFound);
+		pagedListHolder.setPageSize(12);
+		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
+
+		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+			page = 1;
+			pagedListHolder.setPage(0);
+			modelAndView.addObject("search_result", pagedListHolder.getPageList());
+		}
+		else if(page <= pagedListHolder.getPageCount()) {
+			pagedListHolder.setPage(page-1);
+			modelAndView.addObject("search_result", pagedListHolder.getPageList());
+		}
+
+		modelAndView.addObject("page", page);
 
 		return modelAndView;
 	}

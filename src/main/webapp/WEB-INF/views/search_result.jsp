@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
+<%@ page import="org.springframework.beans.support.PagedListHolder" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -15,10 +16,14 @@
     Customer c;
     List<Book> books;
     String searchTerm;
+    int pageNum;
+    int maxPages;
   %>
   <%
     books = (List<Book>) request.getAttribute("search_result");
     searchTerm = (String) request.getAttribute("search_term");
+    pageNum = (Integer) request.getAttribute("page");
+    maxPages = (Integer) request.getAttribute("maxPages");
     c = (Customer) session.getAttribute("logged_in_customer");
   %>
 
@@ -117,26 +122,40 @@
   </div>
   <!-- Pagination -->
   <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
+    <li class="page-item<% if (pageNum <= 1) {%> disabled<%}%>">
+        <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum - 1)%>" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+        </a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
+      <% if (pageNum >= 3) { %>
+      <li class="page-item">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 2%>"><%=pageNum - 2%></a>
+      </li>
+      <%}%>
+      <% if (pageNum >= 2) { %>
+      <li class="page-item">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 1%>"><%=pageNum - 1%></a>
+      </li>
+      <%}%>
+      <li class="page-item disabled">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum%>"><%=pageNum%></a>
+      </li>
+      <% if (maxPages >= pageNum + 1) { %>
+      <li class="page-item">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 1%>"><%=pageNum + 1%></a>
+      </li>
+      <%}%>
+      <% if (maxPages >= pageNum + 2) { %>
+      <li class="page-item">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 2%>"><%=pageNum + 2%></a>
+      </li>
+      <%}%>
+    <li class="page-item<% if (pageNum == maxPages) {%> disabled<%}%>">
+        <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum + 1)%>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+        </a>
     </li>
   </ul>
 
