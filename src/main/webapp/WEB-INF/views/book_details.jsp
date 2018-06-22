@@ -84,7 +84,7 @@
     <br>
     <!-- Breadcrumb -->
     <div class="container">
-      <h1 class="mt-3">Book Details</h1>
+      <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="/"><span>Home</span></a>
@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-lg-12">
           <div class="card card-outline-secondary third_color">
             <div class="card-header">
