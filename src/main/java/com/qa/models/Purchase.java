@@ -42,7 +42,7 @@ public class Purchase {
     private BigDecimal totalPrice;
 
     @Getter @Setter
-    private int cardNumber;
+    private String cardNumber;
 
     @Getter @Setter
     private String cardName;
