@@ -56,4 +56,18 @@ public class Book {
 	@Autowired @ElementCollection @Getter @Setter
 	private List<Book> related_books;
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Book)) {
+			return false;
+		}
+		
+		return bookId == ((Book) o).bookId;
+	}
+	
+	@Override
+	public int hashCode() {
+		return bookId;
+	}
+	
 }
