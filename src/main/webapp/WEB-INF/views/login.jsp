@@ -80,27 +80,35 @@
 
       <div class="row">
         <div class="col-lg-6">
-          <form action="/loginProcess" method="post">
-            <h3>Please Login with your credentials</h3>
-            <div class="form-row">
-              <div class="form-group col-lg-8">
-                <label for="email">Email</label>
-                <input name="email" type="email" class="form-control" id="email" required>
-              </div>
+          <div class="card third_color">
+            <div class="card-body">
+              <form action="/loginProcess" method="post">
+                <h3 class="card-title">Please Login with your credentials</h3>
+                <div class="form-row">
+                  <div class="form-group col-lg-8">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control" id="email" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-8">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" class="form-control" id="password" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn secondary_color"><span>Login</span></button>
+              </form>
             </div>
-            <div class="form-row">
-              <div class="form-group col-lg-8">
-                <label for="password">Password</label>
-                <input name="password" type="password" class="form-control" id="password" required>
-              </div>
-            </div>
-            <button type="submit" class="btn secondary_color"><span>Login</span></button>
-          </form>
+          </div>
         </div>
         <div class="col-lg-6">
-          <h3 style="text-align: center">Don't have an account? Register Here</h3>
-          <br>
-          <a href="/register" class="btn secondary_color btn-lg btn-block"><span>Register</span></a>
+          <div class="card third_color">
+            <div class="card-body">
+              <h3 style="text-align: center" class="card-title">Don't have an account? Register Here</h3>
+              <br>
+              <a href="/register" class="btn secondary_color btn-lg btn-block"><span>Register</span></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

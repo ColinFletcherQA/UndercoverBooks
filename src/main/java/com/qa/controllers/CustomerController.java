@@ -69,16 +69,13 @@ public class CustomerController {
 	
 	@RequestMapping("/register")
 	public ModelAndView register() {
-		return new ModelAndView("register");
-	}
-
-	@RequestMapping("/registered_user_agreement")
-	public ModelAndView registeredUserAgreement(){
-		return new ModelAndView("registered_user_agreement");
+		ModelAndView modelAndView = new ModelAndView("register");
+		modelAndView.addObject("flag", "");
+		return modelAndView;
 	}
 	
 	@RequestMapping("/registerProcess")
-	public ModelAndView registerProcess(@ModelAttribute("Customer") Customer customer) {
+	public ModelAndView registerProcess(HttpServletRequest request, @ModelAttribute("Customer") Customer customer) {
 		System.out.println("Customer First name is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
 
@@ -87,21 +84,23 @@ public class CustomerController {
                 Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
                
                 if(c != null) {
-                    return new ModelAndView("index", "logged_in_customer", c);
+                	ModelAndView modelAndView = indexPage(request);
+                	modelAndView.addObject("logged_in_customer",c);
+                    return modelAndView;
                 } else {
                     ModelAndView modelAndView = new ModelAndView("register");
-                    modelAndView.addObject("flag", "Registration Failed!");
+                    modelAndView.addObject("flag", "Registration Failed 3!");
                     return modelAndView;
                 }
             } else {
                 ModelAndView modelAndView = new ModelAndView("register");
-                modelAndView.addObject("flag", "Registration Failed!");
+                modelAndView.addObject("flag", "Registration Failed 2!");
                 return modelAndView;
             }
         } catch (Exception e) {
 		    System.out.println(e.getLocalizedMessage());
             ModelAndView modelAndView = new ModelAndView("register");
-            modelAndView.addObject("flag", "Registration Failed!");
+            modelAndView.addObject("flag", "Registration Failed 1!");
             return modelAndView;
         }
 	}
@@ -126,12 +125,6 @@ public class CustomerController {
 		return new ModelAndView("customer_home","logged_in_customer",loggedInCustomer);
 	}
 	
-	@Deprecated
-	@RequestMapping("/profile")
-	public ModelAndView profile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
-		return new ModelAndView("profile", "logged_in_customer", loggedInCustomer);
-	}
-	
 	@RequestMapping("/updateProfile")
 	public ModelAndView updateProfile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Customer") Customer customer) {
 		System.out.println("Before update ");
@@ -153,18 +146,6 @@ public class CustomerController {
 		}
 		
 		return new ModelAndView("customer_home", "logged_in_customer", loggedInCustomer);
-	}
-	
-	@Deprecated
-	@RequestMapping("/addressBook")
-	public ModelAndView addressBook(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
-		return new ModelAndView("address_book", "logged_in_customer", loggedInCustomer);
-	}
-	
-	@Deprecated
-	@RequestMapping("/change_password")
-	public ModelAndView changePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer){
-		return new ModelAndView("change_password", "logged_in_customer", loggedInCustomer);
 	}
 
 	@RequestMapping("/updatePassword")

@@ -94,7 +94,7 @@
      <!-- Book Information -->
       <div class="row">
         <div class="col-lg-4">
-          <div class="card mt-4">
+          <div class="card mt-4 third_color">
             <img class="card-img-top img-fluid" style="width: 100%; height: auto;" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
             <div class="card-body">
               <h3 class="card-title"><%=book.getTitle()%></h3>
@@ -105,18 +105,16 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-              Book Description
-            </div>
+          <div class="card card-outline-secondary my-4 third_color">
             <div class="card-body">
+              <h3 class="card-title">Book Description</h3>
               <p class="card-text"><%=book.getDescription()%></p>
             </div>
           </div>
         </div>
         <!-- Add to card -->
         <div class="col-lg-4">
-          <div class="card mt-4">
+          <div class="card mt-4 third_color">
             <div class="card-body">
               <h3 class="card-title"><%=book.getTitle() %></h3>
 
@@ -150,9 +148,9 @@
       </div>
       <div class="row">
         <div class="col-lg-12">
-          <div class="card card-outline-secondary my-4">
+          <div class="card card-outline-secondary my-4 third_color">
             <div class="card-header">
-              Book Description
+              Book Reviews
             </div>
               <div class="card-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>

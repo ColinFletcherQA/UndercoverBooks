@@ -59,7 +59,6 @@ public class CheckoutController {
 
 		return modelAndView;
 	}
-
 	private Address prepareAddress(Address address){
 		try {
 			return addressService.saveAddress(address);

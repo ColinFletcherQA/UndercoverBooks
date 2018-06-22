@@ -77,19 +77,19 @@
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="firstName">First Name</label>
-                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" required>
+                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="lastName">First Name</label>
-                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>"required>
+                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="email">Email</label>
-                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
+                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>">
                     </div>
                   </div>
                   <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
@@ -98,6 +98,7 @@
             </div>
           </div>
         </div>
+
         <br>
         <div class="row">
           <div class="col-lg-8 offset-2">
@@ -193,38 +194,38 @@
                   <h4 class="card-title text-center">Update Billing Address</h4>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
-                      <label for="addressline1">Address</label>
-                      <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
+                      <label for="billingaddressline1">Address</label>
+                      <input type="text" class="form-control" id="billingaddressline1" placeholder="123 Main St" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
-                      <label for="addressline2">Address 2</label>
-                      <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
+                      <label for="billingaddressline2">Address 2</label>
+                      <input type="text" class="form-control" id="billingaddressline2" placeholder="Apartment, studio, or floor" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-4">
-                      <label for="city">City</label>
-                      <input type="text" class="form-control" id="city" required>
+                      <label for="billingcity">City</label>
+                      <input type="text" class="form-control" id="billingcity" required>
                     </div>
                     <div class="form-group col-lg-2">
-                      <label for="postcode">Zip</label>
-                      <input type="text" class="form-control" id="postcode" required>
+                      <label for="billingpostcode">Zip</label>
+                      <input type="text" class="form-control" id="billingpostcode" required>
                     </div>
                     <div class="form-group col-lg-2">
-                      <label for="state">State</label>
-                      <input type="text" class="form-control" id="state" placeholder="PA" required>
+                      <label for="billingstate">State</label>
+                      <input type="text" class="form-control" id="billingstate" placeholder="PA" required>
                     </div>
                     <div class="form-group col-lg-4">
-                      <label for="country">Country</label>
-                      <input type="text" class="form-control" id="country" required>
+                      <label for="billingcountry">Country</label>
+                      <input type="text" class="form-control" id="billingcountry" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-6">
-                      <label for="phone">Phone Number</label>
-                      <input type="tel" class="form-control" id="phone" required>
+                      <label for="billingphone">Phone Number</label>
+                      <input type="tel" class="form-control" id="billingphone" required>
                     </div>
                   </div>
                   <button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>
@@ -242,7 +243,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="js/password.js"></script>
-    <script src="js/elsevier.js"></script>
+  <script src="js/elsevier.js"></script>
     <script>
       $(document).foundation();
     </script>
