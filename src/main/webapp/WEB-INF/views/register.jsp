@@ -79,39 +79,43 @@
 
       <div class="row">
         <div class="col-lg-6">
-          <form action="/registerProcess" method="post">
-            <h3>Create an Account</h3>
-            <div class="form-row">
-              <div class="form-group col-lg-8">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required>
-              </div>
+          <div class="card third_color">
+            <div class="card-body">
+              <form action="/registerProcess" method="post">
+                <h3 class="card-title">Create an Account</h3>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                  </div>
+                </div>
+                <p>
+                ${flag}
+                </p>
+                <button type="submit" class="btn secondary_color"><span>Register</span></button>
+              </form>
             </div>
-            <div class="form-row">
-              <div class="form-group col-lg-8">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-8">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-8">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-              </div>
-            </div>
-            <p>
-            ${flag}
-            </p>
-            <button type="submit" class="btn secondary_color"><span>Register</span></button>
-          </form>
+          </div>
+        </div>
       </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/elsevier.js"></script>
