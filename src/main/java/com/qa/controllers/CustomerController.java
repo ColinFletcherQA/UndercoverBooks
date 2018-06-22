@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
-@SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address", "flag"})
+@SessionAttributes(names = {"cart_items", "logged_in_customer", "Address", "flag"})
 public class CustomerController {
 
 	@Autowired
@@ -26,19 +27,46 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	// List#contains is more efficient than Set#contains for small collections.
+	private List<String> BLANK_BOOK_IMAGES = Arrays.asList(
+		"https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png",
+		"https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+	);
+	
 	@RequestMapping("/")
 	public ModelAndView indexPage(HttpServletRequest request) {
-		List<Book> cartItems;
 		HttpSession session = request.getSession();
+		
 		Object items = session.getAttribute("cart_items");
 		
+		Map<Book, Integer> cartItems;
+		
 		if (items != null) {
-			cartItems = (ArrayList<Book>) items;
+			cartItems = (Map<Book, Integer>) items;
 		} else {
-			cartItems = new ArrayList<>();
+			cartItems = new LinkedHashMap<>();
 		}
 		
-		ModelAndView modelAndView = new ModelAndView("index", "books", bookService.findAllBooks());
+		List<Book> allBooks = bookService.findAllBooks();
+		List<Book> randomBooks = new ArrayList<>();
+		
+		ThreadLocalRandom random = ThreadLocalRandom.current();
+		
+		while (randomBooks.size() < 6) {
+			Book randomBook = allBooks.get(random.nextInt(allBooks.size()));
+			
+			if (randomBooks.contains(randomBook)) {
+				continue;
+			}
+			
+			if (BLANK_BOOK_IMAGES.contains(randomBook.getBookImage())) {
+				continue;
+			}
+			
+			randomBooks.add(randomBook);
+		}
+		
+		ModelAndView modelAndView = new ModelAndView("index", "books", randomBooks);
 		modelAndView.addObject("cart_items", cartItems);
 		return modelAndView;
 	}
