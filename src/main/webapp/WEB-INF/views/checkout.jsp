@@ -1,10 +1,7 @@
 <!doctype html>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.Set"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
-<%@ page import="java.math.BigDecimal" %>
+<%@ page import="java.math.BigDecimal"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -15,20 +12,18 @@
   </head>
   <body>
 
-     <%
-    BigDecimal orderTotal = (BigDecimal) request.getAttribute("order_total");
-    BigDecimal taxTotal = (BigDecimal) request.getAttribute("tax_total");
+  <%!
+    Customer c;
+    BigDecimal orderTotal, taxTotal;
+    Map<Book, Integer> cartItems;
+  %>
 
-    ArrayList<Book> books;
-    books  = (ArrayList<Book>) session.getAttribute("cart_items");
-    %>
-
-     <%!
-       Customer c;
-     %>
-     <%
-       c = (Customer) session.getAttribute("logged_in_customer");
-     %>
+  <%
+    c = (Customer) session.getAttribute("logged_in_customer");
+    orderTotal = (BigDecimal) request.getAttribute("order_total");
+    taxTotal = (BigDecimal) request.getAttribute("tax_total");
+    cartItems = (LinkedHashMap<Book, Integer>) request.getAttribute("cart_items");
+  %>
 
      <!-- Start Top Bar -->
      <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
@@ -43,7 +38,7 @@
          <div class="collapse navbar-collapse" id="navbarResponsive">
            <ul class="navbar-nav ml-auto">
              <%
-               if (c != null) {
+             if (c != null) {
              %>
              <li class="nav-item">
                <a class="nav-link" href="/customerHome">Customer Home</a>
@@ -96,12 +91,11 @@
             <div class="card-body">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Your cart</span>
-                <span class="badge badge-secondary badge-pill"><%=books.size()%></span>
+                <span class="badge badge-secondary badge-pill"><%=cartItems.size()%></span>
               </h4>
               <ul class="list-group mb-3">
                 <%
-                  for(Book book: books)
-                  {
+                for (Book book : cartItems.keySet()) {
                 %>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                   <div>
@@ -290,6 +284,7 @@
    <script>
      function myFunction() {
          var x = document.getElementById("billing");
+
          if (x.style.display === "none") {
              x.style.display = "block";
          } else {

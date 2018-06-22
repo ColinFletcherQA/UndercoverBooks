@@ -1,6 +1,7 @@
 package com.qa.controllers;
 
 import com.qa.models.Address;
+import com.qa.models.Book;
 import com.qa.models.Customer;
 import com.qa.models.Purchase;
 import com.qa.services.AddressService;
@@ -16,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@SessionAttributes(names = {"book_counts"})
 @Controller
+@SessionAttributes({"cart_items"})
 public class CheckoutController {
 
 	@Autowired
@@ -27,14 +28,12 @@ public class CheckoutController {
 	private AddressService addressService;
 
 	@RequestMapping("/checkoutProcess")
-	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase,
-										@ModelAttribute("Address") Address address,
-										@ModelAttribute("book_counts") Map<Integer, Integer> bookCounts) {
-
+	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase, @ModelAttribute("Address") Address address, @ModelAttribute("cart_items") Map<Book, Integer> cartItems) {
 		Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
 
 		Address preparedAddressResponse = prepareAddress(address);
-		if(preparedAddressResponse != null){
+		
+		if (preparedAddressResponse != null) {
 			System.out.println(preparedAddressResponse.getAddressId());
 
 			//Initial purchase set up
@@ -42,7 +41,8 @@ public class CheckoutController {
 			purchase.setShippingAddress(preparedAddressResponse);
 
 			Purchase preparedPurchaseResponse = preparePurchase(purchase);
-			if(preparedPurchaseResponse != null){
+			
+			if (preparedPurchaseResponse != null) {
 				System.out.println(preparedPurchaseResponse.getOrderId());
 			} else {
 				System.out.println("Purchase not submitted");
@@ -50,16 +50,15 @@ public class CheckoutController {
 		} else {
 			System.out.println("Address not submitted");
 		}
-
-//		request.getSession().setAttribute("cart_items", new ArrayList<>());
+		
 		ModelAndView modelAndView = new ModelAndView("receipt");
 		modelAndView.addObject("shipping_address", address);
-		modelAndView.addObject("book_counts", bookCounts);
+		modelAndView.addObject("cart_items", cartItems);
 		modelAndView.addObject("purchase", purchase);
-
 		return modelAndView;
 	}
-	private Address prepareAddress(Address address){
+	
+	private Address prepareAddress(Address address) {
 		try {
 			return addressService.saveAddress(address);
 		} catch (Exception e){
@@ -67,19 +66,18 @@ public class CheckoutController {
 		}
 	}
 
-	private Purchase preparePurchase(Purchase purchase){
+	private Purchase preparePurchase(Purchase purchase) {
 		try {
 			return purchaseService.makePurchase(purchase);
-		} catch (Exception e){
+		} catch (Exception e) {
 			throw e;
 		}
 	}
 
 	@RequestMapping("/loginThroughCheckout")
-	public ModelAndView loginThroughCheckout(@ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") double orderTotal) {
+	public ModelAndView loginThroughCheckout(@ModelAttribute("cart_items") Map<Book, Integer> cartItems, @RequestParam("order_total") double orderTotal) {
 		ModelAndView modelAndView = new ModelAndView("login_through_checkout", "order_total", orderTotal);
-		modelAndView.addObject("order_total", orderTotal);
-		modelAndView.addObject("book_counts", bookCounts);
+		modelAndView.addObject("cart_items", cartItems);
 		return modelAndView;
 	}
 	

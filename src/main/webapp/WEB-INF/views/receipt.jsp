@@ -20,21 +20,18 @@
 
   <%!
     Customer c;
+    Purchase p;
     Address address;
     BigDecimal orderTotal;
-    Map<Integer, Integer> bookCounts;
-    Purchase p;
-    ArrayList<Book> books;
-
+    Map<Book, Integer> cartItems;
   %>
+
   <%
     c = (Customer) session.getAttribute("logged_in_customer");
+    p = (Purchase) request.getAttribute("purchase");
     address = (Address) request.getAttribute("shipping_address");
     orderTotal = (BigDecimal) session.getAttribute("order_total");
-    bookCounts = (Map<Integer, Integer>) request.getAttribute("book_counts");
-    p = (Purchase) request.getAttribute("purchase");
-    books  = (ArrayList<Book>) session.getAttribute("cart_items");
-
+    cartItems = (Map<Book, Integer>) session.getAttribute("cart_items");
   %>
 
   <!-- Start Top Bar -->
@@ -50,7 +47,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <%
-            if (c != null) {
+          if (c != null) {
           %>
           <li class="nav-item">
             <a class="nav-link" href="/customerHome">Customer Home</a>
@@ -68,7 +65,7 @@
             </div>
           </li>
           <%
-            }
+          }
           %>
 
           <li class="nav-item">
@@ -124,7 +121,6 @@
             <%=LocalDate.now()%>
             <br><br>
           </address>
-
         </div>
       </div>
       <div class="row">
@@ -145,21 +141,21 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <%
-                    for (Book book : books) {
-                      BigDecimal bookprice = book.getPrice();
-                      Integer bookCount = bookCounts.get(book.getBookId());
-                      BigDecimal totalPrice = bookprice.multiply(BigDecimal.valueOf(bookCount));
-
-                  %>
+                    <%
+                    for (Map.Entry<Book, Integer> entry : cartItems.entrySet()) {
+                        Book book = entry.getKey();
+                        BigDecimal bookprice = book.getPrice();
+                        int bookCount = entry.getValue();
+                        BigDecimal totalPrice = bookprice.multiply(BigDecimal.valueOf(bookCount));
+                    %>
                     <tr>
                       <td><%=book.getTitle()%></td>
                       <td class="text-center">$<%=book.getPrice()%></td>
-                      <td class="text-center"><%=bookCounts.get(book.getBookId())%></td>
+                      <td class="text-center"><%=bookCount%></td>
                       <td class="text-right">$<%=totalPrice%></td>
                     </tr>
                   <%
-                    }
+                  }
                   %>
 
                   <tr>
