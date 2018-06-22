@@ -68,7 +68,7 @@
     <br>
     <!-- End Top Bar -->
     <div class="container">
-      <h1 class="mb-3">Register
+      <h1 class="mt-3">Register
       </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">

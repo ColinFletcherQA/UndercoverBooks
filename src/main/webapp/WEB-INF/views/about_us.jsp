@@ -69,7 +69,7 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">About Us
+    <h1 class="mt-5">About Us
     </h1>
 
     <ol class="breadcrumb">

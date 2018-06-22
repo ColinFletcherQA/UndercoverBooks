@@ -69,7 +69,7 @@
     <br>
     <!-- End Top Bar -->
     <div class="container">
-      <h1 class="mb-3">Login
+      <h1 class="mt-3">Login
       </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -80,7 +80,7 @@
 
       <div class="row">
         <div class="col-lg-6">
-          <div class="card third_color">
+          <div class="card third_color mb-4">
             <div class="card-body">
               <form action="/loginProcess" method="post">
                 <h3 class="card-title">Please Login with your credentials</h3>

@@ -1,5 +1,6 @@
 package com.qa.controllers;
 
+import com.qa.models.Book;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,9 @@ public class CartController {
 	}
 	
 	@RequestMapping("/checkout")
-	public ModelAndView checkoutForm(@ModelAttribute("book_counts") Map<Integer, Integer> bookCounts, @RequestParam("order_total") BigDecimal orderTotal, @RequestParam("tax_total") BigDecimal taxTotal) {
+	public ModelAndView checkoutForm(@ModelAttribute("cart_items") Map<Book, Integer> cartItems, @RequestParam("order_total") BigDecimal orderTotal, @RequestParam("tax_total") BigDecimal taxTotal) {
 		ModelAndView modelAndView = new ModelAndView("checkout", "order_total", orderTotal);
-		modelAndView.addObject("book_counts", bookCounts);
+		modelAndView.addObject("cart_items", cartItems);
 		modelAndView.addObject("tax_total",taxTotal);
 		return modelAndView;
 	}

@@ -74,7 +74,7 @@
 
         <div class="col-lg-3">
 
-          <h1 class="my-4">Undercover Books</h1>
+          <h1 class="mt-5">Undercover Books</h1>
           <div class="list-group">
             <a href="/bestSellers" class="list-group-item secondary_color"><span>Best Sellers</span></a>
             <a href="/newReleases" class="list-group-item secondary_color"><span>New Releases</span></a>
