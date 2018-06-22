@@ -83,7 +83,7 @@
     <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container">
-      <h1 class="mb-3 mt-4">Cart Details</h1>
+      <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Cart Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="/"><span>Home</span></a>

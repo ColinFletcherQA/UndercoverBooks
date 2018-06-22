@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
-  <body style="background-color: #F4EDDE">
+  <body>
   
   <%!
   Customer c;
@@ -71,7 +71,7 @@
     </nav>
     <!-- End Top Bar -->
     <div class="container">
-      <h1 class="mt-5">Customer Home
+      <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Customer Home
       </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
