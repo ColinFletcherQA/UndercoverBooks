@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
   </head>
-  <body style="background-color: #F4EDDE">
+  <body>
   
   <%!
   Customer c;
   %>
   <%
- 		c = (Customer) session.getAttribute("logged_in_customer");
+ 		try {
+                c = (Customer) session.getAttribute("logged_in_customer");
+            } catch(Exception e){
+                c = null;
+            }
   %>
     
     <!-- Start Top Bar -->
@@ -37,6 +41,7 @@
             </li>
             <%
             } else {
+
             %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,10 +71,18 @@
     </nav>
     <!-- End Top Bar -->
     <div class="container">
-      <%--<h3>You have logged in as <%=c.getFirstName() %></h3>--%>
+      <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Customer Home
+      </h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Customer Home</li>
+      </ol>
       <div class="m-4">
         <div class="row">
-          <div class="col-lg-8 offset-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
             <div class="card third_color">
               <form action="/updateProfile" method="post">
                 <div class="card-body">
@@ -101,7 +114,8 @@
 
         <br>
         <div class="row">
-          <div class="col-lg-8 offset-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
             <div class="card third_color">
               <script>
                   var model = [];
@@ -138,7 +152,8 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-lg-8 offset-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
             <div class="card third_color">
               <form action="/updateAddress" method="post">
                 <div class="card-body">
@@ -187,7 +202,8 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-lg-8 offset-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
             <div class="card third_color">
               <form action="/updateAddress" method="post">
                 <div class="card-body">

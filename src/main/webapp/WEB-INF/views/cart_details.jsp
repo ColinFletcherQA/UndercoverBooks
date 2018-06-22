@@ -19,7 +19,11 @@
     %>
 
     <%
-      c = (Customer) session.getAttribute("logged_in_customer");
+      try {
+              c = (Customer) session.getAttribute("logged_in_customer");
+          } catch(Exception e){
+              c = null;
+          }
       bookCounts = (Map<Book, Integer>) session.getAttribute("cart_items");
 
       BigDecimal totalPrice = BigDecimal.ZERO;
@@ -76,11 +80,9 @@
       </div>
     </nav>
     <!-- End Top Bar -->
-    <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container">
-      <h1 class="mb-3">Cart Details
-      </h1>
+      <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Cart Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="/"><span>Home</span></a>
@@ -88,54 +90,56 @@
         <li class="breadcrumb-item active" aria-current="page">Cart Details</li>
       </ol>
         <div class="row">
-          <div class="col-lg-9">
-            <div class="card-deck">
+          <div class="col-xl-9 col-lg-8 col-md-8 col-sm-6">
+            <div class="row">
+
               <%
               int i = 0;
 
               for (Map.Entry<Book, Integer> entry : bookCounts.entrySet()) {
-              	  i++;
-              	  Book book = entry.getKey();
+                  i++;
+                  Book book = entry.getKey();
                   int quantity = entry.getValue();
                   BigDecimal price = book.getPrice();
                   totalPrice = price.multiply(BigDecimal.valueOf(quantity));
                   cartTotal = cartTotal.add(totalPrice);
               %>
-              <div class="card col-lg-3 col-md-4 col-sm-6 third_color">
-                <img class="card-img-top" src="<%=book.getBookImage()%>"/>
-                <div class="card-body">
-                  <form name="f1">
-                    <input type="hidden" name="price" value="<%=price%>"/>
-                    <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
-                    <label id="price_label<%=i%>">Price: $<%=totalPrice%></label>
-                    <br>
-                    <label>Quantity</label>
-                    <a class="btn minus" onclick="decreaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">-</a>
-                      <label id="quantity<%=i%>"><%=quantity%></label>
-                    <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
-                  </form>
-                  <br>
-                  <a class="btn secondary_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                  <div class="card third_color">
+                    <img class="card-img-top" src="<%=book.getBookImage()%>"/>
+                    <div class="card-body">
+                      <form name="f1">
+                        <input type="hidden" name="price" value="<%=price%>"/>
+                        <input type="hidden" name="cart_total" value="<%=cartTotal%>"/>
+                        <label id="price_label<%=i%>">Price: $<%=totalPrice%></label>
+                        <br>
+                        <label>Quantity:</label>
+                        <a class="btn minus" onclick="decreaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">-</a>
+                          <label id="quantity<%=i%>"><%=quantity%></label>
+                        <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
+                      </form>
+                      <br>
+                      <a class="btn secondary_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <%
-              }
-              System.out.println("Cart Total " + cartTotal);
-              %>
-
+                <%
+                }
+                System.out.println("Cart Total " + cartTotal);
+                %>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
           <div class="card third_color">
             <div class="card-header">
-              <h3>Order Summary </h3>
+              <h3 class="card-title">Order Summary </h3>
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-7">
                   <label>Cart Total</label>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-5">
                   <input type="hidden" name="order_total" id="cart_total" value="<%=cartTotal%>"/>
                   <label class="middle" id="cart_total_label">$<%=cartTotal %></label>
                 </div>
@@ -147,45 +151,45 @@
                 orderTotal = orderTotal.setScale(2, RoundingMode.HALF_EVEN);
               %>
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-7">
                   <label>Total Tax</label>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-5">
                   <input type="hidden" name="tax_total" id="cart_tax" value="<%=totalTax%>"/>
                   <label class="middle" id="cart_tax_label">$<%=totalTax %></label>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-7">
                   <label>Order Total</label>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-5">
                   <input type="hidden" name="order_total" id="order_total" value="<%=orderTotal %>"/>
                   <label class="middle" id="order_total_label">$<%=orderTotal%></label>
                 </div>
               </div>
-              <div class="card-footer">
-                <form action="/checkout" method="post" id="checkout_form">
-                  <input type="hidden" name="tax_total" value="<%=totalTax%>"/>
-                  <input type="hidden" name="order_total" value="<%=orderTotal%>"/>
-                  <%
-                    if (bookCounts.isEmpty()) {
-                  %>
-                      <button type="button" class="btn secondary_color" disabled><span>Proceed to Checkout</span></button>
-                  <%
-                    } else if (c != null) {
-                  %>
-                      <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
-                  <%
-                    } else {
-                  %>
-                      <a href="/login" class="btn secondary_color"><span>Login or Register</span></a>
-                  <%
-                    }
-                  %>
+            </div>
+            <div class="card-footer">
+              <form action="/checkout" method="post" id="checkout_form">
+                <input type="hidden" name="tax_total" value="<%=totalTax%>"/>
+                <input type="hidden" name="order_total" value="<%=orderTotal%>"/>
+                <%
+                  if (bookCounts.isEmpty()) {
+                %>
+                    <button type="button" class="btn secondary_color" disabled><span>Proceed to Checkout</span></button>
+                <%
+                  } else if (c != null) {
+                %>
+                    <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
+                <%
+                  } else {
+                %>
+                    <a href="/login" class="btn secondary_color"><span>Login or Register</span></a>
+                <%
+                  }
+                %>
 
-                </form>
-              </div>
+              </form>
             </div>
           </div>
         </div>

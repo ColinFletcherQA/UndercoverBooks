@@ -30,7 +30,11 @@
       Customer c;
     %>
     <%
-      c = (Customer) session.getAttribute("logged_in_customer");
+      try {
+              c = (Customer) session.getAttribute("logged_in_customer");
+          } catch(Exception e){
+              c = null;
+          }
     %>
 
     <!-- Start Top Bar -->
@@ -81,9 +85,9 @@
       </div>
     </nav>
     <!-- End Top Bar -->
-    <br>
     <!-- Breadcrumb -->
     <div class="container">
+      <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="/"><span>Home</span></a>
@@ -93,62 +97,64 @@
 
      <!-- Book Information -->
       <div class="row">
-        <div class="col-lg-4">
-          <div class="card mt-4 third_color">
-            <img class="card-img-top img-fluid" style="width: 100%; height: auto;" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
-            <div class="card-body">
-              <h3 class="card-title"><%=book.getTitle()%></h3>
-              <h4>$<%=book.getPrice()%></h4>
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <div class="card third_color">
+                <img class="card-img-top img-fluid" style="width: 100%; height: auto;" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
+                <div class="card-body">
+                  <h3 class="card-title"><%=book.getTitle()%></h3>
+                  <h4>$<%=book.getPrice()%></h4>
+                  <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                  4.0 stars
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card card-outline-secondary my-4 third_color">
-            <div class="card-body">
-              <h3 class="card-title">Book Description</h3>
-              <p class="card-text"><%=book.getDescription()%></p>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-outline-secondary third_color">
+                <div class="card-body">
+                  <h3 class="card-title">Book Description</h3>
+                  <p class="card-text"><%=book.getDescription()%></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <!-- Add to card -->
-        <div class="col-lg-4">
-          <div class="card mt-4 third_color">
-            <div class="card-body">
-              <h3 class="card-title"><%=book.getTitle() %></h3>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10">
+          <div class="col-lg-12 col-md-12">
+            <div class="card third_color">
+              <div class="card-body">
+                <h3 class="card-title"><%=book.getTitle() %></h3>
+                  <%
+                      for(Author author : book.getAuthors())
+                      {
+                  %>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= author.getAuthorName() %></h6>
 
-                <%
-                    for(Author author : book.getAuthors())
-                    {
-                %>
-
-                  <h6 class="card-subtitle mb-2 text-muted"><%= author.getAuthorName() %></h6>
-
-                <%
-                    }
-                %>
-
-              <form>
-                <div class="form-group">
-                  <label for="bookType">Select Book Type</label>
-                  <select class="form-control" id="bookType">
-                    <option value="print">Paperback</option>
-                    <option value="eBook">eBook</option>
-                    <option value="printAndeBook">PrintBook & eBook</option>
-                  </select>
-                </div>
-
-                <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn secondary_color"><span>Add to Cart</span></a>
-                <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
-              </form>
+                  <%
+                      }
+                  %>
+                <form>
+                  <div class="form-group">
+                    <label for="bookType">Select Book Type</label>
+                    <select class="form-control" id="bookType">
+                      <option value="print">Paperback</option>
+                      <option value="eBook">eBook</option>
+                      <option value="printAndeBook">PrintBook & eBook</option>
+                    </select>
+                  </div>
+                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn secondary_color"><span>Add to Cart</span></a>
+                  <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-lg-12">
-          <div class="card card-outline-secondary my-4 third_color">
+          <div class="card card-outline-secondary third_color">
             <div class="card-header">
               Book Reviews
             </div>

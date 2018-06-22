@@ -20,7 +20,11 @@
     Customer c;
   %>
   <%
-    c = (Customer) session.getAttribute("logged_in_customer");
+    try {
+            c = (Customer) session.getAttribute("logged_in_customer");
+        } catch(Exception e){
+            c = null;
+        }
   %>
 
   <!-- Start Top Bar -->
@@ -74,9 +78,8 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Contact Us
+    <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Contact Us
     </h1>
-
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="/"><span>Home</span></a>

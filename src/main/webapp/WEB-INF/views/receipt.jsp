@@ -27,7 +27,11 @@
   %>
 
   <%
-    c = (Customer) session.getAttribute("logged_in_customer");
+    try {
+        c = (Customer) session.getAttribute("logged_in_customer");
+    } catch (Exception e) {
+        c = null;
+    }
     p = (Purchase) request.getAttribute("purchase");
     address = (Address) request.getAttribute("shipping_address");
     orderTotal = (BigDecimal) session.getAttribute("order_total");

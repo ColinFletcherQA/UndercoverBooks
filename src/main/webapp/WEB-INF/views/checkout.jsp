@@ -19,6 +19,11 @@
   %>
 
   <%
+    try {
+        c = (Customer) session.getAttribute("logged_in_customer");
+     } catch (Exception e) {
+        c = null;
+    }
     c = (Customer) session.getAttribute("logged_in_customer");
     orderTotal = (BigDecimal) request.getAttribute("order_total");
     taxTotal = (BigDecimal) request.getAttribute("tax_total");
@@ -73,9 +78,9 @@
        </div>
      </nav>
     <!-- End Top Bar -->
-     <br>
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container" style="padding-bottom: 25px;">
+      <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Checkout</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="/"><span>Home</span></a>
