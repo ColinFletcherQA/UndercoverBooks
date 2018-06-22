@@ -50,7 +50,7 @@ public class Book {
 	@Getter @Setter
 	private String title;
 	
-	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.EAGER)
+	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Author> authors;
 
 	@Autowired @ElementCollection @Getter @Setter
