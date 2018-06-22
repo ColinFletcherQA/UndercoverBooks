@@ -19,7 +19,10 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
 	@Query(value = "SELECT * FROM Book WHERE image_l != 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png' ORDER BY RAND() LIMIT 6", nativeQuery = true)
 	List<Book> getSixRandomBooks();
 
-	@Query("SELECT b FROM Book b WHERE b.title NOT LIKE '%Harry Potter%' ORDER BY b.ratings_5 DESC")
+    @Query("SELECT b FROM Book b WHERE b.title NOT LIKE '%Harry Potter%' ORDER BY b.ratings_5 DESC")
     List<Book> getBestSellers();
+
+    @Query("SELECT b FROM Book b ORDER BY b.publishedDate DESC")
+    List<Book> getNewReleases();
 
 }
