@@ -21,6 +21,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark nav_background fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
+        <form class="form-inline" action="/search">
+          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

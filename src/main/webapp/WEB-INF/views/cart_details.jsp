@@ -39,7 +39,7 @@
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -113,9 +113,9 @@
                     <label id="price_label<%=i%>">Price: $<%=totalPrice%></label>
                     <br>
                     <label>Quantity</label>
-                    <a class="btn secondary_color minus"><span>-</span></a>
+                    <a class="btn minus">-</a>
                       <%=quantity%>
-                    <a class="btn secondary_color plus"><span>+</span></a>
+                    <a class="btn plus">+</a>
                   </form>
                   <br>
                   <a class="btn secondary_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>

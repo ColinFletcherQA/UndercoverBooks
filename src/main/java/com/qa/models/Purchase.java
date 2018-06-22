@@ -6,7 +6,9 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,7 +32,16 @@ public class Purchase {
     private List<Book> books;
 
     @Getter @Setter
-    private BigInteger totalPrice;
+    private BigDecimal totalPrice;
+
+    @Getter @Setter
+    private int cardNumber;
+
+    @Getter @Setter
+    private String cardName;
+
+    @Getter @Setter
+    private String cardType;
 
     @Getter @Setter
     private int time;

@@ -2,8 +2,11 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.qa.models.Book"%>
-<%@ page import="com.qa.models.Customer" %>
+<%@ page import="java.math.BigDecimal" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.qa.models.*" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="java.time.LocalDate" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -13,11 +16,22 @@
   <link rel="stylesheet" href="css/shop-homepage.css"/>
 </head>
 <body>
+
   <%!
     Customer c;
+    Address address;
+    BigDecimal orderTotal;
+    Map<Integer, Integer> bookCounts;
+    Purchase p;
+
   %>
   <%
     c = (Customer) session.getAttribute("logged_in_customer");
+    address = (Address) request.getAttribute("shipping_address");
+    orderTotal = (BigDecimal) session.getAttribute("order_total");
+    bookCounts = (Map<Integer, Integer>) session.getAttribute("book_counts");
+    p = (Purchase) request.getAttribute("purchase");
+
   %>
 
   <!-- Start Top Bar -->
@@ -71,50 +85,44 @@
   <br>
 
   <div class="container">
+    <div>
+      <h2>Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
+    </div>
     <div class="row">
-      <div class="col-xs-12">
-        <div class="invoice-title">
-          <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-xs-6">
-            <address>
-              <strong>Billed To:</strong><br>
-              John Smith<br>
-              1234 Main<br>
-              Apt. 4B<br>
-              Springfield, ST 54321
-            </address>
-          </div>
-          <div class="col-xs-6 text-right">
-            <address>
-              <strong>Shipped To:</strong><br>
-              Jane Smith<br>
-              1234 Main<br>
-              Apt. 4B<br>
-              Springfield, ST 54321
-            </address>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">
-            <address>
-              <strong>Payment Method:</strong><br>
-              Visa ending **** 4242<br>
-              jsmith@email.com
-            </address>
-          </div>
-          <div class="col-xs-6 text-right">
-            <address>
-              <strong>Order Date:</strong><br>
-              March 7, 2014<br><br>
-            </address>
-          </div>
-        </div>
+      <div class="col-lg-3">
+        <address>
+          <strong>Billed To:</strong><br>
+          <%=c.getFirstName()%> <%=c.getLastName()%><br>
+          <%=address.getAddressLine1()%><br>
+          <%=address.getAddressLine2()%><br>
+          <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
+        </address>
+      </div>
+      <div class="col-lg-3">
+        <address>
+          <strong>Shipped To:</strong><br>
+          <%=c.getFirstName()%> <%=c.getLastName()%><br>
+          <%=address.getAddressLine1()%><br>
+          <%=address.getAddressLine2()%><br>
+          <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
+        </address>
+      </div>
+      <div class="col-lg-3">
+        <address>
+          <strong>Payment Method:</strong><br>
+          <%=p.getCardType()%> ending in <%=p.getCardNumber()%><br>
+          <%=c.getEmail()%>
+        </address>
+      </div>
+      <div class="col-lg-3">
+        <address>
+          <strong>Order Date:</strong><br>
+          <%=LocalDate.now()%>
+          <br><br>
+        </address>
+
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-default">
