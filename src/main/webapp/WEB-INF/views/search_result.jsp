@@ -89,10 +89,9 @@
       int counter = 0;
       for (Book book : books) {
 
-        if (counter++ == 6) {
+        if (counter++ == 12) {
           break;
         }
-        counter++;
         String description = book.getDescription().replaceAll("<[^>]*>", "");
         description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
     %>
