@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @SessionAttributes(names = {"cart_items", "logged_in_customer", "Address", "flag"})
@@ -47,26 +49,7 @@ public class CustomerController {
 			cartItems = new LinkedHashMap<>();
 		}
 		
-		List<Book> allBooks = bookService.findAllBooks();
-		List<Book> randomBooks = new ArrayList<>();
-		
-		ThreadLocalRandom random = ThreadLocalRandom.current();
-		
-		while (randomBooks.size() < 6) {
-			Book randomBook = allBooks.get(random.nextInt(allBooks.size()));
-			
-			if (randomBooks.contains(randomBook)) {
-				continue;
-			}
-			
-			if (BLANK_BOOK_IMAGES.contains(randomBook.getBookImage())) {
-				continue;
-			}
-			
-			randomBooks.add(randomBook);
-		}
-		
-		ModelAndView modelAndView = new ModelAndView("index", "books", randomBooks);
+		ModelAndView modelAndView = new ModelAndView("index", "books", bookService.getSixRandomBooks());
 		modelAndView.addObject("cart_items", cartItems);
 		return modelAndView;
 	}
@@ -84,7 +67,9 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/register")
-	public ModelAndView register() { return new ModelAndView("register"); }
+	public ModelAndView register() {
+		return new ModelAndView("register");
+	}
 
 	@RequestMapping("/registered_user_agreement")
 	public ModelAndView registeredUserAgreement(){
@@ -98,9 +83,9 @@ public class CustomerController {
 
 		try {
             if (customerService.saveCustomer(customer) != null) {
-                //Auto login
                 Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
-                if(c != null){
+               
+                if(c != null) {
                     return new ModelAndView("index", "logged_in_customer", c);
                 } else {
                     ModelAndView modelAndView = new ModelAndView("register");
@@ -168,11 +153,13 @@ public class CustomerController {
 		
 		return new ModelAndView("customer_home", "logged_in_customer", loggedInCustomer);
 	}
+	
 	@Deprecated
 	@RequestMapping("/addressBook")
 	public ModelAndView addressBook(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("address_book", "logged_in_customer", loggedInCustomer);
 	}
+	
 	@Deprecated
 	@RequestMapping("/change_password")
 	public ModelAndView changePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer){
@@ -209,7 +196,9 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/about")
-	public ModelAndView aboutPage() { return new ModelAndView("about_us"); }
+	public ModelAndView aboutPage() {
+		return new ModelAndView("about_us");
+	}
 
 
 }
