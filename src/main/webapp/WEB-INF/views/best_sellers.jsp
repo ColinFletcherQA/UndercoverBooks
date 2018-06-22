@@ -19,7 +19,11 @@
 <%
   books = (List<Book>) request.getAttribute("search_result");
   searchTerm = (String) request.getAttribute("search_term");
-  c = (Customer) session.getAttribute("logged_in_customer");
+  try {
+          c = (Customer) session.getAttribute("logged_in_customer");
+      } catch(Exception e){
+          c = null;
+      }
 %>
 
 <!-- Navigation -->
