@@ -15,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@SessionAttributes(names = {"books", "cart_items", "logged_in_customer", "Address", "flag"})
+@SessionAttributes(names = {"cart_items", "logged_in_customer", "Address", "flag"})
 public class CustomerController {
 
 	@Autowired
@@ -28,19 +30,27 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	// List#contains is more efficient than Set#contains for small collections.
+	private List<String> BLANK_BOOK_IMAGES = Arrays.asList(
+		"https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png",
+		"https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+	);
+	
 	@RequestMapping("/")
 	public ModelAndView indexPage(HttpServletRequest request) {
-		List<Book> cartItems;
 		HttpSession session = request.getSession();
+		
 		Object items = session.getAttribute("cart_items");
 		
+		Map<Book, Integer> cartItems;
+		
 		if (items != null) {
-			cartItems = (ArrayList<Book>) items;
+			cartItems = (Map<Book, Integer>) items;
 		} else {
-			cartItems = new ArrayList<>();
+			cartItems = new LinkedHashMap<>();
 		}
 		
-		ModelAndView modelAndView = new ModelAndView("index", "books", bookService.findAllBooks());
+		ModelAndView modelAndView = new ModelAndView("index", "books", bookService.getSixRandomBooks());
 		modelAndView.addObject("cart_items", cartItems);
 		return modelAndView;
 	}
@@ -58,7 +68,9 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/register")
-	public ModelAndView register() { return new ModelAndView("register"); }
+	public ModelAndView register() {
+		return new ModelAndView("register");
+	}
 
 	@RequestMapping("/registered_user_agreement")
 	public ModelAndView registeredUserAgreement(){
@@ -72,9 +84,9 @@ public class CustomerController {
 
 		try {
             if (customerService.saveCustomer(customer) != null) {
-                //Auto login
                 Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
-                if(c != null){
+               
+                if(c != null) {
                     return new ModelAndView("index", "logged_in_customer", c);
                 } else {
                     ModelAndView modelAndView = new ModelAndView("register");
@@ -142,11 +154,13 @@ public class CustomerController {
 		
 		return new ModelAndView("customer_home", "logged_in_customer", loggedInCustomer);
 	}
+	
 	@Deprecated
 	@RequestMapping("/addressBook")
 	public ModelAndView addressBook(@ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		return new ModelAndView("address_book", "logged_in_customer", loggedInCustomer);
 	}
+	
 	@Deprecated
 	@RequestMapping("/change_password")
 	public ModelAndView changePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer){
@@ -183,6 +197,9 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/about")
-	public ModelAndView aboutPage() { return new ModelAndView("about_us"); }
+	public ModelAndView aboutPage() {
+		return new ModelAndView("about_us");
+	}
+
 
 }

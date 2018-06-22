@@ -14,16 +14,9 @@
 
   <%!
     Customer c;
-    List<String> BLANK_BOOK_IMAGES;
   %>
   <%
     c = (Customer) session.getAttribute("logged_in_customer");
-
-    // List#contains is more efficient than Set#contains for small collections.
-    BLANK_BOOK_IMAGES = Arrays.asList(
-        "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png",
-        "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
-    );
   %>
 
     <!-- Start Top Bar -->
@@ -83,8 +76,8 @@
 
           <h1 class="my-4">Undercover Books</h1>
           <div class="list-group">
-            <a href="#" class="list-group-item secondary_color"><span>Best Sellers</span></a>
-            <a href="#" class="list-group-item secondary_color"><span>New Releases</span></a>
+            <a href="/bestSellers" class="list-group-item secondary_color"><span>Best Sellers</span></a>
+            <a href="/newReleases" class="list-group-item secondary_color"><span>New Releases</span></a>
             <a href="#" class="list-group-item secondary_color"><span>Category 3</span></a>
           </div>
 
@@ -122,26 +115,13 @@
           <div class="row">
 
             <%
-              int counter = 0;
-
-              List<Book> books = (List<Book>) session.getAttribute("books");
-
-			  // TODO: It would be more efficient to select 6 random elements.
-              Collections.shuffle(books);
+              List<Book> books = (List<Book>) request.getAttribute("books");
 
               for (Book book : books) {
-				if (BLANK_BOOK_IMAGES.contains(book.getBookImage())) {
-					continue;
-				}
+				        String description = book.getDescription();
 
-				if (counter++ == 6) {
-				    break;
-				}
-
-				String description = book.getDescription();
-
-				description = description.substring(0, Math.min(150, description.length())) + "...";
-				description = description.replaceAll("<[^>]*>", "");
+				        description = description.substring(0, Math.min(150, description.length())) + "...";
+				        description = description.replaceAll("<[^>]*>", "");
             %>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 third_color">
