@@ -118,7 +118,9 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+          <h2 class="text-center mb-4"><strong>Featured Books</strong></h2>
           <div class="row">
+
             <%
               int counter = 0;
 

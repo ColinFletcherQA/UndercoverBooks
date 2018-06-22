@@ -7,6 +7,7 @@
 <%@ page import="com.qa.models.*" %>
 <%@ page import="java.time.LocalTime" %>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="sun.security.util.Length" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -23,14 +24,16 @@
     BigDecimal orderTotal;
     Map<Integer, Integer> bookCounts;
     Purchase p;
+    ArrayList<Book> books;
 
   %>
   <%
     c = (Customer) session.getAttribute("logged_in_customer");
     address = (Address) request.getAttribute("shipping_address");
     orderTotal = (BigDecimal) session.getAttribute("order_total");
-    bookCounts = (Map<Integer, Integer>) session.getAttribute("book_counts");
+    bookCounts = (Map<Integer, Integer>) request.getAttribute("book_counts");
     p = (Purchase) request.getAttribute("purchase");
+    books  = (ArrayList<Book>) session.getAttribute("cart_items");
 
   %>
 
@@ -110,7 +113,7 @@
       <div class="col-lg-3">
         <address>
           <strong>Payment Method:</strong><br>
-          <%=p.getCardType()%> ending in <%=p.getCardNumber()%><br>
+          <%=p.getCardType()%> ending in <%=p.getCardNumber().substring(p.getCardNumber().length() - 4)%><br>
           <%=c.getEmail()%>
         </address>
       </div>
@@ -141,30 +144,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                <tr>
-                  <td>BS-200</td>
-                  <td class="text-center">$10.99</td>
-                  <td class="text-center">1</td>
-                  <td class="text-right">$10.99</td>
-                </tr>
-                <tr>
-                  <td>BS-400</td>
-                  <td class="text-center">$20.00</td>
-                  <td class="text-center">3</td>
-                  <td class="text-right">$60.00</td>
-                </tr>
-                <tr>
-                  <td>BS-1000</td>
-                  <td class="text-center">$600.00</td>
-                  <td class="text-center">1</td>
-                  <td class="text-right">$600.00</td>
-                </tr>
+                <%
+                  for (Book book : books) {
+                    BigDecimal bookprice = book.getPrice();
+                    Integer bookCount = bookCounts.get(book.getBookId());
+                    BigDecimal totalPrice = bookprice.multiply(BigDecimal.valueOf(bookCount));
+
+                %>
+                  <tr>
+                    <td><%=book.getTitle()%></td>
+                    <td class="text-center">$<%=book.getPrice()%></td>
+                    <td class="text-center"><%=bookCounts.get(book.getBookId())%></td>
+                    <td class="text-right">$<%=totalPrice%></td>
+                  </tr>
+                <%
+                  }
+                %>
+
                 <tr>
                   <td class="thick-line"></td>
                   <td class="thick-line"></td>
                   <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                  <td class="thick-line text-right">$670.99</td>
+                  <td class="thick-line text-right">$<%=p.getTotalPrice()%></td>
                 </tr>
                 <tr>
                   <td class="no-line"></td>
@@ -172,11 +173,14 @@
                   <td class="no-line text-center"><strong>Shipping</strong></td>
                   <td class="no-line text-right">$15</td>
                 </tr>
+                <%
+                  BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(15));
+                %>
                 <tr>
                   <td class="no-line"></td>
                   <td class="no-line"></td>
                   <td class="no-line text-center"><strong>Total</strong></td>
-                  <td class="no-line text-right">$685.99</td>
+                  <td class="no-line text-right">$<%=finalTotal%></td>
                 </tr>
                 </tbody>
               </table>

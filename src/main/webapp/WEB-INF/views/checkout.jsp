@@ -159,7 +159,7 @@
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="postcode">Zip</label>
-                    <input type="text" class="form-control" id="postcode" name="postcode">
+                    <input type="tel" class="form-control" id="postcode" name="postcode">
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="state">State</label>
@@ -220,7 +220,7 @@
                 </div>
                 <div class="form-group col-lg-2">
                   <label for="postcode1">Zip</label>
-                  <input type="text" class="form-control" id="postcode1">
+                  <input type="tel" class="form-control" id="postcode1">
                 </div>
                 <div class="form-group col-lg-2">
                   <label for="state1">State</label>
@@ -248,7 +248,7 @@
               <div class="form-group col-lg-12">
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="cardType" value="Credit Card" required>Credit Card
+                    <input class="form-check-input" type="radio" name="cardType" value="Credit Card">Credit Card
                   </label>
                 </div>
                 <div class="form-check">
@@ -265,7 +265,7 @@
               </div>
               <div class="form-group col-lg-6">
                 <label for="cardNumber">Card Number</label>
-                <input type="number" class="form-control" id="cardNumber" name="cardNumber">
+                <input type="tel" class="form-control" id="cardNumber" name="cardNumber" pattern="[0-9]{16}">
               </div>
             </div>
             <div class="form-row">
@@ -279,8 +279,6 @@
               </div>
             </div>
             <input type="hidden" name="totalPrice" value="<%=orderTotal %>"/>
-            <%--<input type="hidden" name="order_total" value="<%=orderTotal %>"/>--%>
-            <%--<input type="hidden" name="books" value="<%=books%>"/>--%>
             <button type="submit" class="btn secondary_color"><span>Checkout</span></button>
           </form>
           </div>

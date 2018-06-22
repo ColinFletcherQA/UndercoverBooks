@@ -19,12 +19,11 @@ import java.util.Map;
 public class CheckoutController {
 
 	@RequestMapping("/checkoutProcess")
-	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase ,  @ModelAttribute("Address") Address address, @ModelAttribute("book_counts") Map<Integer, Integer> bookCounts) {
+	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase, @ModelAttribute("Address") Address address, @ModelAttribute("book_counts") Map<Integer, Integer> bookCounts) {
 		System.out.println("First name " + address.getFirstName());
-		request.getSession().setAttribute("cart_items", new ArrayList<>());
+//		request.getSession().setAttribute("cart_items", new ArrayList<>());
 		ModelAndView modelAndView = new ModelAndView("receipt");
 		modelAndView.addObject("shipping_address", address);
-//		modelAndView.addObject("order_total", orderTotal);
 		modelAndView.addObject("book_counts", bookCounts);
 		modelAndView.addObject("purchase", purchase);
 		return modelAndView;
