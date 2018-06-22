@@ -68,21 +68,28 @@ public class CustomerController {
 		System.out.println("Customer First name is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
 
-		if (customerService.saveCustomer(customer) != null) {
-			//Auto login
-			Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
-			if(c != null){
-                return new ModelAndView("index", "logged_in_customer", c);
-			} else {
+		try {
+            if (customerService.saveCustomer(customer) != null) {
+                //Auto login
+                Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
+                if(c != null){
+                    return new ModelAndView("index", "logged_in_customer", c);
+                } else {
+                    ModelAndView modelAndView = new ModelAndView("register");
+                    modelAndView.addObject("flag", "Registration Failed!");
+                    return modelAndView;
+                }
+            } else {
                 ModelAndView modelAndView = new ModelAndView("register");
                 modelAndView.addObject("flag", "Registration Failed!");
                 return modelAndView;
             }
-		} else {
-			ModelAndView modelAndView = new ModelAndView("register");
-			modelAndView.addObject("flag", "Registration Failed!");
-			return modelAndView;
-		}
+        } catch (Exception e) {
+		    System.out.println(e.getLocalizedMessage());
+            ModelAndView modelAndView = new ModelAndView("register");
+            modelAndView.addObject("flag", "Registration Failed!");
+            return modelAndView;
+        }
 	}
 	
 	@RequestMapping("/loginProcess")
