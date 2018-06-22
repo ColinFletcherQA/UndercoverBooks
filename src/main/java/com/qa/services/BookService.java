@@ -13,8 +13,8 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public List<Book> findAllBooks() {
-		return (List<Book>) bookRepository.findAll();
+	public List<Book> getSixRandomBooks() {
+		return bookRepository.getSixRandomBooks();
 	}
 
 }
