@@ -91,55 +91,79 @@
     <!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
-      <div class="col-lg-8 mb-4">
+      <div class="col-lg-6 mb-4">
         <div class="card third_color">
           <div class="card-body">
             <h3 class="card-title">Send us a Message</h3>
-            <form name="sentMessage" id="contactForm" novalidate>
-              <div class="control-group form-group">
-                <div class="controls">
-                  <label>Full Name:</label>
-                  <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-                  <p class="help-block"></p>
-                </div>
+            <form>
+              <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" class="form-control" id="fullName" name="fullName">
               </div>
-              <div class="control-group form-group">
-                <div class="controls">
-                  <label>Phone Number:</label>
-                  <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
-                </div>
+              <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" class="form-control" id="email" name="email">
               </div>
-              <div class="control-group form-group">
-                <div class="controls">
-                  <label>Email Address:</label>
-                  <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                </div>
+              <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" class="form-control" id="subject" name="subject">
               </div>
-              <div class="control-group form-group">
-                <div class="controls">
-                  <label>Message:</label>
-                  <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
-                </div>
+              <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
               </div>
-              <div id="success"></div>
-              <!-- For success/fail messages -->
-              <button type="submit" class="btn secondary_color" id="sendMessageButton"><span>Send Message</span></button>
+              <button type="reset" class="btn secondary_color" data-toggle="modal" data-target="#messageModal">
+                <span>Send Message</span>
+              </button>
             </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card third_color">
+          <div class="card-body">
+            <h3 class="card-title">Request a Book</h3>
+            <form>
+              <div class="form-group">
+                <label for="bookTitle">Book Title:</label>
+                <input class="form-control" id="bookTitle" name="bookTitle">
+              </div>
+              <div class="form-group">
+                <label for="bookAuthor">Book Author:</label>
+                <input class="form-control" id="bookAuthor" name="bookAuthor">
+              </div>
+              <button type="reset" class="btn secondary_color" data-toggle="modal" data-target="#requestModal">
+                <span>Request Book</span>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="modal" id="requestModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4 class="modal-title text-center">Request Submitted</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal" id="messageModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4 class="modal-title text-center">Message Sent</h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
     <!-- /.row -->
-
   </div>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="js/elsevier.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script>
-    $(document).foundation();
-</script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
