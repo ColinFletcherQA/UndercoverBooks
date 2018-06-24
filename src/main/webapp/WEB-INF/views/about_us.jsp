@@ -137,10 +137,10 @@
       </div>
       <div class="col-lg-3 mb-3">
         <div class="card h-100 text-center third_color">
-          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <img class="card-img-top" src="https://s-media-cache-ak0.pinimg.com/originals/48/6e/40/486e40659620da6cbdf9dcd5858da314.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">Colin Fletcher</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Developer</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Database Wizard</h6>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
               ipsum fugiat odio officiis odit.</p>
           </div>
