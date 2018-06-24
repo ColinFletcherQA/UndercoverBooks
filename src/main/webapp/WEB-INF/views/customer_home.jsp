@@ -90,19 +90,21 @@
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="firstName">First Name</label>
-                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>">
+                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="lastName">First Name</label>
-                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>">
+                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>" required>
+                      <div class="invalid-feedback">Please enter a last name</div>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="email">Email</label>
-                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>">
+                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
+                      <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                   </div>
                   <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
