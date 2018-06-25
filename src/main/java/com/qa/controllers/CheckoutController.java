@@ -31,18 +31,21 @@ public class CheckoutController {
 	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase, @ModelAttribute("Address") Address address, @ModelAttribute("cart_items") Map<Book, Integer> cartItems) {
 		Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
 
+		address.setCustomerId(customer.getCustomerId());
 		Address preparedAddressResponse = prepareAddress(address);
 		
 		if (preparedAddressResponse != null) {
 			System.out.println(preparedAddressResponse.getAddressId());
 
-			//Initial purchase set up
+			//Initial purchase injection
 			purchase.setCustomer(customer);
 			purchase.setShippingAddress(preparedAddressResponse);
+			purchase.setBooks(cartItems.keySet());
 
 			Purchase preparedPurchaseResponse = preparePurchase(purchase);
 			
 			if (preparedPurchaseResponse != null) {
+				//Ensure cartItems is built into the Purchase object
 				System.out.println(preparedPurchaseResponse.getOrderId());
 			} else {
 				System.out.println("Purchase not submitted");
@@ -57,8 +60,14 @@ public class CheckoutController {
 		modelAndView.addObject("purchase", purchase);
 		return modelAndView;
 	}
-	
+
 	private Address prepareAddress(Address address) {
+		Address existingAddress = addressService.getAddressIfAlreadyExists(address);
+
+		if(existingAddress != null){
+			return existingAddress;
+		}
+
 		try {
 			return addressService.saveAddress(address);
 		} catch (Exception e){
@@ -70,7 +79,8 @@ public class CheckoutController {
 		try {
 			return purchaseService.makePurchase(purchase);
 		} catch (Exception e) {
-			throw e;
+			System.out.println(e.getLocalizedMessage());
+			return null;
 		}
 	}
 
