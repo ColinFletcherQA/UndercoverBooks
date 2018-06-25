@@ -38,4 +38,7 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     @Query("SELECT b FROM Book b ORDER BY b.publishedDate DESC")
     List<Book> getNewReleases();
 
+    @Query("SELECT b FROM Book b, Tag t WHERE t MEMBER OF b.tags AND t.tagName = :tag_name")
+    List<Book> findAllBooksByTagName(@Param("tag_name") String tagName);
+
 }

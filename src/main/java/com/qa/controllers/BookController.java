@@ -179,7 +179,7 @@ public class BookController {
 	}
 
 	@RequestMapping("/genres")
-	public ModelAndView genres(HttpServletRequest request) {
+	public ModelAndView genres() {
 		ModelAndView modelAndView = new ModelAndView("genres");
 		List<Tag> tagList = (List<Tag>) tagService.getTags();
 		modelAndView.addObject("tag_list", tagList);
@@ -187,8 +187,19 @@ public class BookController {
 	}
 
 	@RequestMapping("/genreResults")
-	public ModelAndView genreResults(HttpServletRequest request, @RequestParam("tagName") String tagName) {
+	public ModelAndView genreResults(@RequestParam("tagName") String tagName,
+									 @RequestParam(value = "page", required = false) Integer page) {
 		ModelAndView modelAndView = new ModelAndView("genre_results");
+		List<Book> booksFound = bookService.findAllBooksByTagName(tagName);
+
+		PagedListHolder<Book> pagedListHolder = new PagedListHolder<>(booksFound);
+		pagedListHolder.setPageSize(12);
+		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
+
+		page = setPage(page, modelAndView, pagedListHolder, "books_found");
+
+		modelAndView.addObject("page", page);
+		modelAndView.addObject("tagName", tagName);
 		return modelAndView;
 	}
 
