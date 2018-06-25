@@ -102,9 +102,7 @@
       List<Book> bookList;
     %>
     <%
-
-    %>
-    <%
+      System.out.println(orderList.size());
       if (orderList.isEmpty()) {
     %>
     <div class="row">

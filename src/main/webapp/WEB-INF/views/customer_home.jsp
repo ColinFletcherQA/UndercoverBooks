@@ -1,5 +1,6 @@
 <!doctype html>
 <%@page import="com.qa.models.Customer"%>
+<%@page import="com.qa.models.Address"%>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -12,13 +13,15 @@
   
   <%!
   Customer c;
+  Address address;
   %>
   <%
- 		try {
-                c = (Customer) session.getAttribute("logged_in_customer");
-            } catch(Exception e){
-                c = null;
-            }
+  try {
+        c = (Customer) session.getAttribute("logged_in_customer");
+      } catch(Exception e){
+        c = null;
+      }
+  address = (Address) request.getAttribute("Address");
   %>
     
     <!-- Start Top Bar -->
@@ -97,20 +100,20 @@
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="firstName">First Name</label>
-                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" required>
+                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" value="<%=c.getFirstName()%>">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="lastName">First Name</label>
-                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>" required>
+                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>" value="<%=c.getLastName()%>">
                       <div class="invalid-feedback">Please enter a last name</div>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="email">Email</label>
-                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" required>
+                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" value="<%=c.getEmail()%>">
                       <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                   </div>
@@ -169,40 +172,42 @@
                   <h4 class="card-title text-center">Update Shipping Address</h4>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
-                      <label for="addressline1">Address</label>
-                      <input type="text" class="form-control" id="addressline1" placeholder="123 Main St" required>
+                      <label for="addressLine1">Address</label>
+                      <input type="text" class="form-control" name="addressLine1" id="addressLine1" value="<% if (address != null) { address.getAddressLine1();}%>" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
-                      <label for="addressline2">Address 2</label>
-                      <input type="text" class="form-control" id="addressline2" placeholder="Apartment, studio, or floor" required>
+                      <label for="addressLine2">Address 2</label>
+                      <input type="text" class="form-control" name="addressLine2" id="addressLine2" value="<% if (address != null) {address.getAddressLine2();}%>" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-4">
                       <label for="city">City</label>
-                      <input type="text" class="form-control" id="city" required>
+                      <input type="text" class="form-control" name="city" id="city" value="<% if (address != null) {address.getCity();}%>" required>
                     </div>
                     <div class="form-group col-lg-2">
                       <label for="postcode">Zip</label>
-                      <input type="text" class="form-control" id="postcode" required>
+                      <input type="text" class="form-control" name="postcode" id="postcode" value="<% if (address != null) {address.getPostcode();}%>" required>
                     </div>
                     <div class="form-group col-lg-2">
                       <label for="state">State</label>
-                      <input type="text" class="form-control" id="state" placeholder="PA" required>
+                      <input type="text" class="form-control" name="state" id="state" placeholder="PA" value="<% if (address != null) {address.getState();}%>" required>
                     </div>
                     <div class="form-group col-lg-4">
                       <label for="country">Country</label>
-                      <input type="text" class="form-control" id="country" required>
+                      <input type="text" class="form-control" name="country" id="country" value="<% if (address != null) {address.getCountry();}%>" required>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-6">
                       <label for="phone">Phone Number</label>
-                      <input type="tel" class="form-control" id="phone"required>
+                      <input type="tel" class="form-control" name="phoneNumber" id="phone" value="<% if (address != null) {address.getPhoneNumber();}%>" required>
                     </div>
                   </div>
+                  <input type="hidden" name="addressType" value="shipping">
+                  <input type="hidden" name="customerId" value="<%=c.getCustomerId()%>">
                   <button type="submit" class="btn secondary_color"><span>Update Shipping Address</span></button>
                 </div>
               </form>
@@ -210,55 +215,56 @@
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-8">
-            <div class="card third_color">
-              <form action="/updateAddress" method="post">
-                <div class="card-body">
-                  <h4 class="card-title text-center">Update Billing Address</h4>
-                  <div class="form-row">
-                    <div class="form-group col-lg-12">
-                      <label for="billingaddressline1">Address</label>
-                      <input type="text" class="form-control" id="billingaddressline1" placeholder="123 Main St" required>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-lg-12">
-                      <label for="billingaddressline2">Address 2</label>
-                      <input type="text" class="form-control" id="billingaddressline2" placeholder="Apartment, studio, or floor" required>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-lg-4">
-                      <label for="billingcity">City</label>
-                      <input type="text" class="form-control" id="billingcity" required>
-                    </div>
-                    <div class="form-group col-lg-2">
-                      <label for="billingpostcode">Zip</label>
-                      <input type="text" class="form-control" id="billingpostcode" required>
-                    </div>
-                    <div class="form-group col-lg-2">
-                      <label for="billingstate">State</label>
-                      <input type="text" class="form-control" id="billingstate" placeholder="PA" required>
-                    </div>
-                    <div class="form-group col-lg-4">
-                      <label for="billingcountry">Country</label>
-                      <input type="text" class="form-control" id="billingcountry" required>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-lg-6">
-                      <label for="billingphone">Phone Number</label>
-                      <input type="tel" class="form-control" id="billingphone" required>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+
+        <%--<div class="row">--%>
+          <%--<div class="col-lg-2"></div>--%>
+          <%--<div class="col-lg-8">--%>
+            <%--<div class="card third_color">--%>
+              <%--<form action="/updateAddress" method="post">--%>
+                <%--<div class="card-body">--%>
+                  <%--<h4 class="card-title text-center">Update Billing Address</h4>--%>
+                  <%--<div class="form-row">--%>
+                    <%--<div class="form-group col-lg-12">--%>
+                      <%--<label for="billingaddressline1">Address</label>--%>
+                      <%--<input type="text" class="form-control" id="billingaddressline1" placeholder="123 Main St" required>--%>
+                    <%--</div>--%>
+                  <%--</div>--%>
+                  <%--<div class="form-row">--%>
+                    <%--<div class="form-group col-lg-12">--%>
+                      <%--<label for="billingaddressline2">Address 2</label>--%>
+                      <%--<input type="text" class="form-control" id="billingaddressline2" placeholder="Apartment, studio, or floor" required>--%>
+                    <%--</div>--%>
+                  <%--</div>--%>
+                  <%--<div class="form-row">--%>
+                    <%--<div class="form-group col-lg-4">--%>
+                      <%--<label for="billingcity">City</label>--%>
+                      <%--<input type="text" class="form-control" id="billingcity" required>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group col-lg-2">--%>
+                      <%--<label for="billingpostcode">Zip</label>--%>
+                      <%--<input type="text" class="form-control" id="billingpostcode" required>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group col-lg-2">--%>
+                      <%--<label for="billingstate">State</label>--%>
+                      <%--<input type="text" class="form-control" id="billingstate" placeholder="PA" required>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group col-lg-4">--%>
+                      <%--<label for="billingcountry">Country</label>--%>
+                      <%--<input type="text" class="form-control" id="billingcountry" required>--%>
+                    <%--</div>--%>
+                  <%--</div>--%>
+                  <%--<div class="form-row">--%>
+                    <%--<div class="form-group col-lg-6">--%>
+                      <%--<label for="billingphone">Phone Number</label>--%>
+                      <%--<input type="tel" class="form-control" id="billingphone" required>--%>
+                    <%--</div>--%>
+                  <%--</div>--%>
+                  <%--<button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>--%>
+                <%--</div>--%>
+              <%--</form>--%>
+            <%--</div>--%>
+          <%--</div>--%>
+        <%--</div>--%>
        </div>
       </div>
 
