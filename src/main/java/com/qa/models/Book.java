@@ -69,7 +69,7 @@ public class Book {
 	private List<Author> authors;
 
 	@Autowired @ElementCollection @Getter @Setter
-	private List<Book> related_books;
+	private List<Book> similar_books;
 
 	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Tag> tags;
