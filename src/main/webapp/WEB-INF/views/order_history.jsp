@@ -1,6 +1,10 @@
 <%@ page import="com.qa.models.Customer" %>
 <%@ page import="com.qa.models.Purchase" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.ZoneOffset" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="com.qa.models.Book" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +27,7 @@
       c = null;
     }
 
-//    orderList = (List<Purchase>) session.getAttribute("order_list");
+    orderList = (List<Purchase>) request.getAttribute("order_list");
   %>
 
   <nav class="navbar navbar-expand-lg navbar-dark nav_background fixed-top">
@@ -87,30 +91,41 @@
       <li class="breadcrumb-item active" aria-current="page">Order History</li>
     </ol>
 
+    <%!
+      Purchase firstOrder;
+      List<Book> bookList;
+    %>
+    <%
+      firstOrder = orderList.get(7);
+      bookList = firstOrder.getBooks();
+    %>
+    <%
+      for (Purchase order: orderList) {
+    %>
 
     <div class="row">
       <div class="col-lg-1">
        <%--Placeholder --%>
       </div>
       <div class="col-lg-10">
-        <div class="card third_color">
+        <div class="card m-lg-3 third_color">
             <div class="card-header">
               <div class="row">
                 <div class="col-lg-3">
                   <h6>Order Date:</h6>
-                  <small class="text-muted">June 10th, 2016</small>
+                  <small class="text-muted"><%=LocalDateTime.ofEpochSecond(order.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                 </div>
                 <div class="col-lg-2">
                   <h6>Total:</h6>
-                  <small class="text-muted">$7.16</small>
+                  <small class="text-muted">$<%=order.getTotalPrice()%></small>
                 </div>
                 <div class="col-lg-4">
                   <h6>Shipped To:</h6>
-                  <small class="text-muted">Chandler Todd</small>
+                  <small class="text-muted"><%=order.getCustomer().getFirstName()%> <%=order.getCustomer().getLastName()%></small>
                 </div>
                 <div class="col-lg-3 text-right">
-                  <h6>Order Number: 2</h6>
-                  <small class="text-muted"><a href="#">Receipt</a></small>
+                  <h6>Order Number: <%=order.getOrderId()%></h6>
+                  <%--<small class="text-muted"><a href="#">Receipt</a></small>--%>
                 </div>
               </div>
             </div>
@@ -118,14 +133,22 @@
               <div class="row">
                 <div class="col-4-lg">
                   Picture Placeholder
+                  <%--<%bookList.get(0).getBookImage();%>--%>
+                </div>
+                <div class="col-lg-1">
+
                 </div>
                 <div class="col-4-lg">
+                  Book Title
                 </div>
               </div>
             </div>
         </div>
       </div>
     </div>
+    <%
+    }
+    %>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

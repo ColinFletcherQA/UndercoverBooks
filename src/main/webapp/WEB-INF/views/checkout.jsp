@@ -2,6 +2,11 @@
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
 <%@ page import="java.math.BigDecimal"%>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.format.FormatStyle" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.Instant" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -278,6 +283,7 @@
               </div>
             </div>
             <input type="hidden" name="totalPrice" value="<%=orderTotal %>"/>
+            <input type="hidden" name="time" value="<%=Instant.now().toEpochMilli()/1000%>">
             <button type="submit" class="btn secondary_color"><span>Checkout</span></button>
           </form>
           </div>

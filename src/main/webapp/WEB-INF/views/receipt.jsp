@@ -1,13 +1,13 @@
 <!doctype html>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@ page import="java.math.BigDecimal" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="com.qa.models.*" %>
 <%@ page import="java.time.LocalTime" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="sun.security.util.Length" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.ZoneOffset" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -122,7 +122,7 @@
         <div class="col-lg-2">
           <address>
             <strong>Order Date:</strong><br>
-            <%=LocalDate.now()%>
+            <%=LocalDateTime.ofEpochSecond(p.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%>
             <br><br>
           </address>
         </div>
@@ -173,10 +173,10 @@
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center"><strong>Shipping</strong></td>
-                    <td class="no-line text-right">$15</td>
+                    <td class="no-line text-right">$5</td>
                   </tr>
                   <%
-                    BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(15));
+                    BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(5));
                   %>
                   <tr>
                     <td class="no-line"></td>

@@ -172,9 +172,10 @@ public class CustomerController {
 	public ModelAndView orderHistory(HttpServletRequest request, @ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
 		Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
 
-		List<Purchase> orderList = purchaseService.getCustomerPurchaseHistory(customer.getCustomerId());
+		List<Purchase> orderList = purchaseService.getCustomerPurchaseHistory(customer);
 		ModelAndView modelAndView = new ModelAndView("order_history");
 		modelAndView.addObject("order_list", orderList);
+		System.out.println(orderList.size());
 		return modelAndView;
 	}
 

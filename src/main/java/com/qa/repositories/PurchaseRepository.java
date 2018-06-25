@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
 
-    @Query("SELECT p from Purchase p WHERE p.customer = :customerId")
+    @Query("SELECT p from Purchase p WHERE p.customer.customerId = :customerId")
     List<Purchase> getCustomerPurchaseHistory(@Param("customerId") int customerId);
 }
