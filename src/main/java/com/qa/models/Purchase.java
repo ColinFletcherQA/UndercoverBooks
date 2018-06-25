@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,4 +46,8 @@ public class Purchase {
 
     @Getter @Setter
     private int time;
+
+    public List<Book> getBooksAsGenericList(){
+        return new ArrayList<>(this.getBooks());
+    }
 }

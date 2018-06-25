@@ -99,7 +99,6 @@
     </ol>
 
     <%!
-      Purchase firstOrder;
       List<Book> bookList;
     %>
     <%
@@ -115,9 +114,9 @@
     </div>
     <%
       } else {
-        bookList = firstOrder.getBooks();
         for (int i = orderList.size()-1; i >= 0 ; i--) {
           Purchase order = orderList.get(i);
+          List<Book> purchaseBooks = order.getBooksAsGenericList();
     %>
 
     <div class="row">
@@ -148,16 +147,24 @@
             </div>
             <div class="card-body">
               <div class="row">
+              <%
+                for(Book book : purchaseBooks) {
+              %>
                 <div class="col-4-lg">
-                  Picture Placeholder
-                  <%--<%bookList.get(0).getBookImage();%>--%>
+                    <img class="card-img-top" src="<%=book.getBookImage()%>" alt="">
                 </div>
                 <div class="col-lg-1">
 
                 </div>
                 <div class="col-4-lg">
-                  Book Title
+                    <%=book.getTitle()%>
                 </div>
+              <%
+                }
+              %>
+
+
+
               </div>
             </div>
         </div>
