@@ -18,34 +18,21 @@ public class AddressBookController {
 	@RequestMapping("/updateAddress")
 	public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
 		ModelAndView modelAndView;
-		
-		System.out.println("Before update ");
-		System.out.println("ID " + loggedInCustomer.getCustomerId());
-		System.out.println("Name" + loggedInCustomer.getFirstName());
-		System.out.println("Email" + loggedInCustomer.getEmail());
-		
-		Address bAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "billing");
-		Address sAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "shipping");
-		
-		if (bAddress != null || sAddress != null) {
-			int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(), address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(), loggedInCustomer.getCustomerId(), address.getAddressType());
 
-			if (recordsUpdated > 0) {
-				Address billingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "billing");
-				Address shippingAddress = addressService.findAddressByType(loggedInCustomer.getCustomerId(), "shipping");
-				System.out.println("After update ");
-				modelAndView = new ModelAndView("address_book", "billing_address", billingAddress);
-				modelAndView.addObject("shipping_address", shippingAddress);
-			} else {
-				modelAndView = new ModelAndView("address_book", "billing_address", null);
-				modelAndView.addObject("shipping_address", null);
-			}
+		if (addressService.getAddressIfAlreadyExists(address) != null) {
+			int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
+					address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
+					loggedInCustomer.getCustomerId(), address.getAddressType());
 		} else {
-			Address savedAddress = addressService.saveAddress(address);
-			modelAndView = new ModelAndView("address_book", "billing_address", savedAddress);
+			Address updatedAddress = addressService.saveAddress(address);
+			System.out.println("New Address Line 1: " + updatedAddress.getAddressLine1());
 		}
 
+
+		modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);
+		modelAndView.addObject("Address", address);
 		return modelAndView;
+
 	}
 	
 }

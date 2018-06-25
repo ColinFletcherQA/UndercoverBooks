@@ -27,4 +27,8 @@ public class AddressService {
 		return addressRespository.checkDuplicate(address.getAddressLine1(), address.getCustomerId());
 	}
 
+	public Address getCustomerAddress(int customerId) {
+		return addressRespository.findAddressByCustomer(customerId);
+	}
+
 }
