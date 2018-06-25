@@ -17,10 +17,10 @@
   %>
   <%
 	try {
-            c = (Customer) session.getAttribute("logged_in_customer");
-        } catch(Exception e){
-            c = null;
-        }
+          c = (Customer) session.getAttribute("logged_in_customer");
+      } catch(Exception e){
+          c = null;
+      }
   %>
 
     <!-- Start Top Bar -->
