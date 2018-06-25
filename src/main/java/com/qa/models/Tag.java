@@ -14,5 +14,8 @@ public class Tag {
 	
 	@Getter @Setter
 	private String tagName;
+
+	@Getter @Setter
+	private String tagImage;
 	
 }
