@@ -1,7 +1,11 @@
 package com.qa.controllers;
 
 import com.qa.models.Book;
+import com.qa.models.Tag;
 import com.qa.repositories.BookRepository;
+import com.qa.repositories.TagRespository;
+import com.qa.services.TagService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -11,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 import java.util.*;
 
 @Controller
@@ -21,6 +29,9 @@ public class BookController {
 
 	@Autowired
 	BookRepository bookService;
+
+	@Autowired
+	private TagService tagService;
 	
 	@PersistenceContext
 	EntityManager em;
@@ -164,6 +175,20 @@ public class BookController {
 
 		modelAndView.addObject("page", page);
 
+		return modelAndView;
+	}
+
+	@RequestMapping("/genres")
+	public ModelAndView genres(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("genres");
+		List<Tag> tagList = (List<Tag>) tagService.getTags();
+		modelAndView.addObject("tag_list", tagList);
+		return modelAndView;
+	}
+
+	@RequestMapping("/genreResults")
+	public ModelAndView genreResults(HttpServletRequest request, @RequestParam("genreTag") String genreTag) {
+		ModelAndView modelAndView = new ModelAndView("search_results");
 		return modelAndView;
 	}
 

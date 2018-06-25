@@ -89,7 +89,7 @@
           <div class="list-group">
             <a href="/bestSellers" class="list-group-item secondary_color"><span>Best Sellers</span></a>
             <a href="/newReleases" class="list-group-item secondary_color"><span>New Releases</span></a>
-            <a href="#" class="list-group-item secondary_color"><span>Category 3</span></a>
+            <a href="/genres" class="list-group-item secondary_color"><span>Genres</span></a>
           </div>
 
         </div>
