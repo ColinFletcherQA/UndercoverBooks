@@ -187,8 +187,8 @@ public class BookController {
 	}
 
 	@RequestMapping("/genreResults")
-	public ModelAndView genreResults(HttpServletRequest request, @RequestParam("genreTag") String genreTag) {
-		ModelAndView modelAndView = new ModelAndView("search_results");
+	public ModelAndView genreResults(HttpServletRequest request, @RequestParam("tagName") String tagName) {
+		ModelAndView modelAndView = new ModelAndView("genre_results");
 		return modelAndView;
 	}
 
