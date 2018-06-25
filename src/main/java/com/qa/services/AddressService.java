@@ -23,4 +23,8 @@ public class AddressService {
 		return addressRespository.save(address);
 	}
 
+	public Address getAddressIfAlreadyExists(Address address){
+		return addressRespository.checkDuplicate(address.getAddressLine1(), address.getCustomerId());
+	}
+
 }
