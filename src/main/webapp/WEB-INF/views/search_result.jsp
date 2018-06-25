@@ -18,12 +18,14 @@
     String searchTerm;
     int pageNum;
     int maxPages;
+    String searchOption;
   %>
   <%
     books = (List<Book>) request.getAttribute("search_result");
     searchTerm = (String) request.getAttribute("search_term");
     pageNum = (Integer) request.getAttribute("page");
     maxPages = (Integer) request.getAttribute("maxPages");
+    searchOption = (String) request.getAttribute("search_option");
     try {
             c = (Customer) session.getAttribute("logged_in_customer");
         } catch(Exception e){
@@ -37,6 +39,13 @@
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <select name = "searchOption" class="custom-select">
+          <option <%=searchOption.equals("title") ? "selected " : ""%> value="title">Title</option>
+          <option <%=searchOption.equals("isbn") ? "selected " : ""%> value="isbn">ISBN / Kindle ASIN</option>
+          <option <%=searchOption.equals("author") ? "selected " : ""%> value="author">Author</option>
+          <option <%=searchOption.equals("publisher") ? "selected " : ""%> value="publisher">Publisher</option>
+          <option <%=searchOption.equals("description") ? "selected " : ""%> value="description">Description</option>
+        </select>
       </form>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -125,36 +134,36 @@
     <!-- Pagination -->
     <ul class="pagination justify-content-center">
       <li class="page-item<% if (pageNum <= 1) {%> disabled<%}%>">
-          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum - 1)%>" aria-label="Previous">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum - 1)%>&searchOption=<%=searchOption%>" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
           </a>
       </li>
         <% if (pageNum >= 3) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 2%>"><%=pageNum - 2%></a>
+            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 2%>&searchOption=<%=searchOption%>"><%=pageNum - 2%></a>
         </li>
         <%}%>
         <% if (pageNum >= 2) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 1%>"><%=pageNum - 1%></a>
+            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 1%>&searchOption=<%=searchOption%>"><%=pageNum - 1%></a>
         </li>
         <%}%>
         <li class="page-item disabled">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum%>"><%=pageNum%></a>
+            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum%>&searchOption=<%=searchOption%>"><%=pageNum%></a>
         </li>
         <% if (maxPages >= pageNum + 1) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 1%>"><%=pageNum + 1%></a>
+            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 1%>&searchOption=<%=searchOption%>"><%=pageNum + 1%></a>
         </li>
         <%}%>
         <% if (maxPages >= pageNum + 2) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 2%>"><%=pageNum + 2%></a>
+            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 2%>&searchOption=<%=searchOption%>"><%=pageNum + 2%></a>
         </li>
         <%}%>
       <li class="page-item<% if (pageNum == maxPages) {%> disabled<%}%>">
-          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum + 1)%>" aria-label="Next">
+          <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum + 1)%>&searchOption=<%=searchOption%>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
               <span class="sr-only">Next</span>
           </a>

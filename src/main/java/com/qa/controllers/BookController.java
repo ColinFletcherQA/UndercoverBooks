@@ -4,7 +4,6 @@ import com.qa.models.Book;
 import com.qa.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @SessionAttributes(names = {"cart_items"})
@@ -81,25 +79,54 @@ public class BookController {
 
 	@RequestMapping(value="/search")
 	public ModelAndView Search(@RequestParam(value = "searchTerm", required = false) String searchTerm,
+							   @RequestParam(value = "searchOption") String searchOption,
 							   @RequestParam(value = "page", required = false) Integer page) {
 
 		ModelAndView modelAndView = new ModelAndView("search_result");
 		modelAndView.addObject("search_term", searchTerm);
-		List<Book> booksFound = bookService.findBookByPartOfTitle(searchTerm);
+		modelAndView.addObject("search_option", searchOption);
+		List<Book> booksFound = null;
 
-		PagedListHolder<Book> pagedListHolder = new PagedListHolder<>(booksFound);
+		switch (searchOption) {
+			case "title":
+				booksFound = bookService.findAllBooksByPartOfTitle(searchTerm);
+				break;
+			case "isbn":
+				booksFound = bookService.findAllBooksByIsbn(searchTerm);
+				booksFound.addAll(bookService.findAllBooksByPaperISBN(searchTerm));
+				booksFound.addAll(bookService.findAllBooksByEBookISBN(searchTerm));
+				break;
+			case "author":
+				booksFound = bookService.findAllBooksByAuthorsName(searchTerm);
+				break;
+			case "publisher":
+				booksFound = bookService.findAllBooksByPartOfPublisher(searchTerm);
+				break;
+			case "description":
+				String[] searchTerms = searchTerm.split(" ");
+				booksFound = bookService.findAllBooksByPartOfDescription(searchTerms[0]);
+				for (String term : searchTerms) {
+					List<Book> newBooksFound = bookService.findAllBooksByPartOfDescription(term);
+					booksFound.removeIf(b -> !newBooksFound.contains(b));
+				}
+				break;
+		}
+
+		Set<Book> uniqueValues = new HashSet<>();
+		List<Book> booksFoundUnique = new ArrayList<Book>();
+		if (booksFound != null) {
+			for (Book book : booksFound) {
+				if (uniqueValues.add(book)) {
+					booksFoundUnique.add(book);
+				}
+			}
+		}
+
+		PagedListHolder<Book> pagedListHolder = new PagedListHolder<>(booksFoundUnique);
 		pagedListHolder.setPageSize(12);
 		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
 
-		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
-			page = 1;
-			pagedListHolder.setPage(0);
-			modelAndView.addObject("search_result", pagedListHolder.getPageList());
-		}
-		else if(page <= pagedListHolder.getPageCount()) {
-			pagedListHolder.setPage(page-1);
-			modelAndView.addObject("search_result", pagedListHolder.getPageList());
-		}
+		page = setPage(page, modelAndView, pagedListHolder, "search_result");
 
 		modelAndView.addObject("page", page);
 
@@ -116,15 +143,7 @@ public class BookController {
 		pagedListHolder.setPageSize(12);
 		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
 
-		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
-			page = 1;
-			pagedListHolder.setPage(0);
-			modelAndView.addObject("books_found", pagedListHolder.getPageList());
-		}
-		else if(page <= pagedListHolder.getPageCount()) {
-			pagedListHolder.setPage(page-1);
-			modelAndView.addObject("books_found", pagedListHolder.getPageList());
-		}
+		page = setPage(page, modelAndView, pagedListHolder, "books_found");
 
 		modelAndView.addObject("page", page);
 
@@ -141,19 +160,24 @@ public class BookController {
 		pagedListHolder.setPageSize(12);
 		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
 
-		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
-		page = 1;
-		pagedListHolder.setPage(0);
-		modelAndView.addObject("books_found", pagedListHolder.getPageList());
-	}
-		else if(page <= pagedListHolder.getPageCount()) {
-		pagedListHolder.setPage(page-1);
-		modelAndView.addObject("books_found", pagedListHolder.getPageList());
-	}
+		page = setPage(page, modelAndView, pagedListHolder, "books_found");
 
 		modelAndView.addObject("page", page);
 
 		return modelAndView;
+	}
+
+	private Integer setPage(@RequestParam(value = "page", required = false) Integer page, ModelAndView modelAndView, PagedListHolder<Book> pagedListHolder, String attribute) {
+		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+			page = 1;
+			pagedListHolder.setPage(0);
+			modelAndView.addObject(attribute, pagedListHolder.getPageList());
+		}
+		else if(page <= pagedListHolder.getPageCount()) {
+			pagedListHolder.setPage(page-1);
+			modelAndView.addObject(attribute, pagedListHolder.getPageList());
+		}
+		return page;
 	}
 	
 }

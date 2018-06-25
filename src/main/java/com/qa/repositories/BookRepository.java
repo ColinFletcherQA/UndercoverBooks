@@ -12,9 +12,22 @@ import java.util.List;
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
     @Query("SELECT b FROM Book b WHERE b.title LIKE CONCAT('%',:searchTerm,'%')")
-    List<Book> findBookByPartOfTitle(@Param("searchTerm") String title);
+    List<Book> findAllBooksByPartOfTitle(@Param("searchTerm") String title);
 
-    List<Book> findDistinctBookByTitle(String title);
+    List<Book> findAllBooksByIsbn(@Param("searchTerm") String isbn);
+
+    List<Book> findAllBooksByPaperISBN(@Param("searchTerm") String isbn);
+
+    List<Book> findAllBooksByEBookISBN(@Param("searchTerm") String isbn);
+
+    @Query("SELECT b FROM Book b, Author a WHERE a MEMBER OF b.authors AND a.authorName LIKE CONCAT('%',:searchTerm,'%')")
+    List<Book> findAllBooksByAuthorsName(@Param("searchTerm") String authorName);
+
+    @Query("SELECT b FROM Book b WHERE b.publisher LIKE CONCAT('%',:searchTerm,'%')")
+    List<Book> findAllBooksByPartOfPublisher(@Param("searchTerm") String publisher);
+
+    @Query("SELECT b FROM Book b WHERE b.description LIKE CONCAT('%',:searchTerm,'%')")
+    List<Book> findAllBooksByPartOfDescription(@Param("searchTerm") String description);
     
 	@Query(value = "SELECT * FROM Book WHERE image_l != 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png' ORDER BY RAND() LIMIT 6", nativeQuery = true)
 	List<Book> getSixRandomBooks();
