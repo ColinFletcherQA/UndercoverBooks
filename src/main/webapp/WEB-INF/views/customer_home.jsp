@@ -57,7 +57,7 @@
             %>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Order History</a>
+              <a class="nav-link" href="/orderHistory">Order History</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/viewCart">View Cart</a>

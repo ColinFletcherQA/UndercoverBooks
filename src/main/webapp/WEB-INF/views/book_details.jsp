@@ -105,8 +105,24 @@
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
                   <h4>$<%=book.getPrice()%></h4>
-                  <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                  4.0 stars
+                  <%
+                    Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
+                    Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
+                    Integer weightedAverage = (topValue / bottomValue);
+                  %>
+                  <% if (weightedAverage == 5) {%>
+                  <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+                  <%} else if (weightedAverage >= 4) {%>
+                  <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                  <%} else if (weightedAverage >= 3) {%>
+                  <small class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+                  <%} else if (weightedAverage >= 2) {%>
+                  <small class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+                  <%} else if (weightedAverage >= 1) {%>
+                  <small class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+                  <%} else if (weightedAverage >= 0) {%>
+                  <small class="text-warning">&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+                  <%}%>
                 </div>
               </div>
             </div>
@@ -174,8 +190,6 @@
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <%--<script src="js/elsevier.js"></script>--%>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

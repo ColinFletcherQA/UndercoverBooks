@@ -1,8 +1,12 @@
 package com.qa.controllers;
 
 import com.qa.models.Customer;
+import com.qa.models.Purchase;
+import com.qa.services.PurchaseHistoryService;
+import com.qa.repositories.PurchaseRepository;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @Controller
 @SessionAttributes(names = {"cart_items", "logged_in_customer", "Address"})
@@ -25,6 +30,9 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
+
+	@Autowired
+	private PurchaseHistoryService purchaseService;
 	
 	@RequestMapping("/")
 	public ModelAndView indexPage(HttpServletRequest request) {
@@ -157,6 +165,17 @@ public class CustomerController {
 			modelAndView.addObject("flag", "ERROR");
 		}
 
+		return modelAndView;
+	}
+
+	@RequestMapping("/orderHistory")
+	public ModelAndView orderHistory(HttpServletRequest request, @ModelAttribute("logged_in_customer") Customer loggedInCustomer) {
+		Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
+
+		List<Purchase> orderList = purchaseService.getCustomerPurchaseHistory(customer);
+		ModelAndView modelAndView = new ModelAndView("order_history");
+		modelAndView.addObject("order_list", orderList);
+		System.out.println(orderList.size());
 		return modelAndView;
 	}
 

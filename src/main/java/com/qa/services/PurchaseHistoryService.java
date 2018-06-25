@@ -1,5 +1,6 @@
 package com.qa.services;
 
+import com.qa.models.Customer;
 import com.qa.models.Purchase;
 import com.qa.repositories.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ public class PurchaseHistoryService {
        return purchaseRepository.save(purchase);
     }
 
-    public List<Purchase> getCustomerPurchaseHistory(int customerId){
-        return purchaseRepository.getCustomerPurchaseHistory(customerId);
+    public List<Purchase> getCustomerPurchaseHistory(Customer customer){
+
+        return purchaseRepository.getCustomerPurchaseHistory(customer.getCustomerId());
     }
 
     public Purchase getPurchaseInformationById(int orderId){

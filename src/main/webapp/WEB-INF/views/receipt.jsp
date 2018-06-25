@@ -1,13 +1,13 @@
 <!doctype html>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@ page import="java.math.BigDecimal" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="com.qa.models.*" %>
 <%@ page import="java.time.LocalTime" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="sun.security.util.Length" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.ZoneOffset" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -122,18 +122,19 @@
         <div class="col-lg-2">
           <address>
             <strong>Order Date:</strong><br>
-            <%=LocalDate.now()%>
+            <%=LocalDateTime.ofEpochSecond(p.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%>
             <br><br>
           </address>
         </div>
       </div>
+    </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title ml-2"><strong>Order summary</strong></h3>
+          <div class="card third_color mt-3">
+            <div class="card-header">
+              <h3 class="card-title"><strong>Order summary</strong></h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-condensed">
                   <thead>
@@ -172,10 +173,10 @@
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center"><strong>Shipping</strong></td>
-                    <td class="no-line text-right">$15</td>
+                    <td class="no-line text-right">$5</td>
                   </tr>
                   <%
-                    BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(15));
+                    BigDecimal finalTotal = p.getTotalPrice().add(BigDecimal.valueOf(5));
                   %>
                   <tr>
                     <td class="no-line"></td>
@@ -193,14 +194,8 @@
     </div>
   </div>
 
-
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="js/elsevier.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script>
-      $(document).foundation();
-  </script>
 </body>
 </html>
