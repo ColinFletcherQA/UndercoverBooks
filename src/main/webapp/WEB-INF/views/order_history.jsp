@@ -99,13 +99,10 @@
     </ol>
 
     <%!
-      Purchase firstOrder;
       List<Book> bookList;
     %>
     <%
-
-    %>
-    <%
+      System.out.println(orderList.size());
       if (orderList.isEmpty()) {
     %>
     <div class="row">
@@ -115,7 +112,6 @@
     </div>
     <%
       } else {
-        bookList = firstOrder.getBooks();
         for (int i = orderList.size()-1; i >= 0 ; i--) {
           Purchase order = orderList.get(i);
     %>

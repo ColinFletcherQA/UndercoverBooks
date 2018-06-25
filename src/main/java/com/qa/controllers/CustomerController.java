@@ -1,7 +1,9 @@
 package com.qa.controllers;
 
+import com.qa.models.Address;
 import com.qa.models.Customer;
 import com.qa.models.Purchase;
+import com.qa.services.AddressService;
 import com.qa.services.PurchaseHistoryService;
 import com.qa.repositories.PurchaseRepository;
 import com.qa.services.BookService;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.rmi.MarshalledObject;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -33,6 +36,9 @@ public class CustomerController {
 
 	@Autowired
 	private PurchaseHistoryService purchaseService;
+
+	@Autowired
+	private AddressService addressService;
 	
 	@RequestMapping("/")
 	public ModelAndView indexPage(HttpServletRequest request) {
@@ -106,7 +112,7 @@ public class CustomerController {
 
 		if (c != null) {
 			System.out.println("Success");
-			return new ModelAndView("index", "logged_in_customer", c);
+			return new ModelAndView("customer_home", "logged_in_customer", c);
 		} else {
 			System.out.println("Failure");
 			return new ModelAndView("login");
@@ -118,14 +124,19 @@ public class CustomerController {
 	    if(request.getSession().getAttribute("logged_in_customer") == null){
 	        return new ModelAndView("login");
         }
-		return new ModelAndView("customer_home","logged_in_customer",request.getSession().getAttribute("logged_in_customer"));
+        Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
+		Address customerAddress = (Address) addressService.getCustomerAddress(customer.getCustomerId());
+		ModelAndView modelAndView = new ModelAndView("customer_home","logged_in_customer",request.getSession().getAttribute("logged_in_customer"));
+		modelAndView.addObject("customer_address", customerAddress);
+		return modelAndView;
+
 	}
 	
 	@RequestMapping("/updateProfile")
 	public ModelAndView updateProfile(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Customer") Customer customer) {
 		System.out.println("Before update ");
 		System.out.println("ID " + loggedInCustomer.getCustomerId());
-		System.out.println("Name" + loggedInCustomer.getFirstName() + loggedInCustomer.getLastName());
+		System.out.println("Name " + loggedInCustomer.getFirstName() + loggedInCustomer.getLastName());
 		System.out.println("Email" + loggedInCustomer.getEmail());
 		
 		int recordsUpdated = customerService.updateCustomer(loggedInCustomer.getFirstName(), loggedInCustomer.getLastName(), loggedInCustomer.getEmail(), loggedInCustomer.getCustomerId());
