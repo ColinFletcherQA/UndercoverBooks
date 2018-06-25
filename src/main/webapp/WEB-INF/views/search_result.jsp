@@ -102,14 +102,31 @@
     </ol>
     <div class="row">
       <%
-        int counter = 0;
-        for (Book book : books) {
+        if (books.isEmpty()) {
+      %>
+        <div class="col-lg-1">
 
-          if (counter++ == 12) {
-            break;
-          }
-          String description = book.getDescription().replaceAll("<[^>]*>", "");
-          description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+        </div>
+        <div class="col-lg-10 mb-4">
+          <div class="card third_color">
+            <div class="card-header">
+              <h4 class="card-title text-center">No Results Found</h4>
+            </div>
+            <div class="card-body text-center">
+              <p>Sorry we could not find your book. Submit a request for us to get the book <a href="/contact">here</a></p>
+            </div>
+          </div>
+        </div>
+      <%
+        } else {
+          int counter = 0;
+          for (Book book : books) {
+
+            if (counter++ == 12) {
+              break;
+            }
+            String description = book.getDescription().replaceAll("<[^>]*>", "");
+            description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
       %>
 
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -128,6 +145,7 @@
         </div>
       </div>
       <%
+          }
         }
       %>
     </div>

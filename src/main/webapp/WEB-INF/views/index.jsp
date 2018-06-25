@@ -29,7 +29,7 @@
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
-            <select name = "searchOption" class="custom-select">
+            <select name="searchOption" class="custom-select">
                 <option value="title">Title</option>
                 <option value="isbn">ISBN / Kindle ASIN</option>
                 <option value="author">Author</option>
