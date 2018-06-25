@@ -100,7 +100,8 @@
       bookList = firstOrder.getBooks();
     %>
     <%
-      for (Purchase order: orderList) {
+      for (int i = orderList.size()-1; i >= 0 ; i--) {
+        Purchase order = orderList.get(i);
     %>
 
     <div class="row">

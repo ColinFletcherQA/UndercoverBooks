@@ -106,7 +106,7 @@ public class CustomerController {
 
 		if (c != null) {
 			System.out.println("Success");
-			return new ModelAndView("customer_home", "logged_in_customer", c);
+			return new ModelAndView("index", "logged_in_customer", c);
 		} else {
 			System.out.println("Failure");
 			return new ModelAndView("login");
