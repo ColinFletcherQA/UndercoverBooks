@@ -84,25 +84,33 @@
     </ol>
 
     <div class="row">
-      <%--<%--%>
-        <%--for (Tag tag : tagList) {--%>
-      <%--%>--%>
+      <div class="col-lg-1">
 
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card h-100 third_color">
-          <a href="/genreResults?tagName="><img class="card-img-top" src="" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              Adventure
-            </h4>
+      </div>
+      <div class="col-lg-10">
+        <div class="row">
+        <%
+          for (Tag tag : tagList) {
+              if (tag.getTagName().equalsIgnoreCase("best-seller")) {
+                  continue;
+              }
+        %>
+          <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 third_color">
+              <%--<a href="/genreResults?tagName="<%=tag.getTagName()%>><img class="card-img-top" src="" alt=""></a>--%>
+              <div class="card-body">
+                <h4 class="card-title text-center">
+                  <a href="/genreResults?tagName="<%=tag.getTagName()%>><%=tag.getTagName()%></a>
+                </h4>
+              </div>
+            </div>
           </div>
+        <%
+          }
+        %>
         </div>
       </div>
     </div>
-    <%--<%--%>
-      <%--}--%>
-    <%--%>--%>
-
   </div>
 
 

@@ -14,16 +14,16 @@
 
   <%!
     Customer c;
-    List<Book> books;
-    String searchTerm;
-    int pageNum;
-    int maxPages;
+//    List<Book> books;
+//    String searchTerm;
+//    int pageNum;
+//    int maxPages;
   %>
   <%
-    books = (List<Book>) request.getAttribute("search_result");
-    searchTerm = (String) request.getAttribute("search_term");
-    pageNum = (Integer) request.getAttribute("page");
-    maxPages = (Integer) request.getAttribute("maxPages");
+//    books = (List<Book>) request.getAttribute("search_result");
+//    searchTerm = (String) request.getAttribute("search_term");
+//    pageNum = (Integer) request.getAttribute("page");
+//    maxPages = (Integer) request.getAttribute("maxPages");
     try {
       c = (Customer) session.getAttribute("logged_in_customer");
     } catch(Exception e){
@@ -92,16 +92,16 @@
       <li class="breadcrumb-item active" aria-current="page"></li>
     </ol>
     <div class="row">
-      <%
-        int counter = 0;
-        for (Book book : books) {
+      <%--<%--%>
+        <%--int counter = 0;--%>
+        <%--for (Book book : books) {--%>
 
-          if (counter++ == 12) {
-            break;
-          }
-          String description = book.getDescription().replaceAll("<[^>]*>", "");
-          description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
-      %>
+          <%--if (counter++ == 12) {--%>
+            <%--break;--%>
+          <%--}--%>
+          <%--String description = book.getDescription().replaceAll("<[^>]*>", "");--%>
+          <%--description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";--%>
+      <%--%>--%>
 
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 third_color">
