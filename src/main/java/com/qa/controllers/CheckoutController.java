@@ -16,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -47,7 +48,7 @@ public class CheckoutController {
 			
 			if (preparedPurchaseResponse != null) {
 				//Ensure cartItems is built into the Purchase object
-				System.out.println(preparedPurchaseResponse.getOrderId());
+				purchase.setLocalQuantityMap(new HashMap<>(cartItems));
 			} else {
 				System.out.println("Purchase not submitted");
 			}
@@ -57,8 +58,8 @@ public class CheckoutController {
 
 		ModelAndView modelAndView = new ModelAndView("receipt");
 		modelAndView.addObject("shipping_address", address);
-		modelAndView.addObject("cart_items", cartItems);
 		modelAndView.addObject("purchase", purchase);
+		cartItems.clear();
 		return modelAndView;
 	}
 

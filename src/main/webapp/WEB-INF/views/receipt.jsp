@@ -35,7 +35,8 @@
     p = (Purchase) request.getAttribute("purchase");
     address = (Address) request.getAttribute("shipping_address");
     orderTotal = (BigDecimal) session.getAttribute("order_total");
-    cartItems = (Map<Book, Integer>) request.getAttribute("cart_items");
+    cartItems = p.getLocalQuantityMap();
+    System.out.println(p.getLocalQuantityMap());
   %>
 
   <!-- Start Top Bar -->
