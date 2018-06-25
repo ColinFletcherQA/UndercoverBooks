@@ -1,6 +1,8 @@
 package com.qa.repositories;
 
 import com.qa.models.Purchase;
+import org.hibernate.annotations.SQLUpdate;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
