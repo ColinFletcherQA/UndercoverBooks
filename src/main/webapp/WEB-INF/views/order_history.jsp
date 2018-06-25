@@ -35,6 +35,13 @@
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <select name="searchOption" class="custom-select">
+            <option value="title">Title</option>
+            <option value="isbn">ISBN / Kindle ASIN</option>
+            <option value="author">Author</option>
+            <option value="publisher">Publisher</option>
+            <option value="description">Description</option>
+          </select>
       </form>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -96,12 +103,21 @@
       List<Book> bookList;
     %>
     <%
-      firstOrder = orderList.get(7);
-      bookList = firstOrder.getBooks();
+
     %>
     <%
-      for (int i = orderList.size()-1; i >= 0 ; i--) {
-        Purchase order = orderList.get(i);
+      if (orderList.isEmpty()) {
+    %>
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="text-center">No Orders</h3>
+      </div>
+    </div>
+    <%
+      } else {
+        bookList = firstOrder.getBooks();
+        for (int i = orderList.size()-1; i >= 0 ; i--) {
+          Purchase order = orderList.get(i);
     %>
 
     <div class="row">
@@ -148,6 +164,7 @@
       </div>
     </div>
     <%
+        }
     }
     %>
   </div>
