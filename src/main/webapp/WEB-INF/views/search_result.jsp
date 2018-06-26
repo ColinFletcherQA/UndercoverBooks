@@ -108,12 +108,12 @@
 
         </div>
         <div class="col-lg-10 mb-4">
-          <div class="card forth_color">
+          <div class="card card_color">
             <div class="card-header">
               <h4 class="card-title text-center">No Results Found</h4>
             </div>
             <div class="card-body text-center">
-              <p>Sorry we could not find your book. Submit a request for us to get the book <a href="/contact">here</a></p>
+              <p>Sorry we could not find your book. Submit a request for us to get the book <button class="btn button_color" href="/contact"><span>here</span></button></p>
             </div>
           </div>
         </div>

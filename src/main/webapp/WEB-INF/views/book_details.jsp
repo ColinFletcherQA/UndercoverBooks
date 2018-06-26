@@ -39,7 +39,7 @@
 
     <!-- Start Top Bar -->
     <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
-      <div class="container-fluid navbar_padding">
+      <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -91,9 +91,11 @@
         </div>
       </div>
     </nav>
+
+    <br>
     <!-- End Top Bar -->
     <!-- Breadcrumb -->
-    <div class="container-fluid container_padding">
+    <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
       <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -167,8 +169,8 @@
                       <option value="printAndeBook">PrintBook & eBook</option>
                     </select>
                   </div>
-                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn third_color"><span>Add to Cart</span></a>
-                  <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
+                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn button_color"><span>Add to Cart</span></a>
+                  <a id="view-cart-anchor" class="btn button_color" href="/viewCart"><span id="view-cart-span"></span></a>
                 </form>
               </div>
             </div>
@@ -219,7 +221,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
                 <small>Posted by Anonymous on 3/1/17</small>
                 <hr>
-                <a href="#" class="btn button_color">Leave a Review</a>
+                <a href="#" class="btn button_color"><span>Leave a Review</span></a>
               </div>
           </div>
       </div>
