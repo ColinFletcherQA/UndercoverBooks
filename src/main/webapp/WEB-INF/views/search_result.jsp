@@ -130,7 +130,7 @@
       %>
 
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card h-100 forth_color">
+        <div class="card h-100 card_color">
           <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block" src="<%=book.getBookImage()%>" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
