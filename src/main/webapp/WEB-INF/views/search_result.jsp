@@ -35,7 +35,7 @@
 
 <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
-    <div class="container-fluid navbar_padding">
+    <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -88,8 +88,10 @@
     </div>
   </nav>
 
+  <br>
+
   <!-- Page Content -->
-  <div class="container-fluid container_padding">
+  <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Search Result
@@ -131,12 +133,12 @@
 
       <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 card_color">
-          <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block" src="<%=book.getBookImage()%>" alt=""></a>
+          <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block pt-4" src="<%=book.getBookImage()%>" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
               <%=book.getTitle()%>
             </h4>
-            <p class="card-subtitle mb-2 text-muted"> <%=book.getAuthors().get(0).getAuthorName()%></p>
+            <p class="card-subtitle mb-2"> <%=book.getAuthors().get(0).getAuthorName()%></p>
 
             <p class="card-text"><i><%=book.getPublisher()%></i></p>
 

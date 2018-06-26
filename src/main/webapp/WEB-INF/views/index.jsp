@@ -143,7 +143,7 @@
           %>
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
             <div class="card h-100 card_color">
-              <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=book.getBookImage()%>" alt=""></a>
+              <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid pt-4" src="<%=book.getBookImage()%>" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title ">
                   <div><%= book.getTitle()%></div>
