@@ -25,7 +25,7 @@
   %>
     
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark nav_background fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark second_color fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
@@ -80,7 +80,7 @@
       </div>
     </nav>
     <!-- End Top Bar -->
-    <div class="container">
+    <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Customer Home
       </h1>
       <ol class="breadcrumb">
@@ -93,7 +93,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card third_color">
+            <div class="card forth_color">
               <form action="/updateProfile" method="post">
                 <div class="card-body">
                   <h4 class="card-title text-center">Account Details</h4>
@@ -117,7 +117,7 @@
                       <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                   </div>
-                  <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
+                  <button type="submit" class="btn third_color"><span>Update Information</span></button>
                 </div>
               </form>
             </div>
@@ -128,7 +128,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card third_color">
+            <div class="card forth_color">
               <script>
                   var model = [];
                   model.flag ="${flag}";
@@ -156,7 +156,7 @@
                     </div>
                   </div>
                   <div id="password-flag"></div>
-                  <button type="submit" class="btn secondary_color"><span>Update Password</span></button>
+                  <button type="submit" class="btn third_color"><span>Update Password</span></button>
                 </div>
               </form>
             </div>
@@ -166,7 +166,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card third_color">
+            <div class="card forth_color">
               <form action="/updateAddress" method="post">
                 <div class="card-body">
                   <h4 class="card-title text-center">Update Shipping Address</h4>
@@ -208,7 +208,7 @@
                   </div>
                   <input type="hidden" name="addressType" value="shipping">
                   <input type="hidden" name="customerId" value="<%=c.getCustomerId()%>">
-                  <button type="submit" class="btn secondary_color"><span>Update Shipping Address</span></button>
+                  <button type="submit" class="btn third_color"><span>Update Shipping Address</span></button>
                 </div>
               </form>
             </div>
@@ -219,7 +219,7 @@
         <%--<div class="row">--%>
           <%--<div class="col-lg-2"></div>--%>
           <%--<div class="col-lg-8">--%>
-            <%--<div class="card third_color">--%>
+            <%--<div class="card pale_red_color">--%>
               <%--<form action="/updateAddress" method="post">--%>
                 <%--<div class="card-body">--%>
                   <%--<h4 class="card-title text-center">Update Billing Address</h4>--%>
@@ -259,7 +259,7 @@
                       <%--<input type="tel" class="form-control" id="billingphone" required>--%>
                     <%--</div>--%>
                   <%--</div>--%>
-                  <%--<button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>--%>
+                  <%--<button type="submit" class="btn dark_grey_color"><span>Update Billing Address</span></button>--%>
                 <%--</div>--%>
               <%--</form>--%>
             <%--</div>--%>

@@ -6,16 +6,17 @@
 
 
 :root {
-  --main-bg-color: #de5335;
-  --main-nav-color: #2e2e30;
-  --secondary-color: #21454a;
-  --third-color: #3a8589;
+  --pale-red: #de5335;
+  --dark-grey: #2e2e30;
+  --dark-blue-grey: #21454a;
+  --sea: #3a8589;
 }
 
 body {
   padding-top: 54px;
-  background-color: var(--main-bg-color);
+    background-color: white;
   font-family: Roboto;
+
 }
 
 @media (min-width: 992px) {
@@ -24,20 +25,43 @@ body {
   }
 }
 
+h1 {
+    font-family: Roboto;
+    font-weight: bold;
+    color: #21454a;
+}
+h2 {
+    font-family: Roboto;
+    color: #21454a;
+}
+
+.font_label {
+    font-family: Roboto;
+    color: #2E2E30;
+}
+
+.font_link {
+    font-family: Roboto;
+    color: #3A8589;
+}
+.font_price {
+    font-family: Roboto;
+    color: #2E2E30;
+}
 .breadcrumb {
-  background-color: var(--main-nav-color);
+  background-color: var(--sea);
 }
-.books_background {
-  background-color: var(--main-bg-color);
+.first_color {
+  background-color: var(--dark-blue-grey);
 }
-.nav_background {
-  background-color: var(--main-nav-color);
-}
-.secondary_color {
-  background-color: var(--secondary-color);
+.second_color {
+  background-color: var(--sea);
 }
 .third_color {
-  background-color: var(--third-color);
+  background-color: var(--dark-grey);
+}
+.forth_color {
+  background-color: var(--pale-red);
 }
 a > span {
   color: white;
@@ -66,5 +90,10 @@ a > div {
   line-height: .75;
   color: white;
   margin-bottom: 4px;
+}
+
+.front_page_img {
+    max-height: 300px;
+    width: auto;
 }
 

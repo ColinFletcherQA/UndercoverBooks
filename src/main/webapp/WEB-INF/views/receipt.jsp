@@ -39,7 +39,7 @@
   %>
 
   <!-- Start Top Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
     <div class="container">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
@@ -96,7 +96,7 @@
   <br>
 
   <div class="container">
-    <div class="card third_color">
+    <div class="card forth_color">
       <div class="card-title ml-2">
         <h2>Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
       </div>
@@ -137,7 +137,7 @@
     </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="card third_color mt-3">
+          <div class="card forth_color mt-3">
             <div class="card-header">
               <h3 class="card-title"><strong>Order summary</strong></h3>
             </div>

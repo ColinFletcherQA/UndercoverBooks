@@ -28,7 +28,7 @@
   %>
 
   <!-- Start Top Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
     <div class="container">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
@@ -82,7 +82,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Contact Us
@@ -99,7 +99,7 @@
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
       <div class="col-lg-6 mb-4">
-        <div class="card third_color">
+        <div class="card forth_color">
           <div class="card-body">
             <h3 class="card-title">Send us a Message</h3>
             <form>
@@ -119,7 +119,7 @@
                 <label for="message">Message:</label>
                 <textarea class="form-control" id="message" name="message" rows="3"></textarea>
               </div>
-              <button type="reset" class="btn secondary_color" data-toggle="modal" data-target="#messageModal">
+              <button type="reset" class="btn third_color" data-toggle="modal" data-target="#messageModal">
                 <span>Send Message</span>
               </button>
             </form>
@@ -127,7 +127,7 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="card third_color">
+        <div class="card forth_color">
           <div class="card-body">
             <h3 class="card-title">Request a Book</h3>
             <form>
@@ -139,7 +139,7 @@
                 <label for="bookAuthor">Book Author:</label>
                 <input class="form-control" id="bookAuthor" name="bookAuthor">
               </div>
-              <button type="reset" class="btn secondary_color" data-toggle="modal" data-target="#requestModal">
+              <button type="reset" class="btn third_color" data-toggle="modal" data-target="#requestModal">
                 <span>Request Book</span>
               </button>
             </form>
