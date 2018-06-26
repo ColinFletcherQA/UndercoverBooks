@@ -68,11 +68,14 @@ public class Book {
 	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Author> authors;
 
-	@Autowired @ElementCollection @Getter @Setter
+	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Book> similar_books;
 
 	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Tag> tags;
+
+	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
+	private List<Series> series;
 	
 	@Override
 	public boolean equals(Object o) {
