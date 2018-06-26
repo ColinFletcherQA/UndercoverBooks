@@ -101,6 +101,9 @@
                     <input name="password" type="password" class="form-control" id="password" required>
                   </div>
                 </div>
+                <div>
+                    ${login_flag.getMessage()}
+                </div>
                 <button type="submit" class="btn third_color"><span>Login</span></button>
               </form>
             </div>

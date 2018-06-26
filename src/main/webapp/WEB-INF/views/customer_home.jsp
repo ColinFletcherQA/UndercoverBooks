@@ -117,6 +117,9 @@
                       <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                   </div>
+                  <div>
+                    ${profile_flag.getMessage()}
+                  </div>
                   <button type="submit" class="btn third_color"><span>Update Information</span></button>
                 </div>
               </form>
@@ -129,11 +132,6 @@
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
             <div class="card forth_color">
-              <script>
-                  var model = [];
-                  model.flag ="${flag}";
-                  model.message ="${message}";
-              </script>
               <form action="/updatePassword" method="post" id="password">
                 <div class="card-body">
                   <h4 class="card-title text-center">Update Password</h4>
@@ -155,7 +153,9 @@
                       <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password" required>
                     </div>
                   </div>
-                  <div id="password-flag"></div>
+                  <div>
+                    ${password_flag.getMessage()}
+                  </div>
                   <button type="submit" class="btn third_color"><span>Update Password</span></button>
                 </div>
               </form>
@@ -208,6 +208,9 @@
                   </div>
                   <input type="hidden" name="addressType" value="shipping">
                   <input type="hidden" name="customerId" value="<%=c.getCustomerId()%>">
+                  <div>
+                    ${shipping_flag.getMessage()}
+                  </div>
                   <button type="submit" class="btn third_color"><span>Update Shipping Address</span></button>
                 </div>
               </form>
