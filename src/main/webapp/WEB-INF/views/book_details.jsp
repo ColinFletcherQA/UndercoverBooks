@@ -175,6 +175,34 @@
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+          <%
+            for(Book relatedBook : book.getSimilar_books()) {
+          %>
+              <div class="col-sm">
+                  <div class ="card forth_color">
+                      <div class="card-body">
+                        <a href="/bookDetails?bookId=<%=relatedBook.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=relatedBook.getBookImage()%>" alt=""></a>
+                      </div>
+                      <div class="card-footer">
+                        <h4><%=relatedBook.getTitle()%></h4>
+                        <p>$<%=relatedBook.getPrice()%></p>
+                      </div>
+                  </div>
+              </div>
+          <%
+            }
+           %>
+        </div>
+      </div>
+
+
+
+
+
+
       <div class="row mt-5">
         <div class="col-lg-12">
           <div class="card card-outline-secondary card_color">
