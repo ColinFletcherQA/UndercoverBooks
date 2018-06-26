@@ -93,7 +93,7 @@
     <!-- Intro Content -->
     <div class="row">
       <div class="col-lg-6">
-        <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
+        <img class="img-fluid rounded mb-4" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/a-team_1.jpg?itok=ZW8qovPC&resize=1100x619" alt="">
       </div>
       <div class="col-lg-6">
         <h2>About Undercover Books</h2>
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-lg-3 mb-3">
         <div class="card h-100 text-center card_color">
-          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <img class="card-img-top" src="http://popvinyls.com/wp-content/uploads/2017/06/bobross-750x450.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">Chandler Todd</h4>
             <h6 class="card-subtitle mb-2">Front End Designer</h6>
@@ -130,7 +130,7 @@
       </div>
       <div class="col-lg-3 mb-3">
         <div class="card h-100 text-center card_color">
-          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <img class="card-img-top" src="http://images.performgroup.com/di/library/omnisport/53/d3/mr-t-02242018-usnews-getty-ftr_h4a9qflymh1o1e93e92qubm9k.jpg?t=-970871431&w=960&quality=70" alt="">
           <div class="card-body">
             <h4 class="card-title">Jack McGinnis</h4>
             <h6 class="card-subtitle mb-">Developer</h6>
@@ -158,7 +158,7 @@
       </div>
       <div class="col-lg-3 mb-3">
         <div class="card h-100 text-center card_color">
-          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <img class="card-img-top" src="http://bloody-disgusting.com/wp-content/uploads/2017/07/CGI-egon-.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">Jacob Glickman</h4>
             <h6 class="card-subtitle mb-2">Developer</h6>
@@ -177,22 +177,22 @@
     <h2>Our Customers</h2>
     <div class="row">
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
       </div>
     </div>
     <!-- /.row -->

@@ -130,7 +130,7 @@
         <div class="card card_color">
           <div class="card-body">
             <h3 class="card-title">Request a Book</h3>
-            <form>
+            <form action="/requestBook" method="post">
               <div class="form-group">
                 <label for="bookTitle">Book Title:</label>
                 <input class="form-control" id="bookTitle" name="bookTitle">
@@ -140,11 +140,16 @@
                 <input class="form-control" id="bookAuthor" name="bookAuthor">
               </div>
               <button type="reset" class="btn button_color" data-toggle="modal" data-target="#requestModal">
+              <div>
+                ${request_flag.getMessage()}
+              </div>
+              <button type="submit" class="btn third_color">
                 <span>Request Book</span>
               </button>
             </form>
           </div>
         </div>
+
         <div class="modal" id="requestModal">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -162,6 +167,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -169,7 +175,9 @@
     <!-- /.row -->
   </div>
 
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="js/validator.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

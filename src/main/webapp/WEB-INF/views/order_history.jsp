@@ -140,6 +140,9 @@
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 text-right">
                   <h6>Order Number: <%=order.getOrderId()%></h6>
                 </div>
+                <div>
+                    <a href="/buyAgain?purId=<%=order.getOrderId()%>" class="btn third_color btn-lg btn-block"><span>Buy Again</span></a>
+                </div>
               </div>
             </div>
             <div class="card-body">

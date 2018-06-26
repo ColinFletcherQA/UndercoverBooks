@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -92,5 +92,13 @@ public class CheckoutController {
 		modelAndView.addObject("cart_items", cartItems);
 		return modelAndView;
 	}
-	
+
+	@RequestMapping("/buyAgain")
+	public ModelAndView buyAgain(@RequestParam(value = "purId", required = false) int purchaseId){
+        List<Book> purchasedBooks = purchaseService.getPurchaseBooksInformationById(purchaseId);
+        Map<Book, Integer> cartItems = purchaseService.getQuantityInformationByPurchaseIdAndBookIds(purchaseId, purchasedBooks);
+        ModelAndView modelAndView = new ModelAndView("cart_details");
+        modelAndView.addObject("cart_items", cartItems);
+	    return modelAndView;
+	}
 }
