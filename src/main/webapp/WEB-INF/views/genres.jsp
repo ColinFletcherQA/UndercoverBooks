@@ -25,8 +25,8 @@
     tagList = (List<Tag>) request.getAttribute("tag_list");
   %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
+    <div class="container-fluid navbar_padding">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -79,7 +79,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container-fluid container_padding">
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Genres
     </h1>
@@ -91,20 +91,14 @@
     </ol>
 
     <div class="row">
-      <div class="col-lg-1">
-
-      </div>
-      <div class="col-lg-10">
+      <div class="col-xl-12 col-lg-10">
         <div class="row">
         <%
           for (Tag tag : tagList) {
-              if (tag.getTagName().equalsIgnoreCase("Best Seller")) {
-                  continue;
-              }
         %>
-          <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
-            <div class="card h-100 forth_color">
-              <a href="/genreResults?tagName=<%=tag.getTagName()%>"><img class="card-img-top" src=<%=tag.getTagImage()%> alt=""></a>
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 card_color">
+              <a href="/genreResults?tagName=<%=tag.getTagName()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src=<%=tag.getTagImage()%> alt=""></a>
               <div class="card-body">
                 <h4 class="card-title text-center">
                   <a href="/genreResults?tagName=<%=tag.getTagName()%>"><%=tag.getTagName()%></a>

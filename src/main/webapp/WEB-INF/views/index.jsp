@@ -2,7 +2,7 @@
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
 
-<html class="no-js" lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,14 +24,14 @@
   %>
 
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top first_color">
-      <div class="container">
+    <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-dark fixed-top navbar_color">
+      <div class="container-fluid navbar_padding">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
             <select name="searchOption" class="custom-select">
                 <option value="title">Title</option>
-                <option value="isbn">ISBN / Kindle ASIN</option>
+                <option value="isbn">Kindle ASIN</option>
                 <option value="author">Author</option>
                 <option value="publisher">Publisher</option>
                 <option value="description">Description</option>
@@ -46,7 +46,7 @@
             if (c != null) {
             %>
             <li class="nav-item">
-              <a class="nav-link" href="/customerHome">Customer Home</a>
+              <a class="nav-link" id="customerHome" href="/customerHome">Customer Home</a>
             </li>
             <%
             } else {
@@ -56,8 +56,8 @@
                 Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/login">Login</a>
-                <a class="dropdown-item" href="/register">Register</a>
+                <a class="dropdown-item" id="login" href="/login">Login</a>
+                <a class="dropdown-item" id="register" href="/register">Register</a>
               </div>
             </li>
             <%
@@ -65,13 +65,13 @@
             %>
 
             <li class="nav-item">
-              <a class="nav-link" href="/about">About Us</a>
+              <a class="nav-link" id="aboutUs" href="/about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact Us</a>
+              <a class="nav-link" id="contactUs" href="/contact">Contact Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/viewCart">View Cart</a>
+              <a class="nav-link" id="viewCart" href="/viewCart">View Cart</a>
             </li>
           </ul>
         </div>
@@ -79,23 +79,23 @@
     </nav>
     <!-- End Top Bar -->
 
-    <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+    <div class="container-fluid container_padding mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
 
       <div class="row">
 
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-4">
 
-          <h1 class="mt-5 mt-xl-4 mt-lg-4 mt-md-1 mt-sm-1">Undercover Books</h1>
+          <h1 class="mt-5 mt-xl-4 mt-lg-4 mt-md-1 mt-sm-1" id="pageTitle">Undercover Books</h1>
           <div class="list-group">
-            <a href="/bestSellers" class="list-group-item first_color"><span>Best Sellers</span></a>
-            <a href="/newReleases" class="list-group-item first_color"><span>New Releases</span></a>
-            <a href="/genres" class="list-group-item first_color"><span>Genres</span></a>
+            <a href="/bestSellers" class="list-group-item categories_color" id="bestSellers"><span>Best Sellers</span></a>
+            <a href="/newReleases" class="list-group-item categories_color" id="newReleases"><span>New Releases</span></a>
+            <a href="/genres" class="list-group-item categories_color" id="genres"><span>Genres</span></a>
           </div>
 
         </div>
         <!-- /.col-lg-3 -->
 
-        <div class="col-lg-9">
+        <div class="col-xl-9 col-lg-8">
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -122,69 +122,68 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-          <h2 class="text-center mb-4"><strong>Featured Books</strong></h2>
-          <div class="row">
+        </div>
+      </div>
+      <h2 class="text-center mb-4"><strong>Featured Books</strong></h2>
+        <div class="row">
+          <%
+            List<Book> books = (List<Book>) request.getAttribute("books");
 
-            <%
-              List<Book> books = (List<Book>) request.getAttribute("books");
+            for (Book book : books) {
+              String description = book.getDescription();
 
-              for (Book book : books) {
-			          String description = book.getDescription();
+              description = description.substring(0, Math.min(150, description.length())) + "...";
+              description = description.replaceAll("<[^>]*>", "");
 
-				        description = description.substring(0, Math.min(150, description.length())) + "...";
-				        description = description.replaceAll("<[^>]*>", "");
+              Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
+              Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
+              Integer weightedAverage = (topValue / bottomValue);
 
-				        Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
-                Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
-                Integer weightedAverage = (topValue / bottomValue);
+          %>
+          <div class="col-xl-2 col-lg-3 col-md-4 mb-4">
+            <div class="card h-100 card_color">
+              <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=book.getBookImage()%>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title ">
+                  <div><%= book.getTitle()%></div>
+                </h4>
+                <h5>$<%= book.getPrice()%></h5>
+                 <%
+                   List<Author> authors = book.getAuthors();
 
-            %>
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100 forth_color">
-                <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=book.getBookImage()%>" alt=""></a>
-                <div class="card-body" style="color: #2E2E30">
-                  <h4 class="card-title ">
-                    <div><%= book.getTitle()%></div>
-                  </h4>
-                  <h5>$<%= book.getPrice()%></h5>
-                   <%
-                     List<Author> authors = book.getAuthors();
-
-                   	 if (!authors.isEmpty()) {
-                   %>
-                       <p class="card-subtitle mb-2"> <%=authors.get(0).getAuthorName()%></p>
-                   <%
-                     }
-                   %>
-                  <p class="card-text"><%=description%></p>
-                </div>
-                <div class="card-footer">
-                  <% if (weightedAverage == 5) {%>
-                    <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
-                  <%} else if (weightedAverage >= 4) {%>
-                    <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  <%} else if (weightedAverage >= 3) {%>
-                    <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
-                  <%} else if (weightedAverage >= 2) {%>
-                    <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
-                  <%} else if (weightedAverage >= 1) {%>
-                    <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
-                  <%} else if (weightedAverage >= 0) {%>
-                    <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
-                  <%}%>
-                </div>
+                   if (!authors.isEmpty()) {
+                 %>
+                     <p class="card-subtitle mb-2"> <%=authors.get(0).getAuthorName()%></p>
+                 <%
+                   }
+                 %>
+                <p class="card-text"><%=description%></p>
+              </div>
+              <div class="card-footer">
+                <% if (weightedAverage == 5) {%>
+                  <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+                <%} else if (weightedAverage >= 4) {%>
+                  <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <%} else if (weightedAverage >= 3) {%>
+                  <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 2) {%>
+                  <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 1) {%>
+                  <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 0) {%>
+                  <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+                <%}%>
               </div>
             </div>
-            <%
-              }
-            %>
-          <!-- /.row -->
-        </div>
-        <!-- /.col-lg-9 -->
+          </div>
+          <%
+            }
+          %>
+        <!-- /.row -->
       </div>
+      <!-- /.col-lg-9 -->
+    </div>
       <!-- /.row -->
-    </div>
-    </div>
     <!-- /.container -->
 
     <hr>

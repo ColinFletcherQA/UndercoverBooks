@@ -30,8 +30,8 @@
     orderList = (List<Purchase>) request.getAttribute("order_list");
   %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark second_color fixed-top">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark navbar_color fixed-top">
+    <div class="container-fluid navbar_padding">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -85,7 +85,7 @@
     </div>
   </nav>
 
-  <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+  <div class="container-fluid container_padding mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Order History
     </h1>
     <ol class="breadcrumb">
@@ -164,7 +164,7 @@
                 }
               %>
               </div>
-            </div>
+            </div>l
         </div>
       </div>
     </div>
