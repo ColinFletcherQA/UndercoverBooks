@@ -98,7 +98,7 @@ public class CustomerController {
         } catch (Exception e) {
 		    System.out.println(e.getLocalizedMessage());
             ModelAndView modelAndView = new ModelAndView("register");
-            modelAndView.addObject("registration_flag", new Flag("Network Error", 0));
+            modelAndView.addObject("registration_flag", new Flag("Email Already In Use", 0));
             return modelAndView;
         }
 	}
@@ -201,6 +201,8 @@ public class CustomerController {
 				modelAndView.addObject("password_flag", new Flag("Passwords Cannot Match", 0));
 			} else {
 				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
+				loggedInCustomer.setPassword(newPassword);
+				modelAndView.addObject("logged_in_customer", loggedInCustomer);
                 modelAndView.addObject("password_flag", new Flag("Updated", 1));
 			}
 		} else {
