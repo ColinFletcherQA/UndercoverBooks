@@ -33,12 +33,12 @@
     %>
 
 <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
-          <select name = "searchOption" class="custom-select">
+          <select name="searchOption" class="custom-select">
             <option value="title">Title</option>
             <option value="isbn">ISBN / Kindle ASIN</option>
             <option value="author">Author</option>
@@ -88,7 +88,7 @@
     </nav>
     <!-- End Top Bar -->
     <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="container">
+    <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Cart Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -112,7 +112,7 @@
                   cartTotal = cartTotal.add(totalPrice);
               %>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
-                  <div class="card third_color">
+                  <div class="card forth_color">
                     <img class="card-img-top" src="<%=book.getBookImage()%>"/>
                     <div class="card-body">
                       <form name="f1">
@@ -126,7 +126,7 @@
                         <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
                       </form>
                       <br>
-                      <a class="btn secondary_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
+                      <a class="btn third_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
                     </div>
                   </div>
                 </div>
@@ -137,7 +137,7 @@
             </div>
           </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-          <div class="card third_color">
+          <div class="card forth_color">
             <div class="card-header">
               <h3 class="card-title">Order Summary </h3>
             </div>
@@ -183,15 +183,15 @@
                 <%
                   if (bookCounts.isEmpty()) {
                 %>
-                    <button type="button" class="btn secondary_color" disabled><span>Proceed to Checkout</span></button>
+                    <button type="button" class="btn third_color" disabled><span>Proceed to Checkout</span></button>
                 <%
                   } else if (c != null) {
                 %>
-                    <button type="submit" class="btn secondary_color"><span>Proceed to Checkout</span></button>
+                    <button type="submit" class="btn third_color"><span>Proceed to Checkout</span></button>
                 <%
                   } else {
                 %>
-                    <a href="/login" class="btn secondary_color"><span>Login or Register</span></a>
+                    <a href="/login" class="btn third_color"><span>Login or Register</span></a>
                 <%
                   }
                 %>

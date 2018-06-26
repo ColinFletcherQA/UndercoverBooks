@@ -25,7 +25,7 @@
   %>
     
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark nav_background fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark second_color fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
@@ -80,7 +80,7 @@
       </div>
     </nav>
     <!-- End Top Bar -->
-    <div class="container">
+    <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Customer Home
       </h1>
       <ol class="breadcrumb">
@@ -93,31 +93,34 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card third_color">
+            <div class="card forth_color">
               <form action="/updateProfile" method="post">
                 <div class="card-body">
                   <h4 class="card-title text-center">Account Details</h4>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="firstName">First Name</label>
-                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>" value="<%=c.getFirstName()%>">
+                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="<%=c.getFirstName()%>">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="lastName">First Name</label>
-                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>" value="<%=c.getLastName()%>">
+                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="<%=c.getLastName()%>">
                       <div class="invalid-feedback">Please enter a last name</div>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="email">Email</label>
-                      <input name="email" id="email" type="text" class="form-control" placeholder="<%=c.getEmail()%>" value="<%=c.getEmail()%>">
+                      <input name="email" id="email" type="email" class="form-control" placeholder="<%=c.getEmail()%>">
                       <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                   </div>
-                  <button type="submit" class="btn secondary_color"><span>Update Information</span></button>
+                  <div>
+                    ${profile_flag.getMessage()}
+                  </div>
+                  <button type="submit" class="btn third_color"><span>Update Information</span></button>
                 </div>
               </form>
             </div>
@@ -128,35 +131,32 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card third_color">
-              <script>
-                  var model = [];
-                  model.flag ="${flag}";
-                  model.message ="${message}";
-              </script>
+            <div class="card forth_color">
               <form action="/updatePassword" method="post" id="password">
                 <div class="card-body">
                   <h4 class="card-title text-center">Update Password</h4>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="current_password">Current Password</label>
-                      <input name="current_password" id="current_password" class="form-control" type="password" placeholder="Current Password" required>
+                      <input name="current_password" id="current_password" class="form-control" type="password" placeholder="Current Password">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="new_password">New Password</label>
-                      <input name="new_password" id="new_password" class="form-control" type="password" placeholder="New Password" required>
+                      <input name="new_password" id="new_password" class="form-control" type="password" placeholder="New Password">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="new_password1">Confirm New Password</label>
-                      <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password" required>
+                      <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password">
                     </div>
                   </div>
-                  <div id="password-flag"></div>
-                  <button type="submit" class="btn secondary_color"><span>Update Password</span></button>
+                  <div>
+                    ${password_flag.getMessage()}
+                  </div>
+                  <button type="submit" class="btn third_color"><span>Update Password</span></button>
                 </div>
               </form>
             </div>
@@ -166,49 +166,52 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card third_color">
+            <div class="card forth_color">
               <form action="/updateAddress" method="post">
                 <div class="card-body">
                   <h4 class="card-title text-center">Update Shipping Address</h4>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="addressLine1">Address</label>
-                      <input type="text" class="form-control" name="addressLine1" id="addressLine1" value="<% if (address != null) { address.getAddressLine1();}%>" required>
+                      <input type="text" class="form-control" name="addressLine1" id="addressLine1" value="<% if (address != null) { address.getAddressLine1();}%>">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="addressLine2">Address 2</label>
-                      <input type="text" class="form-control" name="addressLine2" id="addressLine2" value="<% if (address != null) {address.getAddressLine2();}%>" required>
+                      <input type="text" class="form-control" name="addressLine2" id="addressLine2" value="<% if (address != null) {address.getAddressLine2();}%>" >
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-4">
                       <label for="city">City</label>
-                      <input type="text" class="form-control" name="city" id="city" value="<% if (address != null) {address.getCity();}%>" required>
+                      <input type="text" class="form-control" name="city" id="city" value="<% if (address != null) {address.getCity();}%>">
                     </div>
                     <div class="form-group col-lg-2">
                       <label for="postcode">Zip</label>
-                      <input type="text" class="form-control" name="postcode" id="postcode" value="<% if (address != null) {address.getPostcode();}%>" required>
+                      <input type="text" class="form-control" name="postcode" id="postcode" value="<% if (address != null) {address.getPostcode();}%>">
                     </div>
                     <div class="form-group col-lg-2">
                       <label for="state">State</label>
-                      <input type="text" class="form-control" name="state" id="state" placeholder="PA" value="<% if (address != null) {address.getState();}%>" required>
+                      <input type="text" class="form-control" name="state" id="state" placeholder="PA" value="<% if (address != null) {address.getState();}%>">
                     </div>
                     <div class="form-group col-lg-4">
                       <label for="country">Country</label>
-                      <input type="text" class="form-control" name="country" id="country" value="<% if (address != null) {address.getCountry();}%>" required>
+                      <input type="text" class="form-control" name="country" id="country" value="<% if (address != null) {address.getCountry();}%>">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-6">
                       <label for="phone">Phone Number</label>
-                      <input type="tel" class="form-control" name="phoneNumber" id="phone" value="<% if (address != null) {address.getPhoneNumber();}%>" required>
+                      <input type="tel" class="form-control" name="phoneNumber" id="phone" value="<% if (address != null) {address.getPhoneNumber();}%>">
                     </div>
                   </div>
                   <input type="hidden" name="addressType" value="shipping">
                   <input type="hidden" name="customerId" value="<%=c.getCustomerId()%>">
-                  <button type="submit" class="btn secondary_color"><span>Update Shipping Address</span></button>
+                  <div>
+                    ${shipping_flag.getMessage()}
+                  </div>
+                  <button type="submit" class="btn third_color"><span>Update Shipping Address</span></button>
                 </div>
               </form>
             </div>
@@ -219,7 +222,7 @@
         <%--<div class="row">--%>
           <%--<div class="col-lg-2"></div>--%>
           <%--<div class="col-lg-8">--%>
-            <%--<div class="card third_color">--%>
+            <%--<div class="card pale_red_color">--%>
               <%--<form action="/updateAddress" method="post">--%>
                 <%--<div class="card-body">--%>
                   <%--<h4 class="card-title text-center">Update Billing Address</h4>--%>
@@ -259,7 +262,7 @@
                       <%--<input type="tel" class="form-control" id="billingphone" required>--%>
                     <%--</div>--%>
                   <%--</div>--%>
-                  <%--<button type="submit" class="btn secondary_color"><span>Update Billing Address</span></button>--%>
+                  <%--<button type="submit" class="btn dark_grey_color"><span>Update Billing Address</span></button>--%>
                 <%--</div>--%>
               <%--</form>--%>
             <%--</div>--%>
@@ -273,7 +276,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="js/password.js"></script>
+  <script src="js/validator.js"></script>
   <script src="js/elsevier.js"></script>
     <script>
       $(document).foundation();

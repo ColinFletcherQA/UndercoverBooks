@@ -30,7 +30,7 @@
     orderList = (List<Purchase>) request.getAttribute("order_list");
   %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark nav_background fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark second_color fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
@@ -85,7 +85,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Order History
     </h1>
     <ol class="breadcrumb">
@@ -122,24 +122,26 @@
        <%--Placeholder --%>
       </div>
       <div class="col-lg-10">
-        <div class="card m-lg-3 third_color">
+        <div class="card m-lg-3 forth_color">
             <div class="card-header">
               <div class="row">
-                <div class="col-lg-3">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                   <h6>Order Date:</h6>
                   <small class="text-muted"><%=LocalDateTime.ofEpochSecond(order.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
                   <h6>Total:</h6>
                   <small class="text-muted">$<%=order.getTotalPrice()%></small>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3">
                   <h6>Shipped To:</h6>
                   <small class="text-muted"><%=order.getCustomer().getFirstName()%> <%=order.getCustomer().getLastName()%></small>
                 </div>
-                <div class="col-lg-3 text-right">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 text-right">
                   <h6>Order Number: <%=order.getOrderId()%></h6>
-                  <%--<small class="text-muted"><a href="#">Receipt</a></small>--%>
+                </div>
+                <div>
+                    <a href="/buyAgain?purId=<%=order.getOrderId()%>" class="btn third_color btn-lg btn-block"><span>Buy Again</span></a>
                 </div>
               </div>
             </div>
@@ -149,12 +151,13 @@
                 for(Book book : purchaseBooks) {
               %>
                 <div class="col-4-lg">
-                    <img class="card-img-top" src="<%=book.getBookImage()%>" alt="">
+                    <img class="card-img-top" style="max-height: 300px; width: auto;" src="<%=book.getBookImage()%>" alt="">
                 </div>
                 <div class="col-lg-1">
 
                 </div>
                 <div class="col-4-lg">
+                  Book Titles:
                     <%=book.getTitle()%>
                 </div>
               <%
