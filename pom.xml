@@ -6,7 +6,7 @@
     <groupId>ElsevierProject</groupId>
     <artifactId>ElsevierProject</artifactId>
     <version>1.4.1</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>ElsevierProject</name>
     <description>Case Study Week</description>
