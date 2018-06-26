@@ -21,7 +21,7 @@
       } catch(Exception e){
         c = null;
       }
-  address = (Address) request.getAttribute("Address");
+      address = (Address) request.getAttribute("Address");
   %>
     
     <!-- Start Top Bar -->
@@ -80,7 +80,10 @@
       </div>
     </nav>
     <!-- End Top Bar -->
-    <div class="container-fluid container_padding mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+
+    <br>
+
+    <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Customer Home
       </h1>
       <ol class="breadcrumb">
@@ -93,7 +96,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card forth_color">
+            <div class="card card_color">
               <form action="/updateProfile" method="post">
                 <div class="card-body">
                   <h4 class="card-title text-center">Account Details</h4>
@@ -120,7 +123,7 @@
                   <div>
                     ${profile_flag.getMessage()}
                   </div>
-                  <button type="submit" class="btn third_color"><span>Update Information</span></button>
+                  <button type="submit" class="btn button_color"><span>Update Information</span></button>
                 </div>
               </form>
             </div>
@@ -131,7 +134,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card forth_color">
+            <div class="card card_color">
               <form action="/updatePassword" method="post" id="password">
                 <div class="card-body">
                   <h4 class="card-title text-center">Update Password</h4>
@@ -156,7 +159,7 @@
                   <div>
                     ${password_flag.getMessage()}
                   </div>
-                  <button type="submit" class="btn third_color"><span>Update Password</span></button>
+                  <button type="submit" class="btn button_color"><span>Update Password</span></button>
                 </div>
               </form>
             </div>
@@ -166,7 +169,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card forth_color">
+            <div class="card card_color">
               <form action="/updateAddress" method="post">
                 <div class="card-body">
                   <h4 class="card-title text-center">Update Shipping Address</h4>
@@ -211,7 +214,7 @@
                   <div>
                     ${shipping_flag.getMessage()}
                   </div>
-                  <button type="submit" class="btn third_color"><span>Update Shipping Address</span></button>
+                  <button type="submit" class="btn button_color"><span>Update Shipping Address</span></button>
                 </div>
               </form>
             </div>

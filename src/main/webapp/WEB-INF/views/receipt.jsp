@@ -41,7 +41,7 @@
 
   <!-- Start Top Bar -->
   <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
-    <div class="container-fluid navbar_padding">
+    <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -96,10 +96,10 @@
 
   <br>
 
-  <div class="container-fluid container_padding">
-    <div class="card forth_color">
+  <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
+    <div class="card card_color">
       <div class="card-title ml-2">
-        <h2>Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
+        <h2 style="color: white">Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
       </div>
       <div class="row">
         <div class="col-lg-3 ml-2">
@@ -138,7 +138,7 @@
     </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="card forth_color mt-3">
+          <div class="card card_color mt-3">
             <div class="card-header">
               <h3 class="card-title"><strong>Order summary</strong></h3>
             </div>
