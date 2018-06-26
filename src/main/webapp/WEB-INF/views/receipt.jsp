@@ -40,8 +40,8 @@
   %>
 
   <!-- Start Top Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
+    <div class="container-fluid navbar_padding">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -96,7 +96,7 @@
 
   <br>
 
-  <div class="container">
+  <div class="container-fluid container_padding">
     <div class="card forth_color">
       <div class="card-title ml-2">
         <h2>Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>

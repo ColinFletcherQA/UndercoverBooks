@@ -36,8 +36,8 @@
   %>
 
      <!-- Start Top Bar -->
-     <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
-       <div class="container">
+     <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
+       <div class="container-fluid navbar_padding">
          <a class="navbar-brand" href="">Undercover Books</a>
          <form class="form-inline" action="/search">
            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -91,7 +91,7 @@
      </nav>
     <!-- End Top Bar -->
     <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="container" style="padding-bottom: 25px;">
+    <div class="container-fluid container_padding" style="padding-bottom: 25px;">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Checkout</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">

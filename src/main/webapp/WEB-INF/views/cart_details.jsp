@@ -33,8 +33,8 @@
     %>
 
 <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
-      <div class="container">
+    <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-dark fixed-top navbar_color">
+      <div class="container-fluid navbar_padding">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -88,7 +88,7 @@
     </nav>
     <!-- End Top Bar -->
     <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+    <div class="container-fluid container_padding mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Cart Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -112,7 +112,7 @@
                   cartTotal = cartTotal.add(totalPrice);
               %>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
-                  <div class="card forth_color">
+                  <div class="card card_color">
                     <img class="card-img-top" src="<%=book.getBookImage()%>"/>
                     <div class="card-body">
                       <form name="f1">
@@ -126,7 +126,7 @@
                         <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
                       </form>
                       <br>
-                      <a class="btn third_color" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
+                      <a class="btn button_color_warning" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
                     </div>
                   </div>
                 </div>
@@ -137,9 +137,9 @@
             </div>
           </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-          <div class="card forth_color">
+          <div class="card card_color">
             <div class="card-header">
-              <h3 class="card-title">Order Summary </h3>
+              <h3 class="card-title text-center">Order Summary </h3>
             </div>
             <div class="card-body">
               <div class="row">
@@ -176,22 +176,22 @@
                 </div>
               </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-center">
               <form action="/checkout" method="post" id="checkout_form">
                 <input type="hidden" name="tax_total" value="<%=totalTax%>"/>
                 <input type="hidden" name="order_total" value="<%=orderTotal%>"/>
                 <%
                   if (bookCounts.isEmpty()) {
                 %>
-                    <button type="button" class="btn third_color" disabled><span>Proceed to Checkout</span></button>
+                    <button type="button" class="btn button_color" disabled><span>Proceed to Checkout</span></button>
                 <%
                   } else if (c != null) {
                 %>
-                    <button type="submit" class="btn third_color"><span>Proceed to Checkout</span></button>
+                    <button type="submit" class="btn button_color"><span>Proceed to Checkout</span></button>
                 <%
                   } else {
                 %>
-                    <a href="/login" class="btn third_color"><span>Login or Register</span></a>
+                    <a href="/login" class="btn button_color"><span>Login or Register</span></a>
                 <%
                   }
                 %>

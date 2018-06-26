@@ -23,8 +23,8 @@
   %>
 
 <!-- Start Top Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
-    <div class="container">
+  <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-dark fixed-top navbar_color">
+    <div class="container-fluid navbar_padding">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -77,7 +77,7 @@
     </div>
   </nav>
 
-  <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+  <div class="container-fluid container_padding mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">About Us
@@ -115,11 +115,11 @@
 
     <div class="row">
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center forth_color">
+        <div class="card h-100 text-center card_color">
           <img class="card-img-top" src="http://placehold.it/750x450" alt="">
           <div class="card-body">
             <h4 class="card-title">Chandler Todd</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Front End Designer</h6>
+            <h6 class="card-subtitle mb-2">Front End Designer</h6>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
               ipsum fugiat odio officiis odit.</p>
           </div>
@@ -129,11 +129,11 @@
         </div>
       </div>
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center forth_color">
+        <div class="card h-100 text-center card_color">
           <img class="card-img-top" src="http://placehold.it/750x450" alt="">
           <div class="card-body">
             <h4 class="card-title">Jack McGinnis</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Developer</h6>
+            <h6 class="card-subtitle mb-">Developer</h6>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
               ipsum fugiat odio officiis odit.</p>
           </div>
@@ -143,11 +143,11 @@
         </div>
       </div>
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center forth_color">
+        <div class="card h-100 text-center card_color">
           <img class="card-img-top" src="https://s-media-cache-ak0.pinimg.com/originals/48/6e/40/486e40659620da6cbdf9dcd5858da314.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">Colin Fletcher</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Database Wizard</h6>
+            <h6 class="card-subtitle mb-2">Database Wizard</h6>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
               ipsum fugiat odio officiis odit.</p>
           </div>
@@ -157,11 +157,11 @@
         </div>
       </div>
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center forth_color">
+        <div class="card h-100 text-center card_color">
           <img class="card-img-top" src="http://placehold.it/750x450" alt="">
           <div class="card-body">
             <h4 class="card-title">Jacob Glickman</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Developer</h6>
+            <h6 class="card-subtitle mb-2">Developer</h6>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
               ipsum fugiat odio officiis odit.</p>
           </div>

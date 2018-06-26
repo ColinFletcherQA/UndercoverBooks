@@ -38,8 +38,8 @@
     %>
 
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
+      <div class="container-fluid navbar_padding">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -93,7 +93,7 @@
     </nav>
     <!-- End Top Bar -->
     <!-- Breadcrumb -->
-    <div class="container">
+    <div class="container-fluid container_padding">
       <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -107,8 +107,8 @@
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
           <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <div class="card forth_color">
-                <img class="card-img-top img-fluid" style="width: 100%; height: auto;" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
+              <div class="card card_color">
+                <img class="card-img-top book_details_img mx-auto d-block img-fluid" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
                   <h4>$<%=book.getPrice()%></h4>
@@ -134,7 +134,7 @@
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-outline-secondary forth_color">
+              <div class="card card-outline-secondary card_color">
                 <div class="card-body">
                   <h3 class="card-title">Book Description</h3>
                   <p class="card-text"><%=book.getDescription()%></p>
@@ -146,14 +146,14 @@
         <!-- Add to card -->
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10">
           <div class="col-lg-12 col-md-12">
-            <div class="card forth_color">
+            <div class="card card_color">
               <div class="card-body">
                 <h3 class="card-title"><%=book.getTitle() %></h3>
                   <%
                       for(Author author : book.getAuthors())
                       {
                   %>
-                    <h6 class="card-subtitle mb-2 text-muted"><%= author.getAuthorName() %></h6>
+                    <h6 class="card-subtitle mb-2"><%= author.getAuthorName() %></h6>
 
                   <%
                       }
@@ -177,21 +177,21 @@
       </div>
       <div class="row mt-5">
         <div class="col-lg-12">
-          <div class="card card-outline-secondary forth_color">
+          <div class="card card-outline-secondary card_color">
             <div class="card-header">
               Book Reviews
             </div>
               <div class="card-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <small>Posted by Anonymous on 3/1/17</small>
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <small>Posted by Anonymous on 3/1/17</small>
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <small>Posted by Anonymous on 3/1/17</small>
                 <hr>
-                <a href="#" class="btn btn-success">Leave a Review</a>
+                <a href="#" class="btn button_color">Leave a Review</a>
               </div>
           </div>
       </div>
