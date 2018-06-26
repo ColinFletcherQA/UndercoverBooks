@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -42,22 +44,22 @@ public class CheckoutController {
 			purchase.setShippingAddress(preparedAddressResponse);
 			purchase.setBooks(cartItems.keySet());
 
-			Purchase preparedPurchaseResponse = preparePurchase(purchase);
+			Purchase preparedPurchaseResponse = preparePurchase(purchase, cartItems);
 			
 			if (preparedPurchaseResponse != null) {
 				//Ensure cartItems is built into the Purchase object
-				System.out.println(preparedPurchaseResponse.getOrderId());
+				purchase.setLocalQuantityMap(new HashMap<>(cartItems));
 			} else {
 				System.out.println("Purchase not submitted");
 			}
 		} else {
 			System.out.println("Address not submitted");
 		}
-		
+
 		ModelAndView modelAndView = new ModelAndView("receipt");
 		modelAndView.addObject("shipping_address", address);
-		modelAndView.addObject("cart_items", cartItems);
 		modelAndView.addObject("purchase", purchase);
+		cartItems.clear();
 		return modelAndView;
 	}
 
@@ -75,9 +77,9 @@ public class CheckoutController {
 		}
 	}
 
-	private Purchase preparePurchase(Purchase purchase) {
+	private Purchase preparePurchase(Purchase purchase, Map<Book, Integer> quantityMap) {
 		try {
-			return purchaseService.makePurchase(purchase);
+			return purchaseService.makePurchase(purchase, quantityMap);
 		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
 			return null;

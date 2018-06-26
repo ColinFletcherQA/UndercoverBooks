@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -46,6 +47,9 @@ public class Purchase {
 
     @Getter @Setter
     private int time;
+
+    @Transient @Getter @Setter
+    private Map<Book, Integer> localQuantityMap;
 
     public List<Book> getBooksAsGenericList(){
         return new ArrayList<>(this.getBooks());

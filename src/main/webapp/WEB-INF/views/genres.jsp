@@ -104,7 +104,7 @@
         %>
           <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
             <div class="card h-100 forth_color">
-              <%--<a href="/genreResults?tagName="<%=tag.getTagName()%>><img class="card-img-top" src="" alt=""></a>--%>
+              <a href="/genreResults?tagName=<%=tag.getTagName()%>"><img class="card-img-top" src=<%=tag.getTagImage()%> alt=""></a>
               <div class="card-body">
                 <h4 class="card-title text-center">
                   <a href="/genreResults?tagName=<%=tag.getTagName()%>"><%=tag.getTagName()%></a>
