@@ -1,14 +1,14 @@
 package com.qa.controllers;
 
 import com.qa.models.Address;
+import com.qa.models.BookRequest;
 import com.qa.models.Customer;
 import com.qa.models.Purchase;
+import com.qa.repositories.BookRequestRepository;
 import com.qa.services.AddressService;
 import com.qa.services.PurchaseHistoryService;
-import com.qa.repositories.PurchaseRepository;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.rmi.MarshalledObject;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -30,6 +29,9 @@ public class CustomerController {
 
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+    private BookRequestRepository requestRepository;
 	
 	@Autowired
 	private CustomerService customerService;
@@ -193,6 +195,18 @@ public class CustomerController {
 	@RequestMapping("/contact")
 	public ModelAndView contactPage() {
 		return new ModelAndView("contact");
+	}
+
+	@RequestMapping("/requestBook")
+	public ModelAndView requestBook(@ModelAttribute("BookRequest")BookRequest bookRequest){
+	    ModelAndView contactModel = new ModelAndView("contact");
+	    try {
+            requestRepository.save(bookRequest);
+            contactModel.addObject("request_flag", "Request Submitted");
+        } catch (Exception ignored){
+            contactModel.addObject("request_flag", "Error Processing Request");
+        }
+	    return contactModel;
 	}
 
 	@RequestMapping("/about")
