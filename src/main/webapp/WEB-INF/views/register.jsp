@@ -118,7 +118,7 @@
                   </div>
                 </div>
                 <p>
-                ${flag}
+                    ${flag}
                 </p>
                 <button type="submit" class="btn third_color"><span>Register</span></button>
               </form>
