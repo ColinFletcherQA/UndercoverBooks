@@ -140,7 +140,7 @@
                 <input class="form-control" id="bookAuthor" name="bookAuthor">
               </div>
               <div>
-                ${request_flag}
+                ${request_flag.getMessage()}
               </div>
               <button type="submit" class="btn third_color">
                 <span>Request Book</span>

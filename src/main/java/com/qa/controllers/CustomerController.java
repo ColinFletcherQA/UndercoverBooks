@@ -1,9 +1,6 @@
 package com.qa.controllers;
 
-import com.qa.models.Address;
-import com.qa.models.BookRequest;
-import com.qa.models.Customer;
-import com.qa.models.Purchase;
+import com.qa.models.*;
 import com.qa.repositories.BookRequestRepository;
 import com.qa.services.AddressService;
 import com.qa.services.PurchaseHistoryService;
@@ -11,6 +8,7 @@ import com.qa.services.BookService;
 import com.qa.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,18 +87,18 @@ public class CustomerController {
                     return modelAndView;
                 } else {
                     ModelAndView modelAndView = new ModelAndView("register");
-                    modelAndView.addObject("flag", "Registration Failed 3!");
+                    modelAndView.addObject("registration_flag", new Flag("Could Not Login", 0));
                     return modelAndView;
                 }
             } else {
                 ModelAndView modelAndView = new ModelAndView("register");
-                modelAndView.addObject("flag", "Registration Failed 2!");
+                modelAndView.addObject("registration_flag", new Flag("Registration Failed", 0));
                 return modelAndView;
             }
         } catch (Exception e) {
 		    System.out.println(e.getLocalizedMessage());
             ModelAndView modelAndView = new ModelAndView("register");
-            modelAndView.addObject("flag", "Registration Failed 1!");
+            modelAndView.addObject("registration_flag", new Flag("Network Error", 0));
             return modelAndView;
         }
 	}
@@ -117,7 +115,9 @@ public class CustomerController {
 			return new ModelAndView("customer_home", "logged_in_customer", c);
 		} else {
 			System.out.println("Failure");
-			return new ModelAndView("login");
+			ModelAndView modelAndView = new ModelAndView("login");
+			modelAndView.addObject("login_flag", new Flag("Incorrect Username or Password", 0));
+			return modelAndView;
 		}
 	}
 	
@@ -150,12 +150,44 @@ public class CustomerController {
 			System.out.println("ID " + c.getCustomerId());
 			System.out.println("Name" + c.getFirstName() + c.getLastName());
 			System.out.println("Email" + c.getEmail());
-			
-			return new ModelAndView("customer_home", "logged_in_customer", c);
+
+            ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer", c);
+			modelAndView.addObject("profile_flag", new Flag("Profile Updated", 1));
+			return modelAndView;
 		}
 		
 		return new ModelAndView("customer_home", "logged_in_customer", loggedInCustomer);
 	}
+
+    @RequestMapping("/updateAddress")
+    public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
+        ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);;
+
+        if (addressService.getAddressIfAlreadyExists(address) != null) {
+            int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
+                    address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
+                    loggedInCustomer.getCustomerId(), address.getAddressType());
+            if(recordsUpdated > 0){
+                //Success
+                modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
+            } else {
+                //Failure
+                modelAndView.addObject("shipping_flag", new Flag("Update Failed", 0));
+            }
+        } else {
+            Address updatedAddress = addressService.saveAddress(address);
+            if(updatedAddress != null) {
+                modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
+            } else {
+                //Failure
+                modelAndView.addObject("shipping_flag", new Flag("Address Failed", 0));
+            }
+        }
+
+        modelAndView.addObject("Address", address);
+        return modelAndView;
+
+    }
 
 	@RequestMapping("/updatePassword")
 	public ModelAndView updatePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @RequestParam("current_password") String currentPassword, @RequestParam("new_password") String newPassword){
@@ -166,16 +198,13 @@ public class CustomerController {
 
 		if(loggedInCustomer.getPassword().equals(currentPassword)) {
 			if (currentPassword.equalsIgnoreCase(newPassword)) {
-				modelAndView.addObject("message", "Passwords cannot match");
-				modelAndView.addObject("flag", "ERROR");
+				modelAndView.addObject("password_flag", new Flag("Passwords Cannot Match", 0));
 			} else {
 				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);
-				modelAndView.addObject("message", "Password updated");
-				modelAndView.addObject("flag", "SUCCESS");
+                modelAndView.addObject("password_flag", new Flag("Updated", 1));
 			}
 		} else {
-			modelAndView.addObject("message", "Incorrect current password");
-			modelAndView.addObject("flag", "ERROR");
+            modelAndView.addObject("password_flag", new Flag("Incorrect Current Password", 0));
 		}
 
 		return modelAndView;
@@ -202,9 +231,9 @@ public class CustomerController {
 	    ModelAndView contactModel = new ModelAndView("contact");
 	    try {
             requestRepository.save(bookRequest);
-            contactModel.addObject("request_flag", "Request Submitted");
+            contactModel.addObject("request_flag", new Flag("Request Submitted", 1));
         } catch (Exception ignored){
-            contactModel.addObject("request_flag", "Error Processing Request");
+            contactModel.addObject("request_flag", new Flag("Error Submitting", 0));
         }
 	    return contactModel;
 	}
