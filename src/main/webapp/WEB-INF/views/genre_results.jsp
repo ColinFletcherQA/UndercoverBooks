@@ -31,7 +31,7 @@
 %>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
   <div class="container">
     <a class="navbar-brand" href="/">Undercover Books</a>
     <form class="form-inline" action="/search">
@@ -113,8 +113,8 @@
     %>
 
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-      <div class="card h-100 third_color">
-        <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top" src="<%=book.getBookImage()%>" alt=""></a>
+      <div class="card h-100 forth_color">
+        <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img" src="<%=book.getBookImage()%>" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
             <%=book.getTitle()%>

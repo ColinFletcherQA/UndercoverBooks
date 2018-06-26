@@ -22,7 +22,7 @@
   %>
 
   <!-- Start Top Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
     <div class="container">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
@@ -77,7 +77,7 @@
   </nav>
 
     <!-- End Top Bar -->
-    <div class="container">
+    <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
       <h1 class="mt-3 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Register
       </h1>
       <ol class="breadcrumb">
@@ -89,7 +89,7 @@
 
       <div class="row">
         <div class="col-lg-6">
-          <div class="card third_color">
+          <div class="card forth_color">
             <div class="card-body">
               <form action="/registerProcess" method="post">
                 <h3 class="card-title">Create an Account</h3>
@@ -120,7 +120,7 @@
                 <p>
                 ${flag}
                 </p>
-                <button type="submit" class="btn secondary_color"><span>Register</span></button>
+                <button type="submit" class="btn third_color"><span>Register</span></button>
               </form>
             </div>
           </div>

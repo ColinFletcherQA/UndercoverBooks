@@ -36,7 +36,7 @@
   %>
 
      <!-- Start Top Bar -->
-     <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+     <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
        <div class="container">
          <a class="navbar-brand" href="">Undercover Books</a>
          <form class="form-inline" action="/search">
@@ -104,7 +104,7 @@
       </ol>
       <div class="row">
         <div class="col-lg-4 order-lg-2">
-          <div class="card third_color">
+          <div class="card forth_color">
             <div class="card-body">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Your cart</span>
@@ -137,7 +137,7 @@
           </div>
         </div>
         <div class="col-lg-8 order-lg-1">
-          <div class="card third_color">
+          <div class="card forth_color">
             <div class="card-body">
               <form action="/checkoutProcess" method="post">
                 <h2>Shipping Information</h2>
@@ -291,7 +291,7 @@
             </div>
             <input type="hidden" name="totalPrice" value="<%=orderTotal %>"/>
             <input type="hidden" name="time" value="<%=Instant.now().toEpochMilli()/1000%>">
-            <button type="submit" class="btn secondary_color"><span>Checkout</span></button>
+            <button type="submit" class="btn third_color"><span>Checkout</span></button>
           </form>
           </div>
         </div>

@@ -23,7 +23,7 @@
   %>
 
 <!-- Start Top Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
     <div class="container">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
@@ -77,7 +77,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">About Us
@@ -115,7 +115,7 @@
 
     <div class="row">
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center third_color">
+        <div class="card h-100 text-center forth_color">
           <img class="card-img-top" src="http://placehold.it/750x450" alt="">
           <div class="card-body">
             <h4 class="card-title">Chandler Todd</h4>
@@ -129,7 +129,7 @@
         </div>
       </div>
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center third_color">
+        <div class="card h-100 text-center forth_color">
           <img class="card-img-top" src="http://placehold.it/750x450" alt="">
           <div class="card-body">
             <h4 class="card-title">Jack McGinnis</h4>
@@ -143,7 +143,7 @@
         </div>
       </div>
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center third_color">
+        <div class="card h-100 text-center forth_color">
           <img class="card-img-top" src="https://s-media-cache-ak0.pinimg.com/originals/48/6e/40/486e40659620da6cbdf9dcd5858da314.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">Colin Fletcher</h4>
@@ -157,7 +157,7 @@
         </div>
       </div>
       <div class="col-lg-3 mb-3">
-        <div class="card h-100 text-center third_color">
+        <div class="card h-100 text-center forth_color">
           <img class="card-img-top" src="http://placehold.it/750x450" alt="">
           <div class="card-body">
             <h4 class="card-title">Jacob Glickman</h4>

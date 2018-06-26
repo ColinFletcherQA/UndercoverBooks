@@ -38,7 +38,7 @@
     %>
 
     <!-- Start Top Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav_background">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top second_color">
       <div class="container">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
@@ -107,7 +107,7 @@
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
           <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <div class="card third_color">
+              <div class="card forth_color">
                 <img class="card-img-top img-fluid" style="width: 100%; height: auto;" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
@@ -134,7 +134,7 @@
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-outline-secondary third_color">
+              <div class="card card-outline-secondary forth_color">
                 <div class="card-body">
                   <h3 class="card-title">Book Description</h3>
                   <p class="card-text"><%=book.getDescription()%></p>
@@ -146,7 +146,7 @@
         <!-- Add to card -->
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10">
           <div class="col-lg-12 col-md-12">
-            <div class="card third_color">
+            <div class="card forth_color">
               <div class="card-body">
                 <h3 class="card-title"><%=book.getTitle() %></h3>
                   <%
@@ -167,7 +167,7 @@
                       <option value="printAndeBook">PrintBook & eBook</option>
                     </select>
                   </div>
-                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn secondary_color"><span>Add to Cart</span></a>
+                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn third_color"><span>Add to Cart</span></a>
                   <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
                 </form>
               </div>
@@ -177,7 +177,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-lg-12">
-          <div class="card card-outline-secondary third_color">
+          <div class="card card-outline-secondary forth_color">
             <div class="card-header">
               Book Reviews
             </div>
