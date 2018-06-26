@@ -58,8 +58,9 @@ public class PurchaseHistoryService {
         return purchaseRepository.getCustomerPurchaseHistory(customer.getCustomerId());
     }
 
-    public Purchase getPurchaseInformationById(int orderId){
-        return purchaseRepository.findOne(orderId);
+    public List<Book> getPurchaseBooksInformationById(int orderId){
+        Purchase purchase = purchaseRepository.findOne(orderId);
+        return purchase.getBooksAsGenericList();
     }
 
     @org.springframework.transaction.annotation.Transactional

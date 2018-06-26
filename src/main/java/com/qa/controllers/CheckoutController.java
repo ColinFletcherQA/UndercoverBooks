@@ -8,6 +8,7 @@ import com.qa.services.AddressService;
 import com.qa.services.PurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -91,5 +93,16 @@ public class CheckoutController {
 		modelAndView.addObject("cart_items", cartItems);
 		return modelAndView;
 	}
-	
+
+	@RequestMapping("/buyAgain")
+	public ModelAndView buyAgain(@RequestParam(value = "purId", required = false) int purchaseId){
+        List<Book> purchasedBooks = purchaseService.getPurchaseBooksInformationById(purchaseId);
+        Map<Book, Integer> cartItems = new HashMap<>();
+        for(Book book : purchasedBooks){
+            cartItems.put(book, 1);
+        }
+        ModelAndView modelAndView = new ModelAndView("cart_details");
+        modelAndView.addObject("cart_items", cartItems);
+	    return modelAndView;
+	}
 }
