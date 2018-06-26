@@ -170,7 +170,7 @@
                     </select>
                   </div>
                   <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn button_color"><span>Add to Cart</span></a>
-                  <a id="view-cart-anchor" class="btn button_color" href="/viewCart"><span id="view-cart-span"></span></a>
+                  <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
                 </form>
               </div>
             </div>
