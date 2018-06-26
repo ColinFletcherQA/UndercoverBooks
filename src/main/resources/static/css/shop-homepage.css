@@ -6,24 +6,37 @@
 
 
 :root {
-  --pale-red: #de5335;
-  --dark-grey: #2e2e30;
-  --dark-blue-grey: #21454a;
-  --sea: #3a8589;
+  --independence: #495867;
+  --ucla-blue: #577399;
+  --pale-aqua: #BDD5ea;
+  --sunset-orange: #FE5F55;
+  --blue-green: #2ec4b6;
 }
 
 body {
   padding-top: 54px;
-    background-color: white;
+  background-color: white;
   font-family: Roboto;
 
 }
-
-@media (min-width: 992px) {
-  body {
-    padding-top: 56px;
-  }
+.container_padding {
+    padding-left: 150px;
+    padding-right: 150px;
 }
+.navbar_padding {
+    padding-left: 135px;
+    padding-right: 135px;
+}
+.card_height {
+    max-height: 550px;
+    width: auto;
+}
+
+/*@media (min-width: 992px) {*/
+  /*body {*/
+    /*padding-top: 56px;*/
+  /*}*/
+/*}*/
 
 h1 {
     font-family: Roboto;
@@ -49,30 +62,36 @@ h2 {
     color: #2E2E30;
 }
 .breadcrumb {
-  background-color: var(--sea);
+  background-color: var(--independence);
 }
 .first_color {
-  background-color: var(--dark-blue-grey);
+  background-color: var(--independence);
 }
-.second_color {
-  background-color: var(--sea);
+.navbar_color {
+  background-color: var(--independence);
 }
 .third_color {
-  background-color: var(--dark-grey);
+  background-color: var(--pale-aqua);
 }
 .forth_color {
-  background-color: var(--pale-red);
+  background-color: var(--sunset-orange);
 }
-a > span {
+.categories_color {
+  background-color: var(--independence);
+}
+.card_color {
+  background-color: var(--ucla-blue);
   color: white;
 }
-button > span {
+.button_color {
+  background-color: var(--blue-green);
+}
+.button_color_warning {
+  background-color: var(--sunset-orange);
+}
+.card_text_color {
   color: white;
 }
-a > div {
-  color: black;
-}
-
 .plus {
   font-size: 17px;
   padding: 3px;
@@ -91,9 +110,19 @@ a > div {
   color: white;
   margin-bottom: 4px;
 }
-
-.front_page_img {
-    max-height: 300px;
+.book_details_img {
+    max-height: 400px;
     width: auto;
 }
+.front_page_img {
+    max-height: 325px;
+    width: auto;
+}
+a > span {
+    color: white;
+}
+button > span {
+    color: white;
+}
+
 
