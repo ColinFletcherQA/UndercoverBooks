@@ -25,7 +25,7 @@
 
     <!-- Start Top Bar -->
     <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-dark fixed-top navbar_color">
-      <div class="container-fluid navbar_padding">
+      <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -78,12 +78,13 @@
       </div>
     </nav>
     <!-- End Top Bar -->
+    <br>
 
-    <div class="container-fluid container_padding mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+    <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
 
       <div class="row">
 
-        <div class="col-xl-3 col-lg-4">
+        <div class="col-xl-2 col-lg-4">
 
           <h1 class="mt-5 mt-xl-4 mt-lg-4 mt-md-1 mt-sm-1" id="pageTitle">Undercover Books</h1>
           <div class="list-group">
@@ -95,7 +96,7 @@
         </div>
         <!-- /.col-lg-3 -->
 
-        <div class="col-xl-9 col-lg-8">
+        <div class="col-xl-10 col-lg-8">
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -104,13 +105,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="d-block img-fluid" src="images/cover1.png" alt="First slide">
+                <img class="d-block img-fluid" src="images/cover12.png" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/cover2.png" alt="Second slide">
+                <img class="d-block img-fluid" src="images/cover13.jpg" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/cover3.png" alt="Third slide">
+                <img class="d-block img-fluid" src="images/cover14.jpg" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -140,7 +141,7 @@
               Integer weightedAverage = (topValue / bottomValue);
 
           %>
-          <div class="col-xl-2 col-lg-3 col-md-4 mb-4">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
             <div class="card h-100 card_color">
               <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=book.getBookImage()%>" alt=""></a>
               <div class="card-body">

@@ -37,7 +37,7 @@
 
      <!-- Start Top Bar -->
      <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
-       <div class="container-fluid navbar_padding">
+       <div class="container-fluid px-4">
          <a class="navbar-brand" href="">Undercover Books</a>
          <form class="form-inline" action="/search">
            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -89,9 +89,11 @@
          </div>
        </div>
      </nav>
+
+    <br>
     <!-- End Top Bar -->
     <!-- You can now combine a row and column if you just need a 12 column row -->
-    <div class="container-fluid container_padding" style="padding-bottom: 25px;">
+    <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0" style="padding-bottom: 25px;">
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Checkout</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -104,10 +106,10 @@
       </ol>
       <div class="row">
         <div class="col-lg-4 order-lg-2">
-          <div class="card forth_color">
-            <div class="card-body">
+          <div class="card card_color">
+            <div class="card-body" style="color: #0a0a0a;">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Your cart</span>
+                <span style="color: white">Your cart</span>
                 <span class="badge badge-secondary badge-pill"><%=cartItems.size()%></span>
               </h4>
               <ul class="list-group mb-3">
@@ -117,16 +119,16 @@
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                   <div>
                     <h6><%=book.getTitle()%></h6>
-                    <small class="text-muted">Authors</small>
+                    <small><%=book.getAuthors().get(0).getAuthorName()%></small>
                   </div>
-                  <span class="text-muted">$<%=book.getPrice()%></span>
+                  <span>$<%=book.getPrice()%></span>
                 </li>
                 <%
                   }
                 %>
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Tax </span>
-                  <strong>$<%=taxTotal%></strong>
+                  <span>$<%=taxTotal%></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Total (USD)</span>
@@ -137,10 +139,10 @@
           </div>
         </div>
         <div class="col-lg-8 order-lg-1">
-          <div class="card forth_color">
+          <div class="card card_color">
             <div class="card-body">
               <form action="/checkoutProcess" method="post">
-                <h2>Shipping Information</h2>
+                <h2 style="color: white">Shipping Information</h2>
                 <div class="form-row">
                   <div class="form-group col-lg-6">
                     <label for="firstName">First Name</label>
@@ -201,7 +203,7 @@
                 </div>
             <div id="billing">
               <br>
-              <h2>Billing Address</h2>
+              <h2 style="color: white">Billing Address</h2>
               <div class="form-row">
                 <div class="form-group col-lg-6">
                   <label for="firstName1">First Name</label>
@@ -254,7 +256,7 @@
               </div>
             </div>
             <br>
-            <h2>Payment</h2>
+            <h2 style="color: white">Payment</h2>
             <div class="form-row">
               <div class="form-group col-lg-12">
                 <div class="form-check">
@@ -291,7 +293,7 @@
             </div>
             <input type="hidden" name="totalPrice" value="<%=orderTotal %>"/>
             <input type="hidden" name="time" value="<%=Instant.now().toEpochMilli()/1000%>">
-            <button type="submit" class="btn third_color"><span>Checkout</span></button>
+            <button type="submit" class="btn button_color"><span>Checkout</span></button>
           </form>
           </div>
         </div>

@@ -26,7 +26,7 @@
   %>
 
   <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
-    <div class="container-fluid navbar_padding">
+    <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -79,7 +79,9 @@
     </div>
   </nav>
 
-  <div class="container-fluid container_padding">
+  <br>
+
+  <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Genres
     </h1>
@@ -101,7 +103,7 @@
               <a href="/genreResults?tagName=<%=tag.getTagName()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src=<%=tag.getTagImage()%> alt=""></a>
               <div class="card-body">
                 <h4 class="card-title text-center">
-                  <a href="/genreResults?tagName=<%=tag.getTagName()%>"><%=tag.getTagName()%></a>
+                  <a href="/genreResults?tagName=<%=tag.getTagName()%>"><span><%=tag.getTagName()%></span></a>
                 </h4>
               </div>
             </div>
