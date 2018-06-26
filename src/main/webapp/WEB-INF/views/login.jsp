@@ -101,11 +101,10 @@
                     <input name="password" type="password" class="form-control" id="password" required>
                   </div>
                 </div>
-                <button type="submit" class="btn button_color" id="loginButton"><span>Login</span></button>
                 <div>
                     ${login_flag.getMessage()}
                 </div>
-                <button type="submit" class="btn third_color"><span>Login</span></button>
+                <button type="submit" class="btn button_color"><span>Login</span></button>
               </form>
             </div>
           </div>

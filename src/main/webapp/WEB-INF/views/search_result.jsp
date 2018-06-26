@@ -34,8 +34,8 @@
   %>
 
 <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar_color">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
+    <div class="container-fluid navbar_padding">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
         <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -89,7 +89,7 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container-fluid container_padding">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Search Result
@@ -129,7 +129,7 @@
             description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
       %>
 
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 card_color">
           <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block" src="<%=book.getBookImage()%>" alt=""></a>
           <div class="card-body">

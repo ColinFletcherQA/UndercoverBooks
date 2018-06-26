@@ -139,35 +139,14 @@
                 <label for="bookAuthor">Book Author:</label>
                 <input class="form-control" id="bookAuthor" name="bookAuthor">
               </div>
-              <button type="reset" class="btn button_color" data-toggle="modal" data-target="#requestModal">
               <div>
                 ${request_flag.getMessage()}
               </div>
-              <button type="submit" class="btn third_color">
+              <button type="submit" class="btn button_color">
                 <span>Request Book</span>
               </button>
             </form>
           </div>
-        </div>
-
-        <div class="modal" id="requestModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-body">
-                <h4 class="modal-title text-center">Request Submitted</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal" id="messageModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-body">
-                <h4 class="modal-title text-center">Message Sent</h4>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 
