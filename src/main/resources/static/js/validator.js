@@ -10,8 +10,9 @@ $(document).ready(function() {
                 var input = $(this);
                 var inputType = input.attr('type');
 
-                if(input.css('display') == 'none'){
+                if(input.css('display') != 'none'){
                     if(inputType == 'text' || inputType == 'email' || inputType == 'password'){
+
                         if(input.attr('name') != 'addressLine2'){
                             if(!input.val()){
                                 input.css('border', '3px solid red');
