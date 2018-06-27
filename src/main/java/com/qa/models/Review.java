@@ -13,6 +13,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "customerId")
+    @Setter @Getter
     public Customer customer;
 
     @Getter @Setter
