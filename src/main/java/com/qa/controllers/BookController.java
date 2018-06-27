@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.*;
@@ -256,7 +257,7 @@ public class BookController {
         Book book = em.find(Book.class, bookId);
 
         Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
-        Review reviewRequest = new Review(customer, review, 5);
+        Review reviewRequest = new Review(customer, review, 5, (int) (Instant.now().toEpochMilli()/1000));
 
         ModelAndView modelAndView = new ModelAndView("redirect:/bookDetails?bookId=" + bookId);
         Review reviewResponse = reviewService.postReview(reviewRequest);
