@@ -109,7 +109,7 @@
                 <div>
                     ${login_flag.getMessage()}
                 </div>
-                <button type="submit" class="btn button_color"><span>Login</span></button>
+                <button type="submit" class="btn button_color" id="loginButton"><span>Login</span></button>
               </form>
             </div>
           </div>
@@ -122,7 +122,7 @@
             <div class="card-body card_text_color">
               <h3 style="text-align: center" class="card-title">Don't have an account? Register Here</h3>
               <br>
-              <a href="/register" class="btn button_color btn-lg btn-block"><span>Register</span></a>
+              <a href="/register" class="btn button_color btn-lg btn-block" id="registerButton"><span>Register</span></a>
             </div>
           </div>
         </div>

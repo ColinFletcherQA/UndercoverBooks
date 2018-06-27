@@ -214,6 +214,27 @@
               }
             }
            %>
+      </div>
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <div class="card card-outline-secondary card_color">
+              <div class="card-header">
+                Book Reviews
+              </div>
+                <div class="card-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                  <small>Posted by Anonymous on 3/1/17</small>
+                  <hr>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                  <small>Posted by Anonymous on 3/1/17</small>
+                  <hr>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                  <small>Posted by Anonymous on 3/1/17</small>
+                  <hr>
+                  <a href="#" class="btn button_color"><span>Leave a Review</span></a>
+                </div>
+            </div>
+          </div>
         </div>
     </div>
 

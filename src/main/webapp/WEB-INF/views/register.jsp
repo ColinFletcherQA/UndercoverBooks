@@ -125,7 +125,7 @@
                 <p>
                     ${registration_flag.getMessage()}
                 </p>
-                <button type="submit" class="btn button_color"><span>Register</span></button>
+                <button type="submit" class="btn button_color" id="register"><span>Register</span></button>
               </form>
             </div>
           </div>
