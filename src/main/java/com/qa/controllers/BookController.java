@@ -210,6 +210,11 @@ public class BookController {
 		return modelAndView;
 	}
 
+	@RequestMapping("/series")
+	public ModelAndView series() {
+		return new ModelAndView("series");
+	}
+
 	private Integer setPage(@RequestParam(value = "page", required = false) Integer page, ModelAndView modelAndView, PagedListHolder<Book> pagedListHolder, String attribute) {
 		if(page == null || page < 1 || page > pagedListHolder.getPageCount()) {
 			page = 1;
