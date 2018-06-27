@@ -225,7 +225,7 @@ public class BookController {
 
 	@RequestMapping("/seriesResults")
 	public ModelAndView seriesResults(@RequestParam("seriesName") String seriesName) {
-		ModelAndView modelAndView = new ModelAndView("series_results");
+		ModelAndView modelAndView = new ModelAndView("series_results", "seriesName", seriesName);
 		List<Book> bookSeriesList = bookService.findAllBooksBySeriesName(seriesName);
 		modelAndView.addObject("book_series_list", bookSeriesList);
 		return modelAndView;
