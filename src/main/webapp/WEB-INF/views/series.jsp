@@ -1,4 +1,6 @@
 <%@ page import="com.qa.models.Customer" %>
+<%@ page import="com.qa.models.Series" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -12,9 +14,11 @@
     
     <!-- Start Top Bar -->
     <%!
+      List<Series> seriesList;
       Customer c;
     %>
     <%
+      seriesList = (List<Series>) request.getAttribute("series_list");
       c = (Customer) session.getAttribute("logged_in_customer");
     %>
 
@@ -89,42 +93,11 @@
         <input class="form-control" id="myInput" type="text" placeholder="Search for a specific series...">
         <br>
         <ul class="list-group" id="myList">
-          <li class="list-group-item">First item</li>
-          <li class="list-group-item">Second item</li>
-          <li class="list-group-item">Third item</li>
-          <li class="list-group-item">Fourth</li>
-          <li class="list-group-item">Fifth</li>
-          <li class="list-group-item">Sixth</li>
-          <li class="list-group-item">Seventh</li>
-          <li class="list-group-item">Eighth</li>
-          <li class="list-group-item">First item</li>
-          <li class="list-group-item">Second item</li>
-          <li class="list-group-item">Third item</li>
-          <li class="list-group-item">Fourth</li>
-          <li class="list-group-item">Fifth</li>
-          <li class="list-group-item">Sixth</li>
-          <li class="list-group-item">Seventh</li>
-          <li class="list-group-item">Eighth</li>
-          <li class="list-group-item">First item</li>
-          <li class="list-group-item">Second item</li>
-          <li class="list-group-item">Third item</li>
-          <li class="list-group-item">Fourth</li>
-          <li class="list-group-item">Fifth</li>
-          <li class="list-group-item">Sixth</li>
-          <li class="list-group-item">Seventh</li>
-          <li class="list-group-item">Eighth</li>
-          <li class="list-group-item">First item</li>
-          <li class="list-group-item">Second item</li>
-          <li class="list-group-item">Third item</li>
-          <li class="list-group-item">Fourth</li>
-          <li class="list-group-item">Fifth</li>
-          <li class="list-group-item">Sixth</li>
-          <li class="list-group-item">Seventh</li>
-          <li class="list-group-item">Eighth</li>
+          <%for (Series s : seriesList) {
+              %><li class="list-group-item"><%=s.getSeriesName()%></li>
+          <%}%>
         </ul>
       </div>
-      <div class="next">Next</div>
-      <div class="prev">Prev</div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

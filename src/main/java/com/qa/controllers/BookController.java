@@ -1,9 +1,11 @@
 package com.qa.controllers;
 
 import com.qa.models.Book;
+import com.qa.models.Series;
 import com.qa.models.Tag;
 import com.qa.repositories.BookRepository;
 import com.qa.repositories.TagRespository;
+import com.qa.services.SeriesService;
 import com.qa.services.TagService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class BookController {
 
 	@Autowired
 	private TagService tagService;
+
+	@Autowired
+	private SeriesService seriesService;
 	
 	@PersistenceContext
 	EntityManager em;
@@ -212,7 +217,18 @@ public class BookController {
 
 	@RequestMapping("/series")
 	public ModelAndView series() {
-		return new ModelAndView("series");
+		ModelAndView modelAndView = new ModelAndView("series");
+		List<Series> seriesList = (List<Series>) seriesService.getSeries();
+		modelAndView.addObject("series_list", seriesList);
+		return modelAndView;
+	}
+
+	@RequestMapping("/seriesResults")
+	public ModelAndView seriesResults(@RequestParam("seriesName") String seriesName) {
+		ModelAndView modelAndView = new ModelAndView("series_results");
+		List<Book> bookSeriesList = bookService.findAllBooksBySeriesName(seriesName);
+		modelAndView.addObject("book_series_list", bookSeriesList);
+		return modelAndView;
 	}
 
 	private Integer setPage(@RequestParam(value = "page", required = false) Integer page, ModelAndView modelAndView, PagedListHolder<Book> pagedListHolder, String attribute) {
