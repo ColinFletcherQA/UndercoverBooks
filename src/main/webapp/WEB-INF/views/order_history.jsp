@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Undercover Books</title>
   <link rel="stylesheet" href="css/bootstrap.css"/>
   <link rel="stylesheet" href="css/shop-homepage.css"/>
@@ -88,6 +88,9 @@
   <br>
 
   <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
+    <div class="row">
+
+    </div>
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Order History
     </h1>
     <ol class="breadcrumb">
@@ -120,27 +123,28 @@
     %>
 
     <div class="row">
-      <div class="col-lg-1">
+      <div class="col-xl-1 col-lg-1">
        <%--Placeholder --%>
       </div>
       <div class="col-lg-10">
         <div class="card m-lg-3 card_color">
             <div class="card-header">
               <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6 pb-4">
                   <h6>Order Date:</h6>
                   <small><%=LocalDateTime.ofEpochSecond(order.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                 </div>
-                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6 pb-4">
                   <h6>Total:</h6>
                   <small>$<%=order.getTotalPrice()%></small>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-6 pb-4">
                   <h6>Shipped To:</h6>
                   <small><%=order.getCustomer().getFirstName()%> <%=order.getCustomer().getLastName()%></small>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 text-right">
-                  <h6>Order Number: <%=order.getOrderId()%></h6>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6 pb-4">
+                  <h6>Order Number: </h6>
+                  <small>#<%=order.getOrderId()%></small>
                 </div>
                 <div>
                     <a href="/buyAgain?purId=<%=order.getOrderId()%>" class="btn button_color btn-lg btn-block"><span>Buy Again</span></a>

@@ -94,6 +94,9 @@
     <!-- End Top Bar -->
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0" style="padding-bottom: 25px;">
+      <div class="row">
+
+      </div>
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Checkout</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -105,7 +108,7 @@
         <li class="breadcrumb-item active" aria-current="page">Checkout</li>
       </ol>
       <div class="row">
-        <div class="col-lg-4 order-lg-2">
+        <div class="col-lg-4 order-lg-2 pb-4">
           <div class="card card_color">
             <div class="card-body" style="color: #0a0a0a;">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -138,7 +141,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-8 order-lg-1">
+        <div class="col-lg-8 order-lg- pb-4">
           <div class="card card_color">
             <div class="card-body">
               <form action="/checkoutProcess" method="post">

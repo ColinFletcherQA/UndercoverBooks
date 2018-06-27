@@ -91,6 +91,9 @@
     <!-- End Top Bar -->
     <!-- You can now combine a row and column if you just need a 12 column row -->
     <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
+      <div class="row">
+
+      </div>
       <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Cart Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -115,7 +118,7 @@
               %>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
                   <div class="card card_color">
-                    <img class="card-img-top" src="<%=book.getBookImage()%>"/>
+                    <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>"/>
                     <div class="card-body">
                       <form name="f1">
                         <input type="hidden" name="price" value="<%=price%>"/>
