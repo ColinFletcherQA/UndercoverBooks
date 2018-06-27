@@ -80,7 +80,10 @@
 
     <!-- End Top Bar -->
     <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
-      <h1 class="mt-3 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Register
+      <div class="row">
+
+      </div>
+      <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Register
       </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">

@@ -97,12 +97,14 @@
   <br>
 
   <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
-    <div class="card card_color">
+    <div class="row"></div>
+
+    <div class="card card_color mt-5">
       <div class="card-title ml-2">
         <h2 style="color: white">Invoice</h2><h3 class="pull-right">Order # <%=p.getOrderId()%></h3>
       </div>
       <div class="row">
-        <div class="col-lg-3 ml-2">
+        <div class="col-lg-3 col-sm-3 ml-2">
           <address>
             <strong>Billed To:</strong><br>
             <%=c.getFirstName()%> <%=c.getLastName()%><br>
@@ -111,7 +113,7 @@
             <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
           </address>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-sm-3 ml-2 ml-sm-0">
           <address>
             <strong>Shipped To:</strong><br>
             <%=c.getFirstName()%> <%=c.getLastName()%><br>
@@ -120,14 +122,14 @@
             <%=address.getCity()%>, <%=address.getState()%> <%=address.getPostcode()%>
           </address>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-sm-4 ml-2 ml-sm-0">
           <address>
             <strong>Payment Method:</strong><br>
             <%=p.getCardType()%> ending in <%=p.getCardNumber().substring(p.getCardNumber().length() - 4)%><br>
             <%=c.getEmail()%>
           </address>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-sm-2 ml-2 ml-sm-2">
           <address>
             <strong>Order Date:</strong><br>
             <%=LocalDateTime.ofEpochSecond(p.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%>
@@ -200,7 +202,6 @@
         </div>
       </div>
     </div>
-  </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
