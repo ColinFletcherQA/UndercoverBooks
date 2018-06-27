@@ -190,8 +190,15 @@ public class BookController {
 	public ModelAndView genreResults(@RequestParam("tagName") String tagName,
 									 @RequestParam(value = "page", required = false) Integer page) {
 		ModelAndView modelAndView = new ModelAndView("genre_results");
-		List<Book> booksFound = bookService.findAllBooksByTagName(tagName);
 
+		List<Book> booksFound = new ArrayList<>();
+
+		if (tagName.equals("Best Seller")) {
+			booksFound = bookService.getBestSellers();
+		}
+		else {
+			booksFound = bookService.findAllBooksByTagName(tagName);
+		}
 		PagedListHolder<Book> pagedListHolder = new PagedListHolder<>(booksFound);
 		pagedListHolder.setPageSize(12);
 		modelAndView.addObject("maxPages", pagedListHolder.getPageCount());

@@ -82,6 +82,9 @@
   <br>
 
   <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
+    <div class="row">
+
+    </div>
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Genres
     </h1>
@@ -100,7 +103,7 @@
         %>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100 card_color">
-              <a href="/genreResults?tagName=<%=tag.getTagName()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src=<%=tag.getTagImage()%> alt=""></a>
+              <a href="/genreResults?tagName=<%=tag.getTagName()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid pt-4" src=<%=tag.getTagImage()%> alt=""></a>
               <div class="card-body">
                 <h4 class="card-title text-center">
                   <a href="/genreResults?tagName=<%=tag.getTagName()%>"><span><%=tag.getTagName()%></span></a>

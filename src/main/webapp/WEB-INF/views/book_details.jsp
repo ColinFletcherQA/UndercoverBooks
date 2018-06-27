@@ -6,6 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Undercover Books</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
@@ -96,7 +97,10 @@
     <!-- End Top Bar -->
     <!-- Breadcrumb -->
     <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
-      <h1 class="mt-3 mt-xl-0 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
+      <div class="row">
+
+      </div>
+      <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Book Details</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="/"><span>Home</span></a>
@@ -108,9 +112,9 @@
       <div class="row">
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
           <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pb-4">
               <div class="card card_color">
-                <img class="card-img-top book_details_img mx-auto d-block img-fluid" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
+                <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
                   <h4>$<%=book.getPrice()%></h4>
@@ -135,7 +139,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pb-4">
               <div class="card card-outline-secondary card_color">
                 <div class="card-body">
                   <h3 class="card-title">Book Description</h3>
