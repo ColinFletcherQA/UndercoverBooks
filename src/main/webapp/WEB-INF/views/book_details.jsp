@@ -188,7 +188,7 @@
             for(Book relatedBook : book.getSimilar_books()) {
           %>
               <div class="col-xl-2 col-lg-3 col-md-4 pb-4">
-                  <div class="card card_color">
+                  <div class="card h-100 card_color">
                       <div class="card-body">
                         <a href="/bookDetails?bookId=<%=relatedBook.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=relatedBook.getBookImage()%>" alt=""></a>
                       </div>

@@ -91,6 +91,7 @@
             <a href="/bestSellers" class="list-group-item categories_color" id="bestSellers"><span>Best Sellers</span></a>
             <a href="/newReleases" class="list-group-item categories_color" id="newReleases"><span>New Releases</span></a>
             <a href="/genres" class="list-group-item categories_color" id="genres"><span>Genres</span></a>
+            <a href="/series" class="list-group-item categories_color" id="series"><span>Series</span></a>
           </div>
 
         </div>

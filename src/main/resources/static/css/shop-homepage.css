@@ -38,6 +38,10 @@ body {
   /*}*/
 /*}*/
 
+/*@media (min-width: 1250px) {*/
+
+/*}*/
+
 h1 {
     font-family: Roboto;
     font-weight: bold;
@@ -124,6 +128,14 @@ a > span {
 }
 button > span {
     color: white;
+}
+.page_nav {
+    color: var(--independence);
+}
+.series_block {
+    color: var(--independence);
+    font-size: 20px;
+    height: 100px;
 }
 
 

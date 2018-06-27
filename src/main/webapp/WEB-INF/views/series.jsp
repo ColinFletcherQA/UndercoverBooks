@@ -80,6 +80,9 @@
     <br>
     <!-- End Top Bar -->
     <div class="container-fluid px-5 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0">
+      <div class="row">
+
+      </div>
       <h1 class="mt-3 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Series
       </h1>
       <ol class="breadcrumb">
@@ -89,14 +92,24 @@
         <li class="breadcrumb-item active" aria-current="page">Series</li>
       </ol>
 
-      <div class="container">
-        <input class="form-control" id="myInput" type="text" placeholder="Search for a specific series...">
-        <br>
-        <ul class="list-group" id="myList">
-          <%for (Series s : seriesList) {
-              %><li class="list-group-item"><%=s.getSeriesName()%></li>
-          <%}%>
-        </ul>
+      <div class="row">
+        <input class="form-control mx-3 mb-4" id="myInput" type="text" placeholder="Search for a specific series...">
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-10">
+          <ul class="list-group" id="myList">
+            <div class="row">
+            <%
+              for (Series s : seriesList) {
+            %>
+              <li class="list-group-item col-lg-2 series_block text-center">
+                  <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>"><%=s.getSeriesName()%></a>
+              </li>
+            <%}%>
+            </div>
+          </ul>
+        </div>
       </div>
     </div>
 

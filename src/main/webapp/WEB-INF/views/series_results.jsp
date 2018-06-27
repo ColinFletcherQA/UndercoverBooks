@@ -12,26 +12,18 @@
 <body>
 
   <%!
+    List<Book> seriesBooks;
     Customer c;
-    List<Book> books;
-    int pageNum;
-    int maxPages;
-    String tagName;
+    String seriesName;
   %>
   <%
-    books = (List<Book>) request.getAttribute("books_found");
-    pageNum = (Integer) request.getAttribute("page");
-    maxPages = (Integer) request.getAttribute("maxPages");
-    tagName = (String) request.getAttribute("tagName");
-    try {
-      c = (Customer) session.getAttribute("logged_in_customer");
-    } catch(Exception e){
-      c = null;
-    }
+    seriesName = (String) request.getAttribute("seriesName");
+    seriesBooks = (List<Book>) request.getAttribute("book_series_list");
+    c = (Customer) session.getAttribute("logged_in_customer");
   %>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar_color">
+  <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
     <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
@@ -94,28 +86,27 @@
     </div>
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1"><%=tagName%>
+    <h1 class="mt-5 mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1">Series Results
     </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="/"><span>Home</span></a>
       </li>
       <li class="breadcrumb-item">
-        <a href="/genres"><span>Genres</span></a>
+        <a href="/series"><span>Series</span></a>
       </li>
-      <li class="breadcrumb-item active" aria-current="page"><%=tagName%></li>
+      <li class="breadcrumb-item active" aria-current="page"><%=seriesName%></li>
     </ol>
-
     <div class="row">
       <%
-        int counter = 0;
-        for (Book book : books) {
+        for (Book book : seriesBooks) {
 
-          if (counter++ == 12) {
-            break;
-          }
           String description = book.getDescription().replaceAll("<[^>]*>", "");
           description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+
+          Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
+          Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
+          Integer weightedAverage = (topValue / bottomValue);
       %>
 
       <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -131,58 +122,33 @@
 
             <p class="card-text"><%=description%></p>
           </div>
+          <div class="card-footer">
+            <% if (weightedAverage == 5) {%>
+            <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+            <%} else if (weightedAverage >= 4) {%>
+            <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            <%} else if (weightedAverage >= 3) {%>
+            <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 2) {%>
+            <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 1) {%>
+            <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 0) {%>
+            <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+            <%}%>
+          </div>
         </div>
       </div>
       <%
         }
       %>
     </div>
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center">
-      <li class="page-item<% if (pageNum <= 1) {%> disabled<%}%>">
-        <a class="page-link" href="/genreResults?tagName=<%=tagName%>&page=<%=(pageNum - 1)%>" aria-label="Previous">
-          <span aria-hidden="true" class="page_nav">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <% if (pageNum >= 3) { %>
-      <li class="page-item">
-        <a class="page-link page_nav" href="/genreResults?tagName=<%=tagName%>&page=<%=pageNum - 2%>"><%=pageNum - 2%></a>
-      </li>
-      <%}%>
-      <% if (pageNum >= 2) { %>
-      <li class="page-item">
-        <a class="page-link page_nav" href="/genreResults?tagName=<%=tagName%>&page=<%=pageNum - 1%>"><%=pageNum - 1%></a>
-      </li>
-      <%}%>
-      <li class="page-item disabled">
-        <a class="page-link page_nav" href="/genreResults?tagName=<%=tagName%>&page=<%=pageNum%>"><%=pageNum%></a>
-      </li>
-      <% if (maxPages >= pageNum + 1) { %>
-      <li class="page-item">
-        <a class="page-link page_nav" href="/genreResults?tagName=<%=tagName%>&page=<%=pageNum + 1%>"><%=pageNum + 1%></a>
-      </li>
-      <%}%>
-      <% if (maxPages >= pageNum + 2) { %>
-      <li class="page-item">
-        <a class="page-link page_nav" href="/genreResults?tagName=<%=tagName%>&page=<%=pageNum + 2%>"><%=pageNum + 2%></a>
-      </li>
-      <%}%>
-      <li class="page-item<% if (pageNum == maxPages) {%> disabled<%}%>">
-        <a class="page-link" href="/genreResults?tagName=<%=tagName%>&page=<%=(pageNum + 1)%>" aria-label="Next">
-          <span aria-hidden="true" class="page_nav">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
 
   </div>
-  <!-- /.container -->
 
-
-<!-- Bootstrap core JavaScript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>
