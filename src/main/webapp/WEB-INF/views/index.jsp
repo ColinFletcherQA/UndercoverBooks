@@ -30,11 +30,11 @@
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
             <select name="searchOption" class="custom-select">
-                <option value="title">Title</option>
-                <option value="isbn">ISBN / Kindle ASIN</option>
-                <option value="author">Author</option>
-                <option value="publisher">Publisher</option>
-                <option value="description">Description</option>
+                <option name="title" value="title">Title</option>
+                <option name="isbn" value="isbn">ISBN / Kindle ASIN</option>
+                <option name="author" value="author">Author</option>
+                <option name="publisher" value="publisher">Publisher</option>
+                <option name="description" value="description">Description</option>
             </select>
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class SeleniumTest {
 
@@ -131,8 +132,28 @@ public class SeleniumTest {
 	@Test
 	public void testSearchAuthor() throws InterruptedException {
 		openPage();
-
+		Select dropdown = new Select(driver.findElement(By.name("searchOption")));
+		dropdown.selectByVisibleText("Author");
+		Thread.sleep(1000);
+		WebElement searchBox = driver.findElement(By.name("searchTerm"));
+		searchBox.sendKeys("chandler");
+		searchBox.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		driver.findElement(By.className("breadcrumb"));
 	}
+	@Test
+	public void testSearchDescription() throws InterruptedException {
+		openPage();
+		Select dropdown = new Select(driver.findElement(By.name("searchOption")));
+		dropdown.selectByVisibleText("Description");
+		Thread.sleep(1000);
+		WebElement searchBox = driver.findElement(By.name("searchTerm"));
+		searchBox.sendKeys("vampire");
+		searchBox.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		driver.findElement(By.className("breadcrumb"));
+	}
+
 
 
 	public void openPage() throws InterruptedException {
