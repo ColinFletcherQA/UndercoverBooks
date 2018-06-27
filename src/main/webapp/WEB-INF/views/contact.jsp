@@ -124,7 +124,7 @@
                 <label for="message">Message:</label>
                 <textarea class="form-control" id="message" name="message" rows="3"></textarea>
               </div>
-              <button type="reset" class="btn button_color" data-toggle="modal" data-target="#messageModal">
+              <button type="submit" class="btn button_color">
                 <span>Send Message</span>
               </button>
             </form>
@@ -138,11 +138,11 @@
             <form action="/requestBook" method="post">
               <div class="form-group">
                 <label for="bookTitle">Book Title:</label>
-                <input class="form-control" id="bookTitle" name="bookTitle">
+                <input type="text" class="form-control" id="bookTitle" name="bookTitle">
               </div>
               <div class="form-group">
                 <label for="bookAuthor">Book Author:</label>
-                <input class="form-control" id="bookAuthor" name="bookAuthor">
+                <input type="text" class="form-control" id="bookAuthor" name="bookAuthor">
               </div>
               <div>
                 ${request_flag.getMessage()}
