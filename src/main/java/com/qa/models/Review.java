@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Review {
 
     @Id @GeneratedValue @Getter
-    private String reviewId;
+    private int reviewId;
 
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -21,6 +21,8 @@ public class Review {
 
     @Getter @Setter
     private int rating;
+
+    public Review(){}
 
     public Review(Customer customer, String review, int rating){
         this.customer = customer;
