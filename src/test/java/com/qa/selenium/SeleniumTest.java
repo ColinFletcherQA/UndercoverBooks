@@ -18,8 +18,11 @@ public class SeleniumTest {
 
 	@Test
 	public void navigateToHomePage() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+		WebDriver driver = new ChromeDriver();
 		openPage();
 	}
+  
 	@Test
 	public void navigateToBestSellers() throws InterruptedException {
 		openPage();
@@ -28,6 +31,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToNewReleases() throws InterruptedException {
 		openPage();
@@ -36,6 +40,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToGenres() throws InterruptedException {
 		openPage();
@@ -44,6 +49,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToSeries() throws InterruptedException {
 		openPage();
@@ -52,6 +58,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToAboutUs() throws InterruptedException {
 		openPage();
@@ -60,6 +67,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToContactUs() throws InterruptedException {
 		openPage();
@@ -68,6 +76,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToViewCart() throws InterruptedException {
 		openPage();
@@ -76,6 +85,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToLogin() throws InterruptedException {
 		openPage();
@@ -87,6 +97,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToRegister() throws InterruptedException {
 		openPage();
@@ -98,6 +109,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void navigateToBookDetails() throws InterruptedException {
 		openPage();
@@ -106,6 +118,7 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void login() throws InterruptedException {
 		navigateToLogin();
@@ -119,6 +132,7 @@ public class SeleniumTest {
 		Thread.sleep(2000);
 		driver.findElement(By.id("customerHome"));
 	}
+  
 	@Test
 	public void testSearchTitle() throws InterruptedException {
 		openPage();
@@ -128,16 +142,14 @@ public class SeleniumTest {
 		Thread.sleep(3000);
 		driver.findElement(By.className("breadcrumb"));
 	}
+  
 	@Test
 	public void testSearchAuthor() throws InterruptedException {
 		openPage();
-
 	}
-
 
 	public void openPage() throws InterruptedException {
 		driver.get("http://localhost:4444");
-//	  driver.get("http://bit.ly/undercoverbooks");
 		Thread.sleep(3000);
 	}
 
