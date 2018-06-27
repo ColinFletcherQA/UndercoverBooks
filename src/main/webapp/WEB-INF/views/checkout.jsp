@@ -32,7 +32,7 @@
     c = (Customer) session.getAttribute("logged_in_customer");
     orderTotal = (BigDecimal) request.getAttribute("order_total");
     taxTotal = (BigDecimal) request.getAttribute("tax_total");
-    cartItems = (LinkedHashMap<Book, Integer>) request.getAttribute("cart_items");
+    cartItems = (HashMap<Book, Integer>) request.getAttribute("cart_items");
   %>
 
      <!-- Start Top Bar -->
