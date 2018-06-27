@@ -8,11 +8,14 @@ import com.qa.services.AddressService;
 import com.qa.services.PurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -29,9 +32,21 @@ public class CheckoutController {
 	@Autowired
 	private AddressService addressService;
 
+	@RequestMapping("/receipt")
+    public ModelAndView receipt(ModelMap map, HttpServletRequest request){
+        Purchase requested = (Purchase) map.get("Purchase");
+        ModelAndView modelAndView = new ModelAndView("receipt");
+
+        if(requested != null){
+            request.getSession().setAttribute("purchase", requested);
+        }
+
+        return modelAndView;
+    }
+
 	@RequestMapping("/checkoutProcess")
-	public ModelAndView checkoutProcess(HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase, @ModelAttribute("Address") Address address, @ModelAttribute("cart_items") Map<Book, Integer> cartItems) {
-		Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
+	public String checkoutProcess(RedirectAttributes attributes, HttpServletRequest request, @ModelAttribute("Purchase") Purchase purchase, @ModelAttribute("Address") Address address, @ModelAttribute("cart_items") Map<Book, Integer> cartItems) {
+	    Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
 
 		address.setCustomerId(customer.getCustomerId());
 		Address preparedAddressResponse = prepareAddress(address);
@@ -56,11 +71,9 @@ public class CheckoutController {
 			System.out.println("Address not submitted");
 		}
 
-		ModelAndView modelAndView = new ModelAndView("receipt");
-		modelAndView.addObject("shipping_address", address);
-		modelAndView.addObject("purchase", purchase);
 		cartItems.clear();
-		return modelAndView;
+        attributes.addFlashAttribute("Purchase", purchase);
+		return "redirect:receipt";
 	}
 
 	private Address prepareAddress(Address address) {

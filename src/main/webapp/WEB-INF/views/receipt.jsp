@@ -32,11 +32,10 @@
     } catch (Exception e) {
         c = null;
     }
-    p = (Purchase) request.getAttribute("purchase");
-    address = (Address) request.getAttribute("shipping_address");
+    p = (Purchase) session.getAttribute("purchase");
+    address = (Address) p.getShippingAddress();
     orderTotal = (BigDecimal) session.getAttribute("order_total");
     cartItems = p.getLocalQuantityMap();
-    System.out.println(p.getLocalQuantityMap());
   %>
 
   <!-- Start Top Bar -->
