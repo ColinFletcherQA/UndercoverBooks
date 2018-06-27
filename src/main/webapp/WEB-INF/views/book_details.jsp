@@ -8,10 +8,11 @@
     <title>Undercover Books</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
+
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick/slick-theme.css"/>
     <%--<link rel="stylesheet" href="css/style.css">--%>
   </head>
   <body>
@@ -192,11 +193,12 @@
         if (book.getSimilar_books().isEmpty()) {
       %>
 
-          <%
-            } else {
-          %>
+      <%
+        } else {
+      %>
       <h2 class="text-center mt-2">Related Books</h2>
-      <div class="multiple-items" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+      <div class="row">
+      <%--<div class="multiple-items" data-slick='{"slidesToShow": 6, "slidesToScroll": 4'>--%>
           <%
             for(Book relatedBook : book.getSimilar_books()) {
           %>
@@ -217,10 +219,7 @@
            %>
       </div>
         <div class="row mt-5">
-          <div class="col-lg-1">
-
-          </div>
-          <div class="col-lg-10">
+          <div class="col-lg-6">
             <%
               if (book.getReview().isEmpty()) {
             %>
@@ -233,19 +232,19 @@
               <div class="card-header">
                 Book Reviews
               </div>
-                <div class="card-body">
-                  <%
-                    int counter = 0;
-                    for (Review review : book.getReview()) {
-                  %>
-                    <p><%=review.getReview()%></p>
-                    <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
-                    <hr>
+              <div class="card-body">
+                <%
+                  int counter = 0;
+                  for (Review review : book.getReview()) {
+                %>
+                  <p><%=review.getReview()%></p>
+                  <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
+                  <hr>
 
-                  <%
-                    }
-                  %>
-                </div>
+                <%
+                  }
+                %>
+              </div>
             </div>
 
             <%
@@ -258,7 +257,7 @@
               <div class="card-body">
                 <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
                   <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-12">
                       <div class="form-group">
                         <label for="review">Enter your comments here!</label>
                         <textarea class="form-control" name="review" id="review" rows="5"></textarea>
@@ -281,27 +280,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/book_details_handler.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-    <script>
-      function alertSuccess() {
-          alert(<div class="alert alert-success" role="alert">
-              This is a success alert—check it out!
-          </div>);
-      }
-    </script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script type="text/javascript">
-        $('.multiple-items').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: true
-        });
-    </script>
+
   </body>
 </html>
 
