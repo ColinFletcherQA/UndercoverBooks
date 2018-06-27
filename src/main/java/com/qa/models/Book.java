@@ -76,6 +76,9 @@ public class Book {
 
 	@Autowired @ElementCollection @Getter @Setter @OneToMany(fetch = FetchType.LAZY)
 	private List<Series> series;
+
+	@Getter @Setter @OneToMany
+	private List<Review> review;
 	
 	@Override
 	public boolean equals(Object o) {
