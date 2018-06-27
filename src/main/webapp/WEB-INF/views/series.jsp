@@ -104,7 +104,7 @@
               for (Series s : seriesList) {
             %>
               <li class="list-group-item col-lg-2 series_block text-center">
-                  <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>"><%=s.getSeriesName()%></a>
+                  <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>" class="series_link"><%=s.getSeriesName()%></a>
               </li>
             <%}%>
             </div>
