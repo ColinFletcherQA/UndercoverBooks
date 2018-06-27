@@ -1,8 +1,5 @@
 <!doctype html>
-<%@page import="com.qa.models.Book"%>
-<%@page import="com.qa.models.Author"%>
-<%@page import="com.qa.models.Customer"%>
-<%@ page import="com.qa.models.Series" %>
+<%@ page import="com.qa.models.*" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -216,36 +213,63 @@
            %>
       </div>
         <div class="row mt-5">
-          <div class="col-lg-12">
+          <div class="col-lg-1">
+
+          </div>
+          <div class="col-lg-10">
+            <%
+              if (book.getReview().isEmpty()) {
+            %>
+
+            <%
+              } else {
+            %>
+
             <div class="card card-outline-secondary card_color">
               <div class="card-header">
                 Book Reviews
               </div>
                 <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                  <small>Posted by Anonymous on 3/1/17</small>
-                  <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                  <small>Posted by Anonymous on 3/1/17</small>
-                  <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                  <small>Posted by Anonymous on 3/1/17</small>
-                  <hr>
-                  <a href="#" class="btn button_color"><span>Leave a Review</span></a>
+                  <%
+                    int counter = 0;
+                    for (Review review : book.getReview()) {
+                  %>
+                    <p><%=review.getReview()%></p>
+                    <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
+                    <hr>
+
+                  <%
+                    }
+                  %>
                 </div>
+            </div>
+
+            <%
+              }
+            %>
+            <%
+              if (c != null) {
+            %>
+            <div class="card card_color mt-4 mb-5">
+              <div class="card-body">
+                <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="form-group">
+                        <label for="review">Enter your comments here!</label>
+                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn button_color"><span>Leave a Review</span></button>
+                </form>
+              <%
+                }
+              %>
+              </div>
             </div>
           </div>
         </div>
-        <%
-            if (c != null) {
-        %>
-            <form action="/postReview?bookId=<%=book.getBookId()%>" method="POST">
-                <textarea name="review" id="review"></textarea>
-                <button type="submit" class="btn button_color">
-            </form>
-        <%
-            }
-        %>
     </div>
 
 
