@@ -45,7 +45,7 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     List<Book> findAllBooksByTagName(@Param("tag_name") String tagName);
 
     @Query(value = "SELECT b.* FROM book b, series s, book_series bs WHERE s.series_name = :series_name " +
-            "AND b.book_id = bs.book_book_id AND s.series_id = bs.series_series_id ORDER BY bs.part ASC", nativeQuery = true)
+            "AND b.book_id = bs.book_book_id AND s.series_id = bs.series_series_id ORDER BY LENGTH(bs.part) ASC, bs.part ASC", nativeQuery = true)
     List<Book> findAllBooksBySeriesName(@Param("series_name") String seriesName);
 
 }
