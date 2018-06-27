@@ -248,20 +248,23 @@ public class BookController {
 		return page;
 	}
 
-	//@Transactional
+	@org.springframework.transaction.annotation.Transactional
 	@RequestMapping("/postReview")
 	public ModelAndView postReview(HttpServletRequest request, @RequestParam("bookId") int bookId,
                                    @RequestParam("review") String review){
 
-        //Book book = em.find(Book.class, bookId);
+        Book book = em.find(Book.class, bookId);
 
         Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
         Review reviewRequest = new Review(customer, review, 5);
 
         ModelAndView modelAndView = new ModelAndView("redirect:/bookDetails?bookId=" + bookId);
-        if(reviewService.postReview(reviewRequest) != null){
+        Review reviewResponse = reviewService.postReview(reviewRequest);
+        if(reviewResponse != null){
             modelAndView.addObject("review_flag", new Flag("Review Submitted", 1));
-            //em.merge(book);
+            reviewService.associateReview(reviewResponse.getReviewId(), bookId);
+            em.merge(book);
+
         } else {
             modelAndView.addObject("review_flag", new Flag("Review Error", 0));
         }
