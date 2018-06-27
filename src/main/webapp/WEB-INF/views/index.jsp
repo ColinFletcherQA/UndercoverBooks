@@ -31,7 +31,7 @@
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
             <select name="searchOption" class="custom-select">
                 <option value="title">Title</option>
-                <option value="isbn">Kindle ASIN</option>
+                <option value="isbn">ISBN / Kindle ASIN</option>
                 <option value="author">Author</option>
                 <option value="publisher">Publisher</option>
                 <option value="description">Description</option>
@@ -91,6 +91,7 @@
             <a href="/bestSellers" class="list-group-item categories_color" id="bestSellers"><span>Best Sellers</span></a>
             <a href="/newReleases" class="list-group-item categories_color" id="newReleases"><span>New Releases</span></a>
             <a href="/genres" class="list-group-item categories_color" id="genres"><span>Genres</span></a>
+            <a href="/series" class="list-group-item categories_color" id="series"><span>Series</span></a>
           </div>
 
         </div>

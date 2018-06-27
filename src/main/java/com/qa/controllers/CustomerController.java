@@ -6,6 +6,7 @@ import com.qa.services.AddressService;
 import com.qa.services.PurchaseHistoryService;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
+import com.qa.util.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,6 +78,8 @@ public class CustomerController {
 		System.out.println("Customer First name is " + customer.getFirstName());
 		System.out.println("Customer Password is " + customer.getPassword());
 
+		customer.setPassword(PasswordHasher.getInstance().encrypt(customer.getPassword()));
+
 		try {
             if (customerService.saveCustomer(customer) != null) {
                 Customer c = customerService.loginProcess(customer.getEmail(), customer.getPassword());
@@ -108,7 +111,7 @@ public class CustomerController {
 		System.out.println("Email is " + email);
 		System.out.println("Password is " + password);
 		
-		Customer c = customerService.loginProcess(email, password);
+		Customer c = customerService.loginProcess(email, PasswordHasher.getInstance().encrypt(password));
 
 		if (c != null) {
 			System.out.println("Success");

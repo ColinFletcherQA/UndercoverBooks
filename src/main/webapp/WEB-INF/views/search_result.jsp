@@ -136,7 +136,7 @@
 
       <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 card_color">
-          <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block pt-4" src="<%=book.getBookImage()%>" alt=""></a>
+          <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
               <%=book.getTitle()%>
@@ -158,36 +158,36 @@
     <ul class="pagination justify-content-center">
       <li class="page-item<% if (pageNum <= 1) {%> disabled<%}%>">
           <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum - 1)%>&searchOption=<%=searchOption%>" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
+              <span aria-hidden="true" class="page_nav">&laquo;</span>
               <span class="sr-only">Previous</span>
           </a>
       </li>
         <% if (pageNum >= 3) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 2%>&searchOption=<%=searchOption%>"><%=pageNum - 2%></a>
+            <a class="page-link page_nav" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 2%>&searchOption=<%=searchOption%>"><%=pageNum - 2%></a>
         </li>
         <%}%>
         <% if (pageNum >= 2) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 1%>&searchOption=<%=searchOption%>"><%=pageNum - 1%></a>
+            <a class="page-link page_nav" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum - 1%>&searchOption=<%=searchOption%>"><%=pageNum - 1%></a>
         </li>
         <%}%>
         <li class="page-item disabled">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum%>&searchOption=<%=searchOption%>"><%=pageNum%></a>
+            <a class="page-link page_nav" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum%>&searchOption=<%=searchOption%>"><%=pageNum%></a>
         </li>
         <% if (maxPages >= pageNum + 1) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 1%>&searchOption=<%=searchOption%>"><%=pageNum + 1%></a>
+            <a class="page-link page_nav" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 1%>&searchOption=<%=searchOption%>"><%=pageNum + 1%></a>
         </li>
         <%}%>
         <% if (maxPages >= pageNum + 2) { %>
         <li class="page-item">
-            <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 2%>&searchOption=<%=searchOption%>"><%=pageNum + 2%></a>
+            <a class="page-link page_nav" href="/search?searchTerm=<%=searchTerm%>&page=<%=pageNum + 2%>&searchOption=<%=searchOption%>"><%=pageNum + 2%></a>
         </li>
         <%}%>
       <li class="page-item<% if (pageNum == maxPages) {%> disabled<%}%>">
           <a class="page-link" href="/search?searchTerm=<%=searchTerm%>&page=<%=(pageNum + 1)%>&searchOption=<%=searchOption%>" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+              <span aria-hidden="true" class="page_nav">&raquo;</span>
               <span class="sr-only">Next</span>
           </a>
       </li>

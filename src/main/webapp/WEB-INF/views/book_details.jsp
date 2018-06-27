@@ -2,6 +2,7 @@
 <%@page import="com.qa.models.Book"%>
 <%@page import="com.qa.models.Author"%>
 <%@page import="com.qa.models.Customer"%>
+<%@ page import="com.qa.models.Series" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -117,6 +118,11 @@
                 <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
+                  <% if (book.getSeries().size() > 0) {
+                    for (Series s : book.getSeries()) {
+                  %><h6>Part of <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>"><span><u><%=s.getSeriesName()%></u></span></a> Series</h6><%
+                    }
+                  }%>
                   <h4>$<%=book.getPrice()%></h4>
                   <%
                     Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
@@ -181,14 +187,20 @@
           </div>
         </div>
       </div>
+      <%
+        if (book.getSimilar_books().isEmpty()) {
+      %>
 
-      <div class="container">
-        <div class="row">
+          <%
+            } else {
+          %>
+      <h2 class="text-center mt-2">Related Books</h2>
+      <div class="row">
           <%
             for(Book relatedBook : book.getSimilar_books()) {
           %>
-              <div class="col-sm">
-                  <div class ="card forth_color">
+              <div class="col-xl-2 col-lg-3 col-md-4 pb-4">
+                  <div class="card h-100 card_color">
                       <div class="card-body">
                         <a href="/bookDetails?bookId=<%=relatedBook.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=relatedBook.getBookImage()%>" alt=""></a>
                       </div>
@@ -199,36 +211,10 @@
                   </div>
               </div>
           <%
+              }
             }
            %>
         </div>
-      </div>
-
-
-
-
-
-
-      <div class="row mt-5">
-        <div class="col-lg-12">
-          <div class="card card-outline-secondary card_color">
-            <div class="card-header">
-              Book Reviews
-            </div>
-              <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small>Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small>Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small>Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <a href="#" class="btn button_color"><span>Leave a Review</span></a>
-              </div>
-          </div>
-      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
