@@ -8,6 +8,10 @@
     <title>Undercover Books</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
     <%--<link rel="stylesheet" href="css/style.css">--%>
   </head>
   <body>
@@ -192,7 +196,7 @@
             } else {
           %>
       <h2 class="text-center mt-2">Related Books</h2>
-      <div class="row">
+      <div class="multiple-items" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
           <%
             for(Book relatedBook : book.getSimilar_books()) {
           %>
@@ -286,6 +290,17 @@
               This is a success alert—check it out!
           </div>);
       }
+    </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $('.multiple-items').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            arrows: true
+        });
     </script>
   </body>
 </html>
