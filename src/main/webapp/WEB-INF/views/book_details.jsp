@@ -1,5 +1,12 @@
 <!doctype html>
 <%@ page import="com.qa.models.*" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="sun.security.util.Length" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.ZoneOffset" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -232,15 +239,21 @@
               <div class="card-header">
                 Book Reviews
               </div>
-              <div class="card-body">
-                <%
-                  int counter = 0;
-                  for (Review review : book.getReview()) {
-                %>
-                  <p><%=review.getReview()%></p>
-                  <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
-                  <hr>
-
+                <div class="card-body">
+                  <%
+                    int counter = 0;
+                    for (Review review : book.getReview()) {
+                  %>
+                    <p><%=review.getReview()%></p>
+                    <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
+                    <%
+                        if(review.getTime() > 0) {
+                    %>
+                        <small><%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
+                    <%
+                        }
+                    %>
+                    <hr>
                 <%
                   }
                 %>

@@ -22,12 +22,16 @@ public class Review {
     @Getter @Setter
     private int rating;
 
+    @Getter @Setter
+    private int time;
+
     public Review(){}
 
-    public Review(Customer customer, String review, int rating){
+    public Review(Customer customer, String review, int rating, int time){
         this.customer = customer;
         this.review = review;
         this.rating = rating;
+        this.time = time;
     }
 
 }
