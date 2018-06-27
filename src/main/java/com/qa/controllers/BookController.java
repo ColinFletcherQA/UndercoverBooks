@@ -269,7 +269,7 @@ public class BookController {
             modelAndView.addObject("review_flag", new Flag("Review Error", 0));
         }
 
-        return null;
+        return modelAndView;
 	}
 	
 }
