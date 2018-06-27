@@ -2,6 +2,7 @@
 <%@page import="com.qa.models.Book"%>
 <%@page import="com.qa.models.Author"%>
 <%@page import="com.qa.models.Customer"%>
+<%@ page import="com.qa.models.Series" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -117,6 +118,11 @@
                 <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
+                  <% if (book.getSeries().size() > 0) {
+                    for (Series s : book.getSeries()) {
+                  %><h6>Part of <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>"><span><u><%=s.getSeriesName()%></u></span></a> Series</h6><%
+                    }
+                  }%>
                   <h4>$<%=book.getPrice()%></h4>
                   <%
                     Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
