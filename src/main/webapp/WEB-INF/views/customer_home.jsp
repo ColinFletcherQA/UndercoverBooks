@@ -32,7 +32,7 @@
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
           <select name = "searchOption" class="custom-select">
             <option value="title">Title</option>
-            <option value="isbn">ISBN / Kindle ASIN</option>
+            <option value="isbn">ISBN/Kindle ASIN</option>
             <option value="author">Author</option>
             <option value="publisher">Publisher</option>
             <option value="description">Description</option>
