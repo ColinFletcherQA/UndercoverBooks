@@ -181,9 +181,15 @@
           </div>
         </div>
       </div>
-      <h2 class="text-center mt-2">Related Books</h2>
-        <div class="row">
+      <%
+        if (book.getSimilar_books().isEmpty()) {
+      %>
 
+          <%
+            } else {
+          %>
+      <h2 class="text-center mt-2">Related Books</h2>
+      <div class="row">
           <%
             for(Book relatedBook : book.getSimilar_books()) {
           %>
@@ -199,33 +205,10 @@
                   </div>
               </div>
           <%
+              }
             }
            %>
         </div>
-
-
-        <div class="row mt-5">
-          <div class="col-lg-12">
-            <div class="card card-outline-secondary card_color">
-              <div class="card-header">
-                Book Reviews
-              </div>
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                  <small>Posted by Anonymous on 3/1/17</small>
-                  <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                  <small>Posted by Anonymous on 3/1/17</small>
-                  <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                  <small>Posted by Anonymous on 3/1/17</small>
-                  <hr>
-                  <a href="#" class="btn button_color"><span>Leave a Review</span></a>
-                </div>
-            </div>
-          </div>
-        </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
