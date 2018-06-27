@@ -1,15 +1,15 @@
 package com.qa.controllers;
 
-import com.qa.models.Book;
-import com.qa.models.Series;
-import com.qa.models.Tag;
+import com.qa.models.*;
 import com.qa.repositories.BookRepository;
 import com.qa.repositories.TagRespository;
+import com.qa.services.ReviewService;
 import com.qa.services.SeriesService;
 import com.qa.services.TagService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +21,7 @@ import javax.jws.WebParam;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 import java.util.*;
@@ -37,6 +38,9 @@ public class BookController {
 
 	@Autowired
 	private SeriesService seriesService;
+
+    @Autowired
+    private ReviewService reviewService;
 	
 	@PersistenceContext
 	EntityManager em;
@@ -242,6 +246,27 @@ public class BookController {
 			modelAndView.addObject(attribute, pagedListHolder.getPageList());
 		}
 		return page;
+	}
+
+	//@Transactional
+	@RequestMapping("/postReview")
+	public ModelAndView postReview(HttpServletRequest request, @RequestParam("bookId") int bookId,
+                                   @RequestParam("review") String review){
+
+        //Book book = em.find(Book.class, bookId);
+
+        Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
+        Review reviewRequest = new Review(customer, review, 5);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/bookDetails?bookId=" + bookId);
+        if(reviewService.postReview(reviewRequest) != null){
+            modelAndView.addObject("review_flag", new Flag("Review Submitted", 1));
+            //em.merge(book);
+        } else {
+            modelAndView.addObject("review_flag", new Flag("Review Error", 0));
+        }
+
+        return null;
 	}
 	
 }

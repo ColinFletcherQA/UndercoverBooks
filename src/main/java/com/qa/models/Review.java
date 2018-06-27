@@ -20,4 +20,11 @@ public class Review {
 
     @Getter @Setter
     private int rating;
+
+    public Review(Customer customer, String review, int rating){
+        this.customer = customer;
+        this.review = review;
+        this.rating = rating;
+    }
+
 }
