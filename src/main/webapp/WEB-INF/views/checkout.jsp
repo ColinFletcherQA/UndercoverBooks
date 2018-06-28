@@ -238,7 +238,7 @@
               <div class="form-row">
                 <div class="form-group col-lg-12">
                   <label for="inputAddress21">Address 2</label>
-                  <input type="text" class="form-control" id="inputAddress21" placeholder="Apartment, studio, or floor">
+                  <input type="text" class="form-control" id="inputAddress21" name="addressLine21" placeholder="Apartment, studio, or floor">
                 </div>
               </div>
               <div class="form-row">
