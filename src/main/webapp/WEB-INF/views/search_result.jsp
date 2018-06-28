@@ -119,7 +119,7 @@
               <h4 class="card-title text-center">No Results Found</h4>
             </div>
             <div class="card-body text-center">
-              <p>Sorry we could not find your book. Submit a request for us to get the book <button class="btn button_color" href="/contact"><span>here</span></button></p>
+              <p>Sorry we could not find your book. Submit a request for us to get the book <a href="/contact" class="btn button_color"><span>Here</span></a>
             </div>
           </div>
         </div>
