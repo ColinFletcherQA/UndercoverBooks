@@ -28,13 +28,6 @@ $(document).ready(function() {
                         } else {
                             input.css('border-color', '');
                         }
-                    } else if (inputType == 'radio'){
-                        if(!input.is(':checked'){
-                            valid = false;
-                            input.css('border', '3px solid red');
-                        } else {
-                            input.css('border-color', '');
-                        }
                     }
                 }
             });

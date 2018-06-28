@@ -149,51 +149,51 @@
                 <div class="form-row">
                   <div class="form-group col-lg-6">
                     <label for="firstName">First Name</label>
-                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" >
                   </div>
                   <div class="form-group col-lg-6">
                     <label for="lastName">Last Name</label>
-                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" >
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressLine1">Address</label>
-                    <input name="addressLine1" type="text" class="form-control" id="addressLine1" placeholder="123 Main St" required>
+                    <input name="addressLine1" type="text" class="form-control" id="addressLine1" placeholder="123 Main St" >
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressLine2">Address 2</label>
-                    <input name="addressLine2" type="text" class="form-control" id="addressLine2" placeholder="Apartment, studio, or floor" required>
+                    <input name="addressLine2" type="text" class="form-control" id="addressLine2" placeholder="Apartment, studio, or floor" >
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-4">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" name="city" required>
+                    <input type="text" class="form-control" id="city" name="city" >
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="postcode">Zip</label>
-                    <input type="tel" class="form-control" id="postcode" name="postcode" required>
+                    <input type="tel" class="form-control" id="postcode" name="postcode" >
                   </div>
                   <div class="form-group col-lg-2">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="PA" name="state" required>
+                    <input type="text" class="form-control" id="state" placeholder="PA" name="state" >
                   </div>
                   <div class="form-group col-lg-4">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" name="country" required>
+                    <input type="text" class="form-control" id="country" name="country" >
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-lg-6">
                     <label for="phoneNumber">Phone Number</label>
-                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" >
                   </div>
                   <div class="form-group col-lg-6">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" >
                   </div>
                 </div>
                 <div class="form-group col-lg-12">
@@ -269,7 +269,7 @@
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="cardType" value="Debit Card" required>Debit Card
+                    <input class="form-check-input" type="radio" name="cardType" value="Debit Card" >Debit Card
                   </label>
                 </div>
               </div>
@@ -277,21 +277,21 @@
             <div class="form-row">
               <div class="form-group col-lg-6">
                 <label for="cardName">Name on Card</label>
-                <input type="text" class="form-control" id="cardName" name="cardName" required>
+                <input type="text" class="form-control" id="cardName" name="cardName" >
               </div>
               <div class="form-group col-lg-6">
                 <label for="cardNumber">Card Number</label>
-                <input type="tel" class="form-control" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" required>
+                <input type="tel" class="form-control" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" >
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-lg-3">
                 <label for="cardExpiration">Expiration *</label>
-                <input type="number" class="form-control" id="cardExpiration" placeholder="dd/mm" required>
+                <input type="number" class="form-control" id="cardExpiration" placeholder="dd/mm" >
               </div>
               <div class="form-group col-lg-3">
                 <label for="cardCVV">CVV *</label>
-                <input type="number" class="form-control" id="cardCVV" required>
+                <input type="number" class="form-control" id="cardCVV" >
               </div>
             </div>
             <input type="hidden" name="totalPrice" value="<%=orderTotal %>"/>

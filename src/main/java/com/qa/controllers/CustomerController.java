@@ -232,15 +232,25 @@ public class CustomerController {
 		return new ModelAndView("contact");
 	}
 
+	@RequestMapping("/sendUsAMessage")
+    public ModelAndView sendUsAMessage(HttpServletRequest request){
+        ModelAndView contactModel = new ModelAndView("contact");
+        contactModel.addObject("message_flag", new Flag("Message Sent", 1));
+	    return contactModel;
+    }
+
 	@RequestMapping("/requestBook")
 	public ModelAndView requestBook(@ModelAttribute("BookRequest")BookRequest bookRequest){
 	    ModelAndView contactModel = new ModelAndView("contact");
-	    try {
-            requestRepository.save(bookRequest);
-            contactModel.addObject("request_flag", new Flag("Request Submitted", 1));
-        } catch (Exception ignored){
-            contactModel.addObject("request_flag", new Flag("Error Submitting", 0));
-        }
+	    System.out.println(bookRequest);
+	    if(bookRequest != null) {
+			try {
+				requestRepository.save(bookRequest);
+				contactModel.addObject("request_flag", new Flag("Request Submitted", 1));
+			} catch (Exception ignored) {
+				contactModel.addObject("request_flag", new Flag("Error Submitting", 0));
+			}
+		}
 	    return contactModel;
 	}
 
