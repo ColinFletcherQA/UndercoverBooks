@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
+<%@ page import="org.jsoup.Jsoup" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -110,6 +111,7 @@
           }
           String description = book.getDescription().replaceAll("<[^>]*>", "");
           description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+          description = Jsoup.parse(description).text();
           Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
           Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
           Integer weightedAverage = (topValue / bottomValue);
