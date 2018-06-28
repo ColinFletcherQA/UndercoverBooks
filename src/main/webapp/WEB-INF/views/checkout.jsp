@@ -38,7 +38,7 @@
      <!-- Start Top Bar -->
      <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
        <div class="container-fluid px-4">
-         <a class="navbar-brand" href="">Undercover Books</a>
+         <a class="navbar-brand" href="/">Undercover Books</a>
          <form class="form-inline" action="/search">
            <input class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
            <select name = "searchOption" class="custom-select">
