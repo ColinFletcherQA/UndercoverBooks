@@ -287,7 +287,7 @@
             <div class="form-row">
               <div class="form-group col-lg-3">
                 <label for="cardExpiration">Expiration *</label>
-                <input type="number" class="form-control" id="cardExpiration" placeholder="/mm" required>
+                <input type="text" class="form-control" id="cardExpiration" placeholder="mm/yy" pattern="(0[1-9]|1[0-2])/[0-9]{2}" required>
               </div>
               <div class="form-group col-lg-3">
                 <label for="cardCVV">CVV *</label>
