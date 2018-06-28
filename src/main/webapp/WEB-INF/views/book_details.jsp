@@ -256,22 +256,23 @@
           <%
             } else {
           %>
-          <div class="card card-outline-secondary card_color">
+          <div class="card card-outline-secondary card_color mb-4">
               <div class="card-body">
                 <h3 style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">Book Reviews</h3>
                 <hr>
                 <%
                   int counter = 0;
-                  for (Review review : book.getReview()) {
+                  for (int i = book.getReview().size()-1; i >= 0 ; i--) {
+
                         if (counter++ == 5) {
                             break;
                         }
                     %>
-                      <p style="font-size: 20px"><%=review.getReview()%></p>
+                      <p style="font-size: 20px"><%=book.getReview().get(i).getReview()%></p>
                     <%
-                      if(review.getCustomer() != null) {
+                      if(book.getReview().get(i).getCustomer() != null) {
                     %>
-                      <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
+                      <small>-- <%=book.getReview().get(i).getCustomer().getFirstName()%> <%=book.getReview().get(i).getCustomer().getLastName()%>,</small>
                     <%
                     } else {
                     %>
@@ -280,9 +281,9 @@
                         }
                     %>
                     <%
-                      if(review.getTime() > 0) {
+                      if(book.getReview().get(i).getTime() > 0) {
                     %>
-                      <small>    <%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
+                      <small>    <%=LocalDateTime.ofEpochSecond(book.getReview().get(i).getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                     <%
                         }
                     %>

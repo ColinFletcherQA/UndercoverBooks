@@ -169,21 +169,32 @@ public class CustomerController {
     @RequestMapping("/updateAddress")
     public ModelAndView updateAddress(HttpSession session, @ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
         ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);
-        
-		int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
-				address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
-				loggedInCustomer.getCustomerId());
-	
-		if (recordsUpdated > 0) {
-			//Success
-			modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
-		} else {
-			//Failure
-			modelAndView.addObject("shipping_flag", new Flag("Update Failed", 0));
-		}
-		
-		session.setAttribute("Address", address);
-        
+
+        if (addressService.getAddressIfAlreadyExists(address) != null) {
+            int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
+                    address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
+                    loggedInCustomer.getCustomerId());
+            
+            if (recordsUpdated > 0) {
+                //Success
+                modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
+            } else {
+                //Failure
+                modelAndView.addObject("shipping_flag", new Flag("Update Failed", 0));
+            }
+        } else {
+            address = addressService.saveAddress(address);
+          
+            if (address != null) {
+                modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
+            } else {
+                //Failure
+                modelAndView.addObject("shipping_flag", new Flag("Address Failed", 0));
+            }
+        }
+
+        session.setAttribute("Address", address);
+      
         return modelAndView;
     }
 
