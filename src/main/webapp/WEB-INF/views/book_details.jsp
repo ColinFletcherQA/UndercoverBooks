@@ -204,13 +204,12 @@
         } else {
       %>
       <h2 class="text-center mt-2">Related Books</h2>
-      <div class="row">
-      <%--<div class="multiple-items" data-slick='{"slidesToShow": 6, "slidesToScroll": 4'>--%>
+      <div class="multiple-items">
           <%
             for(Book relatedBook : book.getSimilar_books()) {
           %>
-              <div class="col-xl-2 col-lg-3 col-md-4 pb-4">
-                  <div class="card h-100 card_color">
+              <div class="col">
+                  <div class="card h-100 card_color" style="min-height: 375px;">
                       <div class="card-body">
                         <a href="/bookDetails?bookId=<%=relatedBook.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid" src="<%=relatedBook.getBookImage()%>" alt=""></a>
                       </div>
@@ -293,9 +292,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/book_details_handler.js"></script>
-
+    <script>
+      $(document).foundation();
+    </script>
+    <script>
+      function alertSuccess() {
+          alert(<div class="alert alert-success" role="alert">
+              This is a success alert—check it out!
+          </div>);
+      }
+    </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $('.multiple-items').slick({
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 6,
+            arrows: true,
+            dots: true,
+            responsive: [
+                {
+                    breakpoint: 350,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 750,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 1000,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4
+                    }
+                },
+                {
+                    breakpoint: 1250,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 5
+                    }
+                },
+            ]
+        });
+    </script>
   </body>
 </html>
-
-
-    
