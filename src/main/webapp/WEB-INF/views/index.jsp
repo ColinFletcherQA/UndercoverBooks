@@ -103,16 +103,28 @@
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
                 <img class="d-block img-fluid" src="images/cover12.png" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/cover13.jpg" alt="Second slide">
+                <img class="d-block img-fluid" src="images/cover16.png" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/cover15.jpg" alt="Third slide">
+                <img class="d-block img-fluid" src="images/cover17.png" alt="Third slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="images/cover18.png" alt="Forth slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="images/cover19.png" alt="Fifth slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="images/cover15.jpg" alt="Sixth slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
