@@ -34,7 +34,7 @@
     <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
-        <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
           <select name="searchOption" class="custom-select">
             <option value="title">Title</option>
             <option value="isbn">ISBN / Kindle ASIN</option>
