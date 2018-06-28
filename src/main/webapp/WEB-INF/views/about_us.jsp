@@ -122,8 +122,7 @@
           <div class="card-body">
             <h4 class="card-title">Chandler Todd</h4>
             <h6 class="card-subtitle mb-2">Front End Designer</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
+            <p class="card-text">The Bob Ross of Undercover Books </p>
           </div>
           <div class="card-footer">
             <span>c.todd@elsevier.com</span>

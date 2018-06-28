@@ -21,7 +21,6 @@
       } catch(Exception e){
         c = null;
       }
-      address = (Address) request.getAttribute("Address");
   %>
     
     <!-- Start Top Bar -->
@@ -179,37 +178,37 @@
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="addressLine1">Address</label>
-                      <input type="text" class="form-control" name="addressLine1" id="addressLine1" value="<% if (address != null) { address.getAddressLine1();}%>">
+                      <input type="text" class="form-control" name="addressLine1" id="addressLine1">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-12">
                       <label for="addressLine2">Address 2</label>
-                      <input type="text" class="form-control" name="addressLine2" id="addressLine2" value="<% if (address != null) {address.getAddressLine2();}%>" >
+                      <input type="text" class="form-control" name="addressLine2" id="addressLine2">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-4">
                       <label for="city">City</label>
-                      <input type="text" class="form-control" name="city" id="city" value="<% if (address != null) {address.getCity();}%>">
+                      <input type="text" class="form-control" name="city" id="city">
                     </div>
                     <div class="form-group col-lg-2">
                       <label for="postcode">Zip</label>
-                      <input type="text" class="form-control" name="postcode" id="postcode" value="<% if (address != null) {address.getPostcode();}%>">
+                      <input type="text" class="form-control" name="postcode" id="postcode">
                     </div>
                     <div class="form-group col-lg-2">
                       <label for="state">State</label>
-                      <input type="text" class="form-control" name="state" id="state" placeholder="PA" value="<% if (address != null) {address.getState();}%>">
+                      <input type="text" class="form-control" name="state" id="state">
                     </div>
                     <div class="form-group col-lg-4">
                       <label for="country">Country</label>
-                      <input type="text" class="form-control" name="country" id="country" value="<% if (address != null) {address.getCountry();}%>">
+                      <input type="text" class="form-control" name="country" id="country">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-lg-6">
-                      <label for="phone">Phone Number</label>
-                      <input type="tel" class="form-control" name="phoneNumber" id="phone" value="<% if (address != null) {address.getPhoneNumber();}%>">
+                      <label for="phoneNumber">Phone Number</label>
+                      <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber">
                     </div>
                   </div>
                   <input type="hidden" name="addressType" value="shipping">

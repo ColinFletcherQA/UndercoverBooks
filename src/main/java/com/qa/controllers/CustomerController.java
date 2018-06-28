@@ -169,8 +169,9 @@ public class CustomerController {
 
     @RequestMapping("/updateAddress")
     public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
-        ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);;
+        ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);
 
+		System.out.println(address);
         if (addressService.getAddressIfAlreadyExists(address) != null) {
             int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
                     address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
@@ -191,8 +192,7 @@ public class CustomerController {
                 modelAndView.addObject("shipping_flag", new Flag("Address Failed", 0));
             }
         }
-
-        modelAndView.addObject("Address", address);
+//        modelAndView.addObject("Address", address);
         return modelAndView;
 
     }
