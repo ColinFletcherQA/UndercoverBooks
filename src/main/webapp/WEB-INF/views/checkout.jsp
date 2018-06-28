@@ -248,7 +248,7 @@
                 </div>
                 <div class="form-group col-lg-2">
                   <label for="postcode1">Zip</label>
-                  <input type="tel" class="form-control" id="postcode1">
+                  <input type="tel" class="form-control" id="postcode1" name="postcode1">
                 </div>
                 <div class="form-group col-lg-2">
                   <label for="state1">State</label>
