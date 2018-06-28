@@ -31,8 +31,6 @@
     <%
      book = (Book) request.getAttribute("book");
     %>
-
-
     <script>
         var cartItems = "${cart_items}";
         var currentBook = "${book}";
@@ -199,7 +197,11 @@
       <%
         if (book.getSimilar_books().isEmpty()) {
       %>
-
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="text-center"></h3>
+        </div>
+      </div>
       <%
         } else {
       %>
@@ -221,70 +223,78 @@
               </div>
           <%
               }
+              %>
+      </div>
+        <%
             }
            %>
-      </div>
-        <div class="row mt-5">
-          <div class="col-lg-6">
-            <%
-              if (book.getReview().isEmpty()) {
-            %>
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <div class="card card_color mb-5">
+            <div class="card-body">
+              <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="form-group">
+                      <label for="review">Enter your comments here!</label>
+                      <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn button_color"><span>Leave a Review</span></button>
+              </form>
+            </div>
+          </div>
+        </div>
 
-            <%
-              } else {
-            %>
+        <div class="col-lg-6">
+          <%
+            if (book.getReview().isEmpty()) {
+          %>
 
-            <div class="card card-outline-secondary card_color">
-              <div class="card-header">
-                Book Reviews
-              </div>
-                <div class="card-body">
-                  <%
-                    int counter = 0;
-                    for (Review review : book.getReview()) {
-                  %>
-                    <p><%=review.getReview()%></p>
-                    <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
-                    <%
-                        if(review.getTime() > 0) {
+          <%
+            } else {
+          %>
+          <div class="card card-outline-secondary card_color">
+            <div class="card-header">
+              Book Reviews
+            </div>
+              <div class="card-body">
+                <%
+                  int counter = 0;
+                  for (Review review : book.getReview()) {
+                        if (counter++ == 5) {
+                            break;
+                        }
                     %>
-                        <small><%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
+                      <p style="font-size: 20px"><%=review.getReview()%></p>
+                    <%
+                      if(review.getCustomer() != null) {
+                    %>
+                      <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
+                    <%
+                    } else {
+                    %>
+                      <small>-- anonymous,</small>
+                    <%
+                        }
+                    %>
+                    <%
+                      if(review.getTime() > 0) {
+                    %>
+                      <small>    <%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                     <%
                         }
                     %>
                     <hr>
-                <%
-                  }
-                %>
-              </div>
-            </div>
-
-            <%
-              }
-            %>
-            <%
-              if (c != null) {
-            %>
-            <div class="card card_color mt-4 mb-5">
-              <div class="card-body">
-                <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
-                  <div class="row">
-                    <div class="col-xl-12">
-                      <div class="form-group">
-                        <label for="review">Enter your comments here!</label>
-                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn button_color"><span>Leave a Review</span></button>
-                </form>
-              <%
-                }
-              %>
-              </div>
+                <%}%>
             </div>
           </div>
+          <%
+            }
+          %>
         </div>
+      </div>
     </div>
 
 

@@ -117,7 +117,7 @@
                   cartTotal = cartTotal.add(totalPrice);
               %>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
-                  <div class="card card_color">
+                  <div class="card h-100 card_color">
                     <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>"/>
                     <div class="card-body">
                       <form name="f1">
@@ -131,6 +131,8 @@
                         <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
                       </form>
                       <br>
+                    </div>
+                    <div class="card-footer">
                       <a class="btn button_color_warning" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
                     </div>
                   </div>

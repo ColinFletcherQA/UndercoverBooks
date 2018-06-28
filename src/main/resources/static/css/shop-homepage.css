@@ -123,6 +123,10 @@ h2 {
     max-height: 300px;
     width: auto;
 }
+.order_history_img {
+    max-height: 100px;
+    width: auto;
+}
 a > span {
     color: white;
 }
@@ -139,5 +143,9 @@ button > span {
 }
 .series_link {
     color: var(--independence);
+}
+.alert_color {
+    background-color: var(--sunset-orange);
+    color: white;
 }
 

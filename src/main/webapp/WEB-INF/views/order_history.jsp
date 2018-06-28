@@ -153,22 +153,33 @@
             </div>
             <div class="card-body">
               <div class="row">
-              <%
-                for(Book book : purchaseBooks) {
-              %>
-                <div class="col-4-lg">
-                    <img class="card-img-top" style="max-height: 300px; width: auto;" src="<%=book.getBookImage()%>" alt="">
+                <div class="col-lg-4">
+                  <div class="row">
+                <%
+                  int counter = 0;
+                  for(Book book : purchaseBooks) {
+                %>
+                      <img class="card-img-top order_history_img p-1" src="<%=book.getBookImage()%>" alt="">
+                <%
+                  }
+                %>
+                  </div>
                 </div>
                 <div class="col-lg-1">
 
                 </div>
-                <div class="col-4-lg">
-                  Book Titles:
-                    <%=book.getTitle()%>
+                Book Titles:
+                <div class="col-lg-4">
+                <%
+                  for(Book book : purchaseBooks) {
+                %>
+                  <small><%=book.getTitle()%></small>
+                  <br>
+                <%
+                  }
+                %>
                 </div>
-              <%
-                }
-              %>
+
               </div>
             </div>
         </div>

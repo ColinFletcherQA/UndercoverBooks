@@ -257,6 +257,7 @@ public class BookController {
         Book book = em.find(Book.class, bookId);
 
         Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
+
         Review reviewRequest = new Review(customer, review, 5, (int) (Instant.now().toEpochMilli()/1000));
 
         ModelAndView modelAndView = new ModelAndView("redirect:/bookDetails?bookId=" + bookId);
