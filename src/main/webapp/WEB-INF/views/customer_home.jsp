@@ -123,7 +123,7 @@
                       <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                   </div>
-                  <div>
+                  <div id="profileFlag">
                     ${profile_flag.getMessage()}
                   </div>
                   <button type="submit" class="btn button_color"><span>Update Information</span></button>
@@ -159,7 +159,7 @@
                       <input name="new_password1" id="new_password1" class="form-control" type="password" placeholder="New Password">
                     </div>
                   </div>
-                  <div>
+                  <div id="passwordFlag">
                     ${password_flag.getMessage()}
                   </div>
                   <button type="submit" class="btn button_color"><span>Update Password</span></button>
@@ -214,7 +214,7 @@
                   </div>
                   <input type="hidden" name="addressType" value="shipping">
                   <input type="hidden" name="customerId" value="<%=c.getCustomerId()%>">
-                  <div>
+                  <div id="addressFlag">
                     ${shipping_flag.getMessage()}
                   </div>
                   <button type="submit" class="btn button_color"><span>Update Shipping Address</span></button>
@@ -284,9 +284,7 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="js/validator.js"></script>
   <script src="js/elsevier.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+  <%--<script src="js/stylize_flags.js"></script>--%>
   </body>
 </html>
 
