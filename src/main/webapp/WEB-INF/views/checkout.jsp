@@ -38,7 +38,7 @@
      <!-- Start Top Bar -->
      <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark fixed-top navbar_color">
        <div class="container-fluid px-4">
-         <a class="navbar-brand" href="">Undercover Books</a>
+         <a class="navbar-brand" href="/">Undercover Books</a>
          <form class="form-inline" action="/search">
            <input class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
            <select name = "searchOption" class="custom-select">
@@ -165,7 +165,7 @@
                 <div class="form-row">
                   <div class="form-group col-lg-12">
                     <label for="addressLine2">Address 2</label>
-                    <input name="addressLine2" type="text" class="form-control" id="addressLine2" placeholder="Apartment, studio, or floor" required>
+                    <input name="addressLine2" type="text" class="form-control" id="addressLine2" placeholder="Apartment, studio, or floor">
                   </div>
                 </div>
                 <div class="form-row">
@@ -287,7 +287,7 @@
             <div class="form-row">
               <div class="form-group col-lg-3">
                 <label for="cardExpiration">Expiration *</label>
-                <input type="number" class="form-control" id="cardExpiration" placeholder="dd/mm" required>
+                <input type="number" class="form-control" id="cardExpiration" placeholder="/mm" required>
               </div>
               <div class="form-group col-lg-3">
                 <label for="cardCVV">CVV *</label>
