@@ -131,6 +131,26 @@
 
             <p class="card-text"><%=description%></p>
           </div>
+          <div class="card-footer">
+            <%
+              Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
+              Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
+              Integer weightedAverage = (topValue / bottomValue);
+            %>
+            <% if (weightedAverage == 5) {%>
+            <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+            <%} else if (weightedAverage >= 4) {%>
+            <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            <%} else if (weightedAverage >= 3) {%>
+            <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 2) {%>
+            <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 1) {%>
+            <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 0) {%>
+            <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+            <%}%>
+          </div>
         </div>
       </div>
       <%
