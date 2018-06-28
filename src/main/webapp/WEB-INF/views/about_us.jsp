@@ -102,9 +102,9 @@
       </div>
       <div class="col-lg-6">
         <h2>About Undercover Books</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique?
-          Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem
-          non blanditiis ex fugiat.</p>
+        <p>Undercover Books is the new PREMIERE retail site for all your book and book related needs (limited only to books).
+        Built and deployed using Amazon provided services, Undercover Books seeks to overthrow the retail giant with
+        a quality selection and unbeatable prices. </p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut
           sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit
           dolorum!</p>
