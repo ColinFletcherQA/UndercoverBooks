@@ -18,6 +18,9 @@ public class PasswordHasher {
     }
 
     public String encrypt(String input){
+        if(input == null){
+            return null;
+        }
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(input.getBytes());

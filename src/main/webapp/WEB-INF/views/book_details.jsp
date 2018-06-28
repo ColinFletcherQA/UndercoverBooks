@@ -257,12 +257,35 @@
           <%
             } else {
           %>
-
           <div class="card card-outline-secondary card_color">
             <div class="card-header">
               Book Reviews
             </div>
               <div class="card-body">
+                        if (counter++ == 5) {
+                            break;
+                        }
+                    %>
+                      <p style="font-size: 20px"><%=review.getReview()%></p>
+                    <%
+                        if(review.getCustomer() != null) {
+                    %>
+                        <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
+                    <%
+                        } else {
+                    %>
+                        <small>-- anonymous,</small>
+                    <%
+                        }
+                    %>
+                    <%
+                        if(review.getTime() > 0) {
+                    %>
+                      <small>    <%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
+                    <%
+                        }
+                    %>
+                    <hr>
                 <%
                   int counter = 0;
                   for (Review review : book.getReview()) {
