@@ -195,12 +195,13 @@ public class CustomerController {
 	@RequestMapping("/updatePassword")
 	public ModelAndView updatePassword(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @RequestParam("current_password") String currentPassword, @RequestParam("new_password") String newPassword){
 		System.out.println(currentPassword);
+		newPassword = PasswordHasher.getInstance().encrypt(newPassword);
 		System.out.println(newPassword);
 		System.out.println(loggedInCustomer.getCustomerId());
 		ModelAndView modelAndView = new ModelAndView("customer_home");
 
-		if(loggedInCustomer.getPassword().equals(currentPassword)) {
-			if (currentPassword.equalsIgnoreCase(newPassword)) {
+		if(loggedInCustomer.getPassword().equals(PasswordHasher.getInstance().encrypt(currentPassword))) {
+			if (currentPassword.equals(newPassword)) {
 				modelAndView.addObject("password_flag", new Flag("Passwords Cannot Match", 0));
 			} else {
 				customerService.updatePassword(loggedInCustomer.getCustomerId(), newPassword);

@@ -1,5 +1,12 @@
 <!doctype html>
 <%@ page import="com.qa.models.*" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="sun.security.util.Length" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.ZoneOffset" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -8,10 +15,11 @@
     <title>Undercover Books</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/shop-homepage.css"/>
+
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick/slick-theme.css"/>
     <%--<link rel="stylesheet" href="css/style.css">--%>
   </head>
   <body>
@@ -192,9 +200,9 @@
         if (book.getSimilar_books().isEmpty()) {
       %>
 
-          <%
-            } else {
-          %>
+      <%
+        } else {
+      %>
       <h2 class="text-center mt-2">Related Books</h2>
       <div class="multiple-items">
           <%
@@ -217,10 +225,7 @@
            %>
       </div>
         <div class="row mt-5">
-          <div class="col-lg-1">
-
-          </div>
-          <div class="col-lg-10">
+          <div class="col-lg-6">
             <%
               if (book.getReview().isEmpty()) {
             %>
@@ -240,12 +245,18 @@
                   %>
                     <p><%=review.getReview()%></p>
                     <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
+                    <%
+                        if(review.getTime() > 0) {
+                    %>
+                        <small><%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
+                    <%
+                        }
+                    %>
                     <hr>
-
-                  <%
-                    }
-                  %>
-                </div>
+                <%
+                  }
+                %>
+              </div>
             </div>
 
             <%
@@ -258,7 +269,7 @@
               <div class="card-body">
                 <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
                   <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-12">
                       <div class="form-group">
                         <label for="review">Enter your comments here!</label>
                         <textarea class="form-control" name="review" id="review" rows="5"></textarea>

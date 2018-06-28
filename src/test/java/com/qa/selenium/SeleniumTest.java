@@ -1,25 +1,26 @@
 package com.qa.selenium;
 
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
+@Ignore
 public class SeleniumTest {
 
 	static {
-		System.setProperty("webdriver.chrome.driver", "/Users/todd1/Downloads/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 	}
 
 	private static WebDriver driver = new ChromeDriver();
 
 	@Test
 	public void navigateToHomePage() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-		WebDriver driver = new ChromeDriver();
 		openPage();
 	}
   
@@ -146,8 +147,28 @@ public class SeleniumTest {
 	@Test
 	public void testSearchAuthor() throws InterruptedException {
 		openPage();
+		Select dropdown = new Select(driver.findElement(By.name("searchOption")));
+		dropdown.selectByVisibleText("Author");
+		Thread.sleep(1000);
+		WebElement searchBox = driver.findElement(By.name("searchTerm"));
+		searchBox.sendKeys("chandler");
+		searchBox.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		driver.findElement(By.className("breadcrumb"));
 	}
-
+	@Test
+	public void testSearchDescription() throws InterruptedException {
+		openPage();
+		Select dropdown = new Select(driver.findElement(By.name("searchOption")));
+		dropdown.selectByVisibleText("Description");
+		Thread.sleep(1000);
+		WebElement searchBox = driver.findElement(By.name("searchTerm"));
+		searchBox.sendKeys("vampire");
+		searchBox.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		driver.findElement(By.className("breadcrumb"));
+	}
+	
 	public void openPage() throws InterruptedException {
 		driver.get("http://localhost:4444");
 		Thread.sleep(3000);
@@ -158,5 +179,6 @@ public class SeleniumTest {
 		driver.close();
 		driver.quit();
 	}
+	
 }
 

@@ -26,7 +26,7 @@
     
     <!-- Start Top Bar -->
     <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-dark navbar_color fixed-top">
-      <div class="container-fluid navbar_padding">
+      <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
           <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
