@@ -148,4 +148,7 @@ button > span {
     background-color: var(--sunset-orange);
     color: white;
 }
+.slick-next::before {
+    color: var(--ucla-blue);
+}
 
