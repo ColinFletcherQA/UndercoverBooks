@@ -264,9 +264,19 @@
                         if (counter++ == 5) {
                             break;
                         }
-                  %>
+                    %>
                       <p style="font-size: 20px"><%=review.getReview()%></p>
-                      <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
+                    <%
+                        if(review.getCustomer() != null) {
+                    %>
+                        <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
+                    <%
+                        } else {
+                    %>
+                        <small>-- anonymous,</small>
+                    <%
+                        }
+                    %>
                     <%
                         if(review.getTime() > 0) {
                     %>
