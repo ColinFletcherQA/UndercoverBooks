@@ -198,7 +198,7 @@
                 </div>
                 <div class="form-group col-lg-12">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" onclick="myFunction()">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" onclick="hideBillingAddress()">
                     <label class="form-check-label" for="gridCheck">
                       Billing Address is the same as Shipping
                     </label>
@@ -304,23 +304,28 @@
     </div>
   </div>
 
-   <script>
-     function myFunction() {
-         var x = document.getElementById("billing");
-
-         if (x.style.display === "none") {
-             x.style.display = "block";
-         } else {
-             x.style.display = "none";
-         }
-     }
-   </script>
-
     <script src="js/update_cart.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/validator.js"></script>
+    <script>
+         function hideBillingAddress() {
+             var billingDiv = $("#billing");
+
+             billingDiv.find('input').each(function(){
+                var child = $(this);
+
+                if(child.css('display') != 'none'){
+                    child.css('display', 'none')
+                    billingDiv.css('display', 'none')
+                } else {
+                    child.css('display', 'block')
+                    billingDiv.css('display', 'block')
+                }
+             });
+         }
+       </script>
   </body>
 </html>
 

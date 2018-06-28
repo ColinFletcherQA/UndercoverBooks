@@ -21,10 +21,17 @@ $(document).ready(function() {
                                 input.css('border-color', '');
                             }
                         }
-                    } else if (inputType == 'tel'){
+                    } else if (inputType == 'tel' && input.attr('name') != "cardNumber" && input.attr("name") != "postcode"){
                         if(input.val().length != 10){
                             input.css('border', '3px solid red');
                             valid = false;
+                        } else {
+                            input.css('border-color', '');
+                        }
+                    } else if (inputType == 'radio'){
+                        if(!input.is(':checked'){
+                            valid = false;
+                            input.css('border', '3px solid red');
                         } else {
                             input.css('border-color', '');
                         }
