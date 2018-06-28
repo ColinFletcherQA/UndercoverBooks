@@ -16,12 +16,12 @@
   Address address;
   %>
   <%
-  try {
+      try {
         c = (Customer) session.getAttribute("logged_in_customer");
       } catch(Exception e){
         c = null;
       }
-      address = (Address) request.getAttribute("Address");
+      address = (Address) session.getAttribute("Address");
   %>
     
     <!-- Start Top Bar -->

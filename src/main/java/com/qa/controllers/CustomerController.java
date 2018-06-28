@@ -3,13 +3,12 @@ package com.qa.controllers;
 import com.qa.models.*;
 import com.qa.repositories.BookRequestRepository;
 import com.qa.services.AddressService;
-import com.qa.services.PurchaseHistoryService;
 import com.qa.services.BookService;
 import com.qa.services.CustomerService;
+import com.qa.services.PurchaseHistoryService;
 import com.qa.util.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,7 +57,8 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/login")
-	public ModelAndView login() {
+	public ModelAndView login(HttpSession session) {
+		session.setAttribute("Address", new Address());
 		return new ModelAndView("login");
 	}
 
@@ -139,7 +139,6 @@ public class CustomerController {
 		ModelAndView modelAndView = new ModelAndView("customer_home","logged_in_customer",request.getSession().getAttribute("logged_in_customer"));
 		modelAndView.addObject("customer_address", customerAddress);
 		return modelAndView;
-
 	}
 	
 	@RequestMapping("/updateProfile")
@@ -168,33 +167,24 @@ public class CustomerController {
 	}
 
     @RequestMapping("/updateAddress")
-    public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
-        ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);;
-
-        if (addressService.getAddressIfAlreadyExists(address) != null) {
-            int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
-                    address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
-                    loggedInCustomer.getCustomerId(), address.getAddressType());
-            if(recordsUpdated > 0){
-                //Success
-                modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
-            } else {
-                //Failure
-                modelAndView.addObject("shipping_flag", new Flag("Update Failed", 0));
-            }
-        } else {
-            Address updatedAddress = addressService.saveAddress(address);
-            if(updatedAddress != null) {
-                modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
-            } else {
-                //Failure
-                modelAndView.addObject("shipping_flag", new Flag("Address Failed", 0));
-            }
-        }
-
-        modelAndView.addObject("Address", address);
+    public ModelAndView updateAddress(HttpSession session, @ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
+        ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);
+        
+		int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
+				address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
+				loggedInCustomer.getCustomerId());
+	
+		if (recordsUpdated > 0) {
+			//Success
+			modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
+		} else {
+			//Failure
+			modelAndView.addObject("shipping_flag", new Flag("Update Failed", 0));
+		}
+		
+		session.setAttribute("Address", address);
+        
         return modelAndView;
-
     }
 
 	@RequestMapping("/updatePassword")
