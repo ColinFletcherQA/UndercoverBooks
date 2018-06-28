@@ -105,12 +105,9 @@
         <p>Undercover Books is the new PREMIERE retail site for all your book and book related needs (limited only to books).
         Built and deployed using Amazon provided services, Undercover Books seeks to overthrow the retail giant with
         a quality selection and unbeatable prices. </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut
-          sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit
-          dolorum!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa
-          voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus
-          perspiciatis quis?</p>
+        <p>The team of Chandler Todd, Colin Fletcher, Jacob Glickman, and Jack McGinnis worked long thankless hours
+        to produce this masterpiece. Their brilliance and teamwork is at the heart of what Undercover Books stands for.
+        Read more about the individual team members below. </p>
       </div>
     </div>
     <!-- /.row -->
