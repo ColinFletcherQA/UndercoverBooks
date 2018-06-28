@@ -31,8 +31,6 @@
     <%
      book = (Book) request.getAttribute("book");
     %>
-
-
     <script>
         var cartItems = "${cart_items}";
         var currentBook = "${book}";
@@ -262,54 +260,36 @@
               Book Reviews
             </div>
               <div class="card-body">
+                <%
+                  int counter = 0;
+                  for (Review review : book.getReview()) {
                         if (counter++ == 5) {
                             break;
                         }
                     %>
                       <p style="font-size: 20px"><%=review.getReview()%></p>
                     <%
-                        if(review.getCustomer() != null) {
+                      if(review.getCustomer() != null) {
                     %>
-                        <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
+                      <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
                     <%
-                        } else {
+                    } else {
                     %>
-                        <small>-- anonymous,</small>
+                      <small>-- anonymous,</small>
                     <%
                         }
                     %>
                     <%
-                        if(review.getTime() > 0) {
+                      if(review.getTime() > 0) {
                     %>
                       <small>    <%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                     <%
                         }
                     %>
                     <hr>
-                <%
-                  int counter = 0;
-                  for (Review review : book.getReview()) {
-
-                      if (counter++ == 5) {
-                          break;
-                      }
-                %>
-                    <p style="font-size: 20px"><%=review.getReview()%></p>
-                    <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
-                  <%
-                      if(review.getTime() > 0) {
-                  %>
-                    <small>    <%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
-                  <%
-                      }
-                  %>
-                  <hr>
-              <%
-                }
-              %>
+                <%}%>
             </div>
           </div>
-
           <%
             }
           %>
