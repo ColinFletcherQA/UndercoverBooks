@@ -38,7 +38,7 @@
     <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
-        <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
         <select name = "searchOption" class="custom-select">
           <option <%=searchOption.equals("title") ? "selected " : ""%> value="title">Title</option>
           <option <%=searchOption.equals("isbn") ? "selected " : ""%> value="isbn">ISBN / Kindle ASIN</option>
@@ -132,20 +132,43 @@
             }
             String description = book.getDescription().replaceAll("<[^>]*>", "");
             description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+            Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
+            Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
+            Integer weightedAverage = (topValue / bottomValue);
       %>
 
       <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 card_color">
           <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top front_page_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt=""></a>
           <div class="card-body">
-            <h4 class="card-title">
-              <%=book.getTitle()%>
+            <h4 class="card-title ">
+              <div><%= book.getTitle()%></div>
             </h4>
-            <p class="card-subtitle mb-2"> <%=book.getAuthors().get(0).getAuthorName()%></p>
+            <% if (weightedAverage == 5) {%>
+            <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+            <%} else if (weightedAverage >= 4) {%>
+            <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            <%} else if (weightedAverage >= 3) {%>
+            <small class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 2) {%>
+            <small class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 1) {%>
+            <small class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+            <%} else if (weightedAverage >= 0) {%>
+            <small class="text-warning">&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+            <%}%>
 
-            <p class="card-text"><i><%=book.getPublisher()%></i></p>
+            <h5 class="pt-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">$<%= book.getPrice()%></h5>
+            <%
+              List<Author> authors = book.getAuthors();
 
-            <p class="card-text"><%=description%></p>
+              if (!authors.isEmpty()) {
+            %>
+            <p class="card-subtitle mb-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"> <%=authors.get(0).getAuthorName()%></p>
+            <%
+              }
+            %>
+            <p style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"><%=description%></p>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@
       <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
           <select name = "searchOption" class="custom-select">
             <option value="title">Title</option>
             <option value="isbn">ISBN/Kindle ASIN</option>
@@ -224,56 +224,6 @@
           </div>
         </div>
         <br>
-
-        <%--<div class="row">--%>
-          <%--<div class="col-lg-2"></div>--%>
-          <%--<div class="col-lg-8">--%>
-            <%--<div class="card pale_red_color">--%>
-              <%--<form action="/updateAddress" method="post">--%>
-                <%--<div class="card-body">--%>
-                  <%--<h4 class="card-title text-center">Update Billing Address</h4>--%>
-                  <%--<div class="form-row">--%>
-                    <%--<div class="form-group col-lg-12">--%>
-                      <%--<label for="billingaddressline1">Address</label>--%>
-                      <%--<input type="text" class="form-control" id="billingaddressline1" placeholder="123 Main St" required>--%>
-                    <%--</div>--%>
-                  <%--</div>--%>
-                  <%--<div class="form-row">--%>
-                    <%--<div class="form-group col-lg-12">--%>
-                      <%--<label for="billingaddressline2">Address 2</label>--%>
-                      <%--<input type="text" class="form-control" id="billingaddressline2" placeholder="Apartment, studio, or floor" required>--%>
-                    <%--</div>--%>
-                  <%--</div>--%>
-                  <%--<div class="form-row">--%>
-                    <%--<div class="form-group col-lg-4">--%>
-                      <%--<label for="billingcity">City</label>--%>
-                      <%--<input type="text" class="form-control" id="billingcity" required>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group col-lg-2">--%>
-                      <%--<label for="billingpostcode">Zip</label>--%>
-                      <%--<input type="text" class="form-control" id="billingpostcode" required>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group col-lg-2">--%>
-                      <%--<label for="billingstate">State</label>--%>
-                      <%--<input type="text" class="form-control" id="billingstate" placeholder="PA" required>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group col-lg-4">--%>
-                      <%--<label for="billingcountry">Country</label>--%>
-                      <%--<input type="text" class="form-control" id="billingcountry" required>--%>
-                    <%--</div>--%>
-                  <%--</div>--%>
-                  <%--<div class="form-row">--%>
-                    <%--<div class="form-group col-lg-6">--%>
-                      <%--<label for="billingphone">Phone Number</label>--%>
-                      <%--<input type="tel" class="form-control" id="billingphone" required>--%>
-                    <%--</div>--%>
-                  <%--</div>--%>
-                  <%--<button type="submit" class="btn dark_grey_color"><span>Update Billing Address</span></button>--%>
-                <%--</div>--%>
-              <%--</form>--%>
-            <%--</div>--%>
-          <%--</div>--%>
-        <%--</div>--%>
        </div>
       </div>
 
