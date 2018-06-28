@@ -11,8 +11,8 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRespository;
 	
-	public int updateBillingAddress(String addressLine1, String addressLine2, String city, String postcode, String state, String country, String phoneNumber, int customerId) {
-		return addressRespository.updateBillingAddress(addressLine1, addressLine2, city, postcode, state, country, phoneNumber, customerId);
+	public int updateBillingAddress(String addressLine1, String addressLine2, String city, String postcode, String state, String country, String phoneNumber, int customerId, String addressType) {
+		return addressRespository.updateBillingAddress(addressLine1, addressLine2, city, postcode, state, country, phoneNumber, customerId, addressType);
 	}
 
 	public Address findAddressByType(int customerId, String addressType) {

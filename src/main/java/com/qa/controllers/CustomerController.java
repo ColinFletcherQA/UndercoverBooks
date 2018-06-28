@@ -173,7 +173,7 @@ public class CustomerController {
         if (addressService.getCustomerAddress(loggedInCustomer.getCustomerId()) != null) {
             int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
                     address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
-                    loggedInCustomer.getCustomerId());
+                    loggedInCustomer.getCustomerId(), address.getAddressType());
             
             if (recordsUpdated > 0) {
                 //Success
@@ -193,7 +193,7 @@ public class CustomerController {
             }
         }
 
-        session.setAttribute("Address", address);
+        modelAndView.addObject("Address", address);
       
         return modelAndView;
     }
