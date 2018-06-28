@@ -170,7 +170,7 @@ public class CustomerController {
     public ModelAndView updateAddress(HttpSession session, @ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
         ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);
 
-        if (addressService.getAddressIfAlreadyExists(address) != null) {
+        if (addressService.getCustomerAddress(loggedInCustomer.getCustomerId()) != null) {
             int recordsUpdated = addressService.updateBillingAddress(address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
                     address.getPostcode(), address.getState(), address.getCountry(), address.getPhoneNumber(),
                     loggedInCustomer.getCustomerId());
