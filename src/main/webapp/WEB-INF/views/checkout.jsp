@@ -19,8 +19,9 @@
 
   <%!
     Customer c;
-    BigDecimal orderTotal, taxTotal;
+    BigDecimal orderTotal, taxTotal, bookTotal;
     Map<Book, Integer> cartItems;
+    Integer numOfBooks;
   %>
 
   <%
@@ -33,6 +34,7 @@
     orderTotal = (BigDecimal) request.getAttribute("order_total");
     taxTotal = (BigDecimal) request.getAttribute("tax_total");
     cartItems = (HashMap<Book, Integer>) request.getAttribute("cart_items");
+    numOfBooks = 0;
   %>
 
      <!-- Start Top Bar -->
@@ -113,7 +115,13 @@
             <div class="card-body" style="color: #0a0a0a;">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span style="color: white">Your cart</span>
-                <span class="badge badge-secondary badge-pill"><%=cartItems.size()%></span>
+                <%
+                    for (Integer quantity : cartItems.values()){
+                        numOfBooks = numOfBooks + quantity;
+                    }
+                %>
+
+                <span class="badge badge-secondary badge-pill"><%=numOfBooks%></span>
               </h4>
               <ul class="list-group mb-3">
                 <%
@@ -121,10 +129,14 @@
                 %>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                   <div>
-                    <h6><%=book.getTitle()%></h6>
+                    <h6><%=book.getTitle()%> (<%=cartItems.get(book)%>)</h6>
                     <small><%=book.getAuthors().get(0).getAuthorName()%></small>
                   </div>
-                  <span>$<%=book.getPrice()%></span>
+                  <%
+                        bookTotal = book.getPrice().multiply(BigDecimal.valueOf(cartItems.get(book)));
+                  %>
+
+                  <span>$<%= bookTotal %></span>
                 </li>
                 <%
                   }
