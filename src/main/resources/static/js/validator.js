@@ -13,7 +13,7 @@ $(document).ready(function() {
                 if(input.css('display') != 'none'){
                     if(inputType == 'text' || inputType == 'email' || inputType == 'password'){
 
-                        if(input.attr('name') != 'addressLine2' || input.attr('name') != 'addressLine21'){
+                        if(input.attr('name') != 'addressLine2' && input.attr('name') != 'addressLine21'){
                             if(!input.val()){
                                 input.css('border', '3px solid red');
                                 valid = false;
