@@ -107,7 +107,7 @@
         <div class="card card_color">
           <div class="card-body">
             <h3 class="card-title">Send us a Message</h3>
-            <form>
+            <form action="/sendUsAMessage" method="post">
               <div class="form-group">
                 <label for="fullName">Full Name:</label>
                 <input type="text" class="form-control" id="fullName" name="fullName">
@@ -123,6 +123,9 @@
               <div class="form-group">
                 <label for="message">Message:</label>
                 <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+              </div>
+              <div>
+                ${message_flag.getMessage()}
               </div>
               <button type="submit" class="btn button_color">
                 <span>Send Message</span>
