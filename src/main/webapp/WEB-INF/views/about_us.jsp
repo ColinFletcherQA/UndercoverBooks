@@ -98,7 +98,7 @@
     <!-- Intro Content -->
     <div class="row">
       <div class="col-lg-6">
-        <img class="img-fluid rounded mb-4" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/a-team_1.jpg?itok=ZW8qovPC&resize=1100x619" alt="">
+        <img class="img-fluid rounded mb-4" src="http://tvland.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/tvl/images/shows/the_golden_girls/site/golden_girls_Series_Main_Landscape_1920x460.png?quality=0.85&width=1024&height=460&crop=true" alt="">
       </div>
       <div class="col-lg-6">
         <h2>About Undercover Books</h2>
