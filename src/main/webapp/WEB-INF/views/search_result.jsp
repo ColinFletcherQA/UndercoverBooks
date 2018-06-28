@@ -2,6 +2,7 @@
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
 <%@ page import="org.springframework.beans.support.PagedListHolder" %>
+<%@ page import="org.jsoup.Jsoup" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -132,6 +133,7 @@
             }
             String description = book.getDescription().replaceAll("<[^>]*>", "");
             description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+            description = Jsoup.parse(description).text();
       %>
 
       <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
