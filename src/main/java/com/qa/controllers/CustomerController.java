@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@SessionAttributes(names = {"cart_items", "logged_in_customer", "Address"})
+@SessionAttributes(names = {"cart_items", "logged_in_customer"})
 public class CustomerController {
 
 	@Autowired
@@ -58,7 +58,6 @@ public class CustomerController {
 
 	@RequestMapping("/login")
 	public ModelAndView login(HttpSession session) {
-		session.setAttribute("Address", new Address());
 		return new ModelAndView("login");
 	}
 
@@ -135,9 +134,8 @@ public class CustomerController {
 	        return new ModelAndView("login");
         }
         Customer customer = (Customer) request.getSession().getAttribute("logged_in_customer");
-		Address customerAddress = (Address) addressService.getCustomerAddress(customer.getCustomerId());
 		ModelAndView modelAndView = new ModelAndView("customer_home","logged_in_customer",request.getSession().getAttribute("logged_in_customer"));
-		modelAndView.addObject("customer_address", customerAddress);
+		modelAndView.addObject("Address", addressService.getCustomerAddress(customer.getCustomerId()));
 		return modelAndView;
 	}
 	
@@ -167,7 +165,7 @@ public class CustomerController {
 	}
 
     @RequestMapping("/updateAddress")
-    public ModelAndView updateAddress(HttpSession session, @ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
+    public ModelAndView updateAddress(@ModelAttribute("logged_in_customer") Customer loggedInCustomer, @ModelAttribute("Address") Address address) {
         ModelAndView modelAndView = new ModelAndView("customer_home", "logged_in_customer",loggedInCustomer);
 
         if (addressService.getCustomerAddress(loggedInCustomer.getCustomerId()) != null) {
@@ -183,18 +181,14 @@ public class CustomerController {
                 modelAndView.addObject("shipping_flag", new Flag("Update Failed", 0));
             }
         } else {
-            address = addressService.saveAddress(address);
-          
-            if (address != null) {
+            if (addressService.saveAddress(address) != null) {
                 modelAndView.addObject("shipping_flag", new Flag("Address Updated", 1));
             } else {
                 //Failure
                 modelAndView.addObject("shipping_flag", new Flag("Address Failed", 0));
             }
         }
-
         modelAndView.addObject("Address", address);
-      
         return modelAndView;
     }
 

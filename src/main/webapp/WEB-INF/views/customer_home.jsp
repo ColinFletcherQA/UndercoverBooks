@@ -22,7 +22,7 @@
         c = null;
       }
       
-      address = (Address) session.getAttribute("Address");
+      address = (Address) request.getAttribute("Address");
   %>
     
     <!-- Start Top Bar -->
