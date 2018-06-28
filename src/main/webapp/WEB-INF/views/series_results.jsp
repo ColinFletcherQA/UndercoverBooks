@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
+<%@ page import="org.jsoup.Jsoup" %>
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -27,7 +28,7 @@
     <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
-        <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
         <select name = "searchOption" class="custom-select">
           <option value="title">Title</option>
           <option value="isbn">ISBN / Kindle ASIN</option>
@@ -103,6 +104,7 @@
 
           String description = book.getDescription().replaceAll("<[^>]*>", "");
           description = description.substring(0, Math.min(100, book.getDescription().length())) + "...";
+          description = Jsoup.parse(description).text();
 
           Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
           Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
@@ -113,29 +115,34 @@
         <div class="card h-100 card_color">
           <a href="/bookDetails?bookId=<%=book.getBookId()%>"><img class="card-img-top mx-auto d-block front_page_img img-fluid pt-4" src="<%=book.getBookImage()%>" alt=""></a>
           <div class="card-body">
-            <h4 class="card-title">
-              <%=book.getTitle()%>
+            <h4 class="card-title ">
+              <div><%= book.getTitle()%></div>
             </h4>
-            <p class="card-subtitle mb-2"> <%=book.getAuthors().get(0).getAuthorName()%></p>
-
-            <p class="card-text"><i><%=book.getPublisher()%></i></p>
-
-            <p class="card-text"><%=description%></p>
-          </div>
-          <div class="card-footer">
             <% if (weightedAverage == 5) {%>
-            <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+            <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
             <%} else if (weightedAverage >= 4) {%>
-            <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
             <%} else if (weightedAverage >= 3) {%>
-            <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+            <small class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
             <%} else if (weightedAverage >= 2) {%>
-            <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+            <small class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</small>
             <%} else if (weightedAverage >= 1) {%>
-            <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+            <small class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</small>
             <%} else if (weightedAverage >= 0) {%>
-            <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+            <small class="text-warning">&#9734; &#9734; &#9734; &#9734; &#9734;</small>
             <%}%>
+
+            <h5 class="pt-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">$<%= book.getPrice()%></h5>
+            <%
+              List<Author> authors = book.getAuthors();
+
+              if (!authors.isEmpty()) {
+            %>
+            <p class="card-subtitle mb-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"> <%=authors.get(0).getAuthorName()%></p>
+            <%
+              }
+            %>
+            <p style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"><%=description%></p>
           </div>
         </div>
       </div>

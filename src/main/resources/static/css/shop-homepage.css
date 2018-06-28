@@ -16,7 +16,7 @@
 body {
   padding-top: 54px;
   background-color: #f9f2ea;
-  font-family: Roboto;
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
 
 }
 .container_padding {
@@ -51,6 +51,18 @@ h2 {
     font-family: Roboto;
     font-weight: bold;
     color: #21454a;
+}
+h3 {
+    font-family: Roboto;
+    font-weight: bold;
+}
+h4 {
+    font-family: Roboto;
+    font-weight: bold;
+}
+h5 {
+    font-family: Roboto;
+    font-weight: bold;
 }
 
 .font_label {
@@ -123,14 +135,20 @@ h2 {
     max-height: 300px;
     width: auto;
 }
+.order_history_img {
+    max-height: 100px;
+    width: auto;
+}
 a > span {
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
     color: white;
 }
 button > span {
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
     color: white;
 }
 .page_nav {
-    color: var(--independence);
+    color: var(--blue-green);
 }
 .series_block {
     color: var(--independence);
@@ -139,5 +157,12 @@ button > span {
 }
 .series_link {
     color: var(--independence);
+}
+.alert_color {
+    background-color: var(--sunset-orange);
+    color: white;
+}
+.slick-next::before {
+    color: var(--ucla-blue);
 }
 

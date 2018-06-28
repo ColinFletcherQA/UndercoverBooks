@@ -27,7 +27,7 @@
     <div class="container-fluid px-4">
       <a class="navbar-brand" href="/">Undercover Books</a>
       <form class="form-inline" action="/search">
-        <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
         <select name = "searchOption" class="custom-select">
           <option value="title">Title</option>
           <option value="isbn">ISBN / Kindle ASIN</option>
@@ -98,19 +98,16 @@
     <!-- Intro Content -->
     <div class="row">
       <div class="col-lg-6">
-        <img class="img-fluid rounded mb-4" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/a-team_1.jpg?itok=ZW8qovPC&resize=1100x619" alt="">
+        <img class="img-fluid rounded mb-4" src="http://tvland.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/tvl/images/shows/the_golden_girls/site/golden_girls_Series_Main_Landscape_1920x460.png?quality=0.85&width=1024&height=460&crop=true" alt="">
       </div>
       <div class="col-lg-6">
         <h2>About Undercover Books</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique?
-          Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem
-          non blanditiis ex fugiat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut
-          sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit
-          dolorum!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa
-          voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus
-          perspiciatis quis?</p>
+        <p>Undercover Books is the new PREMIERE retail site for all your book and book related needs (limited only to books).
+        Built and deployed using Amazon provided services, Undercover Books seeks to overthrow the retail giant with
+        a quality selection and unbeatable prices. </p>
+        <p>The team of Chandler Todd, Colin Fletcher, Jacob Glickman, and Jack McGinnis worked long thankless hours
+        to produce this masterpiece. Their brilliance and teamwork is at the heart of what Undercover Books stands for.
+        Read more about the individual team members below. </p>
       </div>
     </div>
     <!-- /.row -->

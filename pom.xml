@@ -76,6 +76,12 @@
             <artifactId>guava</artifactId>
             <version>22.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,6 +92,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

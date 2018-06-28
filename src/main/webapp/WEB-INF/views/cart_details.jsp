@@ -37,7 +37,7 @@
       <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
           <select name="searchOption" class="custom-select">
             <option value="title">Title</option>
             <option value="isbn">ISBN / Kindle ASIN</option>
@@ -117,7 +117,7 @@
                   cartTotal = cartTotal.add(totalPrice);
               %>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
-                  <div class="card card_color">
+                  <div class="card h-100 card_color">
                     <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>"/>
                     <div class="card-body">
                       <form name="f1">
@@ -131,6 +131,8 @@
                         <a class="btn plus" onclick="increaseQuantity(<%=price%>, price_label<%=i%>, quantity<%=i%>);">+</a>
                       </form>
                       <br>
+                    </div>
+                    <div class="card-footer">
                       <a class="btn button_color_warning" href="/removeFromCart?bookId=<%=book.getBookId() %>"><span>Remove</span></a>
                     </div>
                   </div>

@@ -1,6 +1,8 @@
 <!doctype html>
 <%@page import="java.util.*"%>
 <%@page import="com.qa.models.*"%>
+<%@ page import="org.jsoup.Jsoup" %>
+<%@ page import="static org.jsoup.Jsoup.parse" %>
 
 <html lang="en">
   <head>
@@ -28,7 +30,7 @@
       <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
             <select name="searchOption" class="custom-select">
                 <option name="title" value="title">Title</option>
                 <option name="isbn" value="isbn">ISBN / Kindle ASIN</option>
@@ -103,16 +105,28 @@
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
                 <img class="d-block img-fluid" src="images/cover12.png" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/cover13.jpg" alt="Second slide">
+                <img class="d-block img-fluid" src="images/cover16.png" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/cover15.jpg" alt="Third slide">
+                <img class="d-block img-fluid" src="images/cover17.png" alt="Third slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="images/cover18.png" alt="Forth slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="images/cover19.png" alt="Fifth slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="images/cover15.jpg" alt="Sixth slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -136,6 +150,7 @@
 
               description = description.substring(0, Math.min(150, description.length())) + "...";
               description = description.replaceAll("<[^>]*>", "");
+              description = Jsoup.parse(description).text();
 
               Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
               Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
@@ -149,33 +164,33 @@
                 <h4 class="card-title ">
                   <div><%= book.getTitle()%></div>
                 </h4>
-                <h5>$<%= book.getPrice()%></h5>
+                <% if (weightedAverage == 5) {%>
+                <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+                <%} else if (weightedAverage >= 4) {%>
+                <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <%} else if (weightedAverage >= 3) {%>
+                <small class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 2) {%>
+                <small class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 1) {%>
+                <small class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 0) {%>
+                <small class="text-warning">&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+                <%}%>
+
+                <h5 class="pt-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">$<%= book.getPrice()%></h5>
                  <%
                    List<Author> authors = book.getAuthors();
 
                    if (!authors.isEmpty()) {
                  %>
-                     <p class="card-subtitle mb-2"> <%=authors.get(0).getAuthorName()%></p>
+                  <p class="card-subtitle mb-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"> <%=authors.get(0).getAuthorName()%></p>
                  <%
                    }
                  %>
-                <p class="card-text"><%=description%></p>
+                <p style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"><%=description%></p>
               </div>
-              <div class="card-footer">
-                <% if (weightedAverage == 5) {%>
-                  <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
-                <%} else if (weightedAverage >= 4) {%>
-                  <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                <%} else if (weightedAverage >= 3) {%>
-                  <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
-                <%} else if (weightedAverage >= 2) {%>
-                  <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
-                <%} else if (weightedAverage >= 1) {%>
-                  <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
-                <%} else if (weightedAverage >= 0) {%>
-                  <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
-                <%}%>
-              </div>
+
             </div>
           </div>
           <%
