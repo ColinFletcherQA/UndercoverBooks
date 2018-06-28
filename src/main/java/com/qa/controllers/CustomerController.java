@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @SessionAttributes(names = {"cart_items", "logged_in_customer", "Address"})
@@ -107,7 +108,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/loginProcess")
-	public ModelAndView loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public ModelAndView loginProcess(HttpServletRequest request, @RequestParam("email") String email, @RequestParam("password") String password) {
 		System.out.println("Email is " + email);
 		System.out.println("Password is " + password);
 		
@@ -115,6 +116,10 @@ public class CustomerController {
 
 		if (c != null) {
 			System.out.println("Success");
+            Map<Book, Integer> cartItems = (Map<Book, Integer>) request.getSession().getAttribute("cart_items");
+            if(cartItems.size() > 0) {
+                return new ModelAndView("cart_details", "logged_in_customer", c);
+            }
 			return new ModelAndView("customer_home", "logged_in_customer", c);
 		} else {
 			System.out.println("Failure");
