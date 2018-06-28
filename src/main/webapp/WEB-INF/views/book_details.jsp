@@ -51,7 +51,7 @@
       <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
           <select name = "searchOption" class="custom-select">
             <option value="title">Title</option>
             <option value="isbn">ISBN / Kindle ASIN</option>
@@ -122,15 +122,9 @@
           <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pb-4">
               <div class="card card_color">
-                <img class="card-img-top book_details_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
+                <img class="card-img-top front_page_img mx-auto d-block img-fluid pt-4" src="<%=book.getBookImage()%>" alt="<%=book.getTitle()%>">
                 <div class="card-body">
                   <h3 class="card-title"><%=book.getTitle()%></h3>
-                  <% if (book.getSeries().size() > 0) {
-                    for (Series s : book.getSeries()) {
-                  %><h6>Part of <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>"><span><u><%=s.getSeriesName()%></u></span></a> Series</h6><%
-                    }
-                  }%>
-                  <h4>$<%=book.getPrice()%></h4>
                   <%
                     Integer topValue = ((1* book.getRatings_1()) + (2*book.getRatings_2()) + (3*book.getRatings_3()) + (4*book.getRatings_4()) + (5*book.getRatings_5()));
                     Integer bottomValue = (book.getRatings_1()+book.getRatings_2()+book.getRatings_3()+book.getRatings_4()+book.getRatings_5());
@@ -149,6 +143,12 @@
                   <%} else if (weightedAverage >= 0) {%>
                   <small class="text-warning">&#9734; &#9734; &#9734; &#9734; &#9734;</small>
                   <%}%>
+                  <% if (book.getSeries().size() > 0) {
+                    for (Series s : book.getSeries()) {
+                  %><h6 class="pt-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">Part of <a href="/seriesResults?seriesName=<%=s.getSeriesName()%>"><span><u><%=s.getSeriesName()%></u></span></a> Series</h6><%
+                    }
+                  }%>
+                  <h4 style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">$<%=book.getPrice()%></h4>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@
               <div class="card card-outline-secondary card_color">
                 <div class="card-body">
                   <h3 class="card-title">Book Description</h3>
-                  <p class="card-text"><%=book.getDescription()%></p>
+                  <p class="card-text" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"><%=book.getDescription()%></p>
                 </div>
               </div>
             </div>
@@ -248,6 +248,7 @@
         </div>
 
         <div class="col-lg-6">
+
           <%
             if (book.getReview().isEmpty()) {
           %>
@@ -256,10 +257,9 @@
             } else {
           %>
           <div class="card card-outline-secondary card_color">
-            <div class="card-header">
-              Book Reviews
-            </div>
               <div class="card-body">
+                <h3 style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">Book Reviews</h3>
+                <hr>
                 <%
                   int counter = 0;
                   for (Review review : book.getReview()) {

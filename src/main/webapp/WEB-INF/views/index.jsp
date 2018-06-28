@@ -28,7 +28,7 @@
       <div class="container-fluid px-4">
         <a class="navbar-brand" href="/">Undercover Books</a>
         <form class="form-inline" action="/search">
-          <input name="searchTerm" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input name="searchTerm" class="form-control mr-1" type="text" placeholder="Search" aria-label="Search">
             <select name="searchOption" class="custom-select">
                 <option name="title" value="title">Title</option>
                 <option name="isbn" value="isbn">ISBN / Kindle ASIN</option>
@@ -149,33 +149,33 @@
                 <h4 class="card-title ">
                   <div><%= book.getTitle()%></div>
                 </h4>
-                <h5>$<%= book.getPrice()%></h5>
+                <% if (weightedAverage == 5) {%>
+                <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+                <%} else if (weightedAverage >= 4) {%>
+                <small class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <%} else if (weightedAverage >= 3) {%>
+                <small class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 2) {%>
+                <small class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 1) {%>
+                <small class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</small>
+                <%} else if (weightedAverage >= 0) {%>
+                <small class="text-warning">&#9734; &#9734; &#9734; &#9734; &#9734;</small>
+                <%}%>
+
+                <h5 class="pt-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif">$<%= book.getPrice()%></h5>
                  <%
                    List<Author> authors = book.getAuthors();
 
                    if (!authors.isEmpty()) {
                  %>
-                     <p class="card-subtitle mb-2"> <%=authors.get(0).getAuthorName()%></p>
+                  <p class="card-subtitle mb-2" style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"> <%=authors.get(0).getAuthorName()%></p>
                  <%
                    }
                  %>
-                <p class="card-text"><%=description%></p>
+                <p style="font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif"><%=description%></p>
               </div>
-              <div class="card-footer">
-                <% if (weightedAverage == 5) {%>
-                  <small>&#9733; &#9733; &#9733; &#9733; &#9733;</small>
-                <%} else if (weightedAverage >= 4) {%>
-                  <small>&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                <%} else if (weightedAverage >= 3) {%>
-                  <small>&#9733; &#9733; &#9733; &#9734; &#9734;</small>
-                <%} else if (weightedAverage >= 2) {%>
-                  <small>&#9733; &#9733; &#9734; &#9734; &#9734;</small>
-                <%} else if (weightedAverage >= 1) {%>
-                  <small>&#9733; &#9734; &#9734; &#9734; &#9734;</small>
-                <%} else if (weightedAverage >= 0) {%>
-                  <small>&#9734; &#9734; &#9734; &#9734; &#9734;</small>
-                <%}%>
-              </div>
+
             </div>
           </div>
           <%

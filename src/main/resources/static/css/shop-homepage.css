@@ -16,7 +16,7 @@
 body {
   padding-top: 54px;
   background-color: #f9f2ea;
-  font-family: Roboto;
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
 
 }
 .container_padding {
@@ -51,6 +51,18 @@ h2 {
     font-family: Roboto;
     font-weight: bold;
     color: #21454a;
+}
+h3 {
+    font-family: Roboto;
+    font-weight: bold;
+}
+h4 {
+    font-family: Roboto;
+    font-weight: bold;
+}
+h5 {
+    font-family: Roboto;
+    font-weight: bold;
 }
 
 .font_label {
@@ -128,9 +140,11 @@ h2 {
     width: auto;
 }
 a > span {
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
     color: white;
 }
 button > span {
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
     color: white;
 }
 .page_nav {
