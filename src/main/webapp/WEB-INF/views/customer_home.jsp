@@ -213,7 +213,7 @@
                       <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber">
                     </div>
                   </div>
-                  <input type="hidden" name="addressType" value="shipping">
+                  <input type="hidden" name="addressType" value="default">
                   <input type="hidden" name="customerId" value="<%=c.getCustomerId()%>">
                   <div id="addressFlag">
                     ${shipping_flag.getMessage()}
