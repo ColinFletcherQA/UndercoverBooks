@@ -226,6 +226,24 @@
       </div>
         <div class="row mt-5">
           <div class="col-lg-6">
+            <div class="card card_color mb-5">
+              <div class="card-body">
+                <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
+                  <div class="row">
+                    <div class="col-xl-12">
+                      <div class="form-group">
+                        <label for="review">Enter your comments here!</label>
+                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn button_color"><span>Leave a Review</span></button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
             <%
               if (book.getReview().isEmpty()) {
             %>
@@ -242,13 +260,17 @@
                   <%
                     int counter = 0;
                     for (Review review : book.getReview()) {
+
+                        if (counter++ == 5) {
+                            break;
+                        }
                   %>
-                    <p><%=review.getReview()%></p>
-                    <small><%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%></small>
+                      <p style="font-size: 20px"><%=review.getReview()%></p>
+                      <small>-- <%=review.getCustomer().getFirstName()%> <%=review.getCustomer().getLastName()%>,</small>
                     <%
                         if(review.getTime() > 0) {
                     %>
-                        <small><%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
+                      <small>    <%=LocalDateTime.ofEpochSecond(review.getTime(),0,ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))%></small>
                     <%
                         }
                     %>
@@ -262,28 +284,8 @@
             <%
               }
             %>
-            <%
-              if (c != null) {
-            %>
-            <div class="card card_color mt-4 mb-5">
-              <div class="card-body">
-                <form action="/postReview?bookId=<%=book.getBookId()%>" method="post">
-                  <div class="row">
-                    <div class="col-xl-12">
-                      <div class="form-group">
-                        <label for="review">Enter your comments here!</label>
-                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn button_color"><span>Leave a Review</span></button>
-                </form>
-              <%
-                }
-              %>
-              </div>
-            </div>
           </div>
+
         </div>
     </div>
 
