@@ -29,6 +29,6 @@ public interface AddressRepository extends CrudRepository<Address, Integer> {
 	@Query("SELECT a from Address a WHERE a.customerId = :customerId and a.addressLine1 = :addressLine1")
 	Address checkDuplicate(@Param("addressLine1") String addressLine1, @Param("customerId") int customerId);
 
-	@Query("SELECT a from Address a WHERE a.customerId = :customerId")
+	@Query("SELECT a from Address a WHERE a.customerId = :customerId AND a.addressType = 'default'")
 	Address findAddressByCustomer(@Param("customerId") int customerId);
 }
