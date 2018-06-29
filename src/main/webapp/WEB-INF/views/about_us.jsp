@@ -178,22 +178,22 @@
     <h2>Our Customers</h2>
     <div class="row">
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
+        <img class="img-fluid" src="images/sally.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
+        <img class="img-fluid" src="images/sally.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
+        <img class="img-fluid" src="images/sally.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
+        <img class="img-fluid" src="images/sally.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
+        <img class="img-fluid" src="images/sally.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="https://files.slack.com/files-pri/TB590P7HV-FB74UGF3P/image.png" alt="">
+        <img class="img-fluid" src="images/sally.png" alt="">
       </div>
     </div>
     <!-- /.row -->
