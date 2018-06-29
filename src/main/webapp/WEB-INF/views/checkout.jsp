@@ -309,7 +309,7 @@
             <input type="hidden" name="totalPrice" value="<%=orderTotal %>"/>
             <input type="hidden" name="time" value="<%=Instant.now().toEpochMilli()/1000%>">
             <input type="hidden" name="addressType" value="shipping"/>
-            <button type="submit" class="btn button_color"><span>Checkout</span></button>
+            <button type="submit" class="btn button_color" id="finishCheckout"><span>Checkout</span></button>
           </form>
           </div>
         </div>

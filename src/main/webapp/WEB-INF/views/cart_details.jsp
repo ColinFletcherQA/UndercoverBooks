@@ -188,15 +188,15 @@
                 <%
                   if (bookCounts.isEmpty()) {
                 %>
-                    <button type="button" class="btn button_color" disabled><span>Proceed to Checkout</span></button>
+                    <button type="button" class="btn button_color" id="checkoutButton" disabled><span>Proceed to Checkout</span></button>
                 <%
                   } else if (c != null) {
                 %>
-                    <button type="submit" class="btn button_color"><span>Proceed to Checkout</span></button>
+                    <button type="submit" class="btn button_color" id="checkoutButton"><span>Proceed to Checkout</span></button>
                 <%
                   } else {
                 %>
-                    <a href="/login" class="btn button_color"><span>Login or Register</span></a>
+                    <a href="/login" class="btn button_color" id="loginButton"><span>Login or Register</span></a>
                 <%
                   }
                 %>
