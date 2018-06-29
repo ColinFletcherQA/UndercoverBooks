@@ -135,8 +135,7 @@
           <div class="card-body">
             <h4 class="card-title">Jack McGinnis</h4>
             <h6 class="card-subtitle mb-">Developer</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
+            <p class="card-text">I pity the fool who commits to master </p>
           </div>
           <div class="card-footer">
             <span>j.mcginnis@elsevier.com</span>
