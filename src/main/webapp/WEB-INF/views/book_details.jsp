@@ -186,8 +186,9 @@
                       <option value="printAndeBook">PrintBook & eBook</option>
                     </select>
                   </div>
-                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn button_color"><span>Add to Cart</span></a>
+                  <a id="add-to-cart-anchor" href="/addToCart?bookId=<%=book.getBookId()%>" class="btn button_color"><span id="add-to-cart-span">Add to Cart</span></a>
                   <a id="view-cart-anchor" href="/viewCart"><span id="view-cart-span"></span></a>
+
                 </form>
               </div>
             </div>
@@ -307,5 +308,10 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="css/slick/slick.min.js"></script>
     <script type="text/javascript" src="js/multipleItemsSlick.js"></script>
+    <script>
+        if(cartItems.includes(currentBook)){
+            $('#add-to-cart-span').text("Add Another")
+         }
+     </script>
   </body>
 </html>
