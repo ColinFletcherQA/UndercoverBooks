@@ -61,7 +61,7 @@
           if (c != null) {
           %>
           <li class="nav-item">
-            <a class="nav-link" href="/customerHome">Customer Home</a>
+            <a class="nav-link" id="customerHome" href="/customerHome">Customer Home</a>
           </li>
           <%
           } else {
