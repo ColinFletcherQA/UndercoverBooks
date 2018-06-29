@@ -17,7 +17,7 @@ public class SeleniumTest {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 	}
 
-	private static WebDriver driver = new ChromeDriver();
+	public static WebDriver driver = new ChromeDriver();
 
 	@Test
 	public void navigateToHomePage() throws InterruptedException {
@@ -170,7 +170,8 @@ public class SeleniumTest {
 	}
 	
 	public void openPage() throws InterruptedException {
-		driver.get("http://localhost:4444");
+		driver.get("http://bit.ly/undercoverbooks");
+		driver.manage().window().fullscreen();
 		Thread.sleep(3000);
 	}
 
