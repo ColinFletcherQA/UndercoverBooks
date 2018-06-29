@@ -180,19 +180,19 @@
         <img class="img-fluid" src="images/sally.png" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="images/sally.png" alt="">
+        <img class="img-fluid" src="images/sally3.jpg" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="images/sally.png" alt="">
+        <img class="img-fluid" src="images/sally6.jpg" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="images/sally.png" alt="">
+        <img class="img-fluid" src="images/sally2.jpg" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="images/sally.png" alt="">
+        <img class="img-fluid" src="images/sally5.jpg" alt="">
       </div>
       <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="images/sally.png" alt="">
+        <img class="img-fluid" src="images/sally4.jpg" alt="">
       </div>
     </div>
     <!-- /.row -->
