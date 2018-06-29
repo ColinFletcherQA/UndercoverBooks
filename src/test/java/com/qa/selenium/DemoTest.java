@@ -49,7 +49,7 @@ public class DemoTest extends SeleniumTest {
         WebElement viewCart = driver.findElement(By.id("view-cart-anchor"));
         viewCart.click();
         Thread.sleep(3000);
-        WebElement proceedButton = driver.findElement(By.id("btn button_color"));
+        WebElement proceedButton = driver.findElement(By.id("checkoutButton"));
         proceedButton.click();
         Thread.sleep(3000);
 
@@ -103,7 +103,7 @@ public class DemoTest extends SeleniumTest {
         cardCVV.sendKeys("789");
         Thread.sleep(500);
 
-        WebElement checkout = driver.findElement(By.className("btn button_color"));
+        WebElement checkout = driver.findElement(By.id("finishCheckout"));
         Thread.sleep(2000);
         checkout.click();
         Thread.sleep(3000);
@@ -112,6 +112,14 @@ public class DemoTest extends SeleniumTest {
         cardNumber.sendKeys("1111222233334444");
         Thread.sleep(2000);
         checkout.click();
+        Thread.sleep(5000);
+
+        WebElement customerHome = driver.findElement(By.id("customerHome"));
+        customerHome.click();
+        Thread.sleep(3000);
+        WebElement orderHistory = driver.findElement(By.id("orderHistory"));
+        orderHistory.click();
+        Thread.sleep(5000);
 
 
     }
