@@ -1,8 +1,13 @@
 package com.qa.selenium;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
+@Ignore
 public class DemoTest extends SeleniumTest {
 
     @Test
