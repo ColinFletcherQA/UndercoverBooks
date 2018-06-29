@@ -149,8 +149,7 @@
           <div class="card-body">
             <h4 class="card-title">Colin Fletcher</h4>
             <h6 class="card-subtitle mb-2">Database Wizard</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
+            <p class="card-text">Data enthusiast & magician.</p>
           </div>
           <div class="card-footer">
             <span>c.fletcher@elsevier.com</span>
