@@ -162,9 +162,8 @@
           <img class="card-img-top" src="http://bloody-disgusting.com/wp-content/uploads/2017/07/CGI-egon-.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">Jacob Glickman</h4>
-            <h6 class="card-subtitle mb-2">Developer</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
+            <h6 class="card-subtitle mb-2">Code Monkey</h6>
+            <p class="card-text">Bustin' bugs and takin' names.</p>
           </div>
           <div class="card-footer">
             <span>j.glickman@elsevier.com</span>
